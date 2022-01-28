@@ -1,0 +1,6 @@
+# Game: SWAT4
+
+[Mapping]
+WASD-movement with left stick
+LeftStickX = ["A", "D"]
+LeftStickY = ["S", "W"]
