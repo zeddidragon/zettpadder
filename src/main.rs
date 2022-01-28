@@ -1,15 +1,20 @@
-use gilrs;
 use rdev;
-use ctrlc;
+use async_ctrlc::{CtrlC};
 use toml::{Value};
 use toml::Value::Table;
+use futures::{
+    future::{FutureExt},
+    pin_mut,
+    select,
+};
 use std::env;
-use std::collections::{HashMap, BTreeMap};
-use std::fs::{File, read_to_string};
-use std::io::Write;
-use std::sync::{Arc, atomic};
-use std::{thread, time};
+// use std::collections::{HashMap, BTreeMap};
+use std::fs::{read_to_string};
+// use std::io::Write;
 
+mod state;
+
+/*
 fn send(event_type: &rdev::EventType) {
 
     match rdev::simulate(event_type) {
@@ -19,15 +24,14 @@ fn send(event_type: &rdev::EventType) {
         }
     }
 }
+*/
 
-fn main() -> std::io::Result<()> {
+async fn event_loop() {
     let args: Vec<String> = env::args().collect();
-    let mut gilrs = gilrs::Gilrs::new().unwrap();
-    let sleeptime = time::Duration::from_millis(10);
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
-        let contents = read_to_string(arg)?;
+        let contents = read_to_string(arg).unwrap();
         let config = contents.parse::<Value>().unwrap();
         if let Some(Table(alldefs)) = config.get("Definitions") {
             for (pad_id, defs) in alldefs {
@@ -41,56 +45,19 @@ fn main() -> std::io::Result<()> {
         }
     }
 
-    // If no configuration, just emit events
-    {
-        let mut codes = HashMap::new();
-        let should_run = Arc::new(atomic::AtomicBool::new(true));
-        let should_run_borrowed = should_run.clone();
-        ctrlc::set_handler(move || {
-            println!("Bye bye!");
-            if should_run_borrowed.load(atomic::Ordering::Relaxed) {
-                should_run_borrowed.store(false, atomic::Ordering::Relaxed);
-            }
-        }).expect("Error setting Ctrl-C handler");
+    // Iterate over all connected gamepads
+    println!("No configuration loaded, starting monitoring mode.");
 
-        // Iterate over all connected gamepads
-        for (_id, gamepad) in gilrs.gamepads() {
-            let padcodes = BTreeMap::new();
-            codes.insert(_id, padcodes);
-            println!("{} is {:?}", gamepad.name(), gamepad.mapping_source());
-        }
-
-        println!("No configuration loaded, starting monitoring mode.");
-        while should_run.load(atomic::Ordering::Relaxed) {
-            // Examine new events
-            while let Some(gilrs::Event { id, event, time: _ }) = gilrs.next_event() {
-                let padcodes = codes.get_mut(&id).expect("Gamepad not found!");
-                match event {
-                    gilrs::EventType::ButtonPressed(button, code) => {
-                        println!("pressed: {:?} {:?}", button, code);
-                        send(&rdev::EventType::KeyPress(rdev::Key::KeyS));
-                        padcodes.insert(code.into_u32(), button);
-                    },
-                    gilrs::EventType::ButtonReleased(button, code) => {
-                        println!("released: {:?} {:?}", button, code);
-                        send(&rdev::EventType::KeyRelease(rdev::Key::KeyS));
-                    },
-                    _ => {
-                        println!("{:?}", event);
-                    },
-                }
-            }
-            thread::sleep(sleeptime);
-        }
-
-        for(id, padcodes) in codes.into_iter() {
-            let mut buffer = File::create("output.toml")?;
-            writeln!(&mut buffer, "[Definitions.{}]", id)?;
-            for(code, button) in padcodes {
-                writeln!(&mut buffer, "{} = \"{:?}\"", code, button)?;
-            }
-            writeln!(&mut buffer, "")?;
-        }
+    let controller_loop = state::run().fuse();
+    let ctrlc_loop = CtrlC::new().expect("cannot create Ctrl+C handler").fuse();
+    pin_mut!(controller_loop, ctrlc_loop);
+    select! {
+        _ = controller_loop => println!("Controller quitted"),
+        _ = ctrlc_loop => println!("ctrlc quitted"),
     }
-    Ok(())
+}
+
+fn main() {
+    pasts::block_on(event_loop());
+    println!("Bye bye!");
 }

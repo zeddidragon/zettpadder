@@ -19,15 +19,19 @@ Debian:
 # Usage
 - Ensure your controller is prepared and plugged in
 - Start program
-- Press every button on it
-- Program will write out to `output.toml` with code -> key definitions. You may use and modify this as a basis for your templates. Key names can be whatever you want them to be, but they should all be named different things.
-- See `./examples` folder for examples on how to use this.
 - Run the program and specify your configuration file(s)
-
   ```
     zettpadder pad-definitions.toml game-mappings.toml
   ```
   Any amount of files can be specified, and they'll be read in sequence
+
+# Configuration
+
+Config file is any amount of `.toml` files that contains your definitions.
+
+## Definition
+
+If you fire up the program without arguments and hit buttons, it'll show you output with names for the buttons you press. If disatisfied, you can specify a `[Definitions]` table in your configuration where you rename them. Names can be whatever you want them to be. Running the program with these names will instead output those names and use those for reference in your mapping definitions.
 
 TODO
 
