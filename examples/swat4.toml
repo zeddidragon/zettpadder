@@ -4,8 +4,8 @@ game = "Swat 4"
 [mapping]
 JoyX = ["A", "D"] # Strafe
 JoyY = ["W", "S"] # Walk
-CamX = { action: "mouse", mousemode: 'flickstick', axis: "x" } # Turn
-CamY = { action: "mouse", mousemode: 'flickstick', axis: "y" } # Turn
+CamX = { action = "mouse", mousemode = 'flickstick', axis = "x" } # Turn
+CamY = { action = "mouse", mousemode = 'flickstick', axis = "y" } # Turn
 
 BumperL = "Q" # Lean L
 BumperR = "E" # Lean R
@@ -30,9 +30,9 @@ PovUp = "ScrollUp" # Select command up
 PovDown = "ScrollDown" # Select command down
 ActionD = "Space" # Quick command
 
-ActionH = { layer: 1 } # Grenade selection
-ActionV = { layer: 2 }
-ActionB = { layer: 3 }
+ActionH = { layer = 1 } # Grenade selection
+ActionV = { layer = 2 }
+ActionB = { layer = 3 }
 
 [layers.1.mapping] # Grenade selection with X+wheel
 CamX = ["3", "5"] # Flash, Stinger

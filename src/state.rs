@@ -1,16 +1,39 @@
+use rdev;
 use pasts::Loop;
 use std::task::Poll::{self, Pending, Ready};
 use stick::{Controller, Event, Listener};
+use std::collections::{BTreeMap};
+use super::mapping::Mapping;
 
 type Exit = usize;
 
-struct State {
+pub struct State {
     listener: Listener,
     controllers: Vec<Controller>,
     rumble: (f32, f32),
+    keymaps: BTreeMap<u8, Mapping>,
 }
 
+fn send(event_type: &rdev::EventType) {
+    match rdev::simulate(event_type) {
+        Ok(()) => (),
+        Err(rdev::SimulateError) => {
+            println!("Unable to can {:?}", event_type);
+        }
+    }
+}
+
+
 impl State {
+    pub fn new(keymaps : BTreeMap<u8, Mapping>) -> Self {
+        Self {
+            listener: Listener::default(),
+            controllers: Vec::new(),
+            rumble: (0.0, 0.0),
+            keymaps: keymaps,
+        }
+    }
+
     fn connect(&mut self, controller: Controller) -> Poll<Exit> {
         println!(
             "Connected p{}, id: {:016X}, name: {}",
@@ -23,8 +46,21 @@ impl State {
     }
 
     fn event(&mut self, id: usize, event: Event) -> Poll<Exit> {
+        use rdev::EventType;
         let player = id + 1;
-        println!("p{}: {}", player, event);
+        let (button_id, button_value) = event.to_id();
+        match self.keymaps.get(&button_id) {
+            Some(Mapping::KeyPress(key)) => {
+                if button_value > 0.6 {
+                    println!("Pressing: {:?}", key);
+                    send(&EventType::KeyPress(*key))
+                } else if button_value < 0.4 {
+                    println!("Releasing: {:?}", key);
+                    send(&EventType::KeyRelease(*key))
+                }
+            },
+            _ => {}
+        }
         match event {
             Event::Disconnect => {
                 self.controllers.swap_remove(id);
@@ -48,16 +84,11 @@ impl State {
         }
         Pending
     }
-}
 
-pub async fn run() {
-    let mut state = State {
-        listener: Listener::default(),
-        controllers: Vec::new(),
-        rumble: (0.0, 0.0),
-    };
-    Loop::new(&mut state)
-        .when(|s| &mut s.listener, State::connect)
-        .poll(|s| &mut s.controllers, State::event)
-        .await;
+    pub async fn run(&mut self) {
+        Loop::new(self)
+            .when(|s| &mut s.listener, State::connect)
+            .poll(|s| &mut s.controllers, State::event)
+            .await;
+    }
 }
