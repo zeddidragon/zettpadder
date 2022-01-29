@@ -35,11 +35,16 @@ If you fire up the program without arguments and hit buttons, it'll show you out
 
 TODO
 
-# Planned features
+# Features
 - Support for every axis and button your device emits, not just the xbox standards
-- Map buttons to keyboard output and mouse output
+- Map buttons to keyboard output
+
+# Planned features
+- Map buttons to mouse output
 - Mod keys with ghosting
+- Support for multiple controllers and definitions
 - Flick stick
+- Gyro support
 
 # Not currently planned
 - Interface outside of loading a file

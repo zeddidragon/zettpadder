@@ -37,8 +37,9 @@ async fn event_loop() {
             ("mapping", Table(mappings)) => {
                 mapping::parse_mappings(&mut keymaps, Table(mappings));
             },
+            ("layers", _) => {}, // TODO
             (key, value) => {
-                //println!("Unrecognized property or invalid value: {}\n{:?}", key, value)
+                println!("Unrecognized property or invalid value: {}\n{:?}", key, value)
             },
         } }
     }
