@@ -1,18 +1,27 @@
 use rdev;
 use pasts::Loop;
-use std::task::Poll::{self, Pending, Ready};
+use std::task::Poll::{self, Pending};
 use stick::{Controller, Event, Listener};
 use std::collections::{BTreeMap};
 use super::mapping::Mapping;
+use crossbeam_channel::{Sender};
 
 type Exit = usize;
+
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum MouseAxis { X = 0, Y = 1 }
+pub struct MouseMsg {
+    pub value: f64,
+    pub axis: MouseAxis,
+}
 
 pub struct State {
     listener: Listener,
     controllers: Vec<Controller>,
     keymaps: BTreeMap<u8, Mapping>,
     states: BTreeMap<u8, f64>,
-    layer: u8,
+    // layer: u8,
+    pub mouse: Sender<MouseMsg>,
 }
 
 fn send(event_type: &rdev::EventType) {
@@ -26,7 +35,10 @@ fn send(event_type: &rdev::EventType) {
 
 
 impl State {
-    pub fn new(keymaps : BTreeMap<u8, Mapping>) -> Self {
+    pub fn new(
+        mouse: Sender<MouseMsg>,
+        keymaps: BTreeMap<u8, Mapping>,
+    ) -> Self {
         let mut states = BTreeMap::new();
         for k in keymaps.keys() {
             states.insert(*k, 0.0);
@@ -36,7 +48,8 @@ impl State {
             controllers: Vec::new(),
             keymaps: keymaps,
             states: states,
-            layer: 0,
+            // layer: 0,
+            mouse: mouse,
         }
     }
 
@@ -51,23 +64,51 @@ impl State {
         Pending
     }
 
-    fn trigger(&mut self, mapping: Mapping, value: f64, prev: f64) {
+    fn trigger(&self, mapping: Mapping, value: f64, prev: f64) {
         use Mapping::{Emit, NegPos};
+        use rdev::EventType::{
+            KeyPress,
+            KeyRelease,
+            ButtonPress,
+            ButtonRelease,
+            MouseMoveRelative,
+            Wheel };
         let on = 0.125;
         let off = 0.100;
         match mapping {
+            Emit(MouseMoveRelative { delta_x, delta_y }) => {
+                let (v, axis) = if delta_x.abs() > 0.0 {
+                    (delta_x, MouseAxis::X)
+                } else {
+                    (delta_y, MouseAxis::Y)
+                };
+                let message = MouseMsg {
+                    value: v * value,
+                    axis: axis,
+                };
+                match self.mouse.send(message) {
+                    Err(err) => {
+                        println!("Mouse event error: ({:?}) ({},{})", err, delta_x, delta_y)
+                    },
+                    _ => {},
+                }
+            },
             Emit(event) => {
                 if prev < on && value >= on {
-                    println!("Pressing: {:?}", event);
                     send(&event)
                 } else if prev > off && value <= off {
-                    println!("Releasing: {:?}", event);
                     match event {
-                        rdev::EventType::KeyPress(key) => {
-                            send(&rdev::EventType::KeyRelease(key))
+                        KeyPress(key) => {
+                            send(&KeyRelease(key))
                         },
-                        rdev::EventType::ButtonPress(btn) => {
-                            send(&rdev::EventType::ButtonRelease(btn))
+                        ButtonPress(btn) => {
+                            send(&ButtonRelease(btn))
+                        },
+                        Wheel { delta_x: _x, delta_y: _y } => {
+                            // No need to release wheel action
+                        },
+                        MouseMoveRelative { delta_x: _x, delta_y: _y } => {
+                            // TODO: Stop emitting mouse motion
                         },
                         _ => {
                             println!("Don't know how to release: {:?}", event);

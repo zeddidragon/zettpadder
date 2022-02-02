@@ -1,4 +1,5 @@
 // use rdev::xtask::name_to_hex;
+use std::thread;
 use async_ctrlc::{CtrlC};
 use toml::{Value};
 use toml::Value::Table;
@@ -8,17 +9,19 @@ use futures::{
     select,
 };
 use std::env;
-use std::collections::{HashMap, BTreeMap};
+use std::collections::{BTreeMap};
 use std::fs::{read_to_string};
-// use std::io::Write;
+use crossbeam_channel::{bounded};
 
 mod mapping;
 mod state;
+mod mouser;
+use state::{State};
+use mouser::{Mouser};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
     let mut keymaps = BTreeMap::new();
-
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
@@ -43,14 +46,17 @@ async fn event_loop() {
             },
         } }
     }
-    println!("Mapped: {:?}", keymaps);
 
     // Iterate over all connected gamepads
     println!("No configuration loaded, starting monitoring mode.");
 
-    let mut zettpadder = state::State::new(keymaps);
+    let (tx, rx) = bounded(500);
+    let mut zettpadder = State::new(tx, keymaps);
     let controller_loop = zettpadder.run().fuse();
     let ctrlc_loop = CtrlC::new().expect("cannot create Ctrl+C handler").fuse();
+    thread::spawn(move || {
+        Mouser::new(rx).run();
+    });
     pin_mut!(controller_loop, ctrlc_loop);
     select! {
         _ = controller_loop => println!("Controller quitted"),

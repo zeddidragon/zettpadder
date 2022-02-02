@@ -128,7 +128,7 @@ fn parse_input(v : &String) -> u8 {
 
 pub fn parse_output(v : &Value) -> Mapping {
     use Mapping::{Emit, Noop};
-    use rdev::EventType::{KeyPress, ButtonPress};
+    use rdev::EventType::{KeyPress, ButtonPress, Wheel, MouseMoveRelative};
     match v {
         Value::String(v) => {
             match v.as_str() {
@@ -311,6 +311,10 @@ pub fn parse_output(v : &Value) -> Mapping {
                 "M14" => Emit(ButtonPress(rdev::Button::Unknown(14))),
                 "M15" => Emit(ButtonPress(rdev::Button::Unknown(15))),
                 "M16" => Emit(ButtonPress(rdev::Button::Unknown(16))),
+                "ScrollUp" => Emit(Wheel { delta_x: 0, delta_y: 1 }),
+                "ScrollDown" => Emit(Wheel { delta_x: 0, delta_y: -1 }),
+                "MouseX" => Emit(MouseMoveRelative { delta_x: 1.0, delta_y: 0.0 }),
+                "MouseY" => Emit(MouseMoveRelative { delta_x: 0.0, delta_y: 1.0 }),
                 _ => {
                     println!("Unrecognized key: {:?}", v);
                     Noop
@@ -322,7 +326,7 @@ pub fn parse_output(v : &Value) -> Mapping {
                 let neg = parse_output(&arr[0]);
                 let pos = parse_output(&arr[1]);
                 match(neg, pos) {
-                    (Mapping::Emit(e1), Mapping::Emit(e2)) => {
+                    (Emit(e1), Emit(e2)) => {
                         Mapping::NegPos(e1, e2)
                     }
                     (n, p) => {
@@ -334,6 +338,39 @@ pub fn parse_output(v : &Value) -> Mapping {
                 println!("Array maps must be exactly sized 2, got {:?}", v);
                 Noop
             }
+        },
+        Value::Table(table) => {
+            if let Some(action) = table.get("action") {
+            if let Value::String(action_str) = action {
+                return match action_str.as_str() {
+                    "MouseX" => {
+                        let sensitivity : f64 = match table.get("sensitivity") {
+                            Some(Value::Float(x)) => *x,
+                            _ => 1.0,
+                        };
+                        Emit(MouseMoveRelative {
+                            delta_x: sensitivity,
+                            delta_y: 0.0,
+                        })
+                    },
+                    "MouseY" => {
+                        let sensitivity : f64 = match table.get("sensitivity") {
+                            Some(Value::Float(x)) => *x,
+                            _ => 1.0,
+                        };
+                        Emit(MouseMoveRelative {
+                            delta_x: 0.0,
+                            delta_y: sensitivity,
+                        })
+                    },
+                    _ => {
+                        parse_output(action)
+                    },
+                }
+            } }
+
+            println!("Missing string field: 'action'\n{:?}", v);
+            Noop
         },
         v => {
             println!("Unrecognized mapping: {:?}", v);

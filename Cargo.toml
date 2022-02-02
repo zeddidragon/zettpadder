@@ -6,7 +6,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rdev = "0.4.6"
+crossbeam-channel = "0.5.2"
 async-ctrlc = "1.2.0"
 toml = "0.5.8"
 pasts = "0.8"
@@ -16,3 +16,8 @@ version = "0.12.3"
 path = "../stick/stick"
 # git = "https://github.com/zeddidragon/stick.git"
 # branch="feature_flydigi-apex-2-mapping"
+[dependencies.rdev]
+version = "0.5.0"
+path = "../rdev"
+# git = "https://github.com/zeddidragon/rdev.git"
+# branch="feature_relative-mouse"

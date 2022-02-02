@@ -113,6 +113,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "crossbeam-channel"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e54ea8bc3fb1ee042f5aace6e3c6e025d3874866da222930f70ce62aceba0bfa"
+dependencies = [
+ "cfg-if",
+ "crossbeam-utils",
+]
+
+[[package]]
+name = "crossbeam-utils"
+version = "0.8.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cfcae03edb34f947e64acdb1c33ec169824e20657e9ecb61cef6c8c74dcb8120"
+dependencies = [
+ "cfg-if",
+ "lazy_static",
+]
+
+[[package]]
 name = "ctrlc"
 version = "3.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -337,9 +357,7 @@ dependencies = [
 
 [[package]]
 name = "rdev"
-version = "0.4.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "975fb3046bb3600d735320a88ae9ce7cbdf2f4ed1978e481d3f5990a8c0b76a8"
+version = "0.5.0"
 dependencies = [
  "cocoa",
  "core-foundation 0.7.0",
@@ -371,7 +389,7 @@ checksum = "b0ac3b24afd6d59663abbd40d5b99d281d19413e70f43dc5277dfda314c1647b"
 
 [[package]]
 name = "stick"
-version = "0.12.3"
+version = "0.12.4"
 dependencies = [
  "log",
  "smelling_salts",
@@ -441,6 +459,7 @@ name = "zettpadder"
 version = "0.1.0"
 dependencies = [
  "async-ctrlc",
+ "crossbeam-channel",
  "futures",
  "pasts",
  "rdev",
