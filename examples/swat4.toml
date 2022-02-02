@@ -4,8 +4,8 @@ game = "Swat 4"
 [mapping]
 JoyX = ["A", "D"] # Strafe
 JoyY = ["W", "S"] # Walk
-# CamX = { action = "flickstick", axis = "x" } # Turn
-# CamY = { action = "flickstick", axis = "y" } # Turn
+# CamX = { action = "FlickStickX" } # Turn
+# CamY = { action = "FlickStickY" } # Turn
 CamX = "MouseX" # Turn/Look
 CamY = "MouseY" # Look
 
@@ -32,18 +32,18 @@ PovUp = "ScrollUp" # Select command up
 PovDown = "ScrollDown" # Select command down
 ActionD = "Space" # Quick command
 
-ActionH = { action = "layer", layer = 1 } # Grenade selection
-ActionV = { action = "layer", layer = 2 } # Door tools
-ActionB = { action = "layer", layer = 3 } # Pacifying tools
+ActionH = { action = "Layer", layer = 1 } # Grenade selection
+ActionV = { action = "Layer", layer = 2 } # Door tools
+ActionB = { action = "Layer", layer = 3 } # Pacifying tools
 
-[layers.1.mapping] # Grenade selection
-CamX = ["3", "5"] # Flash, Stinger
-CamY = ["4", "4"] # CS
+[layers.1] # Grenade selection
+CamX = { action = "NegPos", keys = ["3", "5"], deadzone = 0.65 } # Flash, Stinger
+CamY = { action = "NegPos", keys = ["4", "4"], deadzone = 0.65 } # CS
 
-[layers.2.mapping] # Door tools
-CamX = ["8", "0"] # Toolkit, Wedge
-CamY = ["7", "9"] # Breach, Optiwand
+[layers.2] # Door tools
+CamX = { action = "NegPos", keys = ["8", "0"], deadzone = 0.65 } # Toolkit, Wedge
+CamY = { action = "NegPos", keys = ["7", "9"], deadzone = 0.65 } # Breach, Optiwand
 
-[layers.3.mapping] # Pacifying tools
-CamX = ["6", "H"] # Pepper / Handcuffs
-CamY = ["6", "H"] # Duplicated for diagonals
+[layers.3] # Pacifying tools
+CamX = { action = "NegPos", keys = ["6", "H"], deadzone = 0.65 } # Pepper / Handcuffs
+CamY = { action = "NegPos", keys = ["6", "H"], deadzone = 0.65 } # Duplicated for diagonals

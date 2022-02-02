@@ -2,26 +2,53 @@ use rdev;
 use toml::{Value};
 use std::collections::{BTreeMap};
 
-#[derive(Clone)]
-#[derive(Copy)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Mapping {
     Noop,
     Emit(rdev::EventType),
     NegPos(rdev::EventType, rdev::EventType),
+    Layer(u16),
 }
 
-pub fn parse_mappings(map : &mut BTreeMap<u8, Mapping>, v : Value) {
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub struct Binding {
+    pub mapping: Mapping,
+    pub deadzone_on: f64,
+    pub deadzone_off: f64,
+}
+
+pub fn parse_mappings(map: &mut BTreeMap<u16, Binding>, v: Value, layer: u16) {
     if let Value::Table(table) = v {
         for (button, mapping) in table {
-            let input = parse_input(&button);
+            let input = parse_input(&button) as u16;
             let parsed = parse_output(&mapping);
-            map.insert(input, parsed);
+            let input = input + 256 * layer;
+            let (deadzone_on, deadzone_off) = parse_deadzone(&mapping);
+            let binding = Binding {
+                mapping: parsed,
+                deadzone_on: deadzone_on,
+                deadzone_off: deadzone_off,
+            };
+            map.insert(input, binding);
         }
     }
 }
 
-fn parse_input(v : &String) -> u8 {
+pub fn parse_layers(
+    map: &mut BTreeMap<u16, Binding>,
+    v: Value) {
+    if let Value::Table(table) = v {
+        for (layer, mappings) in table {
+            if let Ok(layer) = layer.parse::<u16>() {
+                parse_mappings(map, mappings, layer);
+            } else {
+                println!("Didn't understand layer: {:?}", layer);
+            }
+        }
+    }
+}
+
+fn parse_input(v: &String) -> u8 {
     match v.as_str() {
         "None" => 0x00,
         "Exit" => 0x01,
@@ -121,12 +148,13 @@ fn parse_input(v : &String) -> u8 {
             if let Ok(num) = unknown.parse::<u8>() {
                 return num & !0x80
             }
-            panic!("Unknown: {}", unknown)
+            println!("Unknown: {}", unknown);
+            panic!("Unknown: {}", unknown);
         },
     }
 }
 
-pub fn parse_output(v : &Value) -> Mapping {
+pub fn parse_output(v: &Value) -> Mapping {
     use Mapping::{Emit, Noop};
     use rdev::EventType::{KeyPress, ButtonPress, Wheel, MouseMoveRelative};
     match v {
@@ -328,7 +356,7 @@ pub fn parse_output(v : &Value) -> Mapping {
                 match(neg, pos) {
                     (Emit(e1), Emit(e2)) => {
                         Mapping::NegPos(e1, e2)
-                    }
+                    },
                     (n, p) => {
                         println!("Unable to interpret, ({:?}, {:?}", n, p);
                         Noop
@@ -363,6 +391,24 @@ pub fn parse_output(v : &Value) -> Mapping {
                             delta_y: sensitivity,
                         })
                     },
+                    "NegPos" => {
+                        if let Some(Value::Array(arr)) = table.get("keys") {
+                            let neg = parse_output(&arr[0]);
+                            let pos = parse_output(&arr[1]);
+                            if let (Emit(e1), Emit(e2)) = (neg, pos) {
+                                return Mapping::NegPos(e1, e2)
+                            }
+                        }
+                        println!("Unable to interpret, ({:?}", action);
+                        Noop
+                    },
+                    "Layer" => {
+                        let layer = match table.get("layer") {
+                            Some(Value::Integer(x)) => *x as u16,
+                            v => panic!("Value out of range: {:?}", v),
+                        };
+                        Mapping::Layer(layer)
+                    },
                     _ => {
                         parse_output(action)
                     },
@@ -377,4 +423,18 @@ pub fn parse_output(v : &Value) -> Mapping {
             Noop
         },
     }
+}
+
+pub fn parse_deadzone(v: &Value) -> (f64, f64) {
+    if let Value::Table(table) = v {
+        let on : f64 =
+            if let Some(Value::Float(v)) = table.get("deadzoneOn") { *v }
+            else if let Some(Value::Float(v)) = table.get("deadzone") { *v }
+            else { 0.125 };
+        let off : f64 = 
+            if let Some(Value::Float(v)) = table.get("deadzoneOff") { *v }
+            else { on * 0.8 };
+        return (on, off)
+    }
+    (0.125, 0.1)
 }

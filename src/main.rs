@@ -38,9 +38,13 @@ async fn event_loop() {
         for (key, value) in config { match (key.as_str(), value) {
             ("game", _) => {},
             ("mapping", Table(mappings)) => {
-                mapping::parse_mappings(&mut keymaps, Table(mappings));
+                mapping::parse_mappings(&mut keymaps, Table(mappings), 0);
             },
-            ("layers", _) => {}, // TODO
+            ("layers", Table(layermaps)) => {
+                mapping::parse_layers(
+                    &mut keymaps,
+                    Table(layermaps));
+            },
             (key, value) => {
                 println!("Unrecognized property or invalid value: {}\n{:?}", key, value)
             },

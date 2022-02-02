@@ -3,7 +3,7 @@ use pasts::Loop;
 use std::task::Poll::{self, Pending};
 use stick::{Controller, Event, Listener};
 use std::collections::{BTreeMap};
-use super::mapping::Mapping;
+use super::mapping::{Mapping, Binding};
 use crossbeam_channel::{Sender};
 
 type Exit = usize;
@@ -18,9 +18,9 @@ pub struct MouseMsg {
 pub struct State {
     listener: Listener,
     controllers: Vec<Controller>,
-    keymaps: BTreeMap<u8, Mapping>,
+    keymaps: BTreeMap<u16, Binding>,
     states: BTreeMap<u8, f64>,
-    // layer: u8,
+    layer: u16,
     pub mouse: Sender<MouseMsg>,
 }
 
@@ -37,18 +37,18 @@ fn send(event_type: &rdev::EventType) {
 impl State {
     pub fn new(
         mouse: Sender<MouseMsg>,
-        keymaps: BTreeMap<u8, Mapping>,
+        keymaps: BTreeMap<u16, Binding>,
     ) -> Self {
         let mut states = BTreeMap::new();
         for k in keymaps.keys() {
-            states.insert(*k, 0.0);
+            states.insert(*k as u8, 0.0);
         }
         Self {
             listener: Listener::default(),
             controllers: Vec::new(),
             keymaps: keymaps,
             states: states,
-            // layer: 0,
+            layer: 0,
             mouse: mouse,
         }
     }
@@ -64,8 +64,8 @@ impl State {
         Pending
     }
 
-    fn trigger(&self, mapping: Mapping, value: f64, prev: f64) {
-        use Mapping::{Emit, NegPos};
+    fn trigger(&mut self, binding: Binding, value: f64, prev: f64) {
+        use Mapping::{Emit, NegPos, Layer};
         use rdev::EventType::{
             KeyPress,
             KeyRelease,
@@ -73,9 +73,9 @@ impl State {
             ButtonRelease,
             MouseMoveRelative,
             Wheel };
-        let on = 0.125;
-        let off = 0.100;
-        match mapping {
+        let on = binding.deadzone_on;
+        let off = binding.deadzone_off;
+        match binding.mapping {
             Emit(MouseMoveRelative { delta_x, delta_y }) => {
                 let (v, axis) = if delta_x.abs() > 0.0 {
                     (delta_x, MouseAxis::X)
@@ -116,12 +116,28 @@ impl State {
                     }
                 }
             },
-            NegPos(neg, pos) => {
-                if value < 0.0 || prev < 0.0 {
-                    self.trigger(Mapping::Emit(neg), -value, -prev)
+            Layer(l) => {
+                if prev < on && value >= on {
+                    self.layer = l;
+                } else if prev > off && value <= off {
+                    self.layer = 0;
                 }
-                if value > 0.0 || prev > 0.0 {
-                    self.trigger(Mapping::Emit(pos), value, prev)
+            },
+            NegPos(neg, pos) => {
+                let (mapping, value, prev) =
+                    if value < 0.0 || prev < 0.0 {
+                        (Some(Mapping::Emit(neg)), -value, -prev)
+                    } else if value > 0.0 || prev > 0.0 {
+                        (Some(Mapping::Emit(pos)), value, prev)
+                    } else {
+                        (None, 0.0, 0.0)
+                    };
+                if let Some(mapping) = mapping {
+                    self.trigger(Binding {
+                        mapping: mapping,
+                        deadzone_on: on,
+                        deadzone_off: off,
+                    }, value, prev)
                 }
             },
             _ => {}
@@ -130,7 +146,18 @@ impl State {
 
     fn event(&mut self, _id: usize, event: Event) -> Poll<Exit> {
         let (event_id, value) = event.to_id();
-        if let Some(mapping) = self.keymaps.get(&event_id) {
+        let idx = event_id as u16;
+
+        let shifted = idx + 256 * self.layer;
+        let mapping = match (
+            self.keymaps.get(&shifted),
+            self.keymaps.get(&idx)
+        ) {
+            (Some(m), _) => Some(m),
+            (_, Some(m)) => Some(m),
+            _ => None,
+        };
+        if let Some(mapping) = mapping {
             let prev = self.states[&event_id];
             self.states.insert(event_id, value);
             self.trigger(*mapping, value, prev);
