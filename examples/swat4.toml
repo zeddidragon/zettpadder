@@ -2,21 +2,19 @@
 game = "Swat 4"
 
 [mapping]
-JoyX = ["A", "D"] # Strafe
-JoyY = ["W", "S"] # Walk
-# CamX = { action = "FlickStickX" } # Turn
-# CamY = { action = "FlickStickY" } # Turn
-CamX = "MouseX" # Turn/Look
-CamY = "MouseY" # Look
+JoyX = { action = "NegPos", keys = ["A", "D"], deadzone = 0.25 } # Strafe
+JoyY = { action = "NegPos", keys = ["W", "S"], deadzone = 0.15 } # Walk
+CamX = { action = "FlickX" } # Turn
+CamY = { action = "FlickY" } # Turn
 
 BumperL = "Q" # Lean L
 BumperR = "E" # Lean R
-PaddleLeft = "C" # Crouch
+PinkyLeft = "C" # Crouch
 PaddleRight = "Shift" # Toggle sprint
 
 TriggerR = "M1" # Shoot
 TriggerL = "M2" # Hold for commands
-PinkyLeft = "X" # Toggle firing mode
+PaddleLeft = "C" # Toggle firing mode
 PovLeft = "1" # Primary Weapon
 PovRight = "2" # Secondary Weapon
 

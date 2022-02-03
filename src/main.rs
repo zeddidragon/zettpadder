@@ -54,7 +54,7 @@ async fn event_loop() {
     // Iterate over all connected gamepads
     println!("No configuration loaded, starting monitoring mode.");
 
-    let (tx, rx) = bounded(500);
+    let (tx, rx) = bounded(128);
     let mut zettpadder = State::new(tx, keymaps);
     let controller_loop = zettpadder.run().fuse();
     let ctrlc_loop = CtrlC::new().expect("cannot create Ctrl+C handler").fuse();

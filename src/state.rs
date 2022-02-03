@@ -8,12 +8,15 @@ use crossbeam_channel::{Sender};
 
 type Exit = usize;
 
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub enum MouseAxis { X = 0, Y = 1 }
-pub struct MouseMsg {
-    pub value: f64,
-    pub axis: MouseAxis,
+#[derive(Debug, Copy, Clone)]
+pub enum MouseMsgType {
+    MoveX,
+    MoveY,
+    FlickX,
+    FlickY,
 }
+
+pub type MouseMsg = (MouseMsgType, f64);
 
 pub struct State {
     listener: Listener,
@@ -64,31 +67,21 @@ impl State {
         Pending
     }
 
-    fn trigger(&mut self, binding: Binding, value: f64, prev: f64) {
-        use Mapping::{Emit, NegPos, Layer};
+    fn trigger(&self, binding: Binding, value: f64, prev: f64) -> Option<u16> {
+        use Mapping::{Emit, NegPos, Mouse, Layer};
         use rdev::EventType::{
             KeyPress,
             KeyRelease,
             ButtonPress,
             ButtonRelease,
-            MouseMoveRelative,
             Wheel };
         let on = binding.deadzone_on;
         let off = binding.deadzone_off;
         match binding.mapping {
-            Emit(MouseMoveRelative { delta_x, delta_y }) => {
-                let (v, axis) = if delta_x.abs() > 0.0 {
-                    (delta_x, MouseAxis::X)
-                } else {
-                    (delta_y, MouseAxis::Y)
-                };
-                let message = MouseMsg {
-                    value: v * value,
-                    axis: axis,
-                };
-                match self.mouse.send(message) {
+            Mouse(msg_type, v) => {
+                match self.mouse.send((msg_type, v * value)) {
                     Err(err) => {
-                        println!("Mouse event error: ({:?}) ({},{})", err, delta_x, delta_y)
+                        println!("Mouse event error: ({:?}) ({:?},{})", err, msg_type, v)
                     },
                     _ => {},
                 }
@@ -107,9 +100,6 @@ impl State {
                         Wheel { delta_x: _x, delta_y: _y } => {
                             // No need to release wheel action
                         },
-                        MouseMoveRelative { delta_x: _x, delta_y: _y } => {
-                            // TODO: Stop emitting mouse motion
-                        },
                         _ => {
                             println!("Don't know how to release: {:?}", event);
                         },
@@ -118,9 +108,9 @@ impl State {
             },
             Layer(l) => {
                 if prev < on && value >= on {
-                    self.layer = l;
+                    return Some(l);
                 } else if prev > off && value <= off {
-                    self.layer = 0;
+                    return Some(0);
                 }
             },
             NegPos(neg, pos) => {
@@ -137,11 +127,12 @@ impl State {
                         mapping: mapping,
                         deadzone_on: on,
                         deadzone_off: off,
-                    }, value, prev)
+                    }, value, prev);
                 }
             },
             _ => {}
-        }
+        };
+        None
     }
 
     fn event(&mut self, _id: usize, event: Event) -> Poll<Exit> {
@@ -149,18 +140,17 @@ impl State {
         let idx = event_id as u16;
 
         let shifted = idx + 256 * self.layer;
-        let mapping = match (
-            self.keymaps.get(&shifted),
-            self.keymaps.get(&idx)
-        ) {
-            (Some(m), _) => Some(m),
-            (_, Some(m)) => Some(m),
-            _ => None,
-        };
+        let mapping =
+            if let Some(m) = self.keymaps.get(&shifted) { Some(m) }
+            else if let Some(m) = self.keymaps.get(&idx) { Some(m) }
+            else { None };
+
         if let Some(mapping) = mapping {
             let prev = self.states[&event_id];
             self.states.insert(event_id, value);
-            self.trigger(*mapping, value, prev);
+            if let Some(layer) = self.trigger(*mapping, value, prev) {
+                self.layer = layer;
+            }
         }
         Pending
     }

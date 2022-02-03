@@ -2,15 +2,18 @@ use rdev;
 use toml::{Value};
 use std::collections::{BTreeMap};
 
-#[derive(Debug, Copy, Clone, PartialEq)]
+use super::state::{MouseMsgType};
+
+#[derive(Debug, Copy, Clone)]
 pub enum Mapping {
     Noop,
     Emit(rdev::EventType),
+    Mouse(MouseMsgType, f64),
     NegPos(rdev::EventType, rdev::EventType),
     Layer(u16),
 }
 
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub struct Binding {
     pub mapping: Mapping,
     pub deadzone_on: f64,
@@ -155,8 +158,8 @@ fn parse_input(v: &String) -> u8 {
 }
 
 pub fn parse_output(v: &Value) -> Mapping {
-    use Mapping::{Emit, Noop};
-    use rdev::EventType::{KeyPress, ButtonPress, Wheel, MouseMoveRelative};
+    use Mapping::{Emit, Mouse, Noop};
+    use rdev::EventType::{KeyPress, ButtonPress, Wheel};
     match v {
         Value::String(v) => {
             match v.as_str() {
@@ -341,8 +344,10 @@ pub fn parse_output(v: &Value) -> Mapping {
                 "M16" => Emit(ButtonPress(rdev::Button::Unknown(16))),
                 "ScrollUp" => Emit(Wheel { delta_x: 0, delta_y: 1 }),
                 "ScrollDown" => Emit(Wheel { delta_x: 0, delta_y: -1 }),
-                "MouseX" => Emit(MouseMoveRelative { delta_x: 1.0, delta_y: 0.0 }),
-                "MouseY" => Emit(MouseMoveRelative { delta_x: 0.0, delta_y: 1.0 }),
+                "MouseX" => Mouse(MouseMsgType::MoveX, 1.0),
+                "MouseY" => Mouse(MouseMsgType::MoveY, 1.0),
+                "FlickX" => Mouse(MouseMsgType::FlickX, 1.0),
+                "FlickY" => Mouse(MouseMsgType::FlickY, 1.0),
                 _ => {
                     println!("Unrecognized key: {:?}", v);
                     Noop
@@ -376,20 +381,14 @@ pub fn parse_output(v: &Value) -> Mapping {
                             Some(Value::Float(x)) => *x,
                             _ => 1.0,
                         };
-                        Emit(MouseMoveRelative {
-                            delta_x: sensitivity,
-                            delta_y: 0.0,
-                        })
+                        Mouse(MouseMsgType::MoveX, sensitivity)
                     },
                     "MouseY" => {
                         let sensitivity : f64 = match table.get("sensitivity") {
                             Some(Value::Float(x)) => *x,
                             _ => 1.0,
                         };
-                        Emit(MouseMoveRelative {
-                            delta_x: 0.0,
-                            delta_y: sensitivity,
-                        })
+                        Mouse(MouseMsgType::MoveY, sensitivity)
                     },
                     "NegPos" => {
                         if let Some(Value::Array(arr)) = table.get("keys") {

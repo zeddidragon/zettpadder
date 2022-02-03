@@ -1,0 +1,31 @@
+# Deep Rock Galactic, with Flydigi Apex 2 in mind
+game = "Deep Rock Galactic"
+
+[mapping]
+JoyX = { action = "NegPos", keys = ["A", "D"], deadzone = 0.15 }
+JoyY = { action = "NegPos", keys = ["W", "S"], deadzone = 0.15 }
+CamX = { action = "FlickX" } # Turn
+CamY = { action = "FlickY" } # Turn
+
+BumperL = "Ctrl" # Laser Pointer
+PinkyLeft = "Shift" # Sprint
+ActionL = "Space" # Jump
+ActionR = "E" # Interact
+
+TriggerR = "M1" # Shoot
+TriggerL = "M2" # Mine
+BumperR = "G" # Grenade
+ActionH = "R" # Reload
+ActionB = "F" # Flares
+
+PovLeft = "1" # Primary Weapon
+PovRight = "2" # Secondary Weapon
+PovUp = "3" # Mobility Tool
+PovDown = "4" # Utility Tool
+ActionC = "5" # Resupply
+
+MenuL = "Tab" # Map
+MenuR = "Escape" # Pause
+
+ActionV = "C" # Molly
+ActionD = "V" # Salute
