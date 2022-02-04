@@ -16,6 +16,7 @@ pub struct State {
     states: BTreeMap<u8, f64>,
     layer: u16,
     pub emitter: Sender<EmitMsg>,
+    print_mode: bool,
 }
 
 impl State {
@@ -24,6 +25,7 @@ impl State {
         keymaps: BTreeMap<u16, Binding>,
     ) -> Self {
         let mut states = BTreeMap::new();
+        let print_mode = (&keymaps).len() == 0;
         for k in keymaps.keys() {
             states.insert(*k as u8, 0.0);
         }
@@ -34,6 +36,7 @@ impl State {
             states: states,
             layer: 0,
             emitter: emitter,
+            print_mode: print_mode,
         }
     }
 
@@ -49,6 +52,11 @@ impl State {
     }
 
     fn event(&mut self, _id: usize, event: Event) -> Poll<Exit> {
+        if self.print_mode {
+            println!("{:?}", event);
+            return Pending
+        }
+
         let (event_id, value) = event.to_id();
         let idx = event_id as u16;
 
