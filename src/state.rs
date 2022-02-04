@@ -3,7 +3,7 @@ use pasts::Loop;
 use std::task::Poll::{self, Pending};
 use stick::{Controller, Event, Listener};
 use std::collections::{BTreeMap};
-use super::mapping::{Mapping, Binding};
+use crate::mapping::{Mapping, Binding};
 use crossbeam_channel::{Sender};
 
 type Exit = usize;

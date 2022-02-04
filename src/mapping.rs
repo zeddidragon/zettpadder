@@ -2,7 +2,7 @@ use rdev;
 use toml::{Value};
 use std::collections::{BTreeMap};
 
-use super::state::{MouseMsgType};
+use crate::state::{MouseMsgType};
 
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
