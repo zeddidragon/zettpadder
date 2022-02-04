@@ -13,9 +13,9 @@ pasts = "0.8"
 futures = "0.3.4"
 [dependencies.stick]
 version = "0.12.3"
-path = "../stick/stick"
-# git = "https://github.com/zeddidragon/stick.git"
-# branch="feature_flydigi-apex-2-mapping"
+# path = "../stick/stick"
+git = "https://github.com/zeddidragon/stick.git"
+branch="feature-public-to-id"
 [dependencies.rdev]
 version = "0.5"
 # path = "../rdev"
