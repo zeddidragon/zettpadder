@@ -2,33 +2,35 @@
 game = "Swat 4"
 
 [mapping]
-JoyX = { action = "NegPos", keys = ["A", "D"], deadzone = 0.25 } # Strafe
-JoyY = { action = "NegPos", keys = ["W", "S"], deadzone = 0.15 } # Walk
+# D-pad mapping because analogue sticks map poorly to digital buttons
+PovUp = "W" # Run
+PovDown = "S" # Retreat
+PovLeft = "A" # Strafe left
+PovRight = "D" # Strafe right
 CamX = { action = "FlickX" } # Turn
 CamY = { action = "FlickY" } # Turn
 
-BumperL = "Q" # Lean L
-BumperR = "E" # Lean R
+PaddleLeft = "Q" # Lean L
+PaddleRight = "E" # Lean R
 PinkyLeft = "C" # Crouch
-PaddleRight = "Shift" # Toggle sprint
+Cam = "Shift" # Toggle sprint
 
 TriggerR = "M1" # Shoot
 TriggerL = "M2" # Hold for commands
-PaddleLeft = "C" # Toggle firing mode
-PovLeft = "1" # Primary Weapon
-PovRight = "2" # Secondary Weapon
+BumperR = "X" # Toggle firing mode
+JoyX = { action = "NegPos", keys = ["1", "2"], deadzone = 0.65 } # Primary, Secondary
+JoyY = { action = "NegPos", keys = ["V", "L"], deadzone = 0.65 } # Flashlight, Light Stick
 
 ActionR = "F" # Use
 ActionA = "R" # Reload
-ActionL = "Z" # Zoom
-ActionC = "V" # Flashlight
+BumperL = "Z" # Zoom
 
 MenuL = "M" # Show objectives
 MenuR = "Escape" # Pause
 
-PovUp = "ScrollUp" # Select command up
-PovDown = "ScrollDown" # Select command down
-ActionD = "Space" # Quick command
+ActionD = "Ctrl" # Prepare Command
+ActionL = "Tab" # Cycle command group
+ActionC = { action = "Layer", layer = 4 } # Commands
 
 ActionH = { action = "Layer", layer = 1 } # Grenade selection
 ActionV = { action = "Layer", layer = 2 } # Door tools
@@ -45,3 +47,10 @@ CamY = { action = "NegPos", keys = ["7", "9"], deadzone = 0.65 } # Breach, Optiw
 [layers.3] # Pacifying tools
 CamX = { action = "NegPos", keys = ["6", "H"], deadzone = 0.65 } # Pepper / Handcuffs
 CamY = { action = "NegPos", keys = ["6", "H"], deadzone = 0.65 } # Duplicated for diagonals
+
+[layers.4] # Commands
+BumperL = "Insert" # Cycle Red Team Viewport
+BumperR = "Home" # Cycle Blue Team Viewport
+ActionR = "PageUp" # Cycle Sniper Team Viewport
+MenuL = "Backspace" # Control Active Viewport
+TriggerR = "Space" # Quick Command
