@@ -21,6 +21,78 @@ pub struct Binding {
     pub deadzone_off: f64,
 }
 
+impl Binding {
+    pub fn get_mapping(self, value: f64, prev: f64) -> Option<Mapping> {
+        use Mapping::{Emit, NegPos, Layer};
+        use rdev::EventType::{
+            KeyPress,
+            KeyRelease,
+            ButtonPress,
+            ButtonRelease,
+            Wheel };
+        let on = self.deadzone_on;
+        let off = self.deadzone_off;
+        match self.mapping {
+            Emit(event) => {
+                if prev < on && value >= on {
+                    Some(self.mapping)
+                } else if prev > off && value <= off {
+                    match event {
+                        KeyPress(key) => {
+                            Some(Emit(KeyRelease(key)))
+                        },
+                        ButtonPress(btn) => {
+                            Some(Emit(ButtonRelease(btn)))
+                        },
+                        Wheel { delta_x: _x, delta_y: _y } => {
+                            // No need to release wheel action
+                            None
+                        },
+                        _ => {
+                            println!("Don't know how to release: {:?}", event);
+                            None
+                        },
+                    }
+                } else {
+                    None
+                }
+            },
+            Layer(_) => {
+                if prev < on && value >= on {
+                    Some(self.mapping)
+                } else if prev > off && value <= off {
+                    Some(Mapping::Layer(0))
+                } else {
+                    None
+                }
+            },
+            NegPos(neg, pos) => {
+                let (mapping, value, prev) =
+                    if value < 0.0 || prev < 0.0 {
+                        (Some(Mapping::Emit(neg)), -value, -prev)
+                    } else if value > 0.0 || prev > 0.0 {
+                        (Some(Mapping::Emit(pos)), value, prev)
+                    } else {
+                        (None, 0.0, 0.0)
+                    };
+                if let Some(mapping) = mapping {
+                    let contained = Binding {
+                        mapping: mapping,
+                        deadzone_on: on,
+                        deadzone_off: off,
+                    };
+                    contained.get_mapping(value, prev)
+                } else {
+                    None
+                }
+            },
+            _ => {
+                Some(self.mapping)
+            }
+        }
+    }
+}
+
 pub fn parse_mappings(map: &mut BTreeMap<u16, Binding>, v: Value, layer: u16) {
     if let Value::Table(table) = v {
         for (button, mapping) in table {

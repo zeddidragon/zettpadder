@@ -1,4 +1,3 @@
-use rdev;
 use pasts::Loop;
 use std::task::Poll::{self, Pending};
 use stick::{Controller, Event, Listener};
@@ -49,85 +48,37 @@ impl State {
         Pending
     }
 
-    fn trigger(&self, binding: Binding, value: f64, prev: f64) -> Option<u16> {
-        use Mapping::{Emit, NegPos, Layer, MouseX};
-        use rdev::EventType::{
-            KeyPress,
-            KeyRelease,
-            ButtonPress,
-            ButtonRelease,
-            Wheel };
-        let on = binding.deadzone_on;
-        let off = binding.deadzone_off;
-        match binding.mapping {
-            Emit(event) => {
-                if prev < on && value >= on {
-                    self.emitter.send((Emit(event), value));
-                } else if prev > off && value <= off {
-                    match event {
-                        KeyPress(key) => {
-                            self.emitter.send((Emit(KeyRelease(key)), value));
-                        },
-                        ButtonPress(btn) => {
-                            self.emitter.send((Emit(ButtonRelease(btn)), value));
-                        },
-                        Wheel { delta_x: _x, delta_y: _y } => {
-                            // No need to release wheel action
-                        },
-                        _ => {
-                            println!("Don't know how to release: {:?}", event);
-                        },
-                    }
-                }
-            },
-            Layer(l) => {
-                if prev < on && value >= on {
-                    return Some(l);
-                } else if prev > off && value <= off {
-                    return Some(0);
-                }
-            },
-            NegPos(neg, pos) => {
-                let (mapping, value, prev) =
-                    if value < 0.0 || prev < 0.0 {
-                        (Some(Mapping::Emit(neg)), -value, -prev)
-                    } else if value > 0.0 || prev > 0.0 {
-                        (Some(Mapping::Emit(pos)), value, prev)
-                    } else {
-                        (None, 0.0, 0.0)
-                    };
-                if let Some(mapping) = mapping {
-                    self.trigger(Binding {
-                        mapping: mapping,
-                        deadzone_on: on,
-                        deadzone_off: off,
-                    }, value, prev);
-                }
-            },
-            t => {
-                self.emitter.send((t, value));
-            }
-        };
-        None
-    }
-
     fn event(&mut self, _id: usize, event: Event) -> Poll<Exit> {
         let (event_id, value) = event.to_id();
         let idx = event_id as u16;
 
         let shifted = idx + 256 * self.layer;
-        let mapping =
+        let binding =
             if let Some(m) = self.keymaps.get(&shifted) { Some(m) }
             else if let Some(m) = self.keymaps.get(&idx) { Some(m) }
             else { None };
-
-        if let Some(mapping) = mapping {
+        let mapping = if let Some(binding) = binding {
             let prev = self.states[&event_id];
             self.states.insert(event_id, value);
-            if let Some(layer) = self.trigger(*mapping, value, prev) {
-                self.layer = layer;
-            }
-        }
+            binding.get_mapping(value, prev)
+        } else {
+            None
+        };
+
+        match mapping {
+            Some(Mapping::Layer(l)) => {
+                self.layer = l;
+            },
+            Some(mapping) => {
+                match self.emitter.send((mapping, value)) {
+                    Err(err) => {
+                        println!("Failed to emit: {:?}", err);
+                    },
+                    _ => {},
+                }
+            },
+            _ => {},
+        };
         Pending
     }
 
