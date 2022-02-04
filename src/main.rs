@@ -15,9 +15,9 @@ use crossbeam_channel::{bounded};
 
 mod mapping;
 mod state;
-mod mouser;
+mod emitter;
 use state::{State};
-use mouser::{Mouser};
+use emitter::{Emitter};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
@@ -59,7 +59,7 @@ async fn event_loop() {
     let controller_loop = zettpadder.run().fuse();
     let ctrlc_loop = CtrlC::new().expect("cannot create Ctrl+C handler").fuse();
     thread::spawn(move || {
-        Mouser::new(rx).run();
+        Emitter::new(rx).run();
     });
     pin_mut!(controller_loop, ctrlc_loop);
     select! {

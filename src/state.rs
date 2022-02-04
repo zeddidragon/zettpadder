@@ -8,15 +8,7 @@ use crossbeam_channel::{Sender};
 
 type Exit = usize;
 
-#[derive(Debug, Copy, Clone)]
-pub enum MouseMsgType {
-    MoveX,
-    MoveY,
-    FlickX,
-    FlickY,
-}
-
-pub type MouseMsg = (MouseMsgType, f64);
+pub type EmitMsg = (Mapping, f64);
 
 pub struct State {
     listener: Listener,
@@ -24,22 +16,12 @@ pub struct State {
     keymaps: BTreeMap<u16, Binding>,
     states: BTreeMap<u8, f64>,
     layer: u16,
-    pub mouse: Sender<MouseMsg>,
+    pub emitter: Sender<EmitMsg>,
 }
-
-fn send(event_type: &rdev::EventType) {
-    match rdev::simulate(event_type) {
-        Ok(()) => (),
-        Err(rdev::SimulateError) => {
-            println!("Unable to can {:?}", event_type);
-        }
-    }
-}
-
 
 impl State {
     pub fn new(
-        mouse: Sender<MouseMsg>,
+        emitter: Sender<EmitMsg>,
         keymaps: BTreeMap<u16, Binding>,
     ) -> Self {
         let mut states = BTreeMap::new();
@@ -52,7 +34,7 @@ impl State {
             keymaps: keymaps,
             states: states,
             layer: 0,
-            mouse: mouse,
+            emitter: emitter,
         }
     }
 
@@ -68,7 +50,7 @@ impl State {
     }
 
     fn trigger(&self, binding: Binding, value: f64, prev: f64) -> Option<u16> {
-        use Mapping::{Emit, NegPos, Mouse, Layer};
+        use Mapping::{Emit, NegPos, Layer, MouseX};
         use rdev::EventType::{
             KeyPress,
             KeyRelease,
@@ -78,24 +60,16 @@ impl State {
         let on = binding.deadzone_on;
         let off = binding.deadzone_off;
         match binding.mapping {
-            Mouse(msg_type, v) => {
-                match self.mouse.send((msg_type, v * value)) {
-                    Err(err) => {
-                        println!("Mouse event error: ({:?}) ({:?},{})", err, msg_type, v)
-                    },
-                    _ => {},
-                }
-            },
             Emit(event) => {
                 if prev < on && value >= on {
-                    send(&event)
+                    self.emitter.send((Emit(event), value));
                 } else if prev > off && value <= off {
                     match event {
                         KeyPress(key) => {
-                            send(&KeyRelease(key))
+                            self.emitter.send((Emit(KeyRelease(key)), value));
                         },
                         ButtonPress(btn) => {
-                            send(&ButtonRelease(btn))
+                            self.emitter.send((Emit(ButtonRelease(btn)), value));
                         },
                         Wheel { delta_x: _x, delta_y: _y } => {
                             // No need to release wheel action
@@ -130,7 +104,9 @@ impl State {
                     }, value, prev);
                 }
             },
-            _ => {}
+            t => {
+                self.emitter.send((t, value));
+            }
         };
         None
     }

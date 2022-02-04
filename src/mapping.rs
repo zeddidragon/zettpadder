@@ -2,13 +2,14 @@ use rdev;
 use toml::{Value};
 use std::collections::{BTreeMap};
 
-use crate::state::{MouseMsgType};
-
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
     Noop,
     Emit(rdev::EventType),
-    Mouse(MouseMsgType, f64),
+    MouseX(f64),
+    MouseY(f64),
+    FlickX,
+    FlickY,
     NegPos(rdev::EventType, rdev::EventType),
     Layer(u16),
 }
@@ -158,7 +159,7 @@ fn parse_input(v: &String) -> u8 {
 }
 
 pub fn parse_output(v: &Value) -> Mapping {
-    use Mapping::{Emit, Mouse, Noop};
+    use Mapping::{Emit, Noop};
     use rdev::EventType::{KeyPress, ButtonPress, Wheel};
     match v {
         Value::String(v) => {
@@ -344,10 +345,10 @@ pub fn parse_output(v: &Value) -> Mapping {
                 "M16" => Emit(ButtonPress(rdev::Button::Unknown(16))),
                 "ScrollUp" => Emit(Wheel { delta_x: 0, delta_y: 1 }),
                 "ScrollDown" => Emit(Wheel { delta_x: 0, delta_y: -1 }),
-                "MouseX" => Mouse(MouseMsgType::MoveX, 1.0),
-                "MouseY" => Mouse(MouseMsgType::MoveY, 1.0),
-                "FlickX" => Mouse(MouseMsgType::FlickX, 1.0),
-                "FlickY" => Mouse(MouseMsgType::FlickY, 1.0),
+                "MouseX" => Mapping::MouseX(1.0),
+                "MouseY" => Mapping::MouseY(1.0),
+                "FlickX" => Mapping::FlickX,
+                "FlickY" => Mapping::FlickY,
                 _ => {
                     println!("Unrecognized key: {:?}", v);
                     Noop
@@ -381,14 +382,14 @@ pub fn parse_output(v: &Value) -> Mapping {
                             Some(Value::Float(x)) => *x,
                             _ => 1.0,
                         };
-                        Mouse(MouseMsgType::MoveX, sensitivity)
+                        Mapping::MouseX(sensitivity)
                     },
                     "MouseY" => {
                         let sensitivity : f64 = match table.get("sensitivity") {
                             Some(Value::Float(x)) => *x,
                             _ => 1.0,
                         };
-                        Mouse(MouseMsgType::MoveY, sensitivity)
+                        Mapping::MouseY(sensitivity)
                     },
                     "NegPos" => {
                         if let Some(Value::Array(arr)) = table.get("keys") {

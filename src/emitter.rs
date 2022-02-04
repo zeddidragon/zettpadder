@@ -1,6 +1,7 @@
 use rdev;
 use crossbeam_channel::{Receiver, tick};
-use super::state::{MouseMsg, MouseMsgType};
+use super::state::{EmitMsg};
+use super::mapping::{Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
 use std::ops;
@@ -81,18 +82,27 @@ fn modulo(v: f64, k: f64) -> f64 {
     v - (v / k).floor() * k
 }
 
-pub struct Mouser {
+fn send(event_type: &rdev::EventType) {
+    match rdev::simulate(event_type) {
+        Ok(()) => (),
+        Err(rdev::SimulateError) => {
+            println!("Unable to can {:?}", event_type);
+        }
+    }
+}
+
+pub struct Emitter {
     mover: Coords,
     flicker: Coords,
     prev_flicker: Coords,
     flick_remaining: Duration,
     flick_tick: f64,
-    pub receiver: Receiver<MouseMsg>,
+    pub receiver: Receiver<EmitMsg>,
 }
 
-impl Mouser {
+impl Emitter {
     pub fn new(
-        receiver: Receiver<MouseMsg>,
+        receiver: Receiver<EmitMsg>,
     ) -> Self {
         Self {
             mover: Coords::new(),
@@ -113,18 +123,24 @@ impl Mouser {
             self.prev_flicker = self.flicker;
             while let Ok((msg_type, value)) = self.receiver.try_recv() {
                 match msg_type {
-                    MouseMsgType::MoveX => {
-                        self.mover.x = value;
+                    Mapping::MouseX(v) => {
+                        self.mover.x = v * value;
                     },
-                    MouseMsgType::MoveY => {
-                        self.mover.y = value;
+                    Mapping::MouseY(v) => {
+                        self.mover.y = v * value;
                     },
-                    MouseMsgType::FlickX => {
+                    Mapping::FlickX => {
                         self.flicker.x = value;
                     },
-                    MouseMsgType::FlickY => {
+                    Mapping::FlickY => {
                         self.flicker.y = value;
                     },
+                    Mapping::Emit(ev) => {
+                        send(&ev);
+                    },
+                    unx => {
+                        println!("Received: {:?}, which is unexpected", unx);
+                    }
                 }
             }
 

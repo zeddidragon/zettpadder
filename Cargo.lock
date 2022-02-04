@@ -358,6 +358,7 @@ dependencies = [
 [[package]]
 name = "rdev"
 version = "0.5.0"
+source = "git+https://github.com/zeddidragon/rdev.git?branch=feature-relative-mouse#eda56ef82e404afe1ddf6ba5914848b3b5d5235f"
 dependencies = [
  "cocoa",
  "core-foundation 0.7.0",
