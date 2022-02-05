@@ -9,7 +9,6 @@ edition = "2018"
 crossbeam-channel = "0.5.2"
 toml = "0.5.8"
 pasts = "0.8"
-futures = "0.3.4"
 [dependencies.stick]
 version = "0.12.3"
 # path = "../stick/stick"
