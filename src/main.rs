@@ -1,13 +1,7 @@
 // use rdev::xtask::name_to_hex;
 use std::thread;
-use async_ctrlc::{CtrlC};
 use toml::{Value};
 use toml::Value::Table;
-use futures::{
-    future::{FutureExt},
-    pin_mut,
-    select,
-};
 use std::env;
 use std::collections::{BTreeMap};
 use std::fs::{read_to_string};
@@ -53,16 +47,10 @@ async fn event_loop() {
 
     let (tx, rx) = bounded(128);
     let mut zettpadder = State::new(tx, keymaps);
-    let controller_loop = zettpadder.run().fuse();
-    let ctrlc_loop = CtrlC::new().expect("cannot create Ctrl+C handler").fuse();
     thread::spawn(move || {
         Emitter::new(rx).run();
     });
-    pin_mut!(controller_loop, ctrlc_loop);
-    select! {
-        _ = controller_loop => println!("Controller quitted"),
-        _ = ctrlc_loop => println!("ctrlc quitted"),
-    }
+    zettpadder.run().await;
 }
 
 fn main() {
