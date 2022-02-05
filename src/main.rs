@@ -8,10 +8,11 @@ use std::fs::{read_to_string};
 use crossbeam_channel::{bounded};
 
 mod mapping;
-mod state;
-mod emitter;
-use state::{State};
-use emitter::{Emitter};
+mod controller_poller;
+mod coords;
+mod zettpadder;
+use controller_poller::{ControllerPoller};
+use zettpadder::{Zettpadder};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
@@ -46,11 +47,11 @@ async fn event_loop() {
     }
 
     let (tx, rx) = bounded(128);
-    let mut zettpadder = State::new(tx, keymaps);
+    let print_mode = (&keymaps).len() == 0;
     thread::spawn(move || {
-        Emitter::new(rx).run();
+        Zettpadder::new(rx, keymaps).run();
     });
-    zettpadder.run().await;
+    ControllerPoller::new(tx, print_mode).run().await;
 }
 
 fn main() {

@@ -21,7 +21,7 @@ Debian:
 - Start program
 - Run the program and specify your configuration file(s)
   ```
-    zettpadder pad-definitions.toml game-mappings.toml
+    zettpadder some-definitions.toml game-definitions.toml
   ```
   Any amount of files can be specified, and they'll be read in sequence
 
@@ -37,17 +37,18 @@ Config file is any amount of `.toml` files that contains your definitions.
 
 ## Definition
 
-If you fire up the program without arguments and hit buttons, it'll show you output with names for the buttons you press. If disatisfied, you can specify a `[Definitions]` table in your configuration where you rename them. Names can be whatever you want them to be. Running the program with these names will instead output those names and use those for reference in your mapping definitions.
+If you fire up the program without arguments and hit buttons, it'll show you output with names for the buttons you press. You can use those for reference in your mapping definitions.
 
 # Features
-- Support for every axis and button your device emits, not just the xbox standards
-- Map buttons to keyboard output
-- Map buttons to mouse output
-- Mod keys with ghosting
+- Support for every axis and button your device emits, not just the xbox standards.
+- Map buttons to keyboard output.
+- Map buttons to mouse output.
+- Mod keys with ghosting.
+- Flick stick.
 
 # Planned features
-- Flick stick
-- Gyro support
+- Gyro support.
 
 # Not currently planned
-- Interface outside of loading a file
+- Interface outside of loading a file.
+- Support for mapping multiple controllers simultaneously. Just run the program twice.

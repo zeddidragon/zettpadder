@@ -11,7 +11,7 @@ pub enum Mapping {
     FlickX,
     FlickY,
     NegPos(rdev::EventType, rdev::EventType),
-    Layer(u16),
+    Layer(u8),
 }
 
 #[derive(Debug, Copy, Clone)]
@@ -476,7 +476,7 @@ pub fn parse_output(v: &Value) -> Mapping {
                     },
                     "Layer" => {
                         let layer = match table.get("layer") {
-                            Some(Value::Integer(x)) => *x as u16,
+                            Some(Value::Integer(x)) => *x as u8,
                             v => panic!("Value out of range: {:?}", v),
                         };
                         Mapping::Layer(layer)

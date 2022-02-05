@@ -1,10 +1,10 @@
 use rdev;
 use crossbeam_channel::{Receiver, tick};
-use super::state::{EmitMsg};
-use super::mapping::{Mapping};
+use super::controller_poller::{Message};
+use std::collections::{BTreeMap};
+use super::mapping::{Binding, Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
-use std::ops;
 
 const FLICK_TIME : Duration = Duration::from_millis(100);
 const FLICK_DEADZONE : f64 = 0.9;
@@ -15,67 +15,7 @@ const MOVE_MULTIPLIER : f64 = 10.0;
 const FPS : u64 = 240;
 const TICK_TIME : Duration = Duration::from_nanos(1_000_000_000 / FPS);
 
-#[derive(Debug, Copy, Clone)]
-struct Coords { x: f64,
-    y: f64,
-}
-
-impl Coords {
-    fn new() -> Self {
-        Self {
-            x: 0.0,
-            y: 0.0,
-        }
-    }
-
-    fn len(&self) -> f64 {
-        self.x.powi(2) + self.y.powi(2).sqrt()
-    }
-
-    fn manhattan(&self) -> f64 {
-        self.x.abs() + self.y.abs()
-    }
-
-    fn angle(&self) -> f64 {
-        self.x.atan2(-self.y)
-    }
-}
-
-impl ops::Add<Coords> for Coords {
-    type Output = Self;
-
-    fn add(self, other: Self) -> Self {
-        Coords {
-            x: self.x + other.x,
-            y: self.y + other.y,
-        }
-    }
-}
-
-impl ops::AddAssign<Coords> for Coords {
-    fn add_assign(&mut self, other: Self) {
-        self.x += other.x;
-        self.y += other.y;
-    }
-}
-
-impl ops::Mul<f64> for Coords {
-    type Output = Self;
-
-    fn mul(self, other: f64) -> Self {
-        Coords {
-            x: self.x * other,
-            y: self.y * other,
-        }
-    }
-}
-
-impl ops::MulAssign<f64> for Coords {
-    fn mul_assign(&mut self, other: f64) {
-        self.x *= other;
-        self.y *= other;
-    }
-}
+use crate::coords::{Coords};
 
 #[inline]
 fn modulo(v: f64, k: f64) -> f64 {
@@ -91,20 +31,31 @@ fn send(event_type: &rdev::EventType) {
     }
 }
 
-pub struct Emitter {
+pub struct Zettpadder {
+    keymaps: BTreeMap<u16, Binding>,
+    states: BTreeMap<u8, f64>,
+    layer: u8,
     mover: Coords,
     flicker: Coords,
     prev_flicker: Coords,
     flick_remaining: Duration,
     flick_tick: f64,
-    pub receiver: Receiver<EmitMsg>,
+    pub receiver: Receiver<Message>,
 }
 
-impl Emitter {
+impl Zettpadder {
     pub fn new(
-        receiver: Receiver<EmitMsg>,
+        receiver: Receiver<Message>,
+        keymaps: BTreeMap<u16, Binding>,
     ) -> Self {
+        let mut states = BTreeMap::new();
+        for k in keymaps.keys() {
+            states.insert(*k as u8, 0.0);
+        }
         Self {
+            keymaps: keymaps,
+            states: states,
+            layer: 0,
             mover: Coords::new(),
             flicker: Coords::new(),
             prev_flicker: Coords::new(),
@@ -121,27 +72,45 @@ impl Emitter {
             motion *= 0.0;
             ticker.recv().unwrap();
             self.prev_flicker = self.flicker;
-            while let Ok((msg_type, value)) = self.receiver.try_recv() {
-                match msg_type {
-                    Mapping::MouseX(v) => {
+            while let Ok((id, value)) = self.receiver.try_recv() {
+                let idx = id as u16;
+                let shifted = idx + 256 * (self.layer as u16);
+                let binding =
+                    if let Some(m) = self.keymaps.get(&shifted) { Some(m) }
+                    else if let Some(m) = self.keymaps.get(&idx) { Some(m) }
+                    else { None };
+                let mapping = if let Some(binding) = binding {
+                    let prev = self.states[&id];
+                    self.states.insert(id, value);
+                    binding.get_mapping(value, prev)
+                } else {
+                    None
+                };
+
+                match mapping {
+                    Some(Mapping::Layer(l)) => {
+                        self.layer = l;
+                    },
+                    Some(Mapping::MouseX(v)) => {
                         self.mover.x = v * value;
                     },
-                    Mapping::MouseY(v) => {
+                    Some(Mapping::MouseY(v)) => {
                         self.mover.y = v * value;
                     },
-                    Mapping::FlickX => {
+                    Some(Mapping::FlickX) => {
                         self.flicker.x = value;
                     },
-                    Mapping::FlickY => {
+                    Some(Mapping::FlickY) => {
                         self.flicker.y = value;
                     },
-                    Mapping::Emit(ev) => {
+                    Some(Mapping::Emit(ev)) => {
                         send(&ev);
                     },
+                    None => {},
                     unx => {
                         println!("Received: {:?}, which is unexpected", unx);
                     }
-                }
+                };
             }
 
             // Old school moving
