@@ -1,0 +1,30 @@
+# Generic Third-Person Shooter controls, with Flydigi Apex 2 in mind
+game = "Generic Shooter Controls"
+
+[mapping]
+# Comment out movement if game supports mixing stick + mouse
+JoyX = { action = "NegPos", keys = ["A", "D"], deadzone = 0.3 } # Movement
+JoyY = { action = "NegPos", keys = ["W", "S"], deadzone = 0.3 } # Movement
+CamX = { action = "FlickX" } # Turn
+CamY = { action = "FlickY" } # Turn
+ActionL = "Shift" # Sprint
+ActionC = "Ctrl" # Crouch
+ActionA = "Space" # Jump
+ActionD = "X" # Switch Shoulder/Firing Mode
+ActionB = "C" # Toggle crouch
+
+TriggerR = "M1" # Fire
+TriggerL = "M2" # Aim / Alt-Fire
+ActionH = "R" # Reload
+BumperR = "M3" # Grenade
+BumperL = "F" # Melee
+ActionR = "E" # Interact
+
+PovLeft = "1" # Primary Weapon
+PovRight = "2" # Secondary Weapon
+PovUp = "3" # Special Weapon
+PovDown = "4" # Tool
+ActionV = "5" # Support
+
+MenuL = "Tab" # Map
+MenuR = "Escape" # Pause
