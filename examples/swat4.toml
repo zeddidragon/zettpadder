@@ -2,11 +2,8 @@
 game = "Swat 4"
 
 [mapping]
-# D-pad mapping because analogue sticks map poorly to digital buttons
-PovUp = "W" # Run
-PovDown = "S" # Retreat
-PovLeft = "A" # Strafe left
-PovRight = "D" # Strafe right
+JoyX = { action = "NegPos", keys = ["A", "D"], tippytaps = true, deadzone = 0.5 } # Strafe
+JoyY = { action = "NegPos", keys = ["W", "S"], tippytaps = true, deadzone = 0.4 } # Walk
 CamX = { action = "FlickX" } # Turn
 CamY = { action = "FlickY" } # Turn
 
@@ -18,8 +15,6 @@ Cam = "Shift" # Toggle sprint
 TriggerR = "M1" # Shoot
 TriggerL = "M2" # Hold for commands
 BumperR = "X" # Toggle firing mode
-JoyX = { action = "NegPos", keys = ["1", "2"], deadzone = 0.65 } # Primary, Secondary
-JoyY = { action = "NegPos", keys = ["V", "L"], deadzone = 0.65 } # Flashlight, Light Stick
 
 ActionR = "F" # Use
 ActionA = "R" # Reload
@@ -32,6 +27,10 @@ ActionD = "Ctrl" # Prepare Command
 ActionL = "Tab" # Cycle command group
 ActionC = { action = "Layer", layer = 4 } # Commands
 
+PovLeft = "1" # Primary
+PovRight = "2" # Secondary
+PovUp = "V" # Flashlight
+PovDown = "L" # Light Stick
 ActionH = { action = "Layer", layer = 1 } # Grenade selection
 ActionV = { action = "Layer", layer = 2 } # Door tools
 ActionB = { action = "Layer", layer = 3 } # Pacifying tools
@@ -51,6 +50,6 @@ CamY = { action = "NegPos", keys = ["6", "H"], deadzone = 0.65 } # Duplicated fo
 [layers.4] # Commands
 BumperL = "Insert" # Cycle Red Team Viewport
 BumperR = "Home" # Cycle Blue Team Viewport
-ActionR = "PageUp" # Cycle Sniper Team Viewport
+ActionL = "PageUp" # Cycle Sniper Team Viewport
 MenuL = "Backspace" # Control Active Viewport
-TriggerR = "Space" # Quick Command
+ActionR = "Space" # Quick Command

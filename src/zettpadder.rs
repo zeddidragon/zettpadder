@@ -33,7 +33,7 @@ fn send(event_type: &rdev::EventType) {
 
 pub struct Zettpadder {
     keymaps: BTreeMap<u16, Binding>,
-    states: BTreeMap<u8, f64>,
+    values: BTreeMap<u8, f64>, // Values of the buttons
     layer: u8,
     mover: Coords,
     flicker: Coords,
@@ -48,13 +48,13 @@ impl Zettpadder {
         receiver: Receiver<Message>,
         keymaps: BTreeMap<u16, Binding>,
     ) -> Self {
-        let mut states = BTreeMap::new();
-        for k in keymaps.keys() {
-            states.insert(*k as u8, 0.0);
+        let mut values = BTreeMap::new();
+        for (key, _) in &keymaps {
+            values.insert(*key as u8, 0.0);
         }
         Self {
             keymaps: keymaps,
-            states: states,
+            values: values,
             layer: 0,
             mover: Coords::new(),
             flicker: Coords::new(),
@@ -74,43 +74,47 @@ impl Zettpadder {
             self.prev_flicker = self.flicker;
             while let Ok((id, value)) = self.receiver.try_recv() {
                 let idx = id as u16;
-                let shifted = idx + 256 * (self.layer as u16);
-                let binding =
-                    if let Some(m) = self.keymaps.get(&shifted) { Some(m) }
-                    else if let Some(m) = self.keymaps.get(&idx) { Some(m) }
-                    else { None };
-                let mapping = if let Some(binding) = binding {
-                    let prev = self.states[&id];
-                    self.states.insert(id, value);
-                    binding.get_mapping(value, prev)
-                } else {
-                    None
-                };
-
-                match mapping {
-                    Some(Mapping::Layer(l)) => {
-                        self.layer = l;
-                    },
-                    Some(Mapping::MouseX(v)) => {
-                        self.mover.x = v * value;
-                    },
-                    Some(Mapping::MouseY(v)) => {
-                        self.mover.y = v * value;
-                    },
-                    Some(Mapping::FlickX) => {
-                        self.flicker.x = value;
-                    },
-                    Some(Mapping::FlickY) => {
-                        self.flicker.y = value;
-                    },
-                    Some(Mapping::Emit(ev)) => {
-                        send(&ev);
-                    },
-                    None => {},
-                    unx => {
-                        println!("Received: {:?}, which is unexpected", unx);
-                    }
-                };
+                let shifted = idx + LAYER_SIZE * (self.layer as u16);
+                let (idx, binding) =
+                    if let Some(m) = self.keymaps.get(&shifted) {
+                        (shifted, Some(m))
+                    } else if let Some(m) = self.keymaps.get(&idx) {
+                        (idx, Some(m))
+                    } else {
+                        (0, None)
+                    };
+                if let Some(binding) = binding {
+                    let prev = self.values[&id];
+                    self.values.insert(id, value);
+                    let mapping = binding.get_mapping(value, prev);
+                    match mapping {
+                        Some(Mapping::Layer(l)) => {
+                            if l != self.layer {
+                                // Untrigger any chorded keys
+                                self.layer = l;
+                            }
+                        },
+                        Some(Mapping::MouseX(v)) => {
+                            self.mover.x = v * value;
+                        },
+                        Some(Mapping::MouseY(v)) => {
+                            self.mover.y = v * value;
+                        },
+                        Some(Mapping::FlickX) => {
+                            self.flicker.x = value;
+                        },
+                        Some(Mapping::FlickY) => {
+                            self.flicker.y = value;
+                        },
+                        Some(Mapping::Emit(ev)) => {
+                            send(&ev);
+                        },
+                        None => {},
+                        unx => {
+                            println!("Received: {:?}, which is unexpected", unx);
+                        }
+                    };
+                }
             }
 
             // Old school moving

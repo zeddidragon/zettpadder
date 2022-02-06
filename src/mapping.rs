@@ -14,6 +14,32 @@ pub enum Mapping {
     Layer(u8),
 }
 
+impl Mapping {
+    fn released(self) -> Option<Mapping> {
+        use Mapping::{Emit, Layer};
+        use rdev::EventType::{
+            KeyPress,
+            KeyRelease,
+            ButtonPress,
+            ButtonRelease };
+        match self {
+            Emit(KeyPress(key)) => {
+                Some(Emit(KeyRelease(key)))
+            },
+            Emit(ButtonPress(btn)) => {
+                Some(Emit(ButtonRelease(btn)))
+            },
+            Layer(_) => {
+                Some(Layer(0))
+            },
+            _ => {
+                println!("Don't know how to release: {:?}", self);
+                None
+            },
+        }
+    }
+}
+
 #[derive(Debug, Copy, Clone)]
 pub struct Binding {
     pub mapping: Mapping,
@@ -24,35 +50,14 @@ pub struct Binding {
 impl Binding {
     pub fn get_mapping(self, value: f64, prev: f64) -> Option<Mapping> {
         use Mapping::{Emit, NegPos, Layer};
-        use rdev::EventType::{
-            KeyPress,
-            KeyRelease,
-            ButtonPress,
-            ButtonRelease,
-            Wheel };
         let on = self.deadzone_on;
         let off = self.deadzone_off;
         match self.mapping {
-            Emit(event) => {
+            Emit(_) => {
                 if prev < on && value >= on {
                     Some(self.mapping)
                 } else if prev > off && value <= off {
-                    match event {
-                        KeyPress(key) => {
-                            Some(Emit(KeyRelease(key)))
-                        },
-                        ButtonPress(btn) => {
-                            Some(Emit(ButtonRelease(btn)))
-                        },
-                        Wheel { delta_x: _x, delta_y: _y } => {
-                            // No need to release wheel action
-                            None
-                        },
-                        _ => {
-                            println!("Don't know how to release: {:?}", event);
-                            None
-                        },
-                    }
+                    self.mapping.released()
                 } else {
                     None
                 }
@@ -100,6 +105,7 @@ pub fn parse_mappings(map: &mut BTreeMap<u16, Binding>, v: Value, layer: u16) {
             let parsed = parse_output(&mapping);
             let input = input + 256 * layer;
             let (deadzone_on, deadzone_off) = parse_deadzone(&mapping);
+            let is_tippytaps = parse_tippytaps(&mapping);
             let binding = Binding {
                 mapping: parsed,
                 deadzone_on: deadzone_on,
@@ -497,7 +503,7 @@ pub fn parse_output(v: &Value) -> Mapping {
     }
 }
 
-pub fn parse_deadzone(v: &Value) -> (f64, f64) {
+fn parse_deadzone(v: &Value) -> (f64, f64) {
     if let Value::Table(table) = v {
         let on : f64 =
             if let Some(Value::Float(v)) = table.get("deadzoneOn") { *v }
@@ -509,4 +515,13 @@ pub fn parse_deadzone(v: &Value) -> (f64, f64) {
         return (on, off)
     }
     (0.125, 0.1)
+}
+
+fn parse_tippytaps(v: &Value) -> bool {
+    if let Value::Table(table) = v {
+        if let Some(Value::Boolean(v)) = table.get("tippytaps") {
+            return *v
+        }
+    }
+    false
 }

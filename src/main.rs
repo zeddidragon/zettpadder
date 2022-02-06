@@ -23,7 +23,11 @@ async fn event_loop() {
         let contents = read_to_string(arg).unwrap();
         let config = match contents.parse::<Value>() {
             Ok(Table(x)) => x,
-            _ => continue,
+            Err(err) => {
+                println!("Error parsing toml: {:?}", err);
+                continue;
+            },
+            _ => { continue; },
         };
         if let Some(Value::String(game)) = config.get("game") {
             println!("Game: {}", game);
