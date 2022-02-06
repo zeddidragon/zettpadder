@@ -6,14 +6,16 @@ use super::mapping::{Binding, Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
 
-const FLICK_TIME : Duration = Duration::from_millis(100);
-const FLICK_DEADZONE : f64 = 0.9;
+const FLICK_TIME: Duration = Duration::from_millis(100);
+const FLICK_DEADZONE: f64 = 0.9;
 
-const MOVE_DEADZONE : f64 = 0.1;
-const MOVE_MULTIPLIER : f64 = 10.0;
+const MOVE_DEADZONE: f64 = 0.1;
+const MOVE_MULTIPLIER: f64 = 10.0;
 
-const FPS : u64 = 240;
-const TICK_TIME : Duration = Duration::from_nanos(1_000_000_000 / FPS);
+const FPS: u64 = 240;
+const TICK_TIME: Duration = Duration::from_nanos(1_000_000_000 / FPS);
+
+const LAYER_SIZE: u16 = 256;
 
 use crate::coords::{Coords};
 
