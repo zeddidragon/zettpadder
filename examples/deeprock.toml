@@ -2,30 +2,49 @@
 game = "Deep Rock Galactic"
 
 [mapping]
-PovLeft = "A" # Primary Weapon
-PovRight = "D" # Secondary Weapon
-PovUp = "W" # Mobility Tool
-PovDown = "S" # Utility Tool
-CamX = { action = "FlickX" } # Turn
-CamY = { action = "FlickY" } # Turn
+  # D-Pad
+  PovLeft = "A" # Strafe Left
+  PovRight = "D" # Strafe Right
+  PovUp = "W" # Walk
+  PovDown = "S" # Retreat
 
-BumperL = "Ctrl" # Laser Pointer
-PinkyLeft = "Shift" # Sprint
-ActionL = "Space" # Jump
-ActionR = "E" # Interact
+  # Right Stick
+  CamX = "FlickX" # Turn
+  CamY = "FlickY" # Turn
 
-TriggerR = "M1" # Shoot
-TriggerL = "M2" # Mine
-BumperR = "G" # Grenade
-ActionH = "R" # Reload
-ActionB = "F" # Flares
+  # Rear Triggers
+  BumperL = "Ctrl" # Laser Pointer
+  ActionL = "Shift" # Sprint
+  ActionA = "Space" # Jump
+  ActionR = "E" # Interact
+  TriggerR = "M1" # Shoot
+  TriggerL = "M2" # Mine
+  BumperR = "G" # Grenade
+  ActionV = "C" # Molly
+  ActionC = "X" # Shout
+  ActionD = "V" # Salute
 
-JoyX = { action = "NegPos", keys = ["1", "2"], deadzone = 0.65 } # Primary, Secondary
-JoyY = { action = "NegPos", keys = ["3", "4"], deadzone = 0.65 } # Mobility, Support
-Joy = "5" # Resupply
+  # Face Buttons
+  ActionH = "R" # Reload
+  ActionB = "F" # Flares
 
-MenuL = "Tab" # Map
-MenuR = "Escape" # Pause
+  # Middle Buttons
+  MenuL = "Tab" # Map
+  MenuR = "Escape" # Pause
 
-ActionV = "C" # Molly
-ActionD = "V" # Salute
+  # Under Buttons
+  PaddleLeft = "ScrollUp"
+  PaddleRight = "ScrollDown"
+
+  # Left Stick
+  Joy = "5" # Resupply
+
+[mapping.JoyX] # Primary, Secondary
+  action = "NegPos"
+  keys = ["1", "2"]
+  deadzone = 0.6
+
+[mapping.JoyY] # Mobility, Utility
+  action = "NegPos"
+  keys = ["3", "4"]
+  deadzone = 0.6
