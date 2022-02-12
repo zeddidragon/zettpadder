@@ -42,9 +42,9 @@ game = "Deep Rock Galactic"
 [mapping.JoyX] # Primary, Secondary
   action = "NegPos"
   keys = ["1", "2"]
-  deadzone = 0.6
+  deadzone = 0.4
 
 [mapping.JoyY] # Mobility, Utility
   action = "NegPos"
   keys = ["3", "4"]
-  deadzone = 0.6
+  deadzone = 0.5

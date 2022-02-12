@@ -24,13 +24,17 @@ impl Mapping {
             KeyPress,
             KeyRelease,
             ButtonPress,
-            ButtonRelease };
+            ButtonRelease,
+            Wheel };
         match self {
             Emit(KeyPress(key)) => {
                 Some(Emit(KeyRelease(key)))
             },
             Emit(ButtonPress(btn)) => {
                 Some(Emit(ButtonRelease(btn)))
+            },
+            Emit(Wheel{ delta_x: _, delta_y: _ }) => {
+                None
             },
             Layer(_) => {
                 Some(Layer(0))

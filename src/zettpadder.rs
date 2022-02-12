@@ -12,7 +12,7 @@ const FLICK_DEADZONE: f64 = 0.9;
 const MOVE_DEADZONE: f64 = 0.1;
 const MOVE_MULTIPLIER: f64 = 10.0;
 
-const FPS: u64 = 240;
+const FPS: u64 = 60;
 const TICK_TIME: Duration = Duration::from_nanos(1_000_000_000 / FPS);
 
 const LAYER_SIZE: u16 = 256;
@@ -133,7 +133,7 @@ impl Zettpadder {
             }
 
             // TODO: Configure this
-            let full_flick = 256.0 * 12.0;
+            let full_flick = 256.0 * 6.0;
             // Flick sticking
             if self.flicker.len() >= FLICK_DEADZONE {
                 if self.prev_flicker.len() < FLICK_DEADZONE {
