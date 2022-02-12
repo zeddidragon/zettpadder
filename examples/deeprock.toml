@@ -2,8 +2,10 @@
 game = "Deep Rock Galactic"
 
 [mapping]
-JoyX = { action = "NegPos", keys = ["A", "D"], deadzone = 0.15 }
-JoyY = { action = "NegPos", keys = ["W", "S"], deadzone = 0.15 }
+PovLeft = "A" # Primary Weapon
+PovRight = "D" # Secondary Weapon
+PovUp = "W" # Mobility Tool
+PovDown = "S" # Utility Tool
 CamX = { action = "FlickX" } # Turn
 CamY = { action = "FlickY" } # Turn
 
@@ -18,11 +20,9 @@ BumperR = "G" # Grenade
 ActionH = "R" # Reload
 ActionB = "F" # Flares
 
-PovLeft = "1" # Primary Weapon
-PovRight = "2" # Secondary Weapon
-PovUp = "3" # Mobility Tool
-PovDown = "4" # Utility Tool
-ActionC = "5" # Resupply
+JoyX = { action = "NegPos", keys = ["1", "2"], deadzone = 0.65 } # Primary, Secondary
+JoyY = { action = "NegPos", keys = ["3", "4"], deadzone = 0.65 } # Mobility, Support
+Joy = "5" # Resupply
 
 MenuL = "Tab" # Map
 MenuR = "Escape" # Pause

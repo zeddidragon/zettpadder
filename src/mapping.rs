@@ -1,6 +1,7 @@
 use rdev;
 use toml::{Value};
 use std::collections::{BTreeMap};
+use crate::turbo::{Turbo};
 
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
@@ -12,6 +13,8 @@ pub enum Mapping {
     FlickY,
     NegPos(rdev::EventType, rdev::EventType),
     Layer(u8),
+    Turbo(usize),
+    NegPosTurbo(usize, usize),
 }
 
 impl Mapping {
@@ -98,14 +101,45 @@ impl Binding {
     }
 }
 
-pub fn parse_mappings(map: &mut BTreeMap<u16, Binding>, v: Value, layer: u16) {
+pub fn parse_mappings(
+    layer: u16,
+    v: Value,
+    map: &mut BTreeMap<u16, Binding>,
+    turbos: &mut Vec<Turbo>,
+) {
     if let Value::Table(table) = v {
         for (button, mapping) in table {
             let input = parse_input(&button) as u16;
-            let parsed = parse_output(&mapping);
+            let mut parsed = parse_output(&mapping);
             let input = input + 256 * layer;
             let (deadzone_on, deadzone_off) = parse_deadzone(&mapping);
-            let is_tippytaps = parse_tippytaps(&mapping);
+            let is_turbo = parse_turbo(&mapping);
+            if is_turbo {
+                match parsed {
+                    Mapping::NegPos(neg, pos) => {
+                        let npress = Mapping::Emit(neg);
+                        let nrelease = npress.released();
+                        let nturbo = Turbo::new(Some(npress), nrelease);
+                        let nidx = turbos.len();
+                        turbos.push(nturbo);
+
+                        let ppress = Mapping::Emit(pos);
+                        let prelease = ppress.released();
+                        let pturbo = Turbo::new(Some(ppress), prelease);
+                        let pidx = turbos.len();
+                        turbos.push(pturbo);
+
+                        parsed = Mapping::NegPosTurbo(nidx, pidx);
+                    }
+                    _ => {
+                        let press = parsed;
+                        let release = parsed.released();
+                        let turbo = Turbo::new(Some(press), release);
+                        parsed = Mapping::Turbo(turbos.len());
+                        turbos.push(turbo);
+                    },
+                };
+            }
             let binding = Binding {
                 mapping: parsed,
                 deadzone_on: deadzone_on,
@@ -117,12 +151,14 @@ pub fn parse_mappings(map: &mut BTreeMap<u16, Binding>, v: Value, layer: u16) {
 }
 
 pub fn parse_layers(
+    v: Value,
     map: &mut BTreeMap<u16, Binding>,
-    v: Value) {
+    turbos: &mut Vec<Turbo>,
+) {
     if let Value::Table(table) = v {
         for (layer, mappings) in table {
             if let Ok(layer) = layer.parse::<u16>() {
-                parse_mappings(map, mappings, layer);
+                parse_mappings(layer, mappings, map, turbos);
             } else {
                 println!("Didn't understand layer: {:?}", layer);
             }
@@ -517,9 +553,9 @@ fn parse_deadzone(v: &Value) -> (f64, f64) {
     (0.125, 0.1)
 }
 
-fn parse_tippytaps(v: &Value) -> bool {
+fn parse_turbo(v: &Value) -> bool {
     if let Value::Table(table) = v {
-        if let Some(Value::Boolean(v)) = table.get("tippytaps") {
+        if let Some(Value::Boolean(v)) = table.get("turbo") {
             return *v
         }
     }

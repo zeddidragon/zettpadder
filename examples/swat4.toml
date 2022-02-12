@@ -2,8 +2,8 @@
 game = "Swat 4"
 
 [mapping]
-JoyX = { action = "NegPos", keys = ["A", "D"], tippytaps = true, deadzone = 0.5 } # Strafe
-JoyY = { action = "NegPos", keys = ["W", "S"], tippytaps = true, deadzone = 0.4 } # Walk
+JoyX = { action = "NegPos", keys = ["A", "D"], tippytaps = true } # Strafe
+JoyY = { action = "NegPos", keys = ["W", "S"], tippytaps = true } # Walk
 CamX = { action = "FlickX" } # Turn
 CamY = { action = "FlickY" } # Turn
 

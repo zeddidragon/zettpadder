@@ -18,6 +18,7 @@ const TICK_TIME: Duration = Duration::from_nanos(1_000_000_000 / FPS);
 const LAYER_SIZE: u16 = 256;
 
 use crate::coords::{Coords};
+use crate::turbo::{Turbo};
 
 #[inline]
 fn modulo(v: f64, k: f64) -> f64 {
@@ -36,6 +37,7 @@ fn send(event_type: &rdev::EventType) {
 pub struct Zettpadder {
     keymaps: BTreeMap<u16, Binding>,
     values: BTreeMap<u8, f64>, // Values of the buttons
+    turbos: Vec<Turbo>,
     layer: u8,
     mover: Coords,
     flicker: Coords,
@@ -49,6 +51,7 @@ impl Zettpadder {
     pub fn new(
         receiver: Receiver<Message>,
         keymaps: BTreeMap<u16, Binding>,
+        turbos: Vec<Turbo>,
     ) -> Self {
         let mut values = BTreeMap::new();
         for (key, _) in &keymaps {
@@ -57,6 +60,7 @@ impl Zettpadder {
         Self {
             keymaps: keymaps,
             values: values,
+            turbos: turbos,
             layer: 0,
             mover: Coords::new(),
             flicker: Coords::new(),
@@ -77,13 +81,13 @@ impl Zettpadder {
             while let Ok((id, value)) = self.receiver.try_recv() {
                 let idx = id as u16;
                 let shifted = idx + LAYER_SIZE * (self.layer as u16);
-                let (idx, binding) =
+                let binding =
                     if let Some(m) = self.keymaps.get(&shifted) {
-                        (shifted, Some(m))
+                        Some(m)
                     } else if let Some(m) = self.keymaps.get(&idx) {
-                        (idx, Some(m))
+                        Some(m)
                     } else {
-                        (0, None)
+                        None
                     };
                 if let Some(binding) = binding {
                     let prev = self.values[&id];
@@ -110,6 +114,10 @@ impl Zettpadder {
                         },
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
+                        },
+                        Some(Mapping::NegPosTurbo(nidx, pidx)) => {
+                            self.turbos[nidx].rate = (-value).max(0.0);
+                            self.turbos[pidx].rate = value.max(0.0);
                         },
                         None => {},
                         unx => {

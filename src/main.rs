@@ -7,9 +7,10 @@ use std::collections::{BTreeMap};
 use std::fs::{read_to_string};
 use crossbeam_channel::{bounded};
 
+mod coords;
+mod turbo;
 mod mapping;
 mod controller_poller;
-mod coords;
 mod zettpadder;
 use controller_poller::{ControllerPoller};
 use zettpadder::{Zettpadder};
@@ -17,6 +18,7 @@ use zettpadder::{Zettpadder};
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
     let mut keymaps = BTreeMap::new();
+    let mut turbos = Vec::new();
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
@@ -37,12 +39,19 @@ async fn event_loop() {
         for (key, value) in config { match (key.as_str(), value) {
             ("game", _) => {},
             ("mapping", Table(mappings)) => {
-                mapping::parse_mappings(&mut keymaps, Table(mappings), 0);
+                mapping::parse_mappings(
+                    0,
+                    Table(mappings),
+                    &mut keymaps,
+                    &mut turbos,
+                );
             },
             ("layers", Table(layermaps)) => {
                 mapping::parse_layers(
+                    Table(layermaps),
                     &mut keymaps,
-                    Table(layermaps));
+                    &mut turbos,
+                )
             },
             (key, value) => {
                 println!("Unrecognized property or invalid value: {}\n{:?}", key, value)
@@ -53,7 +62,7 @@ async fn event_loop() {
     let (tx, rx) = bounded(128);
     let print_mode = (&keymaps).len() == 0;
     thread::spawn(move || {
-        Zettpadder::new(rx, keymaps).run();
+        Zettpadder::new(rx, keymaps, turbos).run();
     });
     ControllerPoller::new(tx, print_mode).run().await;
 }
