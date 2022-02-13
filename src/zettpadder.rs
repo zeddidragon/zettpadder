@@ -99,6 +99,7 @@ impl Zettpadder {
     pub fn run(&mut self) {
         let ticker = tick(self.tick_time);
         let mut motion = Coords::new();
+        let mut released_layers = Vec::with_capacity(8);
         loop {
             motion *= 0.0;
             ticker.recv().unwrap();
@@ -122,6 +123,9 @@ impl Zettpadder {
                         Some(Mapping::Layer(l)) => {
                             if l != self.layer {
                                 // Untrigger any chorded keys
+                                if self.layer > 0 {
+                                    released_layers.push(self.layer);
+                                }
                                 self.layer = l;
                             }
                         },
@@ -149,6 +153,29 @@ impl Zettpadder {
                         }
                     };
                 }
+            }
+
+            if !released_layers.is_empty() {
+                for l in &released_layers {
+                    let range = (LAYER_SIZE * *l as u16)..(LAYER_SIZE * (*l as u16 + 1));
+                    for (k, binding) in self.keymaps.iter_mut() {
+                        if !range.contains(k) { continue; }
+                        let idx = &(*k as u8);
+                        let prev = self.values[idx];
+                        if prev == 0.0 { continue; }
+                        let release = binding.get_mapping(0.0, prev);
+                        match release {
+                            Some(Mapping::Emit(ev)) => {
+                                send(&ev);
+                            },
+                            Some(Mapping::Trigger(idx)) => {
+                                self.functions[idx].value = 0.0;
+                            },
+                            _ => {},
+                        };
+                    }
+                }
+                released_layers.clear();
             }
 
             // Old school moving
