@@ -2,49 +2,49 @@
 game = "Deep Rock Galactic"
 
 [mapping]
-  # D-Pad
-  PovLeft = "A" # Strafe Left
-  PovRight = "D" # Strafe Right
-  PovUp = "W" # Walk
-  PovDown = "S" # Retreat
+# D-Pad
+PovLeft = "A" # Strafe Left
+PovRight = "D" # Strafe Right
+PovUp = "W" # Walk
+PovDown = "S" # Retreat
 
-  # Right Stick
-  CamX = "FlickX" # Turn
-  CamY = "FlickY" # Turn
+# Right Stick
+CamX = "FlickX" # Turn
+CamY = "FlickY" # Turn
 
-  # Rear Triggers
-  BumperL = "Ctrl" # Laser Pointer
-  ActionL = "Shift" # Sprint
-  ActionA = "Space" # Jump
-  ActionR = "E" # Interact
-  TriggerR = "M1" # Shoot
-  TriggerL = "M2" # Mine
-  BumperR = "G" # Grenade
-  ActionV = "C" # Molly
-  ActionC = "X" # Shout
-  ActionD = "V" # Salute
+# Rear Triggers
+BumperL = "Ctrl" # Laser Pointer
+ActionL = "Shift" # Sprint
+ActionA = "Space" # Jump
+ActionR = "E" # Interact
+TriggerR = "M1" # Shoot
+TriggerL = "M2" # Mine
+BumperR = "G" # Grenade
+ActionV = "C" # Molly
+ActionC = "X" # Shout
+ActionD = "V" # Salute
 
-  # Face Buttons
-  ActionH = "R" # Reload
-  ActionB = "F" # Flares
+# Face Buttons
+ActionH = "R" # Reload
+ActionB = "F" # Flares
 
-  # Middle Buttons
-  MenuL = "Tab" # Map
-  MenuR = "Escape" # Pause
+# Middle Buttons
+MenuL = "Tab" # Map
+MenuR = "Escape" # Pause
 
-  # Under Buttons
-  PaddleLeft = "ScrollUp"
-  PaddleRight = "ScrollDown"
+# Under Buttons
+PaddleLeft = "ScrollUp"
+PaddleRight = "ScrollDown"
 
-  # Left Stick
-  Joy = "5" # Resupply
+# Left Stick
+Joy = "5" # Resupply
 
 [mapping.JoyX] # Primary, Secondary
-  action = "NegPos"
-  keys = ["1", "2"]
-  deadzone = 0.4
+action = "NegPos"
+keys = ["1", "2"]
+deadzone = 0.4
 
 [mapping.JoyY] # Mobility, Utility
-  action = "NegPos"
-  keys = ["3", "4"]
-  deadzone = 0.5
+action = "NegPos"
+keys = ["3", "4"]
+deadzone = 0.5

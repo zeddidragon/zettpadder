@@ -1,5 +1,4 @@
-use rdev;
-use crossbeam_channel::{Receiver, tick};
+use rdev; use crossbeam_channel::{Receiver, tick};
 use super::controller_poller::{Message};
 use std::collections::{BTreeMap};
 use super::mapping::{Binding, Mapping};
@@ -18,7 +17,7 @@ const TICK_TIME: Duration = Duration::from_nanos(1_000_000_000 / FPS);
 const LAYER_SIZE: u16 = 256;
 
 use crate::coords::{Coords};
-use crate::turbo::{Turbo};
+use crate::function::{Function};
 
 #[inline]
 fn modulo(v: f64, k: f64) -> f64 {
@@ -37,7 +36,7 @@ fn send(event_type: &rdev::EventType) {
 pub struct Zettpadder {
     keymaps: BTreeMap<u16, Binding>,
     values: BTreeMap<u8, f64>, // Values of the buttons
-    turbos: Vec<Turbo>,
+    functions: Vec<Function>,
     layer: u8,
     mover: Coords,
     flicker: Coords,
@@ -51,7 +50,7 @@ impl Zettpadder {
     pub fn new(
         receiver: Receiver<Message>,
         keymaps: BTreeMap<u16, Binding>,
-        turbos: Vec<Turbo>,
+        functions: Vec<Function>,
     ) -> Self {
         let mut values = BTreeMap::new();
         for (key, _) in &keymaps {
@@ -60,7 +59,7 @@ impl Zettpadder {
         Self {
             keymaps: keymaps,
             values: values,
-            turbos: turbos,
+            functions: functions,
             layer: 0,
             mover: Coords::new(),
             flicker: Coords::new(),
@@ -115,9 +114,8 @@ impl Zettpadder {
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
                         },
-                        Some(Mapping::NegPosTurbo(nidx, pidx)) => {
-                            self.turbos[nidx].rate = (-value).max(0.0);
-                            self.turbos[pidx].rate = value.max(0.0);
+                        Some(Mapping::Trigger(idx)) => {
+                            self.functions[idx].value = value;
                         },
                         None => {},
                         unx => {

@@ -8,7 +8,7 @@ use std::fs::{read_to_string};
 use crossbeam_channel::{bounded};
 
 mod coords;
-mod turbo;
+mod function;
 mod mapping;
 mod controller_poller;
 mod zettpadder;
@@ -18,7 +18,7 @@ use zettpadder::{Zettpadder};
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
     let mut keymaps = BTreeMap::new();
-    let mut turbos = Vec::new();
+    let mut functions = Vec::new();
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
@@ -43,14 +43,14 @@ async fn event_loop() {
                     0,
                     Table(mappings),
                     &mut keymaps,
-                    &mut turbos,
+                    &mut functions,
                 );
             },
             ("layers", Table(layermaps)) => {
                 mapping::parse_layers(
                     Table(layermaps),
                     &mut keymaps,
-                    &mut turbos,
+                    &mut functions,
                 )
             },
             (key, value) => {
@@ -62,7 +62,7 @@ async fn event_loop() {
     let (tx, rx) = bounded(128);
     let print_mode = (&keymaps).len() == 0;
     thread::spawn(move || {
-        Zettpadder::new(rx, keymaps, turbos).run();
+        Zettpadder::new(rx, keymaps, functions).run();
     });
     ControllerPoller::new(tx, print_mode).run().await;
 }
