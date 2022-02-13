@@ -1,7 +1,6 @@
 // use rdev::xtask::name_to_hex;
 use std::thread;
-use toml::{Value};
-use toml::Value::Table;
+use toml::Value::{self, Table};
 use std::env;
 use std::collections::{BTreeMap};
 use std::fs::{read_to_string};
@@ -13,10 +12,11 @@ mod mapping;
 mod controller_poller;
 mod zettpadder;
 use controller_poller::{ControllerPoller};
-use zettpadder::{Zettpadder};
+use zettpadder::{Zettpadder, ZettpadderConfig};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
+    let mut zcfg = ZettpadderConfig::new();
     let mut keymaps = BTreeMap::new();
     let mut functions = Vec::new();
 
@@ -38,6 +38,33 @@ async fn event_loop() {
         }
         for (key, value) in config { match (key.as_str(), value) {
             ("game", _) => {},
+            ("fps", Value::Integer(v)) => {
+                zcfg.fps = v as u64;
+            },
+            ("flick180", Value::Integer(v)) => {
+                zcfg.flick_180 = v as f64;
+            },
+            ("flick180", Value::Float(v)) => {
+                zcfg.flick_180 = v;
+            },
+            ("flickTime", Value::Integer(v)) => {
+                zcfg.flick_time = v as u64;
+            },
+            ("flickDeadzone", Value::Float(v)) => {
+                zcfg.flick_deadzone = v;
+            },
+            ("mouseDeadzone", Value::Integer(v)) => {
+                zcfg.move_deadzone = v as f64;
+            },
+            ("mouseDeadzone", Value::Float(v)) => {
+                zcfg.move_deadzone = v;
+            },
+            ("mouseFactor", Value::Integer(v)) => {
+                zcfg.move_multiplier = v as f64;
+            },
+            ("mouseFactor", Value::Float(v)) => {
+                zcfg.move_multiplier = v;
+            },
             ("mapping", Table(mappings)) => {
                 mapping::parse_mappings(
                     0,
@@ -62,7 +89,7 @@ async fn event_loop() {
     let (tx, rx) = bounded(128);
     let print_mode = (&keymaps).len() == 0;
     thread::spawn(move || {
-        Zettpadder::new(rx, keymaps, functions).run();
+        Zettpadder::new(zcfg, rx, keymaps, functions).run();
     });
     ControllerPoller::new(tx, print_mode).run().await;
 }

@@ -1,0 +1,42 @@
+# Generic Third-Person Shooter controls, with Flydigi Apex 2 in mind
+game = "World War Z"
+fps = 30 # How often to read/emit inputs
+flick180 = 2124 # Mouse units to move 180
+
+[mapping]
+# D-Pad for digital movement
+PovLeft = "A" # Strafe Left
+PovRight = "D" # Strafe Right
+PovUp = "W" # Walk
+PovDown = "S" # Retreat
+
+CamX = { action = "FlickX" } # Turn
+CamY = { action = "FlickY" } # Turn
+
+ActionL = "Shift" # Sprint
+ActionA = "Space" # Jump
+ActionB = "Ctrl" # Toggle crouch
+
+TriggerR = "M1" # Fire
+TriggerL = "M2" # Aim
+ActionH = "R" # Reload
+BumperL = "M3" # Equipment
+BumperR = "F" # Melee
+ActionR = "E" # Interact
+
+ActionC = "T" # Mark Target
+ActionD = "4" # Use medkit
+
+MenuL = "Tab" # Scoreboard
+MenuR = "Escape" # Pause
+
+PinkyLeft = { action = "Layer", layer = 1 } # Weapons
+
+ActionV = "4" # Medkit
+[layers.1] # Commands
+ActionA = "2" # Primary
+ActionB = "1" # Secondary
+ActionH = "3" # Heavy Weapon
+
+ActionC = "Enter" # OK
+ActionD = "Escape" # Cancel

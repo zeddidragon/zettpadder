@@ -5,15 +5,6 @@ use super::mapping::{Binding, Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
 
-const FLICK_TIME: Duration = Duration::from_millis(100);
-const FLICK_DEADZONE: f64 = 0.9;
-
-const MOVE_DEADZONE: f64 = 0.1;
-const MOVE_MULTIPLIER: f64 = 10.0;
-
-const FPS: u64 = 60;
-const TICK_TIME: Duration = Duration::from_nanos(1_000_000_000 / FPS);
-
 const LAYER_SIZE: u16 = 256;
 
 use crate::coords::{Coords};
@@ -33,7 +24,35 @@ fn send(event_type: &rdev::EventType) {
     }
 }
 
+pub struct ZettpadderConfig {
+    pub fps: u64,
+    pub flick_180: f64,
+    pub flick_time: u64,
+    pub flick_deadzone: f64,
+    pub move_deadzone: f64,
+    pub move_multiplier: f64,
+}
+
+impl ZettpadderConfig {
+    pub fn new() -> Self {
+        Self {
+            fps: 60,
+            flick_180: 2048.0,
+            flick_time: 100,
+            flick_deadzone: 0.9,
+            move_deadzone: 0.1,
+            move_multiplier: 10.0
+        }
+    }
+}
+
 pub struct Zettpadder {
+    tick_time: Duration,
+    flick_180: f64,
+    flick_time: Duration,
+    flick_deadzone: f64,
+    move_deadzone: f64,
+    move_multiplier: f64,
     keymaps: BTreeMap<u16, Binding>,
     values: BTreeMap<u8, f64>, // Values of the buttons
     functions: Vec<Function>,
@@ -48,6 +67,7 @@ pub struct Zettpadder {
 
 impl Zettpadder {
     pub fn new(
+        config: ZettpadderConfig,
         receiver: Receiver<Message>,
         keymaps: BTreeMap<u16, Binding>,
         functions: Vec<Function>,
@@ -57,6 +77,12 @@ impl Zettpadder {
             values.insert(*key as u8, 0.0);
         }
         Self {
+            tick_time: Duration::from_nanos(1_000_000_000 / config.fps),
+            flick_180: config.flick_180,
+            flick_time: Duration::from_millis(config.flick_time),
+            flick_deadzone: config.flick_deadzone,
+            move_deadzone: config.move_deadzone,
+            move_multiplier: config.move_multiplier,
             keymaps: keymaps,
             values: values,
             functions: functions,
@@ -71,7 +97,7 @@ impl Zettpadder {
     }
 
     pub fn run(&mut self) {
-        let ticker = tick(TICK_TIME);
+        let ticker = tick(self.tick_time);
         let mut motion = Coords::new();
         loop {
             motion *= 0.0;
@@ -126,21 +152,19 @@ impl Zettpadder {
             }
 
             // Old school moving
-            if self.mover.len() > MOVE_DEADZONE {
-                motion = self.mover * MOVE_MULTIPLIER;
+            if self.mover.len() > self.move_deadzone {
+                motion = self.mover * self.move_multiplier;
             }
 
-            // TODO: Configure this
-            let full_flick = 256.0 * 6.0;
             // Flick sticking
-            if self.flicker.len() >= FLICK_DEADZONE {
-                if self.prev_flicker.len() < FLICK_DEADZONE {
+            if self.flicker.len() >= self.flick_deadzone {
+                if self.prev_flicker.len() < self.flick_deadzone {
                     // Starting a flick
                     let angle = self.flicker.angle();
-                    let ticks = (FLICK_TIME.as_nanos() / TICK_TIME.as_nanos())
-                        as f64;
-                    self.flick_remaining = FLICK_TIME;
-                    self.flick_tick = full_flick * angle / PI / ticks;
+                    let ticks = ( self.flick_time.as_nanos()
+                        / self.tick_time.as_nanos()) as f64;
+                    self.flick_remaining = self.flick_time;
+                    self.flick_tick = self.flick_180 * angle / PI / ticks;
 
                 } else {
                     // Steering
@@ -148,14 +172,14 @@ impl Zettpadder {
                     let prev_angle = self.prev_flicker.angle();
                     let diff = angle - prev_angle;
                     let diff = modulo(diff + PI, TAU) - PI;
-                    motion.x += full_flick * diff / PI;
+                    motion.x += self.flick_180 * diff / PI;
                 }
             }
 
             if self.flick_remaining > Duration::ZERO {
                 self.flick_remaining =
-                    if self.flick_remaining > TICK_TIME {
-                        self.flick_remaining - TICK_TIME
+                    if self.flick_remaining > self.tick_time {
+                        self.flick_remaining - self.tick_time
                     } else { Duration::ZERO };
                 motion.x += self.flick_tick;
             }
