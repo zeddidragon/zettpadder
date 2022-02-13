@@ -1,5 +1,7 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
 game = "Deep Rock Galactic"
+fps = 60 # How often to read/emit inputs
+flick180 = 4906 # Mouse units to move 180
 
 [mapping]
 # D-Pad
@@ -36,15 +38,11 @@ MenuR = "Escape" # Pause
 PaddleLeft = "ScrollUp"
 PaddleRight = "ScrollDown"
 
-# Left Stick
-Joy = "5" # Resupply
+PinkyLeft = { action = "Layer", layer = 1 } # Weapons
 
-[mapping.JoyX] # Primary, Secondary
-action = "NegPos"
-keys = ["1", "2"]
-deadzone = 0.4
-
-[mapping.JoyY] # Mobility, Utility
-action = "NegPos"
-keys = ["3", "4"]
-deadzone = 0.5
+[layers.1] # Commands
+ActionH = "1" # Primary
+ActionB = "2" # Secondary
+ActionV = "3" # Mobilitty
+ActionA = "4" # Utility
+ActionC = "5" # Resupply

@@ -155,6 +155,7 @@ impl Zettpadder {
                 }
             }
 
+            // Release any chorded presses when chord is released
             if !released_layers.is_empty() {
                 for l in &released_layers {
                     let range = (LAYER_SIZE * *l as u16)..(LAYER_SIZE * (*l as u16 + 1));
