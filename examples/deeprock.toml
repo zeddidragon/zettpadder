@@ -17,26 +17,26 @@ CamY = "FlickY" # Turn
 # Rear Triggers
 BumperL = "Ctrl" # Laser Pointer
 ActionL = "Shift" # Sprint
-ActionA = "Space" # Jump
 ActionR = "E" # Interact
 TriggerR = "M1" # Shoot
 TriggerL = "M2" # Mine
 BumperR = "G" # Grenade
+
+# Face Buttons
+ActionA = "Space" # Jump
+ActionH = "R" # Reload
+ActionB = "F" # Flares
 ActionV = "C" # Molly
 ActionC = "X" # Shout
 ActionD = "V" # Salute
-
-# Face Buttons
-ActionH = "R" # Reload
-ActionB = "F" # Flares
 
 # Middle Buttons
 MenuL = "Tab" # Map
 MenuR = "Escape" # Pause
 
 # Under Buttons
-PaddleLeft = "ScrollUp"
-PaddleRight = "ScrollDown"
+PaddleLeft = "ScrollUp" # Scroll in map
+PaddleRight = "ScrollDown" # Scroll in map
 
 PinkyLeft = "Layer1" # Weapons
 
