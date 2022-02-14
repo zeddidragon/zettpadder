@@ -40,7 +40,7 @@ PaddleRight = "ScrollDown"
 
 PinkyLeft = { action = "Layer", layer = 1 } # Weapons
 
-[layers.1] # Commands
+[layers.1] # Weapons
 ActionH = "1" # Primary
 ActionB = "2" # Secondary
 ActionV = "3" # Mobilitty

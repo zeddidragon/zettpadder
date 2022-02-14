@@ -6,12 +6,11 @@ PovLeft = "A" # Strafe Left
 PovRight = "D" # Strafe right
 PovUp = "W" # Walk
 PovDown = "S" # Retreat
+JoyX = { action = "NegPos", keys = ["Q", "E"] } # Lean Left/Right
 CamX = { action = "FlickX" } # Turn
 CamY = { action = "FlickY" } # Turn
 
-PaddleLeft = "Q" # Lean L
-PaddleRight = "E" # Lean R
-PinkyLeft = "C" # Crouch
+PaddleLeft = "C" # Crouch
 Cam = "Shift" # Toggle sprint
 
 TriggerR = "M1" # Shoot
@@ -29,11 +28,16 @@ ActionD = "Ctrl" # Prepare Command
 ActionL = "Tab" # Cycle command group
 ActionC = { action = "Layer", layer = 4 } # Commands
 
-JoyX = { action = "NegPos", keys = ["1", "2"], deadzone = 0.6 } # Weapons
-JoyY = { action = "NegPos", keys = ["V", "L"], deadzone = 0.6 } # Flashlight / Stick
 ActionH = { action = "Layer", layer = 1 } # Grenade selection
 ActionV = { action = "Layer", layer = 2 } # Door tools
 ActionB = { action = "Layer", layer = 3 } # Pacifying tools
+
+PinkyLeft = { action = "Layer", layer = 5 } # Weapons
+[layers.5] # Weapons
+ActionH = "1" # Primary
+ActionB = "2" # Secondary
+ActionV = "V" # Flashlight
+ActionA = "L" # Light Stick
 
 [layers.1] # Grenade selection
 CamX = { action = "NegPos", keys = ["3", "5"], deadzone = 0.65 } # Flash, Stinger
