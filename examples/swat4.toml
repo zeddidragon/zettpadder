@@ -26,18 +26,12 @@ MenuR = "Escape" # Pause
 
 ActionD = "Ctrl" # Prepare Command
 ActionL = "Tab" # Cycle command group
-ActionC = { action = "Layer", layer = 4 } # Commands
 
-ActionH = { action = "Layer", layer = 1 } # Grenade selection
-ActionV = { action = "Layer", layer = 2 } # Door tools
-ActionB = { action = "Layer", layer = 3 } # Pacifying tools
-
-PinkyLeft = { action = "Layer", layer = 5 } # Weapons
-[layers.5] # Weapons
-ActionH = "1" # Primary
-ActionB = "2" # Secondary
-ActionV = "V" # Flashlight
-ActionA = "L" # Light Stick
+ActionH = "Layer1" # Grenade selection
+ActionV = "Layer2" # Door tools
+ActionB = "Layer3" # Pacifying tools
+ActionC = "Layer4" # Commands
+PinkyLeft = "Layer5" # Weapons
 
 [layers.1] # Grenade selection
 CamX = { action = "NegPos", keys = ["3", "5"], deadzone = 0.65 } # Flash, Stinger
@@ -57,3 +51,9 @@ BumperR = "Home" # Cycle Blue Team Viewport
 ActionL = "PageUp" # Cycle Sniper Team Viewport
 MenuL = "Backspace" # Control Active Viewport
 ActionR = "Space" # Quick Command
+
+[layers.5] # Weapons
+ActionH = "1" # Primary
+ActionB = "2" # Secondary
+ActionV = "V" # Flashlight
+ActionA = "L" # Light Stick

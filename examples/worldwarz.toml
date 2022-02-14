@@ -30,7 +30,7 @@ ActionD = "4" # Use medkit
 MenuL = "Tab" # Scoreboard
 MenuR = "Escape" # Pause
 
-PinkyLeft = { action = "Layer", layer = 1 } # Weapons
+PinkyLeft = "Layer1" # Weapons
 
 ActionV = "4" # Medkit
 [layers.1] # Weapons

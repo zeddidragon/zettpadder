@@ -254,7 +254,7 @@ fn parse_input(v: &String) -> u8 {
 }
 
 pub fn parse_output(v: &Value) -> Mapping {
-    use Mapping::{Emit, Noop};
+    use Mapping::{Emit, Layer, Noop};
     use rdev::EventType::{KeyPress, ButtonPress, Wheel};
     match v {
         Value::String(v) => {
@@ -444,6 +444,22 @@ pub fn parse_output(v: &Value) -> Mapping {
                 "MouseY" => Mapping::MouseY(1.0),
                 "FlickX" => Mapping::FlickX,
                 "FlickY" => Mapping::FlickY,
+                "Layer1" => Layer(1),
+                "Layer2" => Layer(2),
+                "Layer3" => Layer(3),
+                "Layer4" => Layer(4),
+                "Layer5" => Layer(5),
+                "Layer6" => Layer(6),
+                "Layer7" => Layer(7),
+                "Layer8" => Layer(8),
+                "Layer9" => Layer(9),
+                "Layer10" => Layer(10),
+                "Layer11" => Layer(11),
+                "Layer12" => Layer(12),
+                "Layer13" => Layer(13),
+                "Layer14" => Layer(14),
+                "Layer15" => Layer(15),
+                "Layer16" => Layer(16),
                 _ => {
                     println!("Unrecognized key: {:?}", v);
                     Noop

@@ -38,7 +38,7 @@ MenuR = "Escape" # Pause
 PaddleLeft = "ScrollUp"
 PaddleRight = "ScrollDown"
 
-PinkyLeft = { action = "Layer", layer = 1 } # Weapons
+PinkyLeft = "Layer1" # Weapons
 
 [layers.1] # Weapons
 ActionH = "1" # Primary
