@@ -50,5 +50,19 @@ If you fire up the program without arguments and hit buttons, it'll show you out
 - Gyro support.
 
 # Not currently planned
+  
 - Interface outside of loading a file.
 - Support for mapping multiple controllers simultaneously. Just run the program twice.
+
+
+
+## Addendum: Disabling Flydigi's mouse click on right grip button
+1. Identify ID of the device:
+```
+    xinput list | grep Flydigi | grep pointer
+```
+2. Disable button
+```
+    xinput set-button-map <id> 0
+```
+

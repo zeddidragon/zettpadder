@@ -1,4 +1,4 @@
-# Generic Third-Person Shooter controls, with Flydigi Apex 2 in mind
+# World War Z, with Flydigi Apex 2 in mind
 game = "World War Z"
 fps = 60 # How often to read/emit inputs
 flick180 = 5888 # Mouse units to move 180
