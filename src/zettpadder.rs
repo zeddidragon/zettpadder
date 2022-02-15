@@ -32,17 +32,19 @@ pub struct ZettpadderConfig {
     pub flick_deadzone: f64,
     pub move_deadzone: f64,
     pub move_multiplier: f64,
+    pub mouse_sensitivity: f64,
 }
 
 impl ZettpadderConfig {
     pub fn new() -> Self {
         Self {
             fps: 60,
-            flick_180: 2048.0,
+            flick_180: 650.0,
             flick_time: 100,
             flick_deadzone: 0.9,
             move_deadzone: 0.1,
-            move_multiplier: 10.0
+            move_multiplier: 10.0,
+            mouse_sensitivity: 1.0,
         }
     }
 }
@@ -79,7 +81,7 @@ impl Zettpadder {
         }
         Self {
             tick_time: Duration::from_nanos(1_000_000_000 / config.fps),
-            flick_180: config.flick_180,
+            flick_180: config.flick_180 / config.mouse_sensitivity,
             flick_time: Duration::from_millis(config.flick_time),
             flick_deadzone: config.flick_deadzone,
             move_deadzone: config.move_deadzone,
@@ -102,6 +104,7 @@ impl Zettpadder {
         let mut motion = Coords::new();
         let mut released_layers = Vec::with_capacity(8);
         let mut flick_smoother = Smoothing::new();
+        let mut total_flick_steering = 0.0;
         loop {
             motion *= 0.0;
             ticker.recv().unwrap();
@@ -196,6 +199,7 @@ impl Zettpadder {
                     self.flick_remaining = self.flick_time;
                     self.flick_tick = self.flick_180 * angle / PI / ticks;
                     flick_smoother.clear();
+                    total_flick_steering = 0.0;
 
                 } else {
                     // Steering
@@ -203,8 +207,9 @@ impl Zettpadder {
                     let prev_angle = self.prev_flicker.angle();
                     let diff = angle - prev_angle;
                     let diff = modulo(diff + PI, TAU) - PI;
+                    total_flick_steering += diff;
                     let diff = flick_smoother.tier_smooth(diff);
-                    motion.x += self.flick_180 * diff / PI;
+                    motion.x += self.flick_180 * diff;
                 }
             }
 

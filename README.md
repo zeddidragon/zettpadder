@@ -47,10 +47,12 @@ If you fire up the program without arguments and hit buttons, it'll show you out
 - Flick stick.
 
 # Planned features
+- Radial functions.
 - Gyro support.
+- PS4 touchpad suppport.
+- Game overlay to support radial menus etc.
 
 # Not currently planned
-  
 - Interface outside of loading a file.
 - Support for mapping multiple controllers simultaneously. Just run the program twice.
 
