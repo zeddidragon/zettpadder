@@ -126,7 +126,6 @@ pub fn parse_mappings(
                 deadzone_on: deadzone_on,
                 deadzone_off: deadzone_off,
             };
-            println!("{:?}", binding);
             map.insert(input, binding);
         }
     }
