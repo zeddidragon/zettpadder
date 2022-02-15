@@ -9,6 +9,7 @@ const LAYER_SIZE: u16 = 256;
 
 use crate::coords::{Coords};
 use crate::function::{Function};
+use crate::smoothing::{Smoothing};
 
 #[inline]
 fn modulo(v: f64, k: f64) -> f64 {
@@ -100,6 +101,7 @@ impl Zettpadder {
         let ticker = tick(self.tick_time);
         let mut motion = Coords::new();
         let mut released_layers = Vec::with_capacity(8);
+        let mut flick_smoother = Smoothing::new();
         loop {
             motion *= 0.0;
             ticker.recv().unwrap();
@@ -193,6 +195,7 @@ impl Zettpadder {
                         / self.tick_time.as_nanos()) as f64;
                     self.flick_remaining = self.flick_time;
                     self.flick_tick = self.flick_180 * angle / PI / ticks;
+                    flick_smoother.clear();
 
                 } else {
                     // Steering
@@ -200,6 +203,7 @@ impl Zettpadder {
                     let prev_angle = self.prev_flicker.angle();
                     let diff = angle - prev_angle;
                     let diff = modulo(diff + PI, TAU) - PI;
+                    let diff = flick_smoother.tier_smooth(diff);
                     motion.x += self.flick_180 * diff / PI;
                 }
             }

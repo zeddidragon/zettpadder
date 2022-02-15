@@ -14,8 +14,8 @@ PovUp = "W" # Walk
 PovDown = "S" # Retreat
 
 # Right Stick for turning
-CamX = { action = "FlickX" } # Turn
-CamY = { action = "FlickY" } # Turn
+CamX = "FlickX" # Turn
+CamY = "FlickY" # Turn
 
 # Typical rear trigger actions for applying yourself to what you're aiming at
 TriggerR = "M1" # Fire

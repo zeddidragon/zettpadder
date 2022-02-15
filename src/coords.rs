@@ -61,3 +61,21 @@ impl ops::MulAssign<f64> for Coords {
         self.y *= other;
     }
 }
+
+impl ops::Div<f64> for Coords {
+    type Output = Self;
+
+    fn div(self, other: f64) -> Self {
+        Coords {
+            x: self.x / other,
+            y: self.y / other,
+        }
+    }
+}
+
+impl ops::DivAssign<f64> for Coords {
+    fn div_assign(&mut self, other: f64) {
+        self.x /= other;
+        self.y /= other;
+    }
+}

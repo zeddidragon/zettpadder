@@ -7,8 +7,8 @@ PovRight = "D" # Strafe right
 PovUp = "W" # Walk
 PovDown = "S" # Retreat
 JoyX = { action = "NegPos", keys = ["Q", "E"] } # Lean Left/Right
-CamX = { action = "FlickX" } # Turn
-CamY = { action = "FlickY" } # Turn
+CamX = "FlickX" # Turn
+CamY = "FlickY" # Turn
 
 PaddleLeft = "C" # Crouch
 ActionL = "Shift" # Toggle sprint

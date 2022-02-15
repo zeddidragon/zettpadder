@@ -10,6 +10,7 @@ mod coords;
 mod function;
 mod mapping;
 mod controller_poller;
+mod smoothing;
 mod zettpadder;
 use controller_poller::{ControllerPoller};
 use zettpadder::{Zettpadder, ZettpadderConfig};

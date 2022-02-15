@@ -115,7 +115,7 @@ pub fn parse_mappings(
             let input = parse_input(&button) as u16;
             let mut parsed = parse_output(&mapping);
             let input = input + 256 * layer;
-            let (deadzone_on, deadzone_off) = parse_deadzone(&mapping);
+            let (deadzone_on, deadzone_off) = parse_deadzone(&mapping, parsed);
             if let Some(function) = parse_function(&mapping) {
                 let idx = functions.len();
                 functions.push(function);
@@ -126,6 +126,7 @@ pub fn parse_mappings(
                 deadzone_on: deadzone_on,
                 deadzone_off: deadzone_off,
             };
+            println!("{:?}", binding);
             map.insert(input, binding);
         }
     }
@@ -536,18 +537,24 @@ pub fn parse_output(v: &Value) -> Mapping {
     }
 }
 
-fn parse_deadzone(v: &Value) -> (f64, f64) {
+fn parse_deadzone(v: &Value, action: Mapping) -> (f64, f64) {
+    let default_on =
+        match action {
+            Mapping::FlickX => { 0.0 },
+            Mapping::FlickY => { 0.0 },
+            _ => 0.125,
+        };
     if let Value::Table(table) = v {
         let on : f64 =
             if let Some(Value::Float(v)) = table.get("deadzoneOn") { *v }
             else if let Some(Value::Float(v)) = table.get("deadzone") { *v }
-            else { 0.125 };
+            else { default_on };
         let off : f64 = 
             if let Some(Value::Float(v)) = table.get("deadzoneOff") { *v }
             else { on * 0.8 };
         return (on, off)
     }
-    (0.125, 0.1)
+    (default_on, default_on * 0.8 )
 }
 
 fn parse_function(v: &Value) -> Option<Function> {

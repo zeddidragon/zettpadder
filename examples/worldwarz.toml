@@ -2,6 +2,7 @@
 game = "World War Z"
 fps = 60 # How often to read/emit inputs
 flick180 = 5888 # Mouse units to move 180
+flickDeadzone = 0.7
 
 [mapping]
 # D-Pad for digital movement
@@ -10,8 +11,8 @@ PovRight = "D" # Strafe Right
 PovUp = "W" # Walk
 PovDown = "S" # Retreat
 
-CamX = { action = "FlickX" } # Turn
-CamY = { action = "FlickY" } # Turn
+CamX = "FlickX" # Turn
+CamY = "FlickY" # Turn
 
 ActionL = "Shift" # Sprint
 ActionA = "Space" # Jump
