@@ -12,6 +12,7 @@ CamY = "FlickY" # Turn
 ActionR = "E" # Interact
 ActionH = "R" # Reload
 ActionC = "5" # Resupply
+ActionD = "V" # ROCK AND STONE
 
 # Alternate weapon selection so you can keep moving
 PinkyLeft = "Layer1" # Weapons

@@ -26,23 +26,23 @@ ActionB Layer 3 # Pacifying tools
 ActionC Layer 4 # Commands
 PinkyLeft Layer 5 # Weapons
 
-LAYER 1 # Grenade selection
+Layer 1 # Grenade selection
 Cam UDLR 4 4 3 5 # Stinger Stinger Flash CS
 
-LAYER 2 # Door tools
+Layer 2 # Door tools
 Cam UDLR 7 9 8 0 # Breach Optiwand Toolkit Wedge
 
-LAYER 3 # Pacifying subjects
+Layer 3 # Pacifying subjects
 Cam UDLR 6 H 6 H # Pepper / Handcuffs
 
-LAYER 4 # Commands
+Layer 4 # Commands
 BumperL Insert # Cycle Red Team Viewport
 BumperR Home # Cycle Blue Team Viewport
 ActionL PageUp # Cycle Sniper Team Viewport
 MenuL Backspace # Control Active Viewport
 ActionR Space # Quick Command
 
-LAYER 5 # Weapons
+Layer 5 # Weapons
 ActionH 1 # Primary
 ActionB 2 # Secondary
 ActionV V # Flashlight

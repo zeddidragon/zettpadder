@@ -35,12 +35,26 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                 .unwrap()
                 .trim_start() // Remove any indentation
                 .split_whitespace()
-                .collect::<Vec<_>>()
-                .iter();
-            if tokens.len() > 0 {
-                println!("Right before splitting");
-                let (cmd, args) = tokens.split_at(1);
-                println!("{:?}: {:?}", cmd, args);
+                .collect::<Vec<_>>();
+            let mut iter = tokens.iter();
+            match iter.next() {
+                Some(string) => {
+                    let normalized = string
+                        .clone()
+                        .to_lowercase();
+                    match normalized.as_str() {
+                        "layer" => {
+                            let arg1 = iter
+                                .next()
+                                .and_then(|s| s.parse::<u8>();
+                            send(sender, ZpMsg::SetWriteLayer(layer));
+                        },
+                        _ => {
+                            println!("Unknown action or command: {}", string);
+                        }
+                    }
+                },
+                None => {},
             }
         }
         Err(err) => {
