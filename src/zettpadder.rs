@@ -204,7 +204,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 let ticks = ( flick_time.as_nanos()
                     / tick_time.as_nanos()) as f64;
                 flick_remaining = flick_time;
-                flick_tick = flick_factor * angle / PI / ticks;
+                flick_tick = flick_factor * angle / ticks;
                 flick_smoother.clear();
                 total_flick_steering = 0.0;
 
