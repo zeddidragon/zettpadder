@@ -1,7 +1,6 @@
 // use rdev::xtask::name_to_hex;
 use std::thread;
 use std::env;
-use std::fs::{read_to_string};
 use std::path::Path;
 use std::ffi::OsStr;
 use crossbeam_channel::{bounded};
@@ -28,11 +27,9 @@ async fn event_loop() {
                 .extension()
                 .and_then(OsStr::to_str)
                 .unwrap();
-        let contents = read_to_string(arg).unwrap();
         match extension {
-            "toml" => {
-                parsers::toml::parse(&tx, contents);
-            },
+            "toml" => { parsers::toml::parse(&tx, arg); },
+            "zett" => { parsers::zett::parse(&tx, arg); },
             _ => {
                 println!("Unrecognized filetype: {} ({})", arg, extension);
             },

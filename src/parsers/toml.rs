@@ -1,3 +1,4 @@
+use std::fs::{read_to_string};
 use toml::Value::{self, Table};
 use crate::function::{Function};
 use crossbeam_channel::{Sender};
@@ -13,11 +14,11 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
     };
 }
 
-
 pub fn parse(
     sender: &Sender<ZpMsg>,
-    contents: String,
+    filename: &String,
 ) {
+    let contents = read_to_string(filename).unwrap();
     let config = match contents.parse::<Value>() {
         Ok(Table(x)) => x,
         Err(err) => {
