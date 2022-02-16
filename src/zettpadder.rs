@@ -197,7 +197,7 @@ impl Zettpadder {
                     let ticks = ( self.flick_time.as_nanos()
                         / self.tick_time.as_nanos()) as f64;
                     self.flick_remaining = self.flick_time;
-                    self.flick_tick = self.flick_180 * angle / PI / ticks;
+                    self.flick_tick = self.flick_180 * angle / ticks;
                     flick_smoother.clear();
                     total_flick_steering = 0.0;
 
