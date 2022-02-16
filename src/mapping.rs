@@ -1,7 +1,8 @@
 use rdev;
 use toml::{Value};
-use std::collections::{BTreeMap};
+use crossbeam_channel::{Sender};
 use crate::function::{Function};
+use crate::zettpadder::{ZpMsg};
 
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
@@ -49,15 +50,23 @@ impl Mapping {
 #[derive(Debug, Copy, Clone)]
 pub struct Binding {
     pub mapping: Mapping,
-    pub deadzone_on: f64,
-    pub deadzone_off: f64,
+    pub deadzone_on: Option<f64>,
+    pub deadzone_off: Option<f64>,
 }
 
 impl Binding {
+    pub fn new(mapping: Mapping) -> Self {
+        Binding {
+            mapping: mapping,
+            deadzone_on: None,
+            deadzone_off: None,
+        }
+    }
+
     pub fn get_mapping(self, value: f64, prev: f64) -> Option<Mapping> {
         use Mapping::{Emit, NegPos, Layer};
-        let on = self.deadzone_on;
-        let off = self.deadzone_off;
+        let on = self.deadzone_on.unwrap_or(0.125);
+        let off = self.deadzone_off.unwrap_or(on * 0.8);
         match self.mapping {
             Emit(_) => {
                 if prev < on && value >= on {
@@ -89,8 +98,8 @@ impl Binding {
                 if let Some(mapping) = mapping {
                     let contained = Binding {
                         mapping: mapping,
-                        deadzone_on: on,
-                        deadzone_off: off,
+                        deadzone_on: self.deadzone_on,
+                        deadzone_off: self.deadzone_off,
                     };
                     contained.get_mapping(value, prev)
                 } else {
@@ -104,46 +113,53 @@ impl Binding {
     }
 }
 
+fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
+    match sender.send(msg) {
+        Err(err) => {
+            println!("Unable to relay event: {:?}\n{:?}", msg, err);
+        },
+        _ => {},
+    };
+}
+
 pub fn parse_mappings(
-    layer: u16,
+    sender: &Sender<ZpMsg>,
     v: Value,
-    map: &mut BTreeMap<u16, Binding>,
-    functions: &mut Vec<Function>,
 ) {
     if let Value::Table(table) = v {
         for (button, mapping) in table {
-            let input = parse_input(&button) as u16;
-            let mut parsed = parse_output(&mapping);
-            let input = input + 256 * layer;
-            let (deadzone_on, deadzone_off) = parse_deadzone(&mapping, parsed);
+            let input = parse_input(&button) as u8;
             if let Some(function) = parse_function(&mapping) {
-                let idx = functions.len();
-                functions.push(function);
-                parsed = Mapping::Trigger(idx);
+                send(sender, ZpMsg::BindFunction(input, function));
+            } else {
+                let parsed = parse_output(&mapping);
+                send(sender, ZpMsg::Bind(input, parsed));
             };
-            let binding = Binding {
-                mapping: parsed,
-                deadzone_on: deadzone_on,
-                deadzone_off: deadzone_off,
-            };
-            map.insert(input, binding);
+            let (dz_on, dz_off) = parse_deadzones(&mapping);
+            if let Some(deadzone) = dz_on {
+                send(sender, ZpMsg::SetDeadzoneOn(input, deadzone));
+            }
+            if let Some(deadzone) = dz_off {
+                send(sender, ZpMsg::SetDeadzoneOff(input, deadzone));
+            }
         }
     }
 }
 
 pub fn parse_layers(
+    sender: &Sender<ZpMsg>,
     v: Value,
-    map: &mut BTreeMap<u16, Binding>,
-    functions: &mut Vec<Function>,
 ) {
     if let Value::Table(table) = v {
         for (layer, mappings) in table {
-            if let Ok(layer) = layer.parse::<u16>() {
-                parse_mappings(layer, mappings, map, functions);
+            if let Ok(layer) = layer.parse::<u8>() {
+                send(sender, ZpMsg::SetWriteLayer(layer));
+                parse_mappings(sender, mappings);
             } else {
                 println!("Didn't understand layer: {:?}", layer);
             }
         }
+        send(sender, ZpMsg::SetWriteLayer(0));
     }
 }
 
@@ -536,24 +552,18 @@ pub fn parse_output(v: &Value) -> Mapping {
     }
 }
 
-fn parse_deadzone(v: &Value, action: Mapping) -> (f64, f64) {
-    let default_on =
-        match action {
-            Mapping::FlickX => { 0.0 },
-            Mapping::FlickY => { 0.0 },
-            _ => 0.125,
-        };
+fn parse_deadzones(v: &Value) -> (Option<f64>, Option<f64>) {
     if let Value::Table(table) = v {
-        let on : f64 =
-            if let Some(Value::Float(v)) = table.get("deadzoneOn") { *v }
-            else if let Some(Value::Float(v)) = table.get("deadzone") { *v }
-            else { default_on };
-        let off : f64 = 
-            if let Some(Value::Float(v)) = table.get("deadzoneOff") { *v }
-            else { on * 0.8 };
+        let on =
+            if let Some(Value::Float(v)) = table.get("deadzoneOn") { Some(*v) }
+            else if let Some(Value::Float(v)) = table.get("deadzone") { Some(*v) }
+            else { None };
+        let off = 
+            if let Some(Value::Float(v)) = table.get("deadzoneOff") { Some(*v) }
+            else { None };
         return (on, off)
     }
-    (default_on, default_on * 0.8 )
+    (None, None)
 }
 
 fn parse_function(v: &Value) -> Option<Function> {

@@ -2,9 +2,8 @@
 use std::thread;
 use toml::Value::{self, Table};
 use std::env;
-use std::collections::{BTreeMap};
 use std::fs::{read_to_string};
-use crossbeam_channel::{bounded};
+use crossbeam_channel::{bounded, Sender};
 
 mod coords;
 mod function;
@@ -13,13 +12,23 @@ mod controller_poller;
 mod smoothing;
 mod zettpadder;
 use controller_poller::{ControllerPoller};
-use zettpadder::{Zettpadder, ZettpadderConfig};
+use zettpadder::{ZpMsg};
+
+fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
+    match sender.send(msg) {
+        Err(err) => {
+            println!("Unable to relay event: {:?}\n{:?}", msg, err);
+        },
+        _ => {},
+    };
+}
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
-    let mut zcfg = ZettpadderConfig::new();
-    let mut keymaps = BTreeMap::new();
-    let mut functions = Vec::new();
+    let (tx, rx) = bounded(128);
+    thread::spawn(move || {
+        zettpadder::run(rx);
+    });
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
@@ -40,46 +49,25 @@ async fn event_loop() {
         for (key, value) in config { match (key.as_str(), value) {
             ("game", _) => {},
             ("fps", Value::Integer(v)) => {
-                zcfg.fps = v as u64;
+                send(&tx, ZpMsg::SetFps(v as u64));
             },
-            ("flick180", Value::Integer(v)) => {
-                zcfg.flick_180 = v as f64;
+            ("flickFactor", Value::Integer(v)) => {
+                send(&tx, ZpMsg::SetFlickFactor(v as f64));
             },
-            ("flick180", Value::Float(v)) => {
-                zcfg.flick_180 = v;
+            ("flickFactor", Value::Float(v)) => {
+                send(&tx, ZpMsg::SetFlickFactor(v));
             },
             ("flickTime", Value::Integer(v)) => {
-                zcfg.flick_time = v as u64;
+                send(&tx, ZpMsg::SetFlickTime(v as u64));
             },
             ("flickDeadzone", Value::Float(v)) => {
-                zcfg.flick_deadzone = v;
-            },
-            ("mouseDeadzone", Value::Integer(v)) => {
-                zcfg.move_deadzone = v as f64;
-            },
-            ("mouseDeadzone", Value::Float(v)) => {
-                zcfg.move_deadzone = v;
-            },
-            ("mouseFactor", Value::Integer(v)) => {
-                zcfg.move_multiplier = v as f64;
-            },
-            ("mouseFactor", Value::Float(v)) => {
-                zcfg.move_multiplier = v;
+                send(&tx, ZpMsg::SetFlickDeadzone(v as f64));
             },
             ("mapping", Table(mappings)) => {
-                mapping::parse_mappings(
-                    0,
-                    Table(mappings),
-                    &mut keymaps,
-                    &mut functions,
-                );
+                mapping::parse_mappings(&tx, Table(mappings));
             },
             ("layers", Table(layermaps)) => {
-                mapping::parse_layers(
-                    Table(layermaps),
-                    &mut keymaps,
-                    &mut functions,
-                )
+                mapping::parse_layers(&tx, Table(layermaps));
             },
             (key, value) => {
                 println!("Unrecognized property or invalid value: {}\n{:?}", key, value)
@@ -87,11 +75,7 @@ async fn event_loop() {
         } }
     }
 
-    let (tx, rx) = bounded(128);
-    let print_mode = (&keymaps).len() == 0;
-    thread::spawn(move || {
-        Zettpadder::new(zcfg, rx, keymaps, functions).run();
-    });
+    let print_mode = args.len() < 2;
     ControllerPoller::new(tx, print_mode).run().await;
 }
 

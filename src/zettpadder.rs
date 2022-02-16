@@ -1,6 +1,5 @@
 use rdev; use crossbeam_channel::{Receiver, tick};
-use super::controller_poller::{Message};
-use std::collections::{BTreeMap};
+use std::collections::{HashMap};
 use super::mapping::{Binding, Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
@@ -25,213 +24,220 @@ fn send(event_type: &rdev::EventType) {
     }
 }
 
-pub struct ZettpadderConfig {
-    pub fps: u64,
-    pub flick_180: f64,
-    pub flick_time: u64,
-    pub flick_deadzone: f64,
-    pub move_deadzone: f64,
-    pub move_multiplier: f64,
-    pub mouse_sensitivity: f64,
+const FPS: u64 = 60;  // Default loop rate
+const FLICK_FACTOR: f64 = 1280.0;  // How much one radian moves the mouse
+const FLICK_DEADZONE: f64 = 0.9; // Deadzone to engage flick
+const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick
+
+#[derive(Debug, Copy, Clone)]
+pub enum ZpMsg {
+    Input(u8, f64), // Input from controller to process
+    SetWriteLayer(u8), // Layer used in future assignments
+    SetFps(u64), // Cycle rate of main loop
+    SetFlickFactor(f64), // Mouse motion of one radian
+    SetFlickTime(u64), // Duration of a flick
+    SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
+    Bind(u8, Mapping), // Bind output to button
+    BindFunction(u8, Function), // Bind function to button
+    SetDeadzoneOn(u8, f64), // Deadzone before binding enables
+    SetDeadzoneOff(u8, f64), // Deadzone before binding disables
 }
 
-impl ZettpadderConfig {
-    pub fn new() -> Self {
-        Self {
-            fps: 60,
-            flick_180: 650.0,
-            flick_time: 100,
-            flick_deadzone: 0.9,
-            move_deadzone: 0.1,
-            move_multiplier: 10.0,
-            mouse_sensitivity: 1.0,
-        }
-    }
-}
+pub fn run(receiver: Receiver<ZpMsg>) {
+    let mut tick_time = Duration::from_nanos(1_000_000_000 / FPS);
+    let mut ticker = tick(tick_time);
+    let mut layer = 0;
+    let mut write_layer = 0;
+    let mut mover = Coords::new();
+    let mut motion = Coords::new();
+    let mut released_layers = Vec::with_capacity(8);
+    let mut keymaps: HashMap<u16, Binding> = HashMap::new();
+    let mut values: HashMap<u8, f64> = HashMap::new();
+    let mut functions: Vec<Function> = Vec::new();
 
-pub struct Zettpadder {
-    tick_time: Duration,
-    flick_180: f64,
-    flick_time: Duration,
-    flick_deadzone: f64,
-    move_deadzone: f64,
-    move_multiplier: f64,
-    keymaps: BTreeMap<u16, Binding>,
-    values: BTreeMap<u8, f64>, // Values of the buttons
-    functions: Vec<Function>,
-    layer: u8,
-    mover: Coords,
-    flicker: Coords,
-    prev_flicker: Coords,
-    flick_remaining: Duration,
-    flick_tick: f64,
-    pub receiver: Receiver<Message>,
-}
+    let mut flicker = Coords::new();
+    let mut prev_flicker;
+    let mut flick_deadzone = FLICK_DEADZONE;
+    let mut flick_smoother = Smoothing::new();
+    let mut total_flick_steering = 0.0;
+    let mut flick_time = FLICK_TIME;
+    let mut flick_remaining = Duration::ZERO;
+    let mut flick_tick = 0.0;
+    let mut flick_factor = FLICK_FACTOR;
 
-impl Zettpadder {
-    pub fn new(
-        config: ZettpadderConfig,
-        receiver: Receiver<Message>,
-        keymaps: BTreeMap<u16, Binding>,
-        functions: Vec<Function>,
-    ) -> Self {
-        let mut values = BTreeMap::new();
-        for (key, _) in &keymaps {
-            values.insert(*key as u8, 0.0);
-        }
-        Self {
-            tick_time: Duration::from_nanos(1_000_000_000 / config.fps),
-            flick_180: config.flick_180 / config.mouse_sensitivity,
-            flick_time: Duration::from_millis(config.flick_time),
-            flick_deadzone: config.flick_deadzone,
-            move_deadzone: config.move_deadzone,
-            move_multiplier: config.move_multiplier,
-            keymaps: keymaps,
-            values: values,
-            functions: functions,
-            layer: 0,
-            mover: Coords::new(),
-            flicker: Coords::new(),
-            prev_flicker: Coords::new(),
-            flick_remaining: Duration::ZERO,
-            flick_tick: 0.0,
-            receiver: receiver,
-        }
-    }
-
-    pub fn run(&mut self) {
-        let ticker = tick(self.tick_time);
-        let mut motion = Coords::new();
-        let mut released_layers = Vec::with_capacity(8);
-        let mut flick_smoother = Smoothing::new();
-        let mut total_flick_steering = 0.0;
-        loop {
-            motion *= 0.0;
-            ticker.recv().unwrap();
-            self.prev_flicker = self.flicker;
-            while let Ok((id, value)) = self.receiver.try_recv() {
-                let idx = id as u16;
-                let shifted = idx + LAYER_SIZE * (self.layer as u16);
-                let binding =
-                    if let Some(m) = self.keymaps.get(&shifted) {
-                        Some(m)
-                    } else if let Some(m) = self.keymaps.get(&idx) {
-                        Some(m)
-                    } else {
-                        None
-                    };
-                if let Some(binding) = binding {
-                    let prev = self.values[&id];
-                    self.values.insert(id, value);
-                    let mapping = binding.get_mapping(value, prev);
-                    match mapping {
-                        Some(Mapping::Layer(l)) => {
-                            if l != self.layer {
-                                // Untrigger any chorded keys
-                                if self.layer > 0 {
-                                    released_layers.push(self.layer);
+    loop {
+        motion *= 0.0;
+        ticker.recv().unwrap();
+        prev_flicker = flicker;
+        while let Ok(msg) = receiver.try_recv() {
+            use ZpMsg::*;
+            match msg {
+                Input(id, value) => {
+                    let idx = id as u16;
+                    let shifted = idx + LAYER_SIZE * (layer as u16);
+                    let binding =
+                        if let Some(m) = keymaps.get(&shifted) {
+                            Some(m)
+                        } else if let Some(m) = keymaps.get(&idx) {
+                            Some(m)
+                        } else {
+                            None
+                        };
+                    if let Some(binding) = binding {
+                        let prev = values.entry(id).or_default();
+                        let mapping = binding.get_mapping(value, *prev);
+                        *prev = value;
+                        match mapping {
+                            Some(Mapping::Layer(l)) => {
+                                if l != layer {
+                                    // Untrigger any chorded keys
+                                    if layer > 0 {
+                                        released_layers.push(layer);
+                                    }
+                                    layer = l;
                                 }
-                                self.layer = l;
-                            }
-                        },
-                        Some(Mapping::MouseX(v)) => {
-                            self.mover.x = v * value;
-                        },
-                        Some(Mapping::MouseY(v)) => {
-                            self.mover.y = v * value;
-                        },
-                        Some(Mapping::FlickX) => {
-                            self.flicker.x = value;
-                        },
-                        Some(Mapping::FlickY) => {
-                            self.flicker.y = value;
-                        },
-                        Some(Mapping::Emit(ev)) => {
-                            send(&ev);
-                        },
-                        Some(Mapping::Trigger(idx)) => {
-                            self.functions[idx].value = value;
-                        },
-                        None => {},
-                        unx => {
-                            println!("Received: {:?}, which is unexpected", unx);
-                        }
-                    };
-                }
-            }
-
-            // Release any chorded presses when chord is released
-            if !released_layers.is_empty() {
-                for l in &released_layers {
-                    let range = (LAYER_SIZE * *l as u16)..(LAYER_SIZE * (*l as u16 + 1));
-                    for (k, binding) in self.keymaps.iter_mut() {
-                        if !range.contains(k) { continue; }
-                        let idx = &(*k as u8);
-                        let prev = self.values[idx];
-                        if prev == 0.0 { continue; }
-                        let release = binding.get_mapping(0.0, prev);
-                        match release {
+                            },
+                            Some(Mapping::MouseX(v)) => {
+                                mover.x = v * value;
+                            },
+                            Some(Mapping::MouseY(v)) => {
+                                mover.y = v * value;
+                            },
+                            Some(Mapping::FlickX) => {
+                                flicker.x = value;
+                            },
+                            Some(Mapping::FlickY) => {
+                                flicker.y = value;
+                            },
                             Some(Mapping::Emit(ev)) => {
                                 send(&ev);
                             },
                             Some(Mapping::Trigger(idx)) => {
-                                self.functions[idx].value = 0.0;
+                                functions[idx].value = value;
                             },
-                            _ => {},
+                            None => {},
+                            unx => {
+                                println!("Received: {:?}, which is unexpected", unx);
+                            }
                         };
                     }
-                }
-                released_layers.clear();
-            }
-
-            // Old school moving
-            if self.mover.len() > self.move_deadzone {
-                motion = self.mover * self.move_multiplier;
-            }
-
-            // Flick sticking
-            if self.flicker.len() >= self.flick_deadzone {
-                if self.prev_flicker.len() < self.flick_deadzone {
-                    // Starting a flick
-                    let angle = self.flicker.angle();
-                    let ticks = ( self.flick_time.as_nanos()
-                        / self.tick_time.as_nanos()) as f64;
-                    self.flick_remaining = self.flick_time;
-                    self.flick_tick = self.flick_180 * angle / PI / ticks;
-                    flick_smoother.clear();
-                    total_flick_steering = 0.0;
-
-                } else {
-                    // Steering
-                    let angle = self.flicker.angle();
-                    let prev_angle = self.prev_flicker.angle();
-                    let diff = angle - prev_angle;
-                    let diff = modulo(diff + PI, TAU) - PI;
-                    total_flick_steering += diff;
-                    let diff = flick_smoother.tier_smooth(diff);
-                    motion.x += self.flick_180 * diff;
-                }
-            }
-
-            if self.flick_remaining > Duration::ZERO {
-                self.flick_remaining =
-                    if self.flick_remaining > self.tick_time {
-                        self.flick_remaining - self.tick_time
-                    } else { Duration::ZERO };
-                motion.x += self.flick_tick;
-            }
-
-            // Apply all motion in the tick
-            if motion.manhattan() > 0.0 {
-                let event = rdev::EventType::MouseMoveRelative {
-                    delta_x: motion.x,
-                    delta_y: motion.y,
-                };
-                match rdev::simulate(&event) {
-                    Ok(()) => (),
-                    Err(rdev::SimulateError) => {
-                        println!("Unable to can {:?}", event);
+                },
+                Bind(button, mapping) => {
+                    let idx = button as u16 + write_layer as u16 * 256;
+                    let mut binding = Binding::new(mapping);
+                    keymaps.insert(idx, binding);
+                    match mapping {
+                        Mapping::FlickX => { binding.deadzone_on = Some(0.0); },
+                        Mapping::FlickY => { binding.deadzone_on = Some(0.0); },
+                        _ => {},
                     }
+                },
+                BindFunction(button, function) => {
+                    let idx = functions.len();
+                    functions.push(function);
+                    let mapping = Mapping::Trigger(idx);
+                    let idx = button as u16 + write_layer as u16 * 256;
+                    keymaps.insert(idx, Binding::new(mapping));
+                },
+                SetDeadzoneOn(button, v) => {
+                    let idx = button as u16 + write_layer as u16 * 256;
+                    if let Some(binding) = keymaps.get_mut(&idx) {
+                        binding.deadzone_on = Some(v);
+                    } else {
+                        println!("No binding found for {} ({})", button, idx);
+                    }
+                },
+                SetDeadzoneOff(button, v) => {
+                    let idx = button as u16 + write_layer as u16 * 256;
+                    if let Some(binding) = keymaps.get_mut(&idx) {
+                        binding.deadzone_off = Some(v);
+                    } else {
+                        println!("No binding found for {} ({})", button, idx);
+                    }
+                },
+
+                SetWriteLayer(v) => { write_layer = v; },
+                SetFps(v) => {
+                    tick_time = Duration::from_nanos(1_000_000_000 / v);
+                    ticker = tick(tick_time);
+                },
+                SetFlickFactor(v) => { flick_factor = v; },
+                SetFlickTime(v) => { flick_time = Duration::from_millis(v); },
+                SetFlickDeadzone(v) => { flick_deadzone = v; },
+            }
+        }
+
+        // Release any chorded presses when chord is released
+        if !released_layers.is_empty() {
+            for l in &released_layers {
+                let range = (LAYER_SIZE * *l as u16)..(LAYER_SIZE * (*l as u16 + 1));
+                for (k, binding) in keymaps.iter_mut() {
+                    if !range.contains(k) { continue; }
+                    let idx = *k as u8;
+                    let prev = values.entry(idx).or_default();
+                    if *prev == 0.0 { continue; }
+                    let release = binding.get_mapping(0.0, *prev);
+                    match release {
+                        Some(Mapping::Emit(ev)) => {
+                            send(&ev);
+                        },
+                        Some(Mapping::Trigger(idx)) => {
+                            functions[idx].value = 0.0;
+                        },
+                        _ => {},
+                    };
+                }
+            }
+            released_layers.clear();
+        }
+
+        // Old school moving
+        if mover.len() > 0.0 {
+            motion = mover;
+        }
+
+        // Flick sticking
+        if flicker.len() >= flick_deadzone {
+            if prev_flicker.len() < flick_deadzone {
+                // Starting a flick
+                let angle = flicker.angle();
+                let ticks = ( flick_time.as_nanos()
+                    / tick_time.as_nanos()) as f64;
+                flick_remaining = flick_time;
+                flick_tick = flick_factor * angle / PI / ticks;
+                flick_smoother.clear();
+                total_flick_steering = 0.0;
+
+            } else {
+                // Steering
+                let angle = flicker.angle();
+                let prev_angle = prev_flicker.angle();
+                let diff = angle - prev_angle;
+                let diff = modulo(diff + PI, TAU) - PI;
+                total_flick_steering += diff;
+                let diff = flick_smoother.tier_smooth(diff);
+                motion.x += flick_factor * diff;
+            }
+        }
+
+        if flick_remaining > Duration::ZERO {
+            flick_remaining =
+                if flick_remaining > tick_time {
+                    flick_remaining - tick_time
+                } else { Duration::ZERO };
+            motion.x += flick_tick;
+        }
+
+        // Apply all motion in the tick
+        if motion.manhattan() > 0.0 {
+            let event = rdev::EventType::MouseMoveRelative {
+                delta_x: motion.x,
+                delta_y: motion.y,
+            };
+            match rdev::simulate(&event) {
+                Ok(()) => (),
+                Err(rdev::SimulateError) => {
+                    println!("Unable to can {:?}", event);
                 }
             }
         }

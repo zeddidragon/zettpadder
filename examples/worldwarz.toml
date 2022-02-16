@@ -1,7 +1,7 @@
 # World War Z, with Flydigi Apex 2 in mind
 game = "World War Z"
 fps = 60 # How often to read/emit inputs
-flick180 = 1875 # Mouse units to move 180
+flickFactor = 1875 # Mouse units to move 180
 flickDeadzone = 0.7
 
 [mapping]

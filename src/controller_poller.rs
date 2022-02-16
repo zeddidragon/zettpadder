@@ -2,17 +2,17 @@ use pasts::{Loop};
 use std::task::Poll::{self, Ready, Pending};
 use stick::{Controller, Event, Listener};
 use crossbeam_channel::{Sender};
+use crate::zettpadder::{ZpMsg};
 
-pub type Message = (u8, f64);
 pub struct ControllerPoller {
     listener: Listener,
     controllers: Vec<Controller>,
-    sender: Sender<Message>,
+    sender: Sender<ZpMsg>,
     print_mode: bool,
 }
 
 impl ControllerPoller {
-    pub fn new(sender: Sender<Message>, print_mode: bool) -> Self {
+    pub fn new(sender: Sender<ZpMsg>, print_mode: bool) -> Self {
         Self {
             listener: Listener::default(),
             controllers: Vec::new(),
@@ -51,7 +51,8 @@ impl ControllerPoller {
     }
 
     fn relay(&mut self, event: Event) -> Poll<usize> {
-        match self.sender.send(event.to_id()) {
+        let (id, value) = event.to_id();
+        match self.sender.send(ZpMsg::Input(id, value)) {
             Err(err) => {
                 println!("Unable to relay event: {:?}\n{:?}", event, err);
             },

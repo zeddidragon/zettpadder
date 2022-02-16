@@ -1,6 +1,3 @@
-use std::ops::{AddAssign, MulAssign, Div};
-use std::default::Default;
-
 pub struct Smoothing<T> {
     buffer: Vec<T>,
     idx: usize,

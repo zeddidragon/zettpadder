@@ -1,0 +1,49 @@
+# Swat 4, with Flydigi Apex 2 in mind
+Pov ULDR W A S D  # Move with D-pad
+JoyX Q E # Lean left or right
+Cam flick # Turn with right stick
+
+PaddleLeft C  # Hold to Crouch
+ActionL Shift  # Toggle Sprint
+
+TriggerR M1  # Shoot
+TriggerL M2 # Hold for commands
+BumperR X # Toggle firing mode
+
+ActionR F  # Use
+ActionA R  # Reload
+BumperL Z  # Zoom
+
+MenuL M # + Calibrate # Show objectives / output calibration data
+MenuR Escape # Pause
+
+ActionD Ctrl # Prepare Command
+PaddleRight Tab # Cycle command group
+
+ActionH Layer 1 # Grenade selection
+ActionV Layer 2 # Door tools
+ActionB Layer 3 # Pacifying tools
+ActionC Layer 4 # Commands
+PinkyLeft Layer 5 # Weapons
+
+LAYER 1 # Grenade selection
+Cam UDLR 4 4 3 5 # Stinger Stinger Flash CS
+
+LAYER 2 # Door tools
+Cam UDLR 7 9 8 0 # Breach Optiwand Toolkit Wedge
+
+LAYER 3 # Pacifying subjects
+Cam UDLR 6 H 6 H # Pepper / Handcuffs
+
+LAYER 4 # Commands
+BumperL Insert # Cycle Red Team Viewport
+BumperR Home # Cycle Blue Team Viewport
+ActionL PageUp # Cycle Sniper Team Viewport
+MenuL Backspace # Control Active Viewport
+ActionR Space # Quick Command
+
+LAYER 5 # Weapons
+ActionH 1 # Primary
+ActionB 2 # Secondary
+ActionV V # Flashlight
+ActionA L # Light Stick

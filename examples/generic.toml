@@ -3,7 +3,7 @@
 
 game = "Generic"
 fps = 60 # How often to read/emit inputs
-flick180 = 5888 # Mouse units to move 180
+flickFactor = 5888 # Mouse units for one radian
 
 [mapping]
 # D-Pad for digital movement

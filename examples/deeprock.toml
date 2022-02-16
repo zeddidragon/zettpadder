@@ -1,7 +1,7 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
 game = "Deep Rock Galactic"
 fps = 60 # How often to read/emit inputs
-flick180 = 1560 # Mouse units to move 180
+flickFactor = 1560 # Mouse units per radian
 
 [mapping]
 # D-Pad
