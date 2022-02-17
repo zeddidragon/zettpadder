@@ -1,7 +1,7 @@
 # Swat 4, with Flydigi Apex 2 in mind
-Pov ULDR W A S D  # Move with D-pad
+PovXY WASD  # Move with D-pad
 JoyX Q E # Lean left or right
-Cam flick # Turn with right stick
+CamXY flick # Turn with right stick
 
 PaddleLeft C  # Hold to Crouch
 ActionL Shift  # Toggle Sprint
@@ -27,13 +27,13 @@ ActionC Layer 4 # Commands
 PinkyLeft Layer 5 # Weapons
 
 Layer 1 # Grenade selection
-Cam UDLR 4 4 3 5 # Stinger Stinger Flash CS
+CamXY 3 5 4 4 # Stinger Stinger Flash CS
 
 Layer 2 # Door tools
-Cam UDLR 7 9 8 0 # Breach Optiwand Toolkit Wedge
+CamXY 8 0 7 9 # Toolkit Wedge Breach Optiwand
 
 Layer 3 # Pacifying subjects
-Cam UDLR 6 H 6 H # Pepper / Handcuffs
+CamXY 6 H 6 H # Pepper / Handcuffs
 
 Layer 4 # Commands
 BumperL Insert # Cycle Red Team Viewport

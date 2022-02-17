@@ -26,14 +26,36 @@ Debian:
   Any amount of files can be specified, and they'll be read in sequence
 
 ## Mouse emulation
-Mouse events fire 120 times per second.
-
 ## Layers
 Up to 255 layers are supported, including the main one.
 
 # Configuration
 
-Config file is any amount of `.toml` files that contains your definitions.
+
+Config file is any amount of `.zett` files that contains your definitions.
+
+## Input Set Shortcuts
+```
+  <inputset> <bind1> <bind2> <bind3> <bind4>
+  <inputset> <shortcut>
+```
+
+Possible input sets:
+- JoyXY
+- CamXY
+- MouseXY
+- ActionWheelXY
+- DpadXY
+- PovXY
+- HatXY
+- ActionABHV
+
+Possible output shortcuts:
+- WASD
+- IJKL
+- Arrows
+- Mouse
+- Flick
 
 ## Definition
 

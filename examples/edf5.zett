@@ -1,0 +1,31 @@
+# Earth Defense Force 5, with Flydigi Apex 2 in mind
+# Some of these get funky with fencer and vehicles, consider rebinding in-game
+PovXY WASD  # Move with D-pad
+CamXY flick # Turn with right stick
+
+# Face buttons
+ActionA R # Reload
+ActionC Z # Call Vehicle / Reload shield
+ActionD M3 # Vehicle special action
+
+ActionH 1 # Primary Weapon
+ActionB 2 # Secondary Weapon
+ActionV 3 # Tertiary Weapon (Air Raider only)
+
+# Rear triggers
+TriggerR M1 # Fire
+TriggerL M2 # Zoom /Activate
+ActionR E # Interact
+ActionL Q # Ping
+BumperR Space # Jump / Handbrake
+BumperL Shift # Sprint / Dash
+
+# Underside
+PinkyLeft Ctrl # Chat Wheel
+PaddleLeft Layer 1 
+
+Layer 1 # Hold paddle to chat
+ActionH Left # Chat navigation
+ActionB Right # Chat navigation
+ActionV Up # Chat navigation
+ActionA Down # Chat navigation

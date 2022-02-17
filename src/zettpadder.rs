@@ -115,6 +115,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                             Some(Mapping::Trigger(idx)) => {
                                 functions[idx].value = value;
                             },
+                            Some(Mapping::Noop) => {},
                             None => {},
                             unx => {
                                 println!("Received: {:?}, which is unexpected", unx);

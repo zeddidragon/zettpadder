@@ -1,6 +1,4 @@
 use rdev;
-use crossbeam_channel::{Sender};
-use crate::zettpadder::{ZpMsg};
 
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
@@ -109,13 +107,4 @@ impl Binding {
             }
         }
     }
-}
-
-fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
-    match sender.send(msg) {
-        Err(err) => {
-            println!("Unable to relay event: {:?}\n{:?}", msg, err);
-        },
-        _ => {},
-    };
 }
