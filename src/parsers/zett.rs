@@ -181,89 +181,114 @@ fn parse_quadrant(
 
 
 fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
-    match line {
-        Ok(line) => {
-            let tokens = line
-                .split('#') // Remove comments
-                .nth(0)
-                .unwrap()
-                .trim_start() // Remove any indentation
-                .split_whitespace()
-                .collect::<Vec<_>>();
-            let mut iter = tokens.iter();
-            match iter.next() {
-                Some(string) => {
-                    let normalized = string
-                        .clone()
-                        .to_lowercase();
-                    match normalized.as_str() {
-                        "layer" => {
-                            let arg1 = iter.next().map(|v| v.parse::<u8>());
-                            match arg1 {
-                                Some(Ok(layer)) => {
-                                    send(sender, ZpMsg::SetWriteLayer(layer));
-                                },
-                                _ => {
-                                    println!("Usage: layer <n>");
-                                },
-                            }
-                        },
-                        "dpadxy" => {
-                            parse_quadrant(sender, &mut iter, 0x12, 0x13, 0x10, 0x11);
-                        },
-                        "povxy" => {
-                            parse_quadrant(sender, &mut iter, 0x1E, 0x1F, 0x1C, 0x1D);
-                        },
-                        "hatxy" => {
-                            parse_quadrant(sender, &mut iter, 0x16, 0x17, 0x14, 0x15);
-                        },
-                        "joyxy" => {
-                            parse_coords(sender, &mut iter, 0x20, 0x21);
-                        },
-                        "camxy" => {
-                            parse_coords(sender, &mut iter, 0x23, 0x24);
-                        },
-                        "mousexy" => {
-                            parse_coords(sender, &mut iter, 0x4E, 0x4F);
-                        },
-                        "actionwheelxy" => {
-                            parse_coords(sender, &mut iter, 0x5E, 0x5F);
-                        },
-                        _ => {
-                            let input = parse_input(&string.to_string());
-                            if !input.is_ok() {
-                                println!("Unknown command: {}", normalized);
-                                return;
-                            };
-                            let input = input.unwrap() as u8;
-                            let mut mappings = Vec::new();
-                            parse_outputs(&mut iter, &mut mappings);
-                            let parsed =
-                                if mappings.len() == 2 {
-                                    let m1 = mappings.get(0).unwrap();
-                                    let m2 = mappings.get(1).unwrap();
-                                    match (m1, m2) {
-                                        (Mapping::Emit(e1), Mapping::Emit(e2)) => {
-                                            Mapping::NegPos(*e1, *e2)
-                                        },
-                                        (_, p) => {
-                                            *p
-                                        },
-                                    }
-                                } else {
-                                    *mappings
-                                        .get(0)
-                                        .unwrap_or(&Mapping::Noop)
-                                };
-                            send(sender, ZpMsg::Bind(input, parsed));
-                        }
-                    }
-                },
-                None => {},
+    if let Err(err) = line {
+        println!("Error parsing zett: {:?}", err);
+        return;
+    }
+    let line = line.unwrap();
+    let tokens = line
+        .split('#') // Remove comments
+        .nth(0)
+        .unwrap()
+        .trim_start() // Remove any indentation
+        .split_whitespace()
+        .collect::<Vec<_>>();
+    let mut iter = tokens.iter();
+    let cmd = iter.next();
+    if cmd.is_none() { return;}
+    let cmd = cmd.unwrap();
+    match cmd.to_lowercase().as_str() {
+        "fps" => {
+            let arg1 = iter.next().map(|v| v.parse::<u64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetFps(v));
+            } else {
+                println!("Usage: fps <n>");
             }
-        }
-        Err(err) => {
-            println!("Error parsing zett: {:?}", err);
+        },
+        "flickfactor" => {
+            let arg1 = iter.next().map(|v| v.parse::<f64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetFlickFactor(v));
+            } else {
+                println!("Usage: flickfactor <n>");
+            }
+        },
+        "flicktime" => {
+            let arg1 = iter.next().map(|v| v.parse::<u64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetFlickTime(v));
+            } else {
+                println!("Usage: flicktime <n>");
+            }
+        },
+        "flickdeadzone" => {
+            let arg1 = iter.next().map(|v| v.parse::<f64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetFlickDeadzone(v));
+            } else {
+                println!("Usage: flickfactor <n>");
+            }
+        },
+        "layer" => {
+            let arg1 = iter.next().map(|v| v.parse::<u8>());
+            match arg1 {
+                Some(Ok(layer)) => {
+                    send(sender, ZpMsg::SetWriteLayer(layer));
+                },
+                _ => {
+                    println!("Usage: layer <n>");
+                },
+            }
+        },
+        "dpadxy" => {
+            parse_quadrant(sender, &mut iter, 0x12, 0x13, 0x10, 0x11);
+        },
+        "povxy" => {
+            parse_quadrant(sender, &mut iter, 0x1E, 0x1F, 0x1C, 0x1D);
+        },
+        "hatxy" => {
+            parse_quadrant(sender, &mut iter, 0x16, 0x17, 0x14, 0x15);
+        },
+        "joyxy" => {
+            parse_coords(sender, &mut iter, 0x20, 0x21);
+        },
+        "camxy" => {
+            parse_coords(sender, &mut iter, 0x23, 0x24);
+        },
+        "mousexy" => {
+            parse_coords(sender, &mut iter, 0x4E, 0x4F);
+        },
+        "actionwheelxy" => {
+            parse_coords(sender, &mut iter, 0x5E, 0x5F);
+        },
+        _ => {
+            let input = parse_input(&cmd.to_string());
+            if !input.is_ok() {
+                println!("Unknown command: {}", cmd);
+                return;
+            };
+            let input = input.unwrap() as u8;
+            let mut mappings = Vec::new();
+            parse_outputs(&mut iter, &mut mappings);
+            let parsed =
+                if mappings.len() == 2 {
+                    let m1 = mappings.get(0).unwrap();
+                    let m2 = mappings.get(1).unwrap();
+                    match (m1, m2) {
+                        (Mapping::Emit(e1), Mapping::Emit(e2)) => {
+                            Mapping::NegPos(*e1, *e2)
+                        },
+                        (_, p) => {
+                            *p
+                        },
+                    }
+                } else {
+                    *mappings
+                        .get(0)
+                        .unwrap_or(&Mapping::Noop)
+                };
+            send(sender, ZpMsg::Bind(input, parsed));
         }
     }
 }

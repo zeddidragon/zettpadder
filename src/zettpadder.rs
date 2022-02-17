@@ -126,12 +126,13 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 Bind(button, mapping) => {
                     let idx = button as u16 + write_layer as u16 * 256;
                     let mut binding = Binding::new(mapping);
-                    keymaps.insert(idx, binding);
                     match mapping {
                         Mapping::FlickX => { binding.deadzone_on = Some(0.0); },
                         Mapping::FlickY => { binding.deadzone_on = Some(0.0); },
                         _ => {},
                     }
+                    println!("Binding: {}: {:?}", idx, binding);
+                    keymaps.insert(idx, binding);
                 },
                 BindFunction(button, function) => {
                     let idx = functions.len();
