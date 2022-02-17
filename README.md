@@ -48,14 +48,13 @@ Possible input sets:
 - DpadXY
 - PovXY
 - HatXY
-- ActionABHV
 
 Possible output shortcuts:
-- WASD
-- IJKL
-- Arrows
-- Mouse
-- Flick
+- WASD (A D W S)
+- IJKL (J L I K)
+- Arrows (Left Right Up Down)
+- Mouse (X, Y)
+- Flick (FlickX, FlickY)
 
 ## Definition
 

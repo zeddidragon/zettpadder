@@ -28,28 +28,157 @@ pub fn parse(
     }
 }
 
-fn parse_outputs(iter: &mut Iter<&str>) -> Mapping {
-    let next = iter.next();
-    if next.is_none() {
-        println!("No assignment supplied, clearing bind for key");
-        return Mapping::Noop
-    }
-    let next = next.unwrap();
-    match next.to_lowercase().as_str() {
-        "layer" => {
-            let arg1 = iter.next().map(|v| v.parse::<u8>());
-            if let Some(Ok(layer)) = arg1 {
-                Mapping::Layer(layer)
-            } else {
-                println!("Urecognized layer: {:?}", arg1);
-                Mapping::Noop
+fn parse_outputs(iter: &mut Iter<&str>, mappings: &mut Vec<Mapping>) {
+    use Mapping::{Emit, Layer, Noop};
+    use rdev::EventType::{KeyPress};
+    loop {
+        let next = iter.next();
+        if next.is_none() { return; }
+        let next = next.unwrap();
+        match next.to_lowercase().as_str() {
+            "layer" => {
+                let arg1 = iter.next().map(|v| v.parse::<u8>());
+                if let Some(Ok(layer)) = arg1 {
+                    mappings.push(Layer(layer));
+                } else {
+                    println!("Urecognized layer: {:?}", arg1);
+                    mappings.push(Noop);
+                }
+            },
+            "wasd" => {
+                mappings.push(Emit(KeyPress(rdev::Key::KeyA)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyD)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyW)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyS)));
+            },
+            "ijkl" => {
+                mappings.push(Emit(KeyPress(rdev::Key::KeyH)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyL)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyI)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyK)));
+            },
+            "arrows" => {
+                mappings.push(Emit(KeyPress(rdev::Key::LeftArrow)));
+                mappings.push(Emit(KeyPress(rdev::Key::RightArrow)));
+                mappings.push(Emit(KeyPress(rdev::Key::UpArrow)));
+                mappings.push(Emit(KeyPress(rdev::Key::DownArrow)));
+            },
+            "mouse" => {
+                mappings.push(Mapping::MouseX(1.0));
+                mappings.push(Mapping::MouseY(1.0));
+            },
+            "flick" => {
+                mappings.push(Mapping::FlickX);
+                mappings.push(Mapping::FlickY);
+            },
+            _ => {
+                mappings.push(parse_output(next));
             }
-        }
-        _ => {
-            parse_output(next)
         }
     }
 }
+
+fn parse_coords(
+    sender: &Sender<ZpMsg>,
+    iter: &mut Iter<&str>,
+    x: u8, y: u8,
+) {
+    use Mapping::{Emit};
+    let mut mappings = Vec::new();
+    parse_outputs(iter, &mut mappings);
+    match mappings.len() {
+        0 => {
+            send(sender, ZpMsg::Bind(x, Mapping::Noop));
+            send(sender, ZpMsg::Bind(y, Mapping::Noop));
+        },
+        1 => {
+            let m1 = mappings.get(0).unwrap();
+            send(sender, ZpMsg::Bind(x, *m1));
+            send(sender, ZpMsg::Bind(y, *m1));
+        },
+        2 => {
+            let m1 = mappings.get(0).unwrap();
+            let m2 = mappings.get(1).unwrap();
+            send(sender, ZpMsg::Bind(x, *m1));
+            send(sender, ZpMsg::Bind(y, *m2));
+        },
+        4 => {
+            let m1 = mappings.get(0).unwrap();
+            let m2 = mappings.get(1).unwrap();
+            let m3 = mappings.get(2).unwrap();
+            let m4 = mappings.get(3).unwrap();
+            match (m1, m2) {
+                (Emit(e1), Emit(e2)) => {
+                    send(sender, ZpMsg::Bind(x, Mapping::NegPos(*e1, *e2)));
+                },
+                (n, p) => {
+                    println!("Unable to interpret, ({:?}, {:?}", n, p);
+                },
+            }
+            match (m3, m4) {
+                (Emit(e3), Emit(e4)) => {
+                    send(sender, ZpMsg::Bind(y, Mapping::NegPos(*e3, *e4)));
+                },
+                (n, p) => {
+                    println!("Unable to interpret, ({:?}, {:?}", n, p);
+                },
+            }
+        },
+        _ => {
+            println!("Unexpected amount of bindings. Expecte 0, 1, 2, or 4.");
+            println!("{:?}", mappings);
+        },
+    }
+}
+
+fn parse_quadrant(
+    sender: &Sender<ZpMsg>,
+    iter: &mut Iter<&str>,
+    xn: u8, xp: u8,
+    yn: u8, yp: u8,
+) {
+    let mut mappings = Vec::new();
+    parse_outputs(iter, &mut mappings);
+    match mappings.len() {
+        0 => {
+            send(sender, ZpMsg::Bind(xn, Mapping::Noop));
+            send(sender, ZpMsg::Bind(xp, Mapping::Noop));
+            send(sender, ZpMsg::Bind(yn, Mapping::Noop));
+            send(sender, ZpMsg::Bind(yp, Mapping::Noop));
+        },
+        1 => {
+            let m1 = mappings.get(0).unwrap();
+            send(sender, ZpMsg::Bind(xn, *m1));
+            send(sender, ZpMsg::Bind(xp, *m1));
+            send(sender, ZpMsg::Bind(yn, *m1));
+            send(sender, ZpMsg::Bind(yp, *m1));
+        },
+        2 => {
+            let m1 = mappings.get(0).unwrap();
+            let m2 = mappings.get(1).unwrap();
+            // TODO: negative effect for left/up axis
+            send(sender, ZpMsg::Bind(xn, *m1));
+            send(sender, ZpMsg::Bind(xp, *m1));
+            send(sender, ZpMsg::Bind(yn, *m2));
+            send(sender, ZpMsg::Bind(yp, *m2));
+        },
+        4 => {
+            let m1 = mappings.get(0).unwrap();
+            let m2 = mappings.get(1).unwrap();
+            let m3 = mappings.get(2).unwrap();
+            let m4 = mappings.get(3).unwrap();
+            send(sender, ZpMsg::Bind(xn, *m1));
+            send(sender, ZpMsg::Bind(xp, *m2));
+            send(sender, ZpMsg::Bind(yn, *m3));
+            send(sender, ZpMsg::Bind(yp, *m4));
+        },
+        _ => {
+            println!("Unexpected amount of bindings. Expecte 0, 1, 2, or 4.");
+            println!("{:?}", mappings);
+        },
+    }
+}
+
 
 fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
     match line {
@@ -79,7 +208,26 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                                 },
                             }
                         },
+                        "dpadxy" => {
+                            parse_quadrant(sender, &mut iter, 0x12, 0x13, 0x10, 0x11);
+                        },
+                        "povxy" => {
+                            parse_quadrant(sender, &mut iter, 0x1E, 0x1F, 0x1C, 0x1D);
+                        },
+                        "hatxy" => {
+                            parse_quadrant(sender, &mut iter, 0x16, 0x17, 0x14, 0x15);
+                        },
                         "joyxy" => {
+                            parse_coords(sender, &mut iter, 0x20, 0x21);
+                        },
+                        "camxy" => {
+                            parse_coords(sender, &mut iter, 0x23, 0x24);
+                        },
+                        "mousexy" => {
+                            parse_coords(sender, &mut iter, 0x4E, 0x4F);
+                        },
+                        "actionwheelxy" => {
+                            parse_coords(sender, &mut iter, 0x5E, 0x5F);
                         },
                         _ => {
                             let input = parse_input(&string.to_string());
@@ -88,7 +236,25 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                                 return;
                             };
                             let input = input.unwrap() as u8;
-                            let parsed = parse_outputs(&mut iter);
+                            let mut mappings = Vec::new();
+                            parse_outputs(&mut iter, &mut mappings);
+                            let parsed =
+                                if mappings.len() == 2 {
+                                    let m1 = mappings.get(0).unwrap();
+                                    let m2 = mappings.get(1).unwrap();
+                                    match (m1, m2) {
+                                        (Mapping::Emit(e1), Mapping::Emit(e2)) => {
+                                            Mapping::NegPos(*e1, *e2)
+                                        },
+                                        (_, p) => {
+                                            *p
+                                        },
+                                    }
+                                } else {
+                                    *mappings
+                                        .get(0)
+                                        .unwrap_or(&Mapping::Noop)
+                                };
                             send(sender, ZpMsg::Bind(input, parsed));
                         }
                     }

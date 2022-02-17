@@ -14,11 +14,11 @@ ActionV 3 # Tertiary Weapon (Air Raider only)
 
 # Rear triggers
 TriggerR M1 # Fire
-TriggerL M2 # Zoom /Activate
+TriggerL Space # Jump / Handbrake
 ActionR E # Interact
 ActionL Q # Ping
-BumperR Space # Jump / Handbrake
-BumperL Shift # Sprint / Dash
+BumperL M2 # Zoom / Activate
+BumperR Shift # Sprint / Dash
 
 # Underside
 PinkyLeft Ctrl # Chat Wheel
