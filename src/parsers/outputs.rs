@@ -205,9 +205,6 @@ pub fn parse_output(v: &str) -> Mapping {
         "Layer14" => Layer(14),
         "Layer15" => Layer(15),
         "Layer16" => Layer(16),
-        _ => {
-            println!("Unrecognized key: {:?}", v);
-            Noop
-        },
+        _ => { Noop },
     }
 }

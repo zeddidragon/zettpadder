@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::{self, BufRead, Error};
 use std::slice::Iter;
+use std::iter::Peekable;
 use crossbeam_channel::{Sender};
 use crate::function::{Function};
 use crate::mapping::{Mapping};
@@ -28,15 +29,16 @@ pub fn parse(
     }
 }
 
-fn parse_outputs(iter: &mut Iter<&str>, mappings: &mut Vec<Mapping>) {
+fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
     use Mapping::{Emit, Layer, Noop};
     use rdev::EventType::{KeyPress};
     loop {
-        let next = iter.next();
+        let next = iter.peek();
         if next.is_none() { return; }
         let next = next.unwrap();
         match next.to_lowercase().as_str() {
             "layer" => {
+                iter.next();
                 let arg1 = iter.next().map(|v| v.parse::<u8>());
                 if let Some(Ok(layer)) = arg1 {
                     mappings.push(Layer(layer));
@@ -44,6 +46,7 @@ fn parse_outputs(iter: &mut Iter<&str>, mappings: &mut Vec<Mapping>) {
                     println!("Urecognized layer: {:?}", arg1);
                     mappings.push(Noop);
                 }
+                continue; // Continue manually 'cause we next-ed
             },
             "wasd" => {
                 mappings.push(Emit(KeyPress(rdev::Key::KeyA)));
@@ -72,15 +75,23 @@ fn parse_outputs(iter: &mut Iter<&str>, mappings: &mut Vec<Mapping>) {
                 mappings.push(Mapping::FlickY);
             },
             _ => {
-                mappings.push(parse_output(next));
+                match parse_output(next) {
+                    Noop => {
+                        return;
+                    },
+                    mapping => {
+                        mappings.push(mapping);
+                    },
+                }
             }
         }
+        iter.next();
     }
 }
 
 fn parse_coords(
     sender: &Sender<ZpMsg>,
-    iter: &mut Iter<&str>,
+    iter: &mut Peekable<Iter<&str>>,
     x: u8, y: u8,
 ) {
     use Mapping::{Emit};
@@ -133,7 +144,7 @@ fn parse_coords(
 
 fn parse_quadrant(
     sender: &Sender<ZpMsg>,
-    iter: &mut Iter<&str>,
+    iter: &mut Peekable<Iter<&str>>,
     xn: u8, xp: u8,
     yn: u8, yp: u8,
 ) {
@@ -193,7 +204,7 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
         .trim_start() // Remove any indentation
         .split_whitespace()
         .collect::<Vec<_>>();
-    let mut iter = tokens.iter();
+    let mut iter = tokens.iter().peekable();
     let cmd = iter.next();
     if cmd.is_none() { return;}
     let cmd = cmd.unwrap();
@@ -288,7 +299,17 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                         .get(0)
                         .unwrap_or(&Mapping::Noop)
                 };
-            send(sender, ZpMsg::Bind(input, parsed));
+            match parsed {
+                Mapping::Noop => {
+                    // Only assign Noop is line is truly empty
+                    if None == iter.peek() {
+                        send(sender, ZpMsg::Bind(input, parsed));
+                    }
+                },
+                _ => {
+                    send(sender, ZpMsg::Bind(input, parsed));
+                }
+            }
         }
     }
 }

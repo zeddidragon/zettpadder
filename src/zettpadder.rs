@@ -131,7 +131,6 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                         Mapping::FlickY => { binding.deadzone_on = Some(0.0); },
                         _ => {},
                     }
-                    println!("Binding: {}: {:?}", idx, binding);
                     keymaps.insert(idx, binding);
                 },
                 BindFunction(button, function) => {
