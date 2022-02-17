@@ -1,0 +1,9 @@
+# Just flickstick
+game = "Just flickstick"
+fps = 60 # How often to read/emit inputs
+flick180 = 1560 # Mouse units to move 180
+
+[mapping]
+# Right Stick for turning (disable stick with steam input)
+CamX = "FlickX" # Turn
+CamY = "FlickY" # Turn
