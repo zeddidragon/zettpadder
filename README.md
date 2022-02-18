@@ -48,6 +48,7 @@ Possible input sets:
 - DpadXY
 - PovXY
 - HatXY
+- MicXY
 
 Possible output shortcuts:
 - WASD (A D W S)

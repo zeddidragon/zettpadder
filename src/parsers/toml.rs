@@ -70,8 +70,8 @@ pub fn parse_mappings(
 ) {
     if let Value::Table(table) = v {
         for (button, mapping) in table {
-            let input = parse_input(&button);
-            if !input.is_ok() {
+            let input = parse_input(&button).and_then(|v| v.nth(0));
+            if !input.is_some() {
                 println!("Unknown input: {}", button);
                 continue
             };

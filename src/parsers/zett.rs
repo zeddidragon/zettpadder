@@ -6,7 +6,7 @@ use crossbeam_channel::{Sender};
 use crate::function::{Function};
 use crate::mapping::{Mapping};
 use crate::zettpadder::{ZpMsg};
-use super::inputs::{parse_input};
+use super::inputs::{parse_input, ZettInput};
 use super::outputs::{parse_output};
 
 fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
@@ -89,108 +89,6 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
     }
 }
 
-fn parse_coords(
-    sender: &Sender<ZpMsg>,
-    iter: &mut Peekable<Iter<&str>>,
-    x: u8, y: u8,
-) {
-    use Mapping::{Emit};
-    let mut mappings = Vec::new();
-    parse_outputs(iter, &mut mappings);
-    match mappings.len() {
-        0 => {
-            send(sender, ZpMsg::Bind(x, Mapping::Noop));
-            send(sender, ZpMsg::Bind(y, Mapping::Noop));
-        },
-        1 => {
-            let m1 = mappings.get(0).unwrap();
-            send(sender, ZpMsg::Bind(x, *m1));
-            send(sender, ZpMsg::Bind(y, *m1));
-        },
-        2 => {
-            let m1 = mappings.get(0).unwrap();
-            let m2 = mappings.get(1).unwrap();
-            send(sender, ZpMsg::Bind(x, *m1));
-            send(sender, ZpMsg::Bind(y, *m2));
-        },
-        4 => {
-            let m1 = mappings.get(0).unwrap();
-            let m2 = mappings.get(1).unwrap();
-            let m3 = mappings.get(2).unwrap();
-            let m4 = mappings.get(3).unwrap();
-            match (m1, m2) {
-                (Emit(e1), Emit(e2)) => {
-                    send(sender, ZpMsg::Bind(x, Mapping::NegPos(*e1, *e2)));
-                },
-                (n, p) => {
-                    println!("Unable to interpret, ({:?}, {:?}", n, p);
-                },
-            }
-            match (m3, m4) {
-                (Emit(e3), Emit(e4)) => {
-                    send(sender, ZpMsg::Bind(y, Mapping::NegPos(*e3, *e4)));
-                },
-                (n, p) => {
-                    println!("Unable to interpret, ({:?}, {:?}", n, p);
-                },
-            }
-        },
-        _ => {
-            println!("Unexpected amount of bindings. Expecte 0, 1, 2, or 4.");
-            println!("{:?}", mappings);
-        },
-    }
-}
-
-fn parse_quadrant(
-    sender: &Sender<ZpMsg>,
-    iter: &mut Peekable<Iter<&str>>,
-    xn: u8, xp: u8,
-    yn: u8, yp: u8,
-) {
-    let mut mappings = Vec::new();
-    parse_outputs(iter, &mut mappings);
-    match mappings.len() {
-        0 => {
-            send(sender, ZpMsg::Bind(xn, Mapping::Noop));
-            send(sender, ZpMsg::Bind(xp, Mapping::Noop));
-            send(sender, ZpMsg::Bind(yn, Mapping::Noop));
-            send(sender, ZpMsg::Bind(yp, Mapping::Noop));
-        },
-        1 => {
-            let m1 = mappings.get(0).unwrap();
-            send(sender, ZpMsg::Bind(xn, *m1));
-            send(sender, ZpMsg::Bind(xp, *m1));
-            send(sender, ZpMsg::Bind(yn, *m1));
-            send(sender, ZpMsg::Bind(yp, *m1));
-        },
-        2 => {
-            let m1 = mappings.get(0).unwrap();
-            let m2 = mappings.get(1).unwrap();
-            // TODO: negative effect for left/up axis
-            send(sender, ZpMsg::Bind(xn, *m1));
-            send(sender, ZpMsg::Bind(xp, *m1));
-            send(sender, ZpMsg::Bind(yn, *m2));
-            send(sender, ZpMsg::Bind(yp, *m2));
-        },
-        4 => {
-            let m1 = mappings.get(0).unwrap();
-            let m2 = mappings.get(1).unwrap();
-            let m3 = mappings.get(2).unwrap();
-            let m4 = mappings.get(3).unwrap();
-            send(sender, ZpMsg::Bind(xn, *m1));
-            send(sender, ZpMsg::Bind(xp, *m2));
-            send(sender, ZpMsg::Bind(yn, *m3));
-            send(sender, ZpMsg::Bind(yp, *m4));
-        },
-        _ => {
-            println!("Unexpected amount of bindings. Expecte 0, 1, 2, or 4.");
-            println!("{:?}", mappings);
-        },
-    }
-}
-
-
 fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
     if let Err(err) = line {
         println!("Error parsing zett: {:?}", err);
@@ -252,63 +150,81 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                 },
             }
         },
-        "dpadxy" => {
-            parse_quadrant(sender, &mut iter, 0x12, 0x13, 0x10, 0x11);
-        },
-        "povxy" => {
-            parse_quadrant(sender, &mut iter, 0x1E, 0x1F, 0x1C, 0x1D);
-        },
-        "hatxy" => {
-            parse_quadrant(sender, &mut iter, 0x16, 0x17, 0x14, 0x15);
-        },
-        "joyxy" => {
-            parse_coords(sender, &mut iter, 0x20, 0x21);
-        },
-        "camxy" => {
-            parse_coords(sender, &mut iter, 0x23, 0x24);
-        },
-        "mousexy" => {
-            parse_coords(sender, &mut iter, 0x4E, 0x4F);
-        },
-        "actionwheelxy" => {
-            parse_coords(sender, &mut iter, 0x5E, 0x5F);
-        },
         _ => {
             let input = parse_input(&cmd.to_string());
-            if !input.is_ok() {
+            if !input.is_some() {
                 println!("Unknown command: {}", cmd);
                 return;
             };
-            let input = input.unwrap() as u8;
+            let input = input.unwrap();
             let mut mappings = Vec::new();
             parse_outputs(&mut iter, &mut mappings);
-            let parsed =
-                if mappings.len() == 2 {
-                    let m1 = mappings.get(0).unwrap();
-                    let m2 = mappings.get(1).unwrap();
-                    match (m1, m2) {
-                        (Mapping::Emit(e1), Mapping::Emit(e2)) => {
-                            Mapping::NegPos(*e1, *e2)
-                        },
-                        (_, p) => {
-                            *p
-                        },
-                    }
-                } else {
-                    *mappings
-                        .get(0)
-                        .unwrap_or(&Mapping::Noop)
-                };
-            match parsed {
-                Mapping::Noop => {
-                    // Only assign Noop is line is truly empty
-                    if None == iter.peek() {
-                        send(sender, ZpMsg::Bind(input, parsed));
-                    }
+
+            use ZettInput::*;
+            use Mapping::{Noop, Emit, NegPos};
+            match (input, &mappings[..]) {
+                (Single(button), []) => {
+                    send(sender, ZpMsg::Bind(button, Noop));
                 },
-                _ => {
-                    send(sender, ZpMsg::Bind(input, parsed));
-                }
+                (Single(button), [mapping]) => {
+                    send(sender, ZpMsg::Bind(button, *mapping));
+                },
+                (Single(_), _) => {
+                    println!("Too many outputs for one input! Expected 0 or 1.");
+                    return;
+                },
+                (Axis(axis), []) => {
+                    send(sender, ZpMsg::Bind(axis, Noop));
+                },
+                (Axis(axis), [mapping]) => {
+                    send(sender, ZpMsg::Bind(axis, *mapping));
+                },
+                (Axis(axis), [Emit(eneg), Emit(epos)]) => {
+                    let mapping = NegPos(*eneg, *epos);
+                    send(sender, ZpMsg::Bind(axis, mapping));
+                },
+                (Axis(_), _) => {
+                    println!("Too many outputs for one axis! Expected 0, 1, or 2");
+                    return;
+                },
+                (Coords(ax, ay), []) => {
+                    send(sender, ZpMsg::Bind(ax, Noop));
+                    send(sender, ZpMsg::Bind(ay, Noop));
+                },
+                (Coords(ax, ay), [mx, my]) => {
+                    send(sender, ZpMsg::Bind(ax, *mx));
+                    send(sender, ZpMsg::Bind(ay, *my));
+                },
+                (Coords(ax, ay), [
+                        Emit(exneg), Emit(expos),
+                        Emit(eyneg), Emit(eypos),
+                ]) => {
+                    let mx = NegPos(*exneg, *expos);
+                    let my = NegPos(*eyneg, *eypos);
+                    send(sender, ZpMsg::Bind(ax, mx));
+                    send(sender, ZpMsg::Bind(ay, my));
+                },
+                (Coords(_, _), _) => {
+                    println!("Incorrect amount of inputs for one axis pair! Expected 0, 2, or 4.");
+                    return;
+                },
+                (Quartet(w, e, n, s), []) => {
+                    send(sender, ZpMsg::Bind(w, Noop));
+                    send(sender, ZpMsg::Bind(e, Noop));
+                    send(sender, ZpMsg::Bind(n, Noop));
+                    send(sender, ZpMsg::Bind(s, Noop));
+                },
+                // Todo: Quartet -> Axis
+                (Quartet(w, e, n, s), [mw, me, mn, ms]) => {
+                    send(sender, ZpMsg::Bind(w, *mw));
+                    send(sender, ZpMsg::Bind(e, *me));
+                    send(sender, ZpMsg::Bind(n, *mn));
+                    send(sender, ZpMsg::Bind(s, *ms));
+                },
+                (Quartet(_, _, _, _), _) => {
+                    println!("Incorrect amount of inputs for a button set! Expected 0 or 4.");
+                    return;
+                },
             }
         }
     }
