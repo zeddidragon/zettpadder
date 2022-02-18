@@ -1,0 +1,17 @@
+# Deep Rock Galactic, with Flydigi Apex 2 in mind
+flickfactor 1560 # Mouse units per radian
+CamXY flick # Right Stick for turning (disable stick with steam input)
+
+# Seperate reload and interact buttons (disable ActionH button with steam input)
+ActionR E # Interact
+ActionH R # Reload
+ActionC 5 # Resupply
+ActionD V # ROCK AND STONE
+
+# Alternate weapon selection so you can keep moving
+PinkyLeft layer 1 # Weapons
+layer 1 # Weapons
+ActionH 1 # Primary
+ActionB 2 # Secondary
+ActionV 3 # Mobilitty
+ActionA 4 # Utility

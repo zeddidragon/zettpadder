@@ -28,7 +28,6 @@ async fn event_loop() {
                 .and_then(OsStr::to_str)
                 .unwrap();
         match extension {
-            "toml" => { parsers::toml::parse(&tx, arg); },
             "zett" => { parsers::zett::parse(&tx, arg); },
             _ => {
                 println!("Unrecognized filetype: {} ({})", arg, extension);

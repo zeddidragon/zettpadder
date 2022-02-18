@@ -1,0 +1,33 @@
+# World War Z, with Flydigi Apex 2 in mind
+PovXY arrows
+
+JoyXY wasd # Strafe
+deadzone JoyXY 40
+CamXY flick # Turn
+flickfactor 1875 # Mouse units to move 180
+flickdeadzone 70
+
+TriggerR M1 # Fire
+TriggerL M2 # Aim
+BumperR F # Melee
+BumperL M3 # Equipment
+ActionL Shift # Sprint
+ActionR E # Interact
+
+ActionA Space # Jump
+ActionB Ctrl # Toggle crouch
+ActionH R # Reload
+ActionV 4 # Medkit
+ActionC T # Mark Target
+
+MenuL Tab # Scoreboard
+MenuR Escape # Pause
+
+PinkyLeft layer 1 # Weapons
+layer 1 # Weapons
+ActionH 2 # Primary
+ActionB 1 # Secondary
+ActionA 3 # Heavy Weapon
+
+ActionC Enter # OK
+ActionD Escape # Cancel

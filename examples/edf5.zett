@@ -1,6 +1,7 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
 # Some of these get funky with fencer and vehicles, consider rebinding in-game
-PovXY WASD  # Move with D-pad
+JoyXY WASD
+deadzone JoyXY 40
 CamXY flick # Turn with right stick
 
 # Face buttons
@@ -22,10 +23,6 @@ BumperR Shift # Sprint / Dash
 
 # Underside
 PinkyLeft Ctrl # Chat Wheel
-PaddleLeft Layer 1 
 
-Layer 1 # Hold paddle to chat
-ActionH Left # Chat navigation
-ActionB Right # Chat navigation
-ActionV Up # Chat navigation
-ActionA Down # Chat navigation
+# Chat navigation
+PovXY arrows  # Chat navigation

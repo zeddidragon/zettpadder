@@ -1,0 +1,29 @@
+# Generic Third-Person Shooter controls, with generic controller in mind
+# You can copy this template and then probably move a few things around.
+
+# Movement
+JoyXY WASD 
+Deadzone JoyXY 40
+Joy Shift # Sprint
+
+CamXY flick # Right Stick for turning
+flickFactor 1560 # Mouse units for one radian
+
+# Typical rear trigger actions for applying yourself to what you're aiming at
+TriggerR M1 # Fire
+TriggerL M2 # Alt-fire / Zoom
+BumperL M3 # Ability
+BumperR G # Grenade
+
+# Face buttons for manipulating yourself
+ActionA Space # Jump
+ActionB C # Toggle Crouch
+ActionH E # Reload
+ActionV R # Flashlight
+
+# Middle buttons for menu functions
+MenuL Tab # Map
+MenuR Escape # Pause
+
+# Dpad for changing weapons
+DpadXY 1 2 3 4

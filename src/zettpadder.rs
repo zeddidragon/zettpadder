@@ -143,7 +143,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 SetDeadzoneOn(button, v) => {
                     let idx = button as u16 + write_layer as u16 * 256;
                     if let Some(binding) = keymaps.get_mut(&idx) {
-                        binding.deadzone_on = Some(v);
+                        binding.deadzone_on = Some(v / 100.0);
                     } else {
                         println!("No binding found for {} ({})", button, idx);
                     }
@@ -151,7 +151,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 SetDeadzoneOff(button, v) => {
                     let idx = button as u16 + write_layer as u16 * 256;
                     if let Some(binding) = keymaps.get_mut(&idx) {
-                        binding.deadzone_off = Some(v);
+                        binding.deadzone_off = Some(v / 100.0);
                     } else {
                         println!("No binding found for {} ({})", button, idx);
                     }
@@ -164,7 +164,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 },
                 SetFlickFactor(v) => { flick_factor = v; },
                 SetFlickTime(v) => { flick_time = Duration::from_millis(v); },
-                SetFlickDeadzone(v) => { flick_deadzone = v; },
+                SetFlickDeadzone(v) => { flick_deadzone = v / 100.0; },
             }
         }
 

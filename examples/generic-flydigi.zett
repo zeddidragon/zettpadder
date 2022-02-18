@@ -1,0 +1,54 @@
+# Generic 3D Shooter controls, with Flydigi Apex 2 in mind.
+# You can copy this template and then probably move a few things around.
+# Movement
+JoyXY WASD 
+Deadzone JoyXY 40
+
+CamXY flick # Right Stick for turning
+flickFactor 1560 # Mouse units for one radian
+
+# Typical rear trigger actions for applying yourself to what you're aiming at
+TriggerR M1 # Fire
+TriggerL M2 # Alt-fire / Zoom
+BumperL M3 # Ability
+BumperR G # Grenade
+ActionL Shift # Sprint
+ActionR E # Interact
+
+# Face buttons for manipulating yourself
+ActionA Space # Jump
+ActionB C # Toggle Crouch
+ActionH R # Reload
+ActionV F # Flashlight
+ActionC X # Change firing mode
+ActionD V # Switch shoulders
+
+# Middle buttons for menu functions
+MenuL Tab # Map
+MenuR Escape # Pause
+
+# Arrow keys for various submenus
+PovXY M O T B
+
+# Underside for miscellaneous actions
+PaddleLeft Ctrl # Sneak
+PaddleRight Z # Rarely used toggle
+PinkyLeft Layer1 # Weapons
+PinkyRight Layer2 # More Weapons
+
+layer 1 # Weapons
+ActionH 1 # Primary
+ActionB 2 # Secondary
+ActionV 3 # Tool
+ActionA 4 # Support
+
+ActionC Enter # OK
+ActionD Escape # Cancel
+
+layer 2 # More Weapons
+ActionH 5
+ActionB 6
+ActionV 7
+ActionA 8
+ActionC 9
+ActionD 0
