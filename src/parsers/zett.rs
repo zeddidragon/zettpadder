@@ -139,6 +139,47 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                 println!("Usage: flickfactor <n>");
             }
         },
+        "deadzone" => {
+            let arg1 = iter.next().and_then(|v| parse_input(&v.to_string()));
+            let arg2 = iter.next().map(|v| v.parse::<f64>());
+            let arg3 = iter.next().map(|v| v.parse::<f64>());
+            match (arg1, arg2, arg3) {
+                ( Some(ZettInput::Axis(axis)),
+                  Some(Ok(v1)),
+                  Some(Ok(v2)) ) => {
+                    let dz_on = v1.max(v2);
+                    let dz_off = v1.min(v2);
+                    send(sender, ZpMsg::SetDeadzoneOn(axis, dz_on));
+                    send(sender, ZpMsg::SetDeadzoneOff(axis, dz_off));
+                },
+                ( Some(ZettInput::Axis(axis)),
+                  Some(Ok(dz)),
+                  None ) => {
+                    send(sender, ZpMsg::SetDeadzoneOn(axis, dz));
+                },
+                ( Some(ZettInput::Coords(ax, ay)),
+                  Some(Ok(v1)),
+                  Some(Ok(v2)) ) => {
+                    // TODO: Other types of deadzones than cross
+                    let dz_on = v1.max(v2);
+                    let dz_off = v1.min(v2);
+                    send(sender, ZpMsg::SetDeadzoneOn(ax, dz_on));
+                    send(sender, ZpMsg::SetDeadzoneOff(ax, dz_off));
+                    send(sender, ZpMsg::SetDeadzoneOn(ay, dz_on));
+                    send(sender, ZpMsg::SetDeadzoneOff(ay, dz_off));
+                },
+                ( Some(ZettInput::Coords(ax, ay)),
+                  Some(Ok(dz)),
+                  None ) => {
+                    // TODO: Other types of deadzones than cross
+                    send(sender, ZpMsg::SetDeadzoneOn(ax, dz));
+                    send(sender, ZpMsg::SetDeadzoneOn(ay, dz));
+                },
+                (_, _, _) => {
+                    println!("Usage: deadzone <axis or coords> <on> [<off>]");
+                },
+            }
+        },
         "layer" => {
             let arg1 = iter.next().map(|v| v.parse::<u8>());
             match arg1 {
