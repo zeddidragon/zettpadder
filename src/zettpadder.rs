@@ -41,6 +41,7 @@ pub enum ZpMsg {
     BindFunction(u8, Function), // Bind function to button
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
+    GetFlickCalibration(f64), // Display data to help calibrate flick factor
 }
 
 pub fn run(receiver: Receiver<ZpMsg>) {
@@ -165,6 +166,13 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 SetFlickFactor(v) => { flick_factor = v; },
                 SetFlickTime(v) => { flick_time = Duration::from_millis(v); },
                 SetFlickDeadzone(v) => { flick_deadzone = v / 100.0; },
+
+                GetFlickCalibration(v) => {
+                    println!("Your last adjustment was {} units.
+                        Recommended factor: {}",
+                        total_flick_steering,
+                        total_flick_steering / v);
+                },
             }
         }
 
@@ -213,11 +221,10 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 // Steering
                 let angle = flicker.angle();
                 let prev_angle = prev_flicker.angle();
-                let diff = angle - prev_angle;
-                let diff = modulo(diff + PI, TAU) - PI;
-                total_flick_steering += diff;
-                let diff = flick_smoother.tier_smooth(diff);
-                motion.x += flick_factor * diff;
+                let steering = flick_factor * flick_smoother.tier_smooth(
+                    modulo(angle - prev_angle + PI, TAU) - PI);
+                total_flick_steering += steering;
+                motion.x += steering;
             }
         }
 
