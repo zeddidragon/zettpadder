@@ -12,13 +12,14 @@ mod controller_poller;
 mod smoothing;
 mod zettpadder;
 mod parsers;
+mod cli;
 use controller_poller::{ControllerPoller};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
-    let (tx, rx) = bounded(128);
+    let (sender, receiver) = bounded(128);
     thread::spawn(move || {
-        zettpadder::run(rx);
+        zettpadder::run(receiver);
     });
 
     for arg in args.iter().skip(1) {
@@ -28,15 +29,18 @@ async fn event_loop() {
                 .and_then(OsStr::to_str)
                 .unwrap();
         match extension {
-            "zett" => { parsers::zett::parse(&tx, arg); },
+            "zett" => { parsers::zett::parse(&sender, arg); },
             _ => {
                 println!("Unrecognized filetype: {} ({})", arg, extension);
             },
         }
     }
 
-    let print_mode = args.len() < 2;
-    ControllerPoller::new(tx, print_mode).run().await;
+    let cli_sender = sender.clone();
+    thread::spawn(move || {
+        cli::run(cli_sender);
+    });
+    ControllerPoller::new(sender).run().await;
 }
 
 fn main() {

@@ -25,8 +25,14 @@ pub fn parse(
     let file = File::open(filename).unwrap();
     
     for line in io::BufReader::new(file).lines() {
-        parse_line(sender, line);
+        if let Err(err) = line {
+            println!("Error parsing zett: {:?}", err);
+            continue;
+        }
+        parse_line(sender, line.unwrap());
     }
+    // Reset write layer so next input can start fresh
+    send(sender, ZpMsg::SetWriteLayer(0));
 }
 
 fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
@@ -89,12 +95,7 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
     }
 }
 
-fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
-    if let Err(err) = line {
-        println!("Error parsing zett: {:?}", err);
-        return;
-    }
-    let line = line.unwrap();
+pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
     let tokens = line
         .split('#') // Remove comments
         .nth(0)
@@ -179,6 +180,13 @@ fn parse_line(sender: &Sender<ZpMsg>, line: Result<String, Error>) {
                     println!("Usage: deadzone <axis or coords> <on> [<off>]");
                 },
             }
+        },
+        "calibrate" => {
+            let v = iter
+                .next()
+                .map(|v| v.parse::<f64>().unwrap_or(1.0))
+                .unwrap_or(1.0);
+            send(sender, ZpMsg::GetFlickCalibration(v));
         },
         "layer" => {
             let arg1 = iter.next().map(|v| v.parse::<u8>());

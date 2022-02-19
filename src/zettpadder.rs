@@ -1,4 +1,5 @@
-use rdev; use crossbeam_channel::{Receiver, tick};
+use rdev;
+use crossbeam_channel::{Receiver, tick};
 use std::collections::{HashMap};
 use super::mapping::{Binding, Mapping};
 use std::time::Duration;
@@ -60,7 +61,7 @@ pub fn run(receiver: Receiver<ZpMsg>) {
     let mut prev_flicker;
     let mut flick_deadzone = FLICK_DEADZONE;
     let mut flick_smoother = Smoothing::new();
-    let mut total_flick_steering = 0.0;
+    let mut total_flick_steering: f64 = 0.0;
     let mut flick_time = FLICK_TIME;
     let mut flick_remaining = Duration::ZERO;
     let mut flick_tick = 0.0;
@@ -168,10 +169,8 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                 SetFlickDeadzone(v) => { flick_deadzone = v / 100.0; },
 
                 GetFlickCalibration(v) => {
-                    println!("Your last adjustment was {} units.
-                        Recommended factor: {}",
-                        total_flick_steering,
-                        total_flick_steering / v);
+                    let steering = total_flick_steering.abs();
+                    println!("Recommended flickfactor: {}", steering / TAU / v);
                 },
             }
         }

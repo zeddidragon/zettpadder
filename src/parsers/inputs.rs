@@ -6,23 +6,6 @@ pub enum ZettInput {
     Quartet(u8, u8, u8, u8), // Four buttons with room for four actions
 }
 
-impl ZettInput {
-    pub fn nth(&self, idx: usize) -> Option<u8> {
-        use ZettInput::*;
-        match (self, idx) {
-            (Single(n), 0) => Some(*n),
-            (Axis(n), 0) => Some(*n),
-            (Coords(x, _), 0) => Some(*x),
-            (Coords(_, y), 1) => Some(*y),
-            (Quartet(xn, _, _, _), 0) => Some(*xn),
-            (Quartet(_, xp, _, _), 1) => Some(*xp),
-            (Quartet(_, _, yn, _), 2) => Some(*yn),
-            (Quartet(_, _, _, yp), 3) => Some(*yp),
-            _ => None,
-        }
-    }
-}
-
 pub fn parse_input(v: &String) -> Option<ZettInput> {
     use ZettInput::*;
     match v.to_lowercase().as_str() {

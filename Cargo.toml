@@ -6,10 +6,11 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-crossbeam-channel = "0.5.2"
+crossbeam-channel = "0.5"
 pasts = "0.8"
+rustyline = "9.1"
 [dependencies.stick]
-version = "0.12.3"
+version = "0.12"
 # path = "../stick/stick"
 git = "https://github.com/zeddidragon/stick.git"
 branch="feature-public-to-id"

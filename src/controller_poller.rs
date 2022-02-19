@@ -8,23 +8,19 @@ pub struct ControllerPoller {
     listener: Listener,
     controllers: Vec<Controller>,
     sender: Sender<ZpMsg>,
-    print_mode: bool,
 }
 
 impl ControllerPoller {
-    pub fn new(sender: Sender<ZpMsg>, print_mode: bool) -> Self {
+    pub fn new(sender: Sender<ZpMsg>) -> Self {
         Self {
             listener: Listener::default(),
             controllers: Vec::new(),
             sender: sender,
-            print_mode: print_mode,
         }
     }
 
     fn connect(&mut self, controller: Controller) -> Poll<usize> {
         if self.controllers.len() > 0 {
-        } else if self.print_mode {
-            println!("Input anything to see your device's input names!");
         } else {
             println!("Input anything to use this device!");
         }
@@ -39,10 +35,7 @@ impl ControllerPoller {
     }
 
     fn preamble(&mut self, id: usize, event: Event) -> Poll<usize> {
-        if self.print_mode {
-            println!("{:?}", event);
-            Pending
-        } else if event.to_id().1 > 0.3 {
+        if event.to_id().1 > 0.3 {
             println!("Selected controller: p{}, {:?}", id + 1, self.controllers[id].name());
             Ready(id)
         } else {
@@ -66,8 +59,6 @@ impl ControllerPoller {
             .when(|s| &mut s.listener, Self::connect)
             .poll(|s| &mut s.controllers, Self::preamble)
             .await;
-
-        if self.print_mode { return; }
 
         Loop::new(self)
             .when(|s| &mut s.controllers[id], Self::relay)
