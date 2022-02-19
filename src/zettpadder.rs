@@ -4,6 +4,7 @@ use std::collections::{HashMap};
 use super::mapping::{Binding, Mapping};
 use std::time::Duration;
 use std::f64::consts::{PI, TAU};
+use stick;
 
 const LAYER_SIZE: u16 = 256;
 
@@ -32,7 +33,7 @@ const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick
 
 #[derive(Debug, Copy, Clone)]
 pub enum ZpMsg {
-    Input(u8, f64), // Input from controller to process
+    Input(stick::Event), // Input from controller to process
     SetWriteLayer(u8), // Layer used in future assignments
     SetFps(u64), // Cycle rate of main loop
     SetFlickFactor(f64), // Mouse motion of one radian
@@ -43,9 +44,11 @@ pub enum ZpMsg {
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
     GetFlickCalibration(f64), // Display data to help calibrate flick factor
+    SetEcho(bool), // Echo mode, which repeats your keys back
 }
 
 pub fn run(receiver: Receiver<ZpMsg>) {
+    let mut echo_mode = true;
     let mut tick_time = Duration::from_nanos(1_000_000_000 / FPS);
     let mut ticker = tick(tick_time);
     let mut layer = 0;
@@ -74,7 +77,11 @@ pub fn run(receiver: Receiver<ZpMsg>) {
         while let Ok(msg) = receiver.try_recv() {
             use ZpMsg::*;
             match msg {
-                Input(id, value) => {
+                Input(event) => {
+                    if echo_mode {
+                        println!("{}", event);
+                    }
+                    let (id, value) = event.to_id();
                     let idx = id as u16;
                     let shifted = idx + LAYER_SIZE * (layer as u16);
                     let binding =
@@ -172,6 +179,9 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                     let steering = total_flick_steering.abs();
                     println!("Recommended flickfactor: {}", steering / TAU / v);
                 },
+                SetEcho(on) => {
+                    echo_mode = on;
+                }
             }
         }
 

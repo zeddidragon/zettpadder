@@ -44,8 +44,7 @@ impl ControllerPoller {
     }
 
     fn relay(&mut self, event: Event) -> Poll<usize> {
-        let (id, value) = event.to_id();
-        match self.sender.send(ZpMsg::Input(id, value)) {
+        match self.sender.send(ZpMsg::Input(event)) {
             Err(err) => {
                 println!("Unable to relay event: {:?}\n{:?}", event, err);
             },

@@ -21,7 +21,7 @@ Debian:
 - Start program
 - Run the program and specify your configuration file(s)
   ```
-    zettpadder some-definitions.toml game-definitions.toml
+    zettpadder some-definitions.zett game-definitions.zett
   ```
   Any amount of files can be specified, and they'll be read in sequence
 
@@ -59,7 +59,7 @@ Possible output shortcuts:
 
 ## Definition
 
-If you fire up the program without arguments and hit buttons, it'll show you output with names for the buttons you press. You can use those for reference in your mapping definitions.
+If you fire up the program without arguments and hit buttons, it'll show you output with names for the buttons you press. You can use those for reference in your mapping definitions. You can toggle echo mode with the command `echo <on|off>`.
 
 # Features
 - Support for every axis and button your device emits, not just the xbox standards.

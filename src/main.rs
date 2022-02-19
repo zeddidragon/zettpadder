@@ -14,6 +14,7 @@ mod zettpadder;
 mod parsers;
 mod cli;
 use controller_poller::{ControllerPoller};
+use zettpadder::{ZpMsg};
 
 async fn event_loop() {
     let args: Vec<String> = env::args().collect();
@@ -24,6 +25,7 @@ async fn event_loop() {
 
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
+        sender.send(ZpMsg::SetEcho(false));
         let extension = Path::new(arg)
                 .extension()
                 .and_then(OsStr::to_str)
