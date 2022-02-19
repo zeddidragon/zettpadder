@@ -25,7 +25,6 @@ Debian:
   ```
   Any amount of files can be specified, and they'll be read in sequence
 
-## Mouse emulation
 ## Layers
 Up to 255 layers are supported, including the main one.
 
@@ -75,7 +74,7 @@ If you fire up the program without arguments and hit buttons, it'll show you out
 - Game overlay to support radial menus etc.
 
 # Not currently planned
-- Interface outside of loading a file.
+- Interface outside of input commands.
 - Support for mapping multiple controllers simultaneously. Just run the program twice.
 
 
