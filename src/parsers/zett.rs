@@ -188,6 +188,13 @@ pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
                 .unwrap_or(1.0);
             send(sender, ZpMsg::GetFlickCalibration(v));
         },
+        "echo" => {
+            let arg1 = iter
+                .next()
+                .unwrap_or(&"on");
+            let v = if *arg1 == "off" { false } else { true };
+            send(sender, ZpMsg::SetEcho(v));
+        },
         "layer" => {
             let arg1 = iter.next().map(|v| v.parse::<u8>());
             match arg1 {
