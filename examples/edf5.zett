@@ -3,6 +3,8 @@
 JoyXY WASD
 deadzone JoyXY 40
 CamXY flick # Turn with right stick
+flickfactor 2400
+flicktime 200
 
 # Face buttons
 ActionA R # Reload
@@ -21,8 +23,14 @@ ActionL Q # Ping
 BumperL M2 # Zoom / Activate
 BumperR Shift # Sprint / Dash
 
-# Underside
-PinkyLeft Ctrl # Chat Wheel
+# Menu buttons
+MenuR Escape
 
-# Chat navigation
+# Dpad
 PovXY arrows  # Chat navigation
+
+# Underside
+PinkyRight Ctrl # Chat Wheel
+PinkyLeft layer 1 # Mouselook mode
+layer 1
+CamXY mouse 40

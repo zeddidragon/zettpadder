@@ -1,6 +1,7 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
-flickfactor 1750 # Mouse units per radian
 CamXY flick # Right Stick for turning (disable stick with steam input)
+flickfactor 1750 # Mouse units per radian
+flicktime 200
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 ActionR E # Interact

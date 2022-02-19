@@ -196,6 +196,12 @@ pub fn run(receiver: Receiver<ZpMsg>) {
                     if *prev == 0.0 { continue; }
                     let release = binding.get_mapping(0.0, *prev);
                     match release {
+                        Some(Mapping::MouseX(_)) => {
+                            mover.x = 0.0;
+                        },
+                        Some(Mapping::MouseY(_)) => {
+                            mover.y = 0.0;
+                        },
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
                         },

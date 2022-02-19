@@ -73,8 +73,21 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
                 mappings.push(Emit(KeyPress(rdev::Key::DownArrow)));
             },
             "mouse" => {
-                mappings.push(Mapping::MouseX(1.0));
-                mappings.push(Mapping::MouseY(1.0));
+                iter.next();
+                let mut factor = 1.0;
+                let arg1 = iter
+                    .peek()
+                    .map(|v| v.parse::<f64>());
+                let factor =
+                    if let Some(Ok(v)) = arg1 {
+                        iter.next();
+                        v
+                    } else {
+                        1.0
+                    };
+                mappings.push(Mapping::MouseX(factor));
+                mappings.push(Mapping::MouseY(factor));
+                continue; // Continue manually 'cause we next-ed
             },
             "flick" => {
                 mappings.push(Mapping::FlickX);
