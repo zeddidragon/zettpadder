@@ -18,12 +18,12 @@ BumperR X # Toggle firing mode
 BumperL Z  # Zoom
 
 # Face buttons
-ActionA R  # Reload
 ActionH Layer 1 # Grenade selection
 ActionV Layer 2 # Door tools
 ActionB Layer 3 # Pacifying tools
 ActionC Layer 4 # Commands
-ActionD F # Check Door / Melee (has to be bound)
+ActionA R  # Reload
+ActionD B # Melee
 
 # Underside
 PaddleLeft C  # Hold to Crouch
