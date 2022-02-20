@@ -1,30 +1,35 @@
-# Swat 4, with Flydigi Apex 2 in mind
+# Swat 4 Elite Force, with Flydigi Apex 2 in mind
+# Sticks + Dpad
 PovXY WASD  # Move with D-pad
 JoyX Q E # Lean left or right
 CamXY flick # Turn with right stick
+flickfactor 900
 
-PaddleLeft C  # Hold to Crouch
-ActionL Shift  # Toggle Sprint
-
-TriggerR M1  # Shoot
-TriggerL M2 # Hold for commands
-BumperR X # Toggle firing mode
-
-ActionR F  # Use
-ActionA R  # Reload
-BumperL Z  # Zoom
-
-MenuL M # + Calibrate # Show objectives / output calibration data
+# Menu butons
+MenuL M # Show objectives
 MenuR Escape # Pause
 
-ActionD Ctrl # Prepare Command
-PaddleRight Tab # Cycle command group
+# Rear buttons
+TriggerR M1  # Shoot
+TriggerL M2 # Hold for commands
+ActionR M3  # Use / Shout
+ActionL Shift  # Toggle Sprint
+BumperR X # Toggle firing mode
+BumperL Z  # Zoom
 
+# Face buttons
+ActionA R  # Reload
 ActionH Layer 1 # Grenade selection
 ActionV Layer 2 # Door tools
 ActionB Layer 3 # Pacifying tools
 ActionC Layer 4 # Commands
+ActionD F # Check Door / Melee (has to be bound)
+
+# Underside
+PaddleLeft C  # Hold to Crouch
+PaddleRight Tab # Cycle command group
 PinkyLeft Layer 5 # Weapons
+PinkyRight Ctrl # Prepare Command
 
 Layer 1 # Grenade selection
 CamXY 3 5 4 4 # Stinger Stinger Flash CS
