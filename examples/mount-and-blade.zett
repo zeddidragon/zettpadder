@@ -1,0 +1,69 @@
+# Mount & Blade: Warband, with Flydigi Apex 2 in mind.
+
+JoyXY WASD # Movement
+Deadzone JoyXY 40
+
+CamXY flick # Right Stick for turning
+flickFactor 1470 # Mouse units for one radian
+
+# Typical rear trigger actions for applying yourself to what you're aiming at
+TriggerR M1 # Attack
+TriggerL M2 # Block
+BumperL Shift # Zoom
+BumperR E # Kick
+ActionL Space # Jump
+ActionR F # Interact
+
+# Face buttons for manipulating yourself
+ActionA ScrollUp # Next Weapon
+ActionB ScrollDown # Next Shield
+ActionH \ # Sheath Weapon
+ActionV G # Drop Weapon
+ActionC X # Change Firing Mode
+ActionD R # Toggle First Person View
+
+# Middle buttons for menu functions
+MenuL layer 1 # Menus
+MenuR Escape # Pause
+
+# Equip items 1-4
+PovXY Num1 Num2 Num3 Num4
+
+# Underside for miscellaneous actions
+PinkyLeft layer 2 # Orders
+PaddleLeft layer 3 # Groups
+PaddleRight layer 4 # More Groups
+PinkyRight Ctrl # Add Group
+
+layer 1 # Menus
+ActionB Tab # Leave
+ActionA I # Inventory Window
+ActionH P # Party Window
+ActionV Q # Quest Window
+ActionC C # Character Window
+ActionD L # Game Log Window
+MenuR F12 # Quick Save
+
+layer 2 # Orders
+ActionH F1 # Order 1
+ActionA F2 # Order 2
+ActionC F3 # Order 3
+ActionV F4 # Order 4
+ActionB F5 # Order 5
+ActionD F6 # Order 6
+
+layer 3 # Groups
+ActionH 1 # Infantry!
+ActionV 2 # Archers!
+ActionB 3 # Cavalry!
+ActionA 0 # Everyone!
+ActionC Equal # Nearby soldiers!
+ActionD Minus # others!
+
+layer 4 # More Groups
+ActionH 4 # Group 4!
+ActionA 5 # Group 5!
+ActionC 6 # Group 6!
+ActionV 7 # Group 7!
+ActionB 8 # Group 8!
+ActionD 9 # Group 9!

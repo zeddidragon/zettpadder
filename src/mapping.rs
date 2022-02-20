@@ -10,7 +10,7 @@ pub enum Mapping {
     FlickY,
     NegPos(rdev::EventType, rdev::EventType),
     Layer(u8),
-    Trigger(usize),
+    // Trigger(u8, f64),
 }
 
 impl Mapping {

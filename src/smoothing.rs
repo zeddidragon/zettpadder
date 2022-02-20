@@ -1,17 +1,17 @@
-pub struct Smoothing<T> {
-    buffer: Vec<T>,
-    idx: usize,
-}
-
+const SMOOTHING_BUFFER_SIZE: usize = 16;
 const SMOOTHING_CUTOFF: f64 = 0.04;
 const SMOOTHING_TRESHOLD: f64 = SMOOTHING_CUTOFF * 0.5;
 const SMOOTHING_LEEWAY: f64 = SMOOTHING_CUTOFF - SMOOTHING_TRESHOLD;
-const SMOOTHING_BUFFER_SIZE: usize = 16;
+
+pub struct Smoothing<T> {
+    buffer: [T; SMOOTHING_BUFFER_SIZE],
+    idx: usize,
+}
 
 impl Smoothing<f64> {
     pub fn new() -> Self {
         Self {
-            buffer: vec!(0.0; SMOOTHING_BUFFER_SIZE),
+            buffer: [0.0; SMOOTHING_BUFFER_SIZE],
             idx: 0,
         }
     }

@@ -1,9 +1,8 @@
 use std::fs::File;
-use std::io::{self, BufRead, Error};
+use std::io::{self, BufRead};
 use std::slice::Iter;
 use std::iter::Peekable;
 use crossbeam_channel::{Sender};
-use crate::function::{Function};
 use crate::mapping::{Mapping};
 use crate::zettpadder::{ZpMsg};
 use super::inputs::{parse_input, ZettInput};
@@ -33,6 +32,8 @@ pub fn parse(
     }
     // Reset write layer so next input can start fresh
     send(sender, ZpMsg::SetWriteLayer(0));
+    // With bindings assigned, echo mode can be turned off
+    send(sender, ZpMsg::SetEcho(false));
 }
 
 fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
@@ -74,7 +75,6 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
             },
             "mouse" => {
                 iter.next();
-                let mut factor = 1.0;
                 let arg1 = iter
                     .peek()
                     .map(|v| v.parse::<f64>());
