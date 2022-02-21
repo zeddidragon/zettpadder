@@ -17,9 +17,9 @@ BumperR G # Grenade
 
 # Face buttons for manipulating yourself
 ActionA Space # Jump
-ActionB C # Toggle Crouch
-ActionH E # Reload
-ActionV R # Flashlight
+ActionB C # Crouch
+ActionH R # + E # Reload + Use
+ActionV F # Melee
 
 # Middle buttons for menu functions
 MenuL Tab # Map

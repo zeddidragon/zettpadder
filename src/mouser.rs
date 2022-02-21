@@ -98,7 +98,8 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                 let angle = flicker.angle();
                 flick_remaining = (
                     flick_time.as_nanos()
-                    / tick_time.as_nanos()).min(1) as u64;
+                    / tick_time.as_nanos()).max(1) as u64;
+                println!("Flick remaining: {}", flick_remaining);
                 flick_tick = flick_factor * angle / (flick_remaining as f64);
                 flick_smoother.clear();
                 total_flick_steering = 0.0;
