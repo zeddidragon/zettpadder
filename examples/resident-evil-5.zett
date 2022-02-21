@@ -1,0 +1,17 @@
+# Resident Evil 5, with Flydigi Apex 2 in mind
+# Designed to not get in the way of normal operation of the game.
+# You can play the game with normal gamepad controls for the most part
+# and only go for the mouse when aiming a weapon.
+#
+# Designed for use with Type B or D controls
+# You'll see a frequent message when switching between mouse and controller mode
+# This can be disabled using Malus' BH5Fixes with HideInputNotification.
+# Also possible to enabled mouse laser this way.
+#
+# With steam you should unbind the triggers and rebind them to ActionL/ActionR
+# in case of QTEs needing it.
+TriggerL M2 # Ready Weapon
+TriggerR M1 # Fire Weapon
+BumperL Space # Knife
+ActionC R # Reload
+ActionD X # Taunt
