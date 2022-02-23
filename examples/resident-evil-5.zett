@@ -14,4 +14,18 @@ TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
 BumperL Space # Knife
 ActionC R # Reload
-ActionD X # Taunt
+ActionD F + V # Hold to solve quicktimes
+
+# Press all the QTE buttons for one frame. Repeat as long as key is held.
+# Macro quicktimes
+#   Press F
+#   Press V
+#   Press A
+#   Press D
+#   Wait 1
+#   Release F
+#   Release V
+#   Release A
+#   Release D
+#   Wait 1
+# Repeatable

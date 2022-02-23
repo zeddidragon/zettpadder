@@ -2,19 +2,32 @@ use rdev;
 
 #[derive(Debug, Copy, Clone)]
 pub enum Mapping {
+    // Specifically do nothing, but still capture the input
     Noop,
+    // Emit and rdev Event
     Emit(rdev::EventType),
+    // Initiate mouse velocity
     MouseX(f64),
     MouseY(f64),
+    // Flick Stick. Used to turn towards your stick direction.
     FlickX,
     FlickY,
+    // For axes.
+    // Negative values on the axis emits the first event.
+    // Positive values emit the second event instead.
     NegPos(rdev::EventType, rdev::EventType),
+    // Switch layer for as long as button is held
     Layer(u8),
-    // Trigger(u8, f64),
+    // Send value to macro with specified ID
+    Trigger(usize),
+    // Signifies the start of a macro
+    Macro,
+    // Combine previous event(s) and next event(s)
+    Plus,
 }
 
 impl Mapping {
-    fn released(self) -> Option<Mapping> {
+    pub fn released(self) -> Option<Mapping> {
         use Mapping::{Emit, Layer};
         use rdev::EventType::{
             KeyPress,

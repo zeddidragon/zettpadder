@@ -4,6 +4,8 @@ use crossbeam_channel::{Sender, Receiver};
 use std::collections::{HashMap};
 use crate::mapping::{Binding, Mapping};
 use crate::mouser::{MouserMsg};
+use crate::macros::{MacroMsg};
+use crate::cli::{CliMsg};
 
 const LAYER_SIZE: u16 = 256;
 
@@ -25,6 +27,24 @@ fn send_to_mouse(sender: &Sender<MouserMsg>, msg: MouserMsg) {
     };
 }
 
+fn send_to_macro(sender: &Sender<MacroMsg>, msg: MacroMsg) {
+    match sender.send(msg) {
+        Err(err) => {
+            println!("Unable to send to macro: {:?}\n{:?}", msg, err);
+        },
+        _ => {},
+    };
+}
+
+fn send_to_cli(sender: &Sender<CliMsg>, msg: CliMsg) {
+    match sender.send(msg) {
+        Err(err) => {
+            println!("Unable to send to cli: {:?}\n{:?}", msg, err);
+        },
+        _ => {},
+    };
+}
+
 #[derive(Debug, Copy, Clone)]
 pub enum ZpMsg {
     Output(rdev::EventType), // Perform output directly
@@ -39,11 +59,16 @@ pub enum ZpMsg {
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
     GetFlickCalibration(f64), // Display data to help calibrate flick factor
     SetEcho(bool), // Echo mode, which repeats your keys back
+    CreateMacro(u8), // Request to create a macro, assign to this button
+    AddToMacro(Mapping), // Add Mapping to currently constructed macro
+    MacroCreated(usize), // Indication that a macro has been created
 }
 
 pub fn run(
     receiver: Receiver<ZpMsg>,
+    cli_sender: Sender<CliMsg>,
     mouse_sender: Sender<MouserMsg>,
+    macro_sender: Sender<MacroMsg>,
 ) {
     let mut echo_mode = true;
     let mut layer = 0;
@@ -51,6 +76,7 @@ pub fn run(
     let mut keymaps: HashMap<u16, Binding> = HashMap::new();
     let mut values: HashMap<u8, f64> = HashMap::new();
     let mut released_layers = Vec::with_capacity(8);
+    let mut macro_button = 0;
 
     while let Ok(msg) = receiver.recv() {
         use ZpMsg::*;
@@ -102,6 +128,9 @@ pub fn run(
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
                         },
+                        Some(Mapping::Trigger(idx)) =>  {
+                            send_to_macro(&macro_sender, MacroMsg::Trigger(idx, value));
+                        }
                         Some(Mapping::Noop) => {},
                         None => {},
                         unx => {
@@ -155,7 +184,18 @@ pub fn run(
             },
             SetEcho(on) => {
                 echo_mode = on;
-            }
+            },
+            CreateMacro(button) => {
+                macro_button = button as u16 + write_layer as u16 * 256;
+                send_to_macro(&macro_sender, MacroMsg::Create);
+            },
+            AddToMacro(mapping) => {
+                send_to_macro(&macro_sender, MacroMsg::Add(mapping));
+            },
+            MacroCreated(idx) => {
+                let binding = Binding::new(Mapping::Trigger(idx));
+                keymaps.insert(macro_button, binding);
+            },
         }
 
         if !released_layers.is_empty() {

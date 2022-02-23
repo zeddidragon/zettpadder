@@ -2,11 +2,13 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::slice::Iter;
 use std::iter::Peekable;
-use crossbeam_channel::{Sender};
+use crossbeam_channel::{Sender, Receiver};
 use crate::mapping::{Mapping};
 use crate::zettpadder::{ZpMsg};
+use crate::cli::{CliMsg};
 use super::inputs::{parse_input, ZettInput};
 use super::outputs::{parse_output};
+
 
 fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
     match sender.send(msg) {
@@ -19,6 +21,7 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
 
 pub fn parse(
     sender: &Sender<ZpMsg>,
+    receiver: &Receiver<CliMsg>,
     filename: &String,
 ) {
     let file = File::open(filename).unwrap();
@@ -28,7 +31,7 @@ pub fn parse(
             println!("Error parsing zett: {:?}", err);
             continue;
         }
-        parse_line(sender, line.unwrap());
+        parse_line(sender, receiver, line.unwrap());
     }
     // Reset write layer so next input can start fresh
     send(sender, ZpMsg::SetWriteLayer(0));
@@ -37,18 +40,23 @@ pub fn parse(
 }
 
 fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
-    use Mapping::{Emit, Layer, Noop};
+    use Mapping::{Emit, Noop};
     use rdev::EventType::{KeyPress};
+    let mut is_macro = false;
     loop {
         let next = iter.peek();
-        if next.is_none() { return; }
+        if next.is_none() { break; }
         let next = next.unwrap();
         match next.to_lowercase().as_str() {
+            "+" => {
+                mappings.push(Mapping::Plus); 
+                is_macro = true;
+            },
             "layer" => {
                 iter.next();
                 let arg1 = iter.next().map(|v| v.parse::<u8>());
                 if let Some(Ok(layer)) = arg1 {
-                    mappings.push(Layer(layer));
+                    mappings.push(Mapping::Layer(layer));
                 } else {
                     println!("Urecognized layer: {:?}", arg1);
                     mappings.push(Noop);
@@ -62,7 +70,7 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
                 mappings.push(Emit(KeyPress(rdev::Key::KeyS)));
             },
             "ijkl" => {
-                mappings.push(Emit(KeyPress(rdev::Key::KeyH)));
+                mappings.push(Emit(KeyPress(rdev::Key::KeyJ)));
                 mappings.push(Emit(KeyPress(rdev::Key::KeyL)));
                 mappings.push(Emit(KeyPress(rdev::Key::KeyI)));
                 mappings.push(Emit(KeyPress(rdev::Key::KeyK)));
@@ -96,6 +104,7 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
             _ => {
                 match parse_output(next) {
                     Noop => {
+                        println!("Unable to understand mapping: {}", next);
                         return;
                     },
                     mapping => {
@@ -106,9 +115,16 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
         }
         iter.next();
     }
+    if is_macro {
+        mappings.insert(0, Mapping::Macro);
+    }
 }
 
-pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
+pub fn parse_line(
+    sender: &Sender<ZpMsg>,
+    receiver: &Receiver<CliMsg>,
+    line: String,
+) {
     let tokens = line
         .split('#') // Remove comments
         .nth(0)
@@ -231,15 +247,22 @@ pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
 
             use ZettInput::*;
             use Mapping::{Noop, Emit, NegPos};
+
             match (input, &mappings[..]) {
                 (Single(button), []) => {
                     send(sender, ZpMsg::Bind(button, Noop));
                 },
+                (Single(button), [Mapping::Macro, ..]) => {
+                    send(sender, ZpMsg::CreateMacro(button));
+                    for m in mappings.iter().skip(1) {
+                        send(sender, ZpMsg::AddToMacro(*m));
+                    }
+                }
                 (Single(button), [mapping]) => {
                     send(sender, ZpMsg::Bind(button, *mapping));
                 },
-                (Single(_), _) => {
-                    println!("Too many outputs for one input! Expected 0 or 1.");
+                (Single(_), ms) => {
+                    println!("Too many outputs for one input! Expected 0 or 1, got {}", ms.len());
                     return;
                 },
                 (Axis(axis), []) => {
@@ -252,8 +275,8 @@ pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
                     let mapping = NegPos(*eneg, *epos);
                     send(sender, ZpMsg::Bind(axis, mapping));
                 },
-                (Axis(_), _) => {
-                    println!("Too many outputs for one axis! Expected 0, 1, or 2");
+                (Axis(_), ms) => {
+                    println!("Too many outputs for one axis! Expected 0, 1, or 2, got {}", ms.len());
                     return;
                 },
                 (Coords(ax, ay), []) => {
@@ -273,8 +296,8 @@ pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
                     send(sender, ZpMsg::Bind(ax, mx));
                     send(sender, ZpMsg::Bind(ay, my));
                 },
-                (Coords(_, _), _) => {
-                    println!("Incorrect amount of inputs for one axis pair! Expected 0, 2, or 4.");
+                (Coords(_, _), ms) => {
+                    println!("Incorrect amount of inputs for one axis pair! Expected 0, 2, or 4, got {}", ms.len());
                     return;
                 },
                 (Quartet(w, e, n, s), []) => {
@@ -290,8 +313,8 @@ pub fn parse_line(sender: &Sender<ZpMsg>, line: String) {
                     send(sender, ZpMsg::Bind(n, *mn));
                     send(sender, ZpMsg::Bind(s, *ms));
                 },
-                (Quartet(_, _, _, _), _) => {
-                    println!("Incorrect amount of inputs for a button set! Expected 0 or 4.");
+                (Quartet(_, _, _, _), ms) => {
+                    println!("Incorrect amount of inputs for a button set! Expected 0 or 4, got {}", ms.len());
                     return;
                 },
             }
