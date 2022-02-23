@@ -23,12 +23,10 @@ Additional modifiers:
 ## Passable
 - Deep Rock Galactic | Support tool/Resupply button switches context so manual bindings of 4/5 are required. Button for turning on ziplines also switches.
 
-## Strained
-- Resident Evil 5 | Nature of game means you can't move while aiming regardless, so despite being technically Conflicted it can work out.
-
 ## Conflicted
 - Earth Defense Force: Iron Rain | Vehicle Controls
 - Earth Defense Force: World Brothers | Vehicle Controls
+- Resident Evil 5 | Vehicle Controls
 
 ## Segregated
 - Children of Morta

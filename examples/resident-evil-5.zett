@@ -1,35 +1,43 @@
 # Resident Evil 5, with Flydigi Apex 2 in mind
-# Designed to not get in the way of normal operation of the game.
-# You can play the game with normal gamepad controls for the most part
-# and only go for the mouse when aiming a weapon.
-#
-# Designed for use with Type B or D controls
-# You'll see a frequent message when switching between mouse and controller mode
-# This can be disabled using Malus' BH5Fixes with HideInputNotification.
-# Also possible to enabled mouse laser this way.
-#
-# With steam you should unbind the triggers and rebind them to ActionL/ActionR
-# in case of QTEs needing it.
+# Use with Type D control type and D-pad item priority
+
+# Sticks
+JoyXY WASD
+Deadzone JoyXY 40
+CamXY mouse 60 # Flickstick fits really badly into this game due to capped turn rate
+
+PovXY Arrows # Commands / menus
+
+# Triggers
 TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
-BumperL Space # Knife
-ActionC R # Reload
+BumperL Q # Locate Partner
+BumperR T # Quick Knife
+ActionL X # Taunt
+ActionR M # Toggle Map
 
-ActionD !! F V A D # Hold to solve quicktimes
-PinkyLeft layer 1 # Other quicktime solvers
-layer 1
+# Buttons
+ActionA Shift # Sprint / Reload
+ActionH F # Action
+ActionB V # Partner Action
+ActionV E # Item Menu
 ActionC !! A , D # Wiggle Stick (cranking valves etc)
+ActionD !! F V A D # Hold to solve quicktimes
 
-# Press all the QTE buttons for one frame. Repeat as long as key is held.
-# Macro quicktimes
-#   Press F
-#   Press V
-#   Press A
-#   Press D
-#   Wait 1
-#   Release F
-#   Release V
-#   Release A
-#   Release D
-#   Wait 1
-# Repeatable
+# Menus
+MenuL X # Taunt
+MenuR Escape # Pause
+
+# Paddles
+PinkyLeft layer 1
+layer 1
+PovUp ScrollUp
+PovDown ScrollDown
+
+ActionH 4 # Left Weapon
+ActionB 6 # Right Weapon
+ActionV 2 # Top Weapon
+ActionA 8 # Bottom Weapon
+
+ActionC Enter # For menus
+ActionD Escape # For menus
