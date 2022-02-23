@@ -10,7 +10,7 @@ enum MacroState {
     Inert, // Not running
     Starting(usize), // About to start from index specified
     Active, // Currently running
-    Ending(usize), // About to end, cycled form index specified
+    Ending, // About to end
 }
 
 #[derive(Debug, Clone)]
@@ -106,7 +106,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                 },
                 MacroState::Active => {
                     if mc.value == 0.0 || mc.is_turbo {
-                        mc.state = MacroState::Ending(0);
+                        mc.state = MacroState::Ending;
                     }
                 },
                 _ => {},
@@ -130,7 +130,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
 
                     mc.state = MacroState::Active;
                 },
-                MacroState::Ending(idx) => {
+                MacroState::Ending => {
                     release(&sender, &mc.mappings[0..]);
                     mc.state = MacroState::Inert;
                 },
