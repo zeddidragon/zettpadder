@@ -9,7 +9,7 @@ Following is a list of games tested or reported for compability with gyro-to-mos
 - None: Game does not support controllers at all. Arguably better than Conflicted.
 
 Additional modifiers:
-- Vehicle Controls: Game somtiems features weapons or vehicles that cap your aim speed and/or smooth the input, which works poorly with flickstick. An alternative binding for traditional stick-to-mouse aiming may be required.
+- Vehicle Controls: Game somtimes features weapons or vehicles that cap your aim speed and/or smooth the input, which works poorly with flickstick. An alternative binding for traditional stick-to-mouse aiming may be required.
 
 ## Native
 - Boomerang X
