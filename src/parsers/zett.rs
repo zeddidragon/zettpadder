@@ -51,10 +51,7 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
             "!" => {
                 is_macro = true;
             },
-            "turbo" => {
-                mappings.push(Mapping::Turbo);
-            },
-            "!turbo" => {
+            "!!" => {
                 is_macro = true;
                 mappings.push(Mapping::Turbo);
             },

@@ -81,6 +81,7 @@ pub fn run(
         use ZpMsg::*;
         match msg {
             Output(event) => {
+                println!("{:?}", event);
                 send(&event);
             },
             Input(event) => {

@@ -195,13 +195,6 @@ pub fn parse_output(v: &str) -> Mapping {
         "MouseY" => Mapping::MouseY(1.0),
         "FlickX" => Mapping::FlickX,
         "FlickY" => Mapping::FlickY,
-        _ => {
-            if v.chars().nth(0) == Some('!') {
-                if let Some(released) = parse_output(&v[1..]).released() {
-                    return released
-                }
-            }
-            Noop
-        },
+        _ => { Noop },
     }
 }

@@ -9,8 +9,9 @@ const FPS: u64 = 60;  // Default loop rate
 enum MacroState {
     Inert, // Not running
     Starting(usize), // About to start from index specified
-    Active, // Currently running
-    Ending, // About to end
+    Pausing(usize, usize), // Having a break after running the range specified
+    Active(usize), // Currently running at index specified
+    Ending(usize), // About to end, cycled form index specified
 }
 
 #[derive(Debug, Clone)]
@@ -43,6 +44,9 @@ fn release(sender: &Sender<ZpMsg>, mappings: &[Mapping]) {
         match m.released() {
             Some(Mapping::Emit(ev)) => {
                 send(&sender, ZpMsg::Output(ev));
+            }, 
+            Some(Mapping::Delay) => {
+                break;
             }, 
             _ => {},
         }
@@ -104,9 +108,9 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                         continue;
                     }
                 },
-                MacroState::Active => {
+                MacroState::Active(idx) => {
                     if mc.value == 0.0 || mc.is_turbo {
-                        mc.state = MacroState::Ending;
+                        mc.state = MacroState::Ending(idx);
                     }
                 },
                 _ => {},
@@ -114,24 +118,29 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
 
             match mc.state {
                 MacroState::Starting(idx) => {
+                    if idx > 0 {
+                    }
                     for (i, m) in mc.mappings.iter().enumerate().skip(idx) {
                         match m {
                             Mapping::Emit(ev) => {
                                 send(&sender, ZpMsg::Output(*ev));
                             }, 
                             Mapping::Delay => {
-                                // release(&sender, &mc.mappings[idx..i]);
-                                mc.state = MacroState::Starting(i + 1);
+                                mc.state = MacroState::Pausing(idx, i);
                                 continue 'macros;
                             },
                             _ => {},
                         }
                     }
 
-                    mc.state = MacroState::Active;
+                    mc.state = MacroState::Active(idx);
                 },
-                MacroState::Ending => {
-                    release(&sender, &mc.mappings[0..]);
+                MacroState::Pausing(from, to) => {
+                    release(&sender, &mc.mappings[from..to]);
+                    mc.state = MacroState::Starting(to + 1);
+                },
+                MacroState::Ending(idx) => {
+                    release(&sender, &mc.mappings[idx..]);
                     mc.state = MacroState::Inert;
                 },
                 _ => {},
