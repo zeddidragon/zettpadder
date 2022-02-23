@@ -2,7 +2,13 @@ use crate::mapping::{Mapping};
 
 pub fn parse_output(v: &str) -> Mapping {
     use Mapping::{Emit, Noop};
-    use rdev::EventType::{KeyPress, ButtonPress, Wheel};
+    use rdev::EventType::{
+        KeyPress,
+        KeyRelease,
+        ButtonPress,
+        ButtonRelease,
+        Wheel,
+    };
     match v {
         "Alt" => Emit(KeyPress(rdev::Key::Alt)),
         "AltGr" => Emit(KeyPress(rdev::Key::AltGr)),
@@ -189,6 +195,13 @@ pub fn parse_output(v: &str) -> Mapping {
         "MouseY" => Mapping::MouseY(1.0),
         "FlickX" => Mapping::FlickX,
         "FlickY" => Mapping::FlickY,
-        _ => { Noop },
+        _ => {
+            if v.chars().nth(0) == Some('!') {
+                if let Some(released) = parse_output(&v[1..]).released() {
+                    return released
+                }
+            }
+            Noop
+        },
     }
 }

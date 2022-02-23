@@ -37,7 +37,7 @@ impl Smoothing<f64> {
     }
 
     pub fn clear(&mut self) {
-        for v in self.buffer.iter_mut() {
+        for v in &mut self.buffer {
             *v *= 0.0;
         }
     }

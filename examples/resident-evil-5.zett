@@ -14,7 +14,11 @@ TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
 BumperL Space # Knife
 ActionC R # Reload
-ActionD F + V # Hold to solve quicktimes
+
+ActionD ! Turbo F V A D # Hold to solve quicktimes
+PinkyLeft layer 1 # Other quicktime solvers
+layer 1
+ActionC ! Turbo A , !A , D , !D # Wiggle Stick (cranking valves etc)
 
 # Press all the QTE buttons for one frame. Repeat as long as key is held.
 # Macro quicktimes

@@ -22,8 +22,10 @@ pub enum Mapping {
     Trigger(usize),
     // Signifies the start of a macro
     Macro,
-    // Combine previous event(s) and next event(s)
-    Plus,
+    // Signifies the macro is turbo
+    Turbo, 
+    // Signifies a delay in amacro
+    Delay, 
 }
 
 impl Mapping {
@@ -42,12 +44,13 @@ impl Mapping {
             Emit(ButtonPress(btn)) => {
                 Some(Emit(ButtonRelease(btn)))
             },
-            Emit(Wheel { delta_x: _, delta_y: _ }) => {
-                None
-            },
             Layer(_) => {
                 Some(Layer(0))
             },
+            Emit(KeyRelease(_)) => { None },
+            Emit(ButtonRelease(_)) => { None },
+            Emit(Wheel { delta_x: _, delta_y: _ }) => { None },
+            Mapping::Delay => { None },
             _ => {
                 println!("Don't know how to release: {:?}", self);
                 None

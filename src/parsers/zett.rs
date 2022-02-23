@@ -48,9 +48,18 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
         if next.is_none() { break; }
         let next = next.unwrap();
         match next.to_lowercase().as_str() {
-            "+" => {
-                mappings.push(Mapping::Plus); 
+            "!" => {
                 is_macro = true;
+            },
+            "turbo" => {
+                mappings.push(Mapping::Turbo);
+            },
+            "!turbo" => {
+                is_macro = true;
+                mappings.push(Mapping::Turbo);
+            },
+            "," => {
+                mappings.push(Mapping::Delay);
             },
             "layer" => {
                 iter.next();

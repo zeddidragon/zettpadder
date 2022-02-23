@@ -61,7 +61,7 @@ pub enum ZpMsg {
     SetEcho(bool), // Echo mode, which repeats your keys back
     CreateMacro(u8), // Request to create a macro, assign to this button
     AddToMacro(Mapping), // Add Mapping to currently constructed macro
-    MacroCreated(usize), // Indication that a macro has been created
+    MacroCreated(u16, usize), // Indication that a macro has been created
 }
 
 pub fn run(
@@ -76,7 +76,6 @@ pub fn run(
     let mut keymaps: HashMap<u16, Binding> = HashMap::new();
     let mut values: HashMap<u8, f64> = HashMap::new();
     let mut released_layers = Vec::with_capacity(8);
-    let mut macro_button = 0;
 
     while let Ok(msg) = receiver.recv() {
         use ZpMsg::*;
@@ -169,6 +168,7 @@ pub fn run(
             SetWriteLayer(v) => { write_layer = v; },
             SetFps(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFps(v));
+                send_to_macro(&macro_sender, MacroMsg::SetFps(v));
             },
             SetFlickFactor(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFlickFactor(v));
@@ -186,22 +186,22 @@ pub fn run(
                 echo_mode = on;
             },
             CreateMacro(button) => {
-                macro_button = button as u16 + write_layer as u16 * 256;
-                send_to_macro(&macro_sender, MacroMsg::Create);
+                let button = button as u16 + write_layer as u16 * 256;
+                send_to_macro(&macro_sender, MacroMsg::Create(button));
             },
             AddToMacro(mapping) => {
                 send_to_macro(&macro_sender, MacroMsg::Add(mapping));
             },
-            MacroCreated(idx) => {
+            MacroCreated(button, idx) => {
                 let binding = Binding::new(Mapping::Trigger(idx));
-                keymaps.insert(macro_button, binding);
+                keymaps.insert(button, binding);
             },
         }
 
         if !released_layers.is_empty() {
             for l in &released_layers {
                 let range = (LAYER_SIZE * *l as u16)..(LAYER_SIZE * (*l as u16 + 1));
-                for (k, binding) in keymaps.iter_mut() {
+                for (k, binding) in &mut keymaps {
                     if !range.contains(k) { continue; }
                     let idx = *k as u8;
                     let prev = values.entry(idx).or_default();
@@ -214,6 +214,9 @@ pub fn run(
                         Some(Mapping::MouseY(_)) => {
                             send_to_mouse(&mouse_sender, MouserMsg::MouseY(0.0));
                         },
+                        Some(Mapping::Trigger(idx)) =>  {
+                            send_to_macro(&macro_sender, MacroMsg::Trigger(idx, 0.0));
+                        }
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
                         },
