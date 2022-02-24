@@ -13,8 +13,8 @@ TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
 BumperL Q # Locate Partner
 BumperR T # Quick Knife
-ActionL X # Taunt
-ActionR M # Toggle Map
+ActionL 1 # Item 1 (Top Left)
+ActionR 3 # Item 2 (Top Right)
 
 # Buttons
 ActionA Shift # Sprint / Reload
@@ -25,19 +25,24 @@ ActionC !! A , D # Wiggle Stick (cranking valves etc)
 ActionD !! F V A D # Hold to solve quicktimes
 
 # Menus
-MenuL X # Taunt
+MenuL M # Toggle Map
 MenuR Escape # Pause
 
 # Paddles
 PinkyLeft layer 1
 layer 1
-PovUp ScrollUp
-PovDown ScrollDown
+PovUp !! ScrollUp
+PovDown !! ScrollDown
 
 ActionH 4 # Left Weapon
 ActionB 6 # Right Weapon
 ActionV 2 # Top Weapon
 ActionA 8 # Bottom Weapon
 
+ActionL 7 # Item 7 (Bottom Left)
+ActionR 9 # Item 9 (Bottom Right)
+
 ActionC Enter # For menus
 ActionD Escape # For menus
+
+MenuL X # Taunt
