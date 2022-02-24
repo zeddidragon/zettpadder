@@ -49,6 +49,7 @@ fn send_to_cli(sender: &Sender<CliMsg>, msg: CliMsg) {
 pub enum ZpMsg {
     Output(rdev::EventType), // Perform output directly
     Input(stick::Event), // Input from controller to process mapping for
+    SetLayer(u8), // Layer used in future inputs
     SetWriteLayer(u8), // Layer used in future assignments
     SetFps(u64), // Cycle rate of main loop
     SetFlickFactor(f64), // Mouse motion of one radian
@@ -160,6 +161,7 @@ pub fn run(
                 }
             },
 
+            SetLayer(v) => { layer = v; }
             SetWriteLayer(v) => { write_layer = v; },
             SetFps(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFps(v));

@@ -54,7 +54,13 @@ fn release(sender: &Sender<ZpMsg>, mappings: &[Mapping]) {
             Some(Mapping::Delay) => {
                 break;
             }, 
-            _ => {},
+            Some(Mapping::Layer(v)) => {
+                send(&sender, ZpMsg::SetLayer(v));
+            },
+            Some(mr) => {
+                println!("Unknown release: {:?}", mr);
+            },
+            None => {},
         }
     }
 }
@@ -85,13 +91,9 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                 Add(mapping) => {
                     let idx = macros.len() - 1;
                     match mapping {
-                        Mapping::Emit(_) => {
+                        _ => {
                             macros[idx].mappings.push(mapping);
                         },
-                        Mapping::Delay => {
-                            macros[idx].mappings.push(mapping);
-                        },
-                        _ => {},
                     }
                 },
                 Trigger(idx, value) => {
@@ -134,7 +136,12 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                                 mc.state = MacroState::Pausing(idx, i);
                                 continue 'macros;
                             },
-                            _ => {},
+                            Mapping::Layer(v) => {
+                                send(&sender, ZpMsg::SetLayer(*v));
+                            },
+                            _ => {
+                                println!("Uknown input: {:?}", m);
+                            },
                         }
                     }
 
