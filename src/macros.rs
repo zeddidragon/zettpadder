@@ -4,20 +4,34 @@ use crate::zettpadder::{ZpMsg};
 use crate::mapping::{Mapping};
 
 const FPS: u64 = 60;  // Default loop rate
+const TAP_TIME: u64 = 20; // Max amount of frames considered a tap
 
 #[derive(Debug, Copy, Clone)]
 pub enum MacroType {
+    // Plays the macro,
+    // releases the buttons on release.
     Simple,
+    // Plays the macro,
+    // releases next frame,
+    // repeats while active.
     Turbo,
+    // Plays the first part of the macro,
+    // releases on release.
+    // If released quickly enough, also plays the second part.
+    HoldTap,
+    // Plays the first part of the macro if released quickly.
+    // Plays the second part if held beyond treshold.
+    // TapHold,
 }
 
 #[derive(Debug, Copy, Clone)]
 enum MacroState {
     Inert, // Not running
-    Starting(usize), // About to start from index specified
-    Pausing(usize, usize), // Having a break after running the range specified
-    Active(usize), // Currently running at index specified
-    Ending(usize), // About to end, cycled form index specified
+    Starting(usize), // About to start from index $1
+    Pausing(usize, usize), // Having a break after running the range $1..$2
+    Holding(usize, u64), // Having a break for $2 frames, stopped on index $1
+    Active(usize), // Currently running at index $1
+    Ending(usize), // About to end, cycled from index $1
 }
 
 #[derive(Debug, Clone)]
@@ -69,6 +83,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
     let mut tick_time = Duration::from_nanos(1_000_000_000 / FPS);
     let mut ticker = tick(tick_time);
     let mut macros = Vec::new();
+    let mut tap_time = TAP_TIME;
 
     loop {
         while let Ok(msg) = receiver.try_recv() {
@@ -117,7 +132,19 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                     if let MacroType::Turbo = mc.macro_type {
                         mc.state = MacroState::Ending(idx);
                     } else if mc.value == 0.0 {
-                        mc.state = MacroState::Ending(idx);
+                        mc.state = MacroState::Ending(idx)
+                    }
+                },
+                MacroState::Holding(_, 0) => {
+                    if mc.value == 0.0 {
+                        mc.state = MacroState::Ending(0);
+                    }
+                },
+                MacroState::Holding(idx, n) => {
+                    if mc.value == 0.0 {
+                        mc.state = MacroState::Pausing(0, idx);
+                    } else {
+                        mc.state = MacroState::Holding(idx, n - 1);
                     }
                 },
                 _ => {},
@@ -133,7 +160,15 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                                 send(&sender, ZpMsg::Output(*ev));
                             }, 
                             Mapping::Delay => {
-                                mc.state = MacroState::Pausing(idx, i);
+                                mc.state =
+                                    match mc.macro_type {
+                                        MacroType::HoldTap => {
+                                            MacroState::Holding(idx, tap_time)
+                                        },
+                                        _ => {
+                                            MacroState::Pausing(idx, i)
+                                        },
+                                    };
                                 continue 'macros;
                             },
                             Mapping::Layer(v) => {

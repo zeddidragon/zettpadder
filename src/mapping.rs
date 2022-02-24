@@ -57,7 +57,9 @@ impl Mapping {
             MouseY(_) => {
                 Some(MouseY(0.0))
             },
-            Mapping::Delay => { None },
+            Mapping::Delay => {
+                Some(Mapping::Delay)
+            },
             _ => {
                 println!("Don't know how to release: {:?}", self);
                 None

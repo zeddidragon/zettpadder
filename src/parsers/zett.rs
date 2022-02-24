@@ -67,6 +67,15 @@ fn parse_outputs(
             "!!" => {
                 opts.macro_type = Some(MacroType::Turbo);
             },
+            "!Turbo" => {
+                opts.macro_type = Some(MacroType::Turbo);
+            },
+            "!." => {
+                opts.macro_type = Some(MacroType::HoldTap);
+            },
+            "!HoldTap" => {
+                opts.macro_type = Some(MacroType::HoldTap);
+            },
             "," => {
                 mappings.push(Mapping::Delay);
             },
