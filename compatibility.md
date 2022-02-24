@@ -34,4 +34,5 @@ Additional modifiers:
 - World War Z: Aftermath
 
 ## None
+- Cruelty Squad
 - SWAT 4
