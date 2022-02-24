@@ -122,7 +122,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
         'macros : for mc in &mut macros {
             match mc.state {
                 MacroState::Inert => {
-                    if mc.value > 0.0 {
+                    if mc.value.abs() > 0.0 {
                         mc.state = MacroState::Starting(0);
                     } else {
                         continue;
@@ -157,7 +157,21 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                     for (i, m) in mc.mappings.iter().enumerate().skip(idx) {
                         match m {
                             Mapping::Emit(ev) => {
-                                send(&sender, ZpMsg::Output(*ev));
+                                let ev =
+                                    match ev {
+                                        rdev::EventType::Wheel {
+                                            delta_x,
+                                            delta_y,
+                                        } => {
+                                            let y = (*delta_y as f64) * mc.value;
+                                            rdev::EventType::Wheel {
+                                                delta_x: *delta_x,
+                                                delta_y: y as i64,
+                                            }
+                                        },
+                                        _ => { *ev },
+                                    };
+                                send(&sender, ZpMsg::Output(ev));
                             }, 
                             Mapping::Delay => {
                                 mc.state =

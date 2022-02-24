@@ -54,7 +54,7 @@ fn parse_outputs(
     mappings: &mut Vec<Mapping>,
 ) -> ZettOpts {
     use Mapping::{Emit, Noop};
-    use rdev::EventType::{KeyPress};
+    use rdev::EventType::{KeyPress, Wheel};
     let mut opts = ZettOpts::default();
     loop {
         let next = iter.peek();
@@ -78,6 +78,10 @@ fn parse_outputs(
             },
             "," => {
                 mappings.push(Mapping::Delay);
+            },
+            "scrolly" => {
+                opts.macro_type = Some(MacroType::Turbo);
+                mappings.push(Emit(Wheel { delta_x: 0, delta_y: -5 }));
             },
             "layer" => {
                 iter.next();
