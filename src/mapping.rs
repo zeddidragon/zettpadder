@@ -10,8 +10,8 @@ pub enum Mapping {
     MouseX(f64),
     MouseY(f64),
     // Flick Stick. Used to turn towards your stick direction.
-    FlickX,
-    FlickY,
+    FlickX(f64),
+    FlickY(f64),
     // For axes.
     // Negative values on the axis emits the first event.
     // Positive values emit the second event instead.
@@ -20,17 +20,18 @@ pub enum Mapping {
     Layer(u8),
     // Send value to macro with specified ID
     Trigger(usize),
-    // Signifies the start of a macro
-    Macro,
-    // Signifies the macro is turbo
-    Turbo, 
     // Signifies a delay in amacro
     Delay, 
 }
 
 impl Mapping {
     pub fn released(self) -> Option<Mapping> {
-        use Mapping::{Emit, Layer};
+        use Mapping::{
+            Emit,
+            Layer,
+            MouseX,
+            MouseY,
+        };
         use rdev::EventType::{
             KeyPress,
             KeyRelease,
@@ -50,6 +51,12 @@ impl Mapping {
             Emit(KeyRelease(_)) => { None },
             Emit(ButtonRelease(_)) => { None },
             Emit(Wheel { delta_x: _, delta_y: _ }) => { None },
+            MouseX(_) => {
+                Some(MouseX(0.0))
+            },
+            MouseY(_) => {
+                Some(MouseY(0.0))
+            },
             Mapping::Delay => { None },
             _ => {
                 println!("Don't know how to release: {:?}", self);

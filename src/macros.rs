@@ -6,6 +6,12 @@ use crate::mapping::{Mapping};
 const FPS: u64 = 60;  // Default loop rate
 
 #[derive(Debug, Copy, Clone)]
+pub enum MacroType {
+    Simple,
+    Turbo,
+}
+
+#[derive(Debug, Copy, Clone)]
 enum MacroState {
     Inert, // Not running
     Starting(usize), // About to start from index specified
@@ -17,7 +23,7 @@ enum MacroState {
 #[derive(Debug, Clone)]
 pub struct Macro {
     value: f64,
-    is_turbo: bool,
+    macro_type: MacroType,
     state: MacroState,
     mappings: Vec<Mapping>,
 }
@@ -34,7 +40,7 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
 #[derive(Debug, Copy, Clone)]
 pub enum MacroMsg {
     SetFps(u64), // Set framerate for turbo purposes etcc
-    Create(u16), // Create Macro, button for being passed back
+    Create(u16, MacroType), // Create Macro, button for being passed back
     Add(Mapping), // Add mapping to macro being constructed
     Trigger(usize, f64), // Trigger macro with supplied ID
 }
@@ -66,11 +72,11 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                     tick_time = Duration::from_nanos(1_000_000_000 / v);
                     ticker = tick(tick_time);
                 },
-                Create(reference) => {
+                Create(reference, macro_type) => {
                     let idx = macros.len();
                     macros.push(Macro {
                         value: 0.0,
-                        is_turbo: false,
+                        macro_type: macro_type,
                         state: MacroState::Inert,
                         mappings: Vec::new(),
                     });
@@ -84,9 +90,6 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                         },
                         Mapping::Delay => {
                             macros[idx].mappings.push(mapping);
-                        },
-                        Mapping::Turbo => {
-                            macros[idx].is_turbo = true;
                         },
                         _ => {},
                     }
@@ -109,7 +112,9 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                     }
                 },
                 MacroState::Active(idx) => {
-                    if mc.value == 0.0 || mc.is_turbo {
+                    if let MacroType::Turbo = mc.macro_type {
+                        mc.state = MacroState::Ending(idx);
+                    } else if mc.value == 0.0 {
                         mc.state = MacroState::Ending(idx);
                     }
                 },

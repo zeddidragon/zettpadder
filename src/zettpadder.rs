@@ -4,7 +4,7 @@ use crossbeam_channel::{Sender, Receiver};
 use std::collections::{HashMap};
 use crate::mapping::{Binding, Mapping};
 use crate::mouser::{MouserMsg};
-use crate::macros::{MacroMsg};
+use crate::macros::{MacroMsg, MacroType};
 use crate::cli::{CliMsg};
 
 const LAYER_SIZE: u16 = 256;
@@ -53,13 +53,13 @@ pub enum ZpMsg {
     SetFps(u64), // Cycle rate of main loop
     SetFlickFactor(f64), // Mouse motion of one radian
     SetFlickTime(u64), // Duration of a flick
-    SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
+    SetFlickDeadzone(f64), // Deadzone before performing a flick
     Bind(u8, Mapping), // Bind output to button
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
     GetFlickCalibration(f64), // Display data to help calibrate flick factor
     SetEcho(bool), // Echo mode, which repeats your keys back
-    CreateMacro(u8), // Request to create a macro, assign to this button
+    CreateMacro(u8, MacroType), // Request to create a macro, assign to this button
     AddToMacro(Mapping), // Add Mapping to currently constructed macro
     MacroCreated(u16, usize), // Indication that a macro has been created
 }
@@ -118,11 +118,11 @@ pub fn run(
                         Some(Mapping::MouseY(v)) => {
                             send_to_mouse(&mouse_sender, MouserMsg::MouseY(v * value));
                         },
-                        Some(Mapping::FlickX) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::FlickX(value));
+                        Some(Mapping::FlickX(v)) => {
+                            send_to_mouse(&mouse_sender, MouserMsg::FlickX(v * value));
                         },
-                        Some(Mapping::FlickY) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::FlickY(value));
+                        Some(Mapping::FlickY(v)) => {
+                            send_to_mouse(&mouse_sender, MouserMsg::FlickY(v * value));
                         },
                         Some(Mapping::Emit(ev)) => {
                             send(&ev);
@@ -140,12 +140,7 @@ pub fn run(
             },
             Bind(button, mapping) => {
                 let idx = button as u16 + write_layer as u16 * 256;
-                let mut binding = Binding::new(mapping);
-                match mapping {
-                    Mapping::FlickX => { binding.deadzone_on = Some(0.0); },
-                    Mapping::FlickY => { binding.deadzone_on = Some(0.0); },
-                    _ => {},
-                }
+                let binding = Binding::new(mapping);
                 keymaps.insert(idx, binding);
             },
             SetDeadzoneOn(button, v) => {
@@ -185,9 +180,9 @@ pub fn run(
             SetEcho(on) => {
                 echo_mode = on;
             },
-            CreateMacro(button) => {
+            CreateMacro(button, macro_type) => {
                 let button = button as u16 + write_layer as u16 * 256;
-                send_to_macro(&macro_sender, MacroMsg::Create(button));
+                send_to_macro(&macro_sender, MacroMsg::Create(button, macro_type));
             },
             AddToMacro(mapping) => {
                 send_to_macro(&macro_sender, MacroMsg::Add(mapping));

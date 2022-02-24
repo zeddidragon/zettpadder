@@ -1,7 +1,6 @@
 # Children of Morta, with Flydigi Apex 2 in mind
 # Joy for some movement
-JoyXY WASD # Move with joy
-deadzone JoyXY 40
+JoyXY WASD deadzone 40 # Move with joy
 PovXY WASD # And dpad
 
 # Triggers

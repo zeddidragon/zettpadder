@@ -193,8 +193,8 @@ pub fn parse_output(v: &str) -> Mapping {
         "ScrollDown" => Emit(Wheel { delta_x: 0, delta_y: -1 }),
         "MouseX" => Mapping::MouseX(1.0),
         "MouseY" => Mapping::MouseY(1.0),
-        "FlickX" => Mapping::FlickX,
-        "FlickY" => Mapping::FlickY,
+        "FlickX" => Mapping::FlickX(1.0),
+        "FlickY" => Mapping::FlickY(1.0),
         _ => { Noop },
     }
 }

@@ -3,8 +3,9 @@ use std::io::{self, BufRead};
 use std::slice::Iter;
 use std::iter::Peekable;
 use crossbeam_channel::{Sender, Receiver};
-use crate::mapping::{Mapping};
 use crate::zettpadder::{ZpMsg};
+use crate::mapping::{Mapping};
+use crate::macros::{MacroType};
 use crate::cli::{CliMsg};
 use super::inputs::{parse_input, ZettInput};
 use super::outputs::{parse_output};
@@ -39,21 +40,32 @@ pub fn parse(
     send(sender, ZpMsg::SetEcho(false));
 }
 
-fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
+#[derive(Default)]
+struct ZettOpts {
+    deadzone_on: Option<f64>,
+    deadzone_off: Option<f64>,
+    macro_type: Option<MacroType>,
+    flick_factor: Option<f64>,
+    is_flick: bool,
+}
+ 
+fn parse_outputs(
+    iter: &mut Peekable<Iter<&str>>,
+    mappings: &mut Vec<Mapping>,
+) -> ZettOpts {
     use Mapping::{Emit, Noop};
     use rdev::EventType::{KeyPress};
-    let mut is_macro = false;
+    let mut opts = ZettOpts::default();
     loop {
         let next = iter.peek();
         if next.is_none() { break; }
         let next = next.unwrap();
         match next.to_lowercase().as_str() {
             "!" => {
-                is_macro = true;
+                opts.macro_type = Some(MacroType::Simple);
             },
             "!!" => {
-                is_macro = true;
-                mappings.push(Mapping::Turbo);
+                opts.macro_type = Some(MacroType::Turbo);
             },
             "," => {
                 mappings.push(Mapping::Delay);
@@ -104,14 +116,38 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
                 continue; // Continue manually 'cause we next-ed
             },
             "flick" => {
-                mappings.push(Mapping::FlickX);
-                mappings.push(Mapping::FlickY);
+                iter.next();
+                opts.is_flick = true;
+                let arg1 = iter.peek().map(|v| v.parse::<f64>());
+                if let Some(Ok(v)) = arg1 {
+                    opts.flick_factor = Some(v);
+                    iter.next();
+                }
+                mappings.push(Mapping::FlickX(1.0));
+                mappings.push(Mapping::FlickY(1.0));
+                continue; // Continue manually 'cause we next-ed
+            },
+            "deadzone" => {
+                iter.next();
+                let arg1 = iter.next().map(|v| v.parse::<f64>());
+                let arg2 = iter.peek().map(|v| v.parse::<f64>());
+                if let Some(Ok(dz)) = arg1 {
+                    opts.deadzone_on = Some(dz);
+                } else {
+                    println!("Urecognized deadzone value: {:?}", arg1);
+                }
+
+                if let Some(Ok(dz)) = arg2 {
+                    opts.deadzone_off = Some(dz);
+                    iter.next();
+                }
+                continue; // Continue manually 'cause we next-ed
             },
             _ => {
                 match parse_output(next) {
                     Noop => {
                         println!("Unable to understand mapping: {}", next);
-                        return;
+                        return opts;
                     },
                     mapping => {
                         mappings.push(mapping);
@@ -121,9 +157,7 @@ fn parse_outputs(iter: &mut Peekable<Iter<&str>>, mappings: &mut Vec<Mapping>) {
         }
         iter.next();
     }
-    if is_macro {
-        mappings.insert(0, Mapping::Macro);
-    }
+    opts
 }
 
 pub fn parse_line(
@@ -172,7 +206,7 @@ pub fn parse_line(
             if let Some(Ok(v)) = arg1 {
                 send(sender, ZpMsg::SetFlickDeadzone(v));
             } else {
-                println!("Usage: flickfactor <n>");
+                println!("Usage flickdeadzone <n>");
             }
         },
         "deadzone" => {
@@ -249,80 +283,144 @@ pub fn parse_line(
             };
             let input = input.unwrap();
             let mut mappings = Vec::new();
-            parse_outputs(&mut iter, &mut mappings);
+            let opts = parse_outputs(&mut iter, &mut mappings);
 
             use ZettInput::*;
             use Mapping::{Noop, Emit, NegPos};
 
-            match (input, &mappings[..]) {
-                (Single(button), []) => {
+            match (input, &mappings[..], &opts) {
+                (Single(button), [], _) => {
                     send(sender, ZpMsg::Bind(button, Noop));
                 },
-                (Single(button), [Mapping::Macro, ..]) => {
-                    send(sender, ZpMsg::CreateMacro(button));
-                    for m in mappings.iter().skip(1) {
+                (Single(button), mappings, ZettOpts {
+                    macro_type: Some(macro_type),
+                .. }) => {
+                    send(sender, ZpMsg::CreateMacro(button, *macro_type));
+                    for m in mappings {
                         send(sender, ZpMsg::AddToMacro(*m));
                     }
                 }
-                (Single(button), [mapping]) => {
+                (Single(button), [mapping], _) => {
                     send(sender, ZpMsg::Bind(button, *mapping));
                 },
-                (Single(_), ms) => {
+                (Single(_), ms, _) => {
                     println!("Too many outputs for one input! Expected 0 or 1, got {}", ms.len());
                     return;
                 },
-                (Axis(axis), []) => {
+                (Axis(axis), [], _) => {
                     send(sender, ZpMsg::Bind(axis, Noop));
                 },
-                (Axis(axis), [mapping]) => {
+                (Axis(axis), mappings, ZettOpts {
+                    macro_type: Some(macro_type),
+                .. }) => {
+                    send(sender, ZpMsg::CreateMacro(axis, *macro_type));
+                    for m in mappings {
+                        send(sender, ZpMsg::AddToMacro(*m));
+                    }
+                }
+                (Axis(axis), [mapping], _) => {
                     send(sender, ZpMsg::Bind(axis, *mapping));
                 },
-                (Axis(axis), [Emit(eneg), Emit(epos)]) => {
+                (Axis(axis), [Emit(eneg), Emit(epos)], _) => {
                     let mapping = NegPos(*eneg, *epos);
                     send(sender, ZpMsg::Bind(axis, mapping));
                 },
-                (Axis(_), ms) => {
+                (Axis(_), ms, _) => {
                     println!("Too many outputs for one axis! Expected 0, 1, or 2, got {}", ms.len());
                     return;
                 },
-                (Coords(ax, ay), []) => {
+                (Coords(ax, ay), [], _) => {
                     send(sender, ZpMsg::Bind(ax, Noop));
                     send(sender, ZpMsg::Bind(ay, Noop));
                 },
-                (Coords(ax, ay), [mx, my]) => {
+                (Coords(ax, ay), [mx, my], _) => {
                     send(sender, ZpMsg::Bind(ax, *mx));
                     send(sender, ZpMsg::Bind(ay, *my));
                 },
                 (Coords(ax, ay), [
                         Emit(exneg), Emit(expos),
                         Emit(eyneg), Emit(eypos),
-                ]) => {
+                ], _) => {
                     let mx = NegPos(*exneg, *expos);
                     let my = NegPos(*eyneg, *eypos);
                     send(sender, ZpMsg::Bind(ax, mx));
                     send(sender, ZpMsg::Bind(ay, my));
                 },
-                (Coords(_, _), ms) => {
+                (Coords(_, _), ms, _) => {
                     println!("Incorrect amount of inputs for one axis pair! Expected 0, 2, or 4, got {}", ms.len());
                     return;
                 },
-                (Quartet(w, e, n, s), []) => {
+                (Quartet(w, e, n, s), [], _) => {
                     send(sender, ZpMsg::Bind(w, Noop));
                     send(sender, ZpMsg::Bind(e, Noop));
                     send(sender, ZpMsg::Bind(n, Noop));
                     send(sender, ZpMsg::Bind(s, Noop));
                 },
                 // Todo: Quartet -> Axis
-                (Quartet(w, e, n, s), [mw, me, mn, ms]) => {
+                (Quartet(w, e, n, s), [mw, me, mn, ms], _) => {
                     send(sender, ZpMsg::Bind(w, *mw));
                     send(sender, ZpMsg::Bind(e, *me));
                     send(sender, ZpMsg::Bind(n, *mn));
                     send(sender, ZpMsg::Bind(s, *ms));
                 },
-                (Quartet(_, _, _, _), ms) => {
+                (Quartet(_, _, _, _), ms, _) => {
                     println!("Incorrect amount of inputs for a button set! Expected 0 or 4, got {}", ms.len());
                     return;
                 },
+            }
+
+            if opts.is_flick {
+                if let ZettOpts { flick_factor: Some(v), .. } = &opts {
+                    send(sender, ZpMsg::SetFlickFactor(*v));
+                }
+
+                if let ZettOpts { deadzone_on: Some(dz), .. } = &opts {
+                    send(sender, ZpMsg::SetFlickDeadzone(*dz));
+                }
+                return;
+            }
+
+            // Post-assignment configuration
+            if let ZettOpts { deadzone_on: Some(dz), .. } = &opts {
+                match input {
+                    Single(trigger) => {
+                        send(sender, ZpMsg::SetDeadzoneOn(trigger, *dz));
+                    },
+                    Axis(axis) => {
+                        send(sender, ZpMsg::SetDeadzoneOn(axis, *dz));
+                    },
+                    Coords(ax, ay) => {
+                        send(sender, ZpMsg::SetDeadzoneOn(ax, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOn(ay, *dz));
+                    },
+                    Quartet(w, e, n, s) => {
+                        send(sender, ZpMsg::SetDeadzoneOn(w, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOn(e, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOn(n, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOn(s, *dz));
+                    },
+                }
+            }
+
+            if let ZettOpts { deadzone_off: Some(dz), .. } = &opts {
+                match input {
+                    Single(trigger) => {
+                        send(sender, ZpMsg::SetDeadzoneOff(trigger, *dz));
+                    },
+                    Axis(axis) => {
+                        send(sender, ZpMsg::SetDeadzoneOff(axis, *dz));
+                    },
+                    Coords(ax, ay) => {
+                        send(sender, ZpMsg::SetDeadzoneOff(ax, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOff(ay, *dz));
+                    },
+                    Quartet(w, e, n, s) => {
+                        send(sender, ZpMsg::SetDeadzoneOff(w, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOff(e, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOff(n, *dz));
+                        send(sender, ZpMsg::SetDeadzoneOff(s, *dz));
+                    },
+                }
             }
         }
     }

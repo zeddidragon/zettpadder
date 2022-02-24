@@ -2,8 +2,7 @@
 # You can copy this template and then probably move a few things around.
 
 # Movement
-JoyXY WASD 
-Deadzone JoyXY 40
+JoyXY WASD deadzone 40
 Joy Shift # Sprint
 
 CamXY flick # Right Stick for turning

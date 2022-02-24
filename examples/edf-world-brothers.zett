@@ -1,9 +1,6 @@
 # Earth Defense Force World Brothers, with Flydigi Apex 2 in mind
-JoyXY wasd # Strafe
-deadzone JoyXY 40
-CamXY flick # Turn
-flickfactor 960 # Mouse units to move 180
-flickdeadzone 70
+JoyXY wasd deadzone 40 # Strafe
+CamXY flick 960 deadzone 70 # Turn
 
 # Triggers
 TriggerR M1 # Fire

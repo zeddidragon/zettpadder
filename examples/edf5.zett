@@ -1,8 +1,7 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
 # Some of these get funky with fencer and vehicles, consider rebinding in-game
-JoyXY WASD
-deadzone JoyXY 40
-CamXY flick # Turn with right stick
+JoyXY WASD deadzone 40
+CamXY flick deadzone 70 # Turn with right stick
 flickfactor 2400
 flicktime 200
 

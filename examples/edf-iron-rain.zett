@@ -1,9 +1,7 @@
 # Earth Defense Force: Iron Rain, with Flydigi Apex 2 in mind
-JoyXY wasd # Strafe
-deadzone JoyXY 40
+JoyXY wasd deadzone 40 # Strafe
 CamXY flick # Turn
 flickfactor 1070 # Mouse units to move 180
-flickdeadzone 70
 
 # Triggers
 TriggerR M1 # Fire

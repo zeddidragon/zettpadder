@@ -1,8 +1,6 @@
 # Mount & Blade: Warband, with Flydigi Apex 2 in mind.
 
-JoyXY WASD # Movement
-Deadzone JoyXY 40
-
+JoyXY WASD deadzone 40 # Movement
 CamXY flick # Right Stick for turning
 flickFactor 1470 # Mouse units for one radian
 
