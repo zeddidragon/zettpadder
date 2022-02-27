@@ -1,4 +1,3 @@
-// use rdev::xtask::name_to_hex;
 use std::thread;
 use std::env;
 use std::path::Path;
