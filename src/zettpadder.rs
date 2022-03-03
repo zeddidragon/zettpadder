@@ -1,11 +1,11 @@
 use rdev;
 use stick;
-use crossbeam_channel::{Sender, Receiver};
 use std::collections::{HashMap};
+use crossbeam_channel::{Sender, Receiver};
 use crate::mapping::{Binding, Mapping};
 use crate::mouser::{MouserMsg};
 use crate::macros::{MacroMsg, MacroType};
-use crate::cli::{CliMsg};
+use crate::overlay::{OverlayMsg};
 
 const LAYER_SIZE: u16 = 256;
 
@@ -36,10 +36,10 @@ fn send_to_macro(sender: &Sender<MacroMsg>, msg: MacroMsg) {
     };
 }
 
-fn send_to_cli(sender: &Sender<CliMsg>, msg: CliMsg) {
+fn send_to_overlay(sender: &Sender<OverlayMsg>, msg: OverlayMsg) {
     match sender.send(msg) {
         Err(err) => {
-            println!("Unable to send to cli: {:?}\n{:?}", msg, err);
+            println!("Unable to send to overlay: {:?}\n{:?}", msg, err);
         },
         _ => {},
     };
@@ -47,6 +47,7 @@ fn send_to_cli(sender: &Sender<CliMsg>, msg: CliMsg) {
 
 #[derive(Debug, Copy, Clone)]
 pub enum ZpMsg {
+    Exit, // Stop the program
     Output(rdev::EventType), // Perform output directly
     Input(stick::Event), // Input from controller to process mapping for
     SetLayer(u8), // Layer used in future inputs
@@ -63,13 +64,14 @@ pub enum ZpMsg {
     CreateMacro(u8, MacroType), // Request to create a macro, assign to this button
     AddToMacro(Mapping), // Add Mapping to currently constructed macro
     MacroCreated(u16, usize), // Indication that a macro has been created
+    SpawnOverlay,
 }
 
 pub fn run(
     receiver: Receiver<ZpMsg>,
-    cli_sender: Sender<CliMsg>,
     mouse_sender: Sender<MouserMsg>,
     macro_sender: Sender<MacroMsg>,
+    overlay_sender: Sender<OverlayMsg>,
 ) {
     let mut echo_mode = true;
     let mut layer = 0;
@@ -77,10 +79,14 @@ pub fn run(
     let mut keymaps: HashMap<u16, Binding> = HashMap::new();
     let mut values: HashMap<u8, f64> = HashMap::new();
     let mut released_layers = Vec::with_capacity(8);
+    let mut overlay_spawned = false;
 
     while let Ok(msg) = receiver.recv() {
         use ZpMsg::*;
         match msg {
+            Exit => {
+                send_to_overlay(&overlay_sender, OverlayMsg::Exit);
+            },
             Output(event) => {
                 send(&event);
             },
@@ -192,6 +198,9 @@ pub fn run(
             MacroCreated(button, idx) => {
                 let binding = Binding::new(Mapping::Trigger(idx));
                 keymaps.insert(button, binding);
+            },
+            SpawnOverlay => {
+                send_to_overlay(&overlay_sender, OverlayMsg::Spawn);
             },
         }
 

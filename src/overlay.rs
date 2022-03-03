@@ -18,8 +18,26 @@ use vulkano_win::VkSurfaceBuild;
 use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ControlFlow, EventLoop};
 use winit::window::{Window, WindowBuilder};
+use crossbeam_channel::{tick, Receiver};
 
-fn main() {
+#[derive(Debug, Copy, Clone)]
+pub enum OverlayMsg {
+    Spawn,
+    Exit,
+}
+
+pub fn run(receiver: Receiver<OverlayMsg>) {
+    use OverlayMsg::*;
+    while let Ok(msg) = receiver.recv() {
+        match msg {
+            Spawn => { break; },
+            Exit => { return; }
+            _ => {
+                println!("Overlay not yet spawned!");
+            },
+        }
+    }
+
     let required_extensions = vulkano_win::required_extensions();
     let instance = Instance::new(None, Version::V1_1, &required_extensions, None).unwrap();
     let event_loop = EventLoop::new();

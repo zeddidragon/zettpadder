@@ -64,3 +64,11 @@ impl ControllerPoller {
             .await;
     }
 }
+
+async fn event_loop(sender: Sender<ZpMsg>) {
+    ControllerPoller::new(sender).run().await;
+}
+
+pub fn run(sender: Sender<ZpMsg>) {
+    pasts::block_on(event_loop(sender));
+}

@@ -2,11 +2,10 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::slice::Iter;
 use std::iter::Peekable;
-use crossbeam_channel::{Sender, Receiver};
+use crossbeam_channel::{Sender};
 use crate::zettpadder::{ZpMsg};
 use crate::mapping::{Mapping};
 use crate::macros::{MacroType};
-use crate::cli::{CliMsg};
 use super::inputs::{parse_input, ZettInput};
 use super::outputs::{parse_output};
 
@@ -22,7 +21,6 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
 
 pub fn parse(
     sender: &Sender<ZpMsg>,
-    receiver: &Receiver<CliMsg>,
     filename: &String,
 ) {
     let file = File::open(filename).unwrap();
@@ -32,7 +30,7 @@ pub fn parse(
             println!("Error parsing zett: {:?}", err);
             continue;
         }
-        parse_line(sender, receiver, line.unwrap());
+        parse_line(sender, line.unwrap());
     }
     // Reset write layer so next input can start fresh
     send(sender, ZpMsg::SetWriteLayer(0));
@@ -175,7 +173,6 @@ fn parse_outputs(
 
 pub fn parse_line(
     sender: &Sender<ZpMsg>,
-    receiver: &Receiver<CliMsg>,
     line: String,
 ) {
     let tokens = line
@@ -287,6 +284,12 @@ pub fn parse_line(
                     println!("Usage: layer <n>");
                 },
             }
+        },
+        "overlay" => {
+            send(sender, ZpMsg::SpawnOverlay);
+        },
+        "exit" => {
+            send(sender, ZpMsg::Exit);
         },
         _ => {
             let input = parse_input(&cmd.to_string());
