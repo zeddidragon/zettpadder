@@ -3,10 +3,19 @@ CamXY flick # Right Stick for turning (disable stick with steam input)
 flickfactor 1400
 flicktime 200
 
-# Left stick, triggers, and bumpers left to native input
+# Unmap everything except Left Stick and L1
+
+# Map zoom
+PovLeft Tab # Map
+PovUp !! ScrollUp # Zoom Map In
+PovDown !! ScrollDown # Zoom Map Out
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
+TriggerR M1 # Fire
+TriggerL M2 # Pickaxe
 ActionR E # Interact
+ActionL Shift # Sprint
+BumperR G # Grenade
 
 ActionA Space # Jump
 ActionB F # Flare/Flashlight
