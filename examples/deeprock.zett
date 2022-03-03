@@ -1,11 +1,18 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
 CamXY flick # Right Stick for turning (disable stick with steam input)
-flickfactor 1750
+flickfactor 1400
 flicktime 200
+
+# Left stick, triggers, and bumpers left to native input
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 ActionR E # Interact
+
+ActionA Space # Jump
+ActionB F # Flare/Flashlight
 ActionH R # Reload
+ActionV C # Call M.U.L.E.
+
 ActionC 5 # Resupply
 ActionD V # ROCK AND STONE
 
@@ -16,3 +23,6 @@ ActionH 1 # Primary
 ActionB 2 # Secondary
 ActionV 3 # Mobilitty
 ActionA 4 # Utility
+
+ActionC Enter # OK (Menus)
+ActionD Escape # Back (Menus)

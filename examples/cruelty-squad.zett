@@ -18,7 +18,7 @@ ActionV M2 # Reload
 ActionA Space # Jump
 ActionB 2 # Secondary Weapon
 
-ActionWheelXY Mouse 100 # Used to reload mostly
+ActionWheelXY Mouse 300 # Used to reload mostly
 
 ActionC Enter # OK
 ActionD Escape # Cancel

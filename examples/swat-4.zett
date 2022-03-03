@@ -1,7 +1,10 @@
 # Swat 4 Elite Force, with Flydigi Apex 2 in mind
 # Sticks + Dpad
-PovXY WASD  # Move with D-pad
-JoyX Q E # Lean left or right
+JoyX A D deadzone 60
+JoyY W S deadzone 40
+PovLeft Q # Lean Left
+PovRight E # Lean Right
+
 CamXY flick # Turn with right stick
 flickfactor 900
 
