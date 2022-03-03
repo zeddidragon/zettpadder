@@ -3,12 +3,13 @@ CamXY flick # Right Stick for turning (disable stick with steam input)
 flickfactor 1400
 flicktime 200
 
-# Unmap everything except Left Stick and L1
+# Unmap everything except Left Stick
 
 # Map zoom
 PovLeft Tab # Map
 PovUp !! ScrollUp # Zoom Map In
 PovDown !! ScrollDown # Zoom Map Out
+PovRight X # Shout
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire
@@ -16,6 +17,7 @@ TriggerL M2 # Pickaxe
 ActionR E # Interact
 ActionL Shift # Sprint
 BumperR G # Grenade
+BumperL Ctrl # Laser Pointer
 
 ActionA Space # Jump
 ActionB F # Flare/Flashlight
@@ -24,6 +26,10 @@ ActionV C # Call M.U.L.E.
 
 ActionC 5 # Resupply
 ActionD V # ROCK AND STONE
+
+# Menus stuff
+MenuR Escape # Pause
+MenuL Tab # Map
 
 # Alternate weapon selection so you can keep moving
 PinkyLeft layer 1 # Weapons
