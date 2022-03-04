@@ -26,7 +26,7 @@ MenuL Tab # Map
 MenuR Escape # Pause
 
 # Arrow keys for various submenus
-PovXY M O T B
+PovXY Arrows
 
 # Underside for miscellaneous actions
 PaddleLeft Ctrl # Sneak
