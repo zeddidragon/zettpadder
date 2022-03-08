@@ -1,9 +1,15 @@
 # Generic 3D Shooter controls, with Flydigi Apex 2 in mind.
 # You can copy this template and then probably move a few things around.
+# The template is nonsense on its own, with some bindings being overwritten.
+# Mix-and-match.
+
 # Movement
 JoyXY WASD deadzone 40
 CamXY flick # Right Stick for turning
-flickFactor 1560 # Mouse units for one radian
+flickFactor 1200 # Mouse units for one radian
+
+PaddleLeft Q # Lean Left
+PaddleRight E # Lean Right
 
 # Typical rear trigger actions for applying yourself to what you're aiming at
 TriggerR M1 # Fire
@@ -25,8 +31,17 @@ ActionD V # Switch shoulders
 MenuL Tab # Map
 MenuR Escape # Pause
 
-# Arrow keys for various submenus
-PovXY Arrows
+# Some d-pad uses
+PovXY 1 2 3 4 # Weapons / Items (Left -> Right -> Up -> Down)
+PovXY 4 2 1 3 # Weapons / Items (Clockwise)
+PovXY Q M O B # Various submenus (Quest, Missions, Objectives, Board)
+PovXY Arrows # Navigating menus
+
+# Zoom in / out, open map
+PovUp !! ScrollUp
+PovDown !! ScrollDown
+PovLeft Tab
+PovRight M
 
 # Underside for miscellaneous actions
 PaddleLeft Ctrl # Sneak
@@ -35,18 +50,24 @@ PinkyLeft Layer1 # Weapons
 PinkyRight Layer2 # More Weapons
 
 layer 1 # Weapons
-ActionH 1 # Primary
-ActionB 2 # Secondary
-ActionV 3 # Tool
-ActionA 4 # Support
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Weapon / Item 1
+ActionV 2 # Weapon / Item 4
+ActionA 3 # Weapon / Item 2
+ActionB 4 # Weapon / Item 3
+ActionC 5 # Weapon / Item 5
+ActionD 6 # Weapon / Item 6
 
-ActionC Enter # OK
-ActionD Escape # Cancel
+ActionC Enter # OK (for menus)
+ActionD Escape # Cancel (for menus)
 
 layer 2 # More Weapons
-ActionH 5
-ActionB 6
-ActionV 7
-ActionA 8
-ActionC 9
-ActionD 0
+ActionH 7 # Weapon / Item 7
+ActionV 8 # Weapon / Item 8
+ActionA 9 # Weapon / Item 9
+ActionB 0 # Weapon / Item 10
+ActionC Equal # Weapon / Item 11
+ActionD Minus # Weapon / Item 12

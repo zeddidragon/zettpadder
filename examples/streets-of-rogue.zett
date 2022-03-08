@@ -1,0 +1,34 @@
+# Streets of Rogue, with Flydigi Apex 2 in mind
+# Joy for some movement
+JoyXY WASD deadzone 40 # Move with joy
+
+# Triggers
+TriggerR M1 # Attack
+TriggerL M2 # Special Attack
+BumperL ScrollUp # Previous Weapon
+BumperR ScrollDown # Next Weapon
+ActionL Q # Inventory
+ActionR E # Interact
+
+# Face Buttons
+PovUp Tab # Missions
+PovDown Space # Extra Info
+PovRight Ctrl # Teleport
+PovLeft R # Stats
+
+# Menu Buttons
+MenuL Tab # Missions
+MenuR Escape # Options
+
+PinkyLeft Shift # Modifier
+
+# Think of the face buttons as three rows:
+# X 1  Y 4
+#  A 2  B 5
+#   C 3  Z 6
+ActionH 1 # Item 1
+ActionV 2 # Item 4
+ActionA 3 # Item 2
+ActionB 4 # Item 3
+ActionC 5 # Item 5
+ActionD F # Heal
