@@ -10,6 +10,13 @@ const FLICK_FACTOR: f64 = 1280.0;  // How much one radian moves the mouse
 const FLICK_DEADZONE: f64 = 0.9; // Deadzone to engage flick
 const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick
 
+#[derive(Debug, Copy, Clone)]
+pub enum MousePriority {
+    Flick,
+    Motion,
+    Mixed,
+}
+
 fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
     match sender.send(msg) {
         Err(err) => {
@@ -31,6 +38,7 @@ pub enum MouserMsg {
     SetFlickTime(u64), // Duration of a flick
     SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
     GetFlickCalibration(f64), // Display data to help calibrate flick factor
+    SetMousePriority(MousePriority), // Wether to prioritize mouse or flick input
 
     MouseX(f64), // Assign mouse X axis
     MouseY(f64), // Assign mouse Y axis
@@ -44,6 +52,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
 
     let mut mover = Coords::new();
     let mut motion = Coords::new();
+    let mut mouse_priority = MousePriority::Mixed;
 
     let mut flicker = Coords::new();
     let mut prev_flicker;
@@ -73,6 +82,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                     let steering = total_flick_steering.abs();
                     println!("Recommended flickfactor: {}", steering / TAU / v);
                 },
+                SetMousePriority(v) => { mouse_priority = v; },
 
                 MouseX(v) => { mover.x = v; },
                 MouseY(v) => { mover.y = v; },
@@ -84,6 +94,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
 
         ticker.recv().unwrap();
 
+        let mut can_flick = true;
         // Old school moving
         if mover.len() > 0.0 {
             motion = mover;
@@ -91,8 +102,22 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
             motion *= 0.0;
         }
 
+        match mouse_priority {
+            MousePriority::Motion => {
+                if mover.manhattan() > 0.0 {
+                    can_flick = false;
+                }
+            },
+            MousePriority::Flick => {
+                if flicker.manhattan() > 0.0 {
+                   motion *= 0.0;
+                }
+            },
+            MousePriority::Mixed => {},
+        }
+
         // Flick sticking
-        if flicker.len() >= flick_deadzone {
+        if can_flick && flicker.len() >= flick_deadzone {
             if prev_flicker.len() < flick_deadzone {
                 // Starting a flick
                 let angle = flicker.angle();

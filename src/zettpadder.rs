@@ -3,7 +3,7 @@ use stick;
 use std::collections::{HashMap};
 use crossbeam_channel::{Sender, Receiver};
 use crate::mapping::{Binding, Mapping};
-use crate::mouser::{MouserMsg};
+use crate::mouser::{MouserMsg, MousePriority};
 use crate::macros::{MacroMsg, MacroType};
 use crate::overlay::{OverlayMsg};
 
@@ -60,6 +60,7 @@ pub enum ZpMsg {
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
     GetFlickCalibration(f64), // Display data to help calibrate flick factor
+    SetMousePriority(MousePriority), // Which type of mouse input to prioritize
     SetEcho(bool), // Echo mode, which repeats your keys back
     CreateMacro(u8, MacroType), // Request to create a macro, assign to this button
     AddToMacro(Mapping), // Add Mapping to currently constructed macro
@@ -184,6 +185,9 @@ pub fn run(
             },
             GetFlickCalibration(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::GetFlickCalibration(v));
+            },
+            SetMousePriority(v) => {
+                send_to_mouse(&mouse_sender, MouserMsg::SetMousePriority(v));
             },
             SetEcho(on) => {
                 echo_mode = on;

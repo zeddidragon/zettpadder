@@ -219,6 +219,22 @@ pub fn parse_line(
                 println!("Usage flickdeadzone <n>");
             }
         },
+        "mousepriority" => {
+            use crate::mouser::MousePriority;
+            let arg1 = iter.next().and_then(|v| {
+                match *v {
+                    "flick" => Some(MousePriority::Flick),
+                    "motion" => Some(MousePriority::Motion),
+                    "mixed" => Some(MousePriority::Mixed),
+                    _ => None,
+                }
+            });
+            if let Some(v) = arg1 {
+                send(sender, ZpMsg::SetMousePriority(v));
+            } else {
+                println!("Usage flickdeadzone <n>");
+            }
+        },
         "deadzone" => {
             let arg1 = iter.next().and_then(|v| parse_input(&v.to_string()));
             let arg2 = iter.next().map(|v| v.parse::<f64>());
