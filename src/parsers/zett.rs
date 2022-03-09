@@ -195,12 +195,20 @@ pub fn parse_line(
                 println!("Usage: fps <n>");
             }
         },
-        "flickfactor" => {
+        "mousecalibration" => {
             let arg1 = iter.next().map(|v| v.parse::<f64>());
             if let Some(Ok(v)) = arg1 {
-                send(sender, ZpMsg::SetFlickFactor(v));
+                send(sender, ZpMsg::SetMouseCalibration(v));
             } else {
-                println!("Usage: flickfactor <n>");
+                println!("Usage: mousecalibration <n>");
+            }
+        },
+        "ingamemouse" => {
+            let arg1 = iter.next().map(|v| v.parse::<f64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetInGameMouse(v));
+            } else {
+                println!("Usage: ingamemouse <n>");
             }
         },
         "flicktime" => {
@@ -403,7 +411,7 @@ pub fn parse_line(
 
             if opts.is_flick {
                 if let ZettOpts { flick_factor: Some(v), .. } = &opts {
-                    send(sender, ZpMsg::SetFlickFactor(*v));
+                    send(sender, ZpMsg::SetMouseCalibration(*v));
                 }
 
                 if let ZettOpts { deadzone_on: Some(dz), .. } = &opts {

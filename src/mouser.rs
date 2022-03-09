@@ -6,7 +6,7 @@ use crate::smoothing::{Smoothing};
 use crate::zettpadder::{ZpMsg};
 
 const FPS: u64 = 60;  // Default loop rate
-const FLICK_FACTOR: f64 = 1280.0;  // How much one radian moves the mouse
+const MOUSE_CALIBRATION: f64 = 1280.0; // How much one radian moves the mouse
 const FLICK_DEADZONE: f64 = 0.9; // Deadzone to engage flick
 const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick
 
@@ -34,11 +34,12 @@ fn modulo(v: f64, k: f64) -> f64 {
 #[derive(Debug, Copy, Clone)]
 pub enum MouserMsg {
     SetFps(u64), // Cycle rate of main loop
-    SetFlickFactor(f64), // Mouse motion of one radian
+    SetMouseCalibration(f64), // Mouse motion of one radian
     SetFlickTime(u64), // Duration of a flick
     SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
-    GetFlickCalibration(f64), // Display data to help calibrate flick factor
+    GetFlickCalibration(f64), // Display data to help calibrate
     SetMousePriority(MousePriority), // Wether to prioritize mouse or flick input
+    SetInGameMouse(f64), // In-game mouse sensitivity
 
     MouseX(f64), // Assign mouse X axis
     MouseY(f64), // Assign mouse Y axis
@@ -53,6 +54,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
     let mut mover = Coords::new();
     let mut motion = Coords::new();
     let mut mouse_priority = MousePriority::Mixed;
+    let mut ingame_mouse = 1.0;
 
     let mut flicker = Coords::new();
     let mut prev_flicker;
@@ -62,7 +64,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
     let mut flick_time = FLICK_TIME;
     let mut flick_remaining = 0;
     let mut flick_tick = 0.0;
-    let mut flick_factor = FLICK_FACTOR;
+    let mut mouse_calibration = MOUSE_CALIBRATION;
 
     loop {
         prev_flicker = flicker;
@@ -74,13 +76,19 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                     tick_time = Duration::from_nanos(1_000_000_000 / v);
                     ticker = tick(tick_time);
                 },
-                SetFlickFactor(v) => { flick_factor = v; },
+                SetMouseCalibration(v) => { mouse_calibration = v; },
+                SetInGameMouse(v) => {
+                    ingame_mouse = v;
+                },
                 SetFlickTime(v) => { flick_time = Duration::from_millis(v); },
                 SetFlickDeadzone(v) => { flick_deadzone = v / 100.0; },
 
                 GetFlickCalibration(v) => {
                     let steering = total_flick_steering.abs();
-                    println!("Recommended flickfactor: {}", steering / TAU / v);
+                    println!("Recommended mousecalibration {}",
+                        steering
+                        / TAU
+                        / v);
                 },
                 SetMousePriority(v) => { mouse_priority = v; },
 
@@ -124,7 +132,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                 flick_remaining = (
                     flick_time.as_nanos()
                     / tick_time.as_nanos()).max(1) as u64;
-                flick_tick = flick_factor * angle / (flick_remaining as f64);
+                flick_tick = mouse_calibration * angle / (flick_remaining as f64);
                 flick_smoother.clear();
                 total_flick_steering = 0.0;
 
@@ -132,7 +140,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                 // Steering
                 let angle = flicker.angle();
                 let prev_angle = prev_flicker.angle();
-                let steering = flick_factor * flick_smoother.tier_smooth(
+                let steering = mouse_calibration * flick_smoother.tier_smooth(
                     modulo(angle - prev_angle + PI, TAU) - PI);
                 total_flick_steering += steering;
                 motion.x += steering;
@@ -146,6 +154,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
 
         // Apply all motion in the tick
         if motion.manhattan() > 0.0 {
+            motion /= ingame_mouse;
             let event = rdev::EventType::MouseMoveRelative {
                 delta_x: motion.x,
                 delta_y: motion.y,

@@ -53,7 +53,8 @@ pub enum ZpMsg {
     SetLayer(u8), // Layer used in future inputs
     SetWriteLayer(u8), // Layer used in future assignments
     SetFps(u64), // Cycle rate of main loop
-    SetFlickFactor(f64), // Mouse motion of one radian
+    SetMouseCalibration(f64), // Mouse motion of one radian
+    SetInGameMouse(f64), // In-game mouse sensitivity
     SetFlickTime(u64), // Duration of a flick
     SetFlickDeadzone(f64), // Deadzone before performing a flick
     Bind(u8, Mapping), // Bind output to button
@@ -174,8 +175,11 @@ pub fn run(
                 send_to_mouse(&mouse_sender, MouserMsg::SetFps(v));
                 send_to_macro(&macro_sender, MacroMsg::SetFps(v));
             },
-            SetFlickFactor(v) => {
-                send_to_mouse(&mouse_sender, MouserMsg::SetFlickFactor(v));
+            SetMouseCalibration(v) => {
+                send_to_mouse(&mouse_sender, MouserMsg::SetMouseCalibration(v));
+            },
+            SetInGameMouse(v) => {
+                send_to_mouse(&mouse_sender, MouserMsg::SetInGameMouse(v));
             },
             SetFlickTime(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFlickTime(v));

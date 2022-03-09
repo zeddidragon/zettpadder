@@ -6,7 +6,9 @@
 # Movement
 JoyXY WASD deadzone 40
 CamXY flick # Right Stick for turning
-flickFactor 1200 # Mouse units for one radian
+mousecalibration 1200 # Mouse units for one radian
+flicktime 200
+ingamemouse 1.0
 
 PaddleLeft Q # Lean Left
 PaddleRight E # Lean Right

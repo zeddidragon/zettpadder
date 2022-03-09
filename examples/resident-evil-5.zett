@@ -4,6 +4,7 @@
 # Sticks
 JoyXY WASD deadzone 50
 CamXY mouse 60 # Flickstick fits really badly into this game due to capped turn rate
+ingamemouse 1
 
 PovXY Arrows # Commands / menus
 

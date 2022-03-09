@@ -3,7 +3,7 @@
 
 JoyXY WASD deadzone 40 # Movement
 CamXY flick # Right Stick for turning
-flickFactor 1470 # Mouse units for one radian
+mousecalibration 1470 # Mouse units for one radian
 
 # Typical rear trigger actions for applying yourself to what you're aiming at
 TriggerR M1 # Attack

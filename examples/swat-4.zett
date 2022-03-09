@@ -6,7 +6,8 @@ PovLeft Q # Lean Left
 PovRight E # Lean Right
 
 CamXY flick # Turn with right stick
-flickfactor 900
+mousecalibration 80
+ingamemouse 0.10
 
 # Menu butons
 MenuL M # Show objectives

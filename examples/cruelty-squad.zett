@@ -2,7 +2,9 @@
 # Movement
 JoyXY WASD deadzone 40
 CamXY flick # Right Stick for turning
-flickFactor 1280 # Mouse units for one radian
+mousecalibration 56.94 # Mouse units for one radian
+ingamemouse 0.07 # Check "%APPDATA%\Godot\app_userdata\Cruelty Squad"
+flicktime 150
 
 # Typical rear trigger actions for applying yourself to what you're aiming at
 TriggerR M1 # Fire

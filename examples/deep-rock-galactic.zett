@@ -1,7 +1,8 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
 CamXY flick # Right Stick for turning (disable stick with steam input)
-flickfactor 1400
+mousecalibration 4200
 flicktime 200
+ingamemouse 2.5
 
 # Unmap everything except Left Stick
 

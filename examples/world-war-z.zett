@@ -2,8 +2,9 @@
 PovXY arrows
 
 JoyXY wasd deadzone 40 # Strafe
-CamXY flick 1875 deadzone 70 # Turn
+CamXY flick 11250 deadzone 70 # Turn
 flicktime 200
+ingamemouse 6
 
 TriggerR M1 # Fire
 TriggerL M2 # Aim

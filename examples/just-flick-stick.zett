@@ -1,4 +1,5 @@
 # Just flickstick
 fps 60 # How often to read/emit inputs
-flickfactor 860 # Mouse units per radian
+mousecalibration 860 # Mouse units per radian
 CamXY flick # Turn
+ingamemouse 1.0

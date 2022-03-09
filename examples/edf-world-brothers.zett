@@ -1,6 +1,8 @@
 # Earth Defense Force World Brothers, with Flydigi Apex 2 in mind
 JoyXY wasd deadzone 40 # Strafe
-CamXY flick 960 deadzone 70 # Turn
+CamXY flick # Turn
+mousecalibration 7000
+ingamemouse 10
 
 # Triggers
 TriggerR M1 # Fire

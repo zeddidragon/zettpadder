@@ -1,6 +1,7 @@
 # Black Mesa, with Flydigi Apex 2 in mind
 CamXY flick # Right Stick for turning (disable stick with steam input)
-flickfactor 1290 # 1.0 mouse sensitivity
+mousecalibration 1290
+ingamemouse 1.0
 
 # Unmap everything except Left Stick
 # In <game>/bmd/cfg/autoexec.cfg put the following to disable right stick:
