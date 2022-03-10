@@ -4,9 +4,7 @@ pub fn parse_output(v: &str) -> Mapping {
     use Mapping::{Emit, Noop};
     use rdev::EventType::{
         KeyPress,
-        KeyRelease,
         ButtonPress,
-        ButtonRelease,
         Wheel,
     };
     match v {

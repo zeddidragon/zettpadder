@@ -53,6 +53,7 @@ pub enum ZpMsg {
     SetLayer(u8), // Layer used in future inputs
     SetWriteLayer(u8), // Layer used in future assignments
     SetFps(u64), // Cycle rate of main loop
+    SetTapTime(u64), // Set amount of frame for a tap
     SetMouseCalibration(f64), // Mouse motion of one radian
     SetInGameMouse(f64), // In-game mouse sensitivity
     SetFlickTime(u64), // Duration of a flick
@@ -81,7 +82,6 @@ pub fn run(
     let mut keymaps: HashMap<u16, Binding> = HashMap::new();
     let mut values: HashMap<u8, f64> = HashMap::new();
     let mut released_layers = Vec::with_capacity(8);
-    let mut overlay_spawned = false;
 
     while let Ok(msg) = receiver.recv() {
         use ZpMsg::*;
@@ -174,6 +174,9 @@ pub fn run(
             SetFps(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFps(v));
                 send_to_macro(&macro_sender, MacroMsg::SetFps(v));
+            },
+            SetTapTime(v) => {
+                send_to_macro(&macro_sender, MacroMsg::SetTapTime(v));
             },
             SetMouseCalibration(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetMouseCalibration(v));

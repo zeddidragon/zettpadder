@@ -195,6 +195,14 @@ pub fn parse_line(
                 println!("Usage: fps <n>");
             }
         },
+        "taptime" => {
+            let arg1 = iter.next().map(|v| v.parse::<u64>());
+            if let Some(Ok(v)) = arg1 {
+                send(sender, ZpMsg::SetTapTime(v));
+            } else {
+                println!("Usage: taptime <n>");
+            }
+        },
         "mousecalibration" => {
             let arg1 = iter.next().map(|v| v.parse::<f64>());
             if let Some(Ok(v)) = arg1 {

@@ -54,6 +54,7 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
 #[derive(Debug, Copy, Clone)]
 pub enum MacroMsg {
     SetFps(u64), // Set framerate for turbo purposes etcc
+    SetTapTime(u64), // Set max frames considered a tap time
     Create(u16, MacroType), // Create Macro, button for being passed back
     Add(Mapping), // Add mapping to macro being constructed
     Trigger(usize, f64), // Trigger macro with supplied ID
@@ -92,6 +93,9 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                 SetFps(v) => {
                     tick_time = Duration::from_nanos(1_000_000_000 / v);
                     ticker = tick(tick_time);
+                },
+                SetTapTime(v) => {
+                    tap_time = v;
                 },
                 Create(reference, macro_type) => {
                     let idx = macros.len();

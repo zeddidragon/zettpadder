@@ -10,11 +10,6 @@ crossbeam-channel = "0.5"
 pasts = "0.8"
 rustyline = "9.1"
 
-vulkano = "0.28"
-vulkano-shaders = "0.28"
-winit = "0.26"
-vulkano-win = "0.28"
-
 [dependencies.stick]
 version = "0.12"
 # path = "../stick/stick"
