@@ -18,6 +18,7 @@ ActionB Ctrl # Toggle crouch
 ActionH R # Reload
 ActionV 4 # Medkit
 ActionC T # Mark Target
+ActionD X # Switch Shoulder
 
 MenuL Tab # Scoreboard
 MenuR Escape # Pause

@@ -1,0 +1,43 @@
+# Brigand: Oaxaca, with Flydigi Apex 2 in mind
+# Should you for some reason want to inflict this game upon yourself
+JoyXY WASD deadzone 40 # Move with left stick
+CamXY flick # Right Stick for turning
+mousecalibration 1150
+ingamemouse 1 # Actually 0, but that doesn't make sense
+
+# Triggers
+TriggerR M1 # Fire / Use Item
+TriggerL M2 # Interact
+BumperL X # Examine / Zoom
+BumperR V # Use Ability
+ActionL Q # Previous Item
+ActionR E # Next Item
+
+# Face buttons
+ActionA Space # Jump
+ActionH R # Reload
+ActionB F # Drop Item
+ActionV Alt # Manage Team
+ActionC Tab # View Skills
+ActionD Escape # Cancel
+
+# Think of the dpad buttons as diagonal rows:
+# < 1  ^ 2
+#  v 3  > 4
+PovLeft 7
+PovUp 8
+PovDown 9
+PovRight 0
+
+PinkyLeft Layer 1 # Items
+layer 1
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Item 1
+ActionV 2 # Item 4
+ActionA 3 # Item 2
+ActionB 4 # Item 3
+ActionC 5 # Item 5
+ActionD 6 # Item 6

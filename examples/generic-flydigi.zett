@@ -48,8 +48,8 @@ PovRight M
 # Underside for miscellaneous actions
 PaddleLeft Ctrl # Sneak
 PaddleRight Z # Rarely used toggle
-PinkyLeft Layer1 # Weapons
-PinkyRight Layer2 # More Weapons
+PinkyLeft Layer 1 # Weapons
+PinkyRight Layer 2 # More Weapons
 
 layer 1 # Weapons
 # Think of the face buttons as three rows:
