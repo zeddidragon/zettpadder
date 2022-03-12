@@ -1,0 +1,57 @@
+# Zero Hour, with Flydigi Apex 2 in mind.
+# You can copy this template and then probably move a few things around.
+# The template is nonsense on its own, with some bindings being overwritten.
+# Mix-and-match.
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY flick # Right Stick for turning
+mousecalibration 1200 # Mouse units for one radian
+flicktime 200
+ingamemouse 1.0
+
+PaddleLeft Q # Lean Left
+PaddleRight E # Lean Right
+
+# Typical rear trigger actions for applying yourself to what you're aiming at
+TriggerR M1 # Fire
+TriggerL M2 # Aim
+BumperL Alt # Zoom
+BumperR G # Utility
+ActionL Shift # Sprint
+ActionR X # Shout for complicance
+
+# Face buttons for manipulating yourself
+ActionV R # Interaction
+ActionA Space # Mobility Interaction
+ActionH R # Reload
+ActionB V # Melee
+ActionC C # Crouch
+ActionD Ctrl # Prone
+
+# Middle buttons for menu functions
+MenuL Tab # Map
+MenuR Escape # Pause
+
+# D-pad
+PovRight H # Inspect Mag
+PovLeft J # Inspect Wrist
+
+PovDown B # Switch Firing Mode
+
+# Zoom in / out, open map
+# PovLeft Tab
+# PovRight M
+
+# Underside for miscellaneous actions
+PinkyLeft Layer 1 # Weapons
+layer 1 # Weapons
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Primary Weapon
+ActionV 2 # Secondary Weapon
+ActionA 3 # Utility 1
+ActionB 4 # Utility 2
+ActionC 5 # Visual Tool
