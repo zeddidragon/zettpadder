@@ -1,0 +1,26 @@
+# Generic Point-And-Click Adventure, with Flydigi Apex 2 in mind.
+# You can copy this template and then probably move a few things around.
+# The template is nonsense on its own, with some bindings being overwritten.
+# Mix-and-match.
+#
+# Could potentially be used for general desktop usage
+
+TriggerR M1 # Action
+TriggerL M2 # Alt-Action
+BumperR Ctrl
+BumperL Shift
+
+ActionA I # Inventory
+ActionB Space # Highlight
+ActionV Q # Quest
+ActionH P
+
+ActionC # Copy
+ActionD # Paste
+
+PovUp !! ScrollUp
+PovDown !! ScrollDown
+PovLeft Z # Undo
+
+MenuL Tab
+MenuR Escape
