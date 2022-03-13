@@ -3,6 +3,7 @@ use stick;
 use std::collections::{HashMap};
 use crossbeam_channel::{Sender, Receiver};
 use crate::mapping::{Binding, Mapping};
+use crate::ring::{Ring, RingFactory};
 use crate::mouser::{MouserMsg, MousePriority};
 use crate::macros::{MacroMsg, MacroType};
 use crate::overlay::{OverlayMsg};
@@ -67,6 +68,15 @@ pub enum ZpMsg {
     CreateMacro(u8, MacroType), // Request to create a macro, assign to this button
     AddToMacro(Mapping), // Add Mapping to currently constructed macro
     MacroCreated(u16, usize), // Indication that a macro has been created
+    BuildRing(u8, u8), // Create a ring using inputs for x and y
+    RingDone, // Finalize ring being built
+    BindRingX(Mapping), // Bind action to ring X
+    BindRingY(Mapping), // Bind action to ring Y
+    BindRing(Mapping), // Bind action to ring length
+    SetRingDeadzoneOn(f64), // Deadzone of axis in ring
+    SetRingDeadzoneOff(f64), // Deadzone of axis in ring
+    SetRingOn(f64), // Deadzone before ring binding enables
+    SetRingOff(f64), // Deadzone before ring binding disables
     SpawnOverlay,
 }
 
@@ -77,11 +87,13 @@ pub fn run(
     overlay_sender: Sender<OverlayMsg>,
 ) {
     let mut echo_mode = true;
-    let mut layer = 0;
+    let mut layer: u8 = 0;
     let mut write_layer = 0;
     let mut keymaps: HashMap<u16, Binding> = HashMap::new();
     let mut values: HashMap<u8, f64> = HashMap::new();
-    let mut released_layers = Vec::with_capacity(8);
+    let mut released_layers: Vec<u8> = Vec::with_capacity(8);
+    let mut rings: Vec<Ring> = Vec::new();
+    let mut ring_factory = RingFactory::default();
 
     while let Ok(msg) = receiver.recv() {
         use ZpMsg::*;
@@ -110,41 +122,16 @@ pub fn run(
                 if let Some(binding) = binding {
                     let prev = values.entry(id).or_default();
                     let mapping = binding.get_mapping(value, *prev);
+                    handle_mapping(
+                        mapping,
+                        value,
+                        &mut layer,
+                        &mut released_layers,
+                        &mut rings,
+                        &mouse_sender,
+                        &macro_sender,
+                    );
                     *prev = value;
-                    match mapping {
-                        Some(Mapping::Layer(l)) => {
-                            if l != layer {
-                                // Untrigger any chorded keys
-                                if layer > 0 {
-                                    released_layers.push(layer);
-                                }
-                                layer = l;
-                            }
-                        },
-                        Some(Mapping::MouseX(v)) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::MouseX(v * value));
-                        },
-                        Some(Mapping::MouseY(v)) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::MouseY(v * value));
-                        },
-                        Some(Mapping::FlickX(v)) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::FlickX(v * value));
-                        },
-                        Some(Mapping::FlickY(v)) => {
-                            send_to_mouse(&mouse_sender, MouserMsg::FlickY(v * value));
-                        },
-                        Some(Mapping::Emit(ev)) => {
-                            send(&ev);
-                        },
-                        Some(Mapping::Trigger(idx)) =>  {
-                            send_to_macro(&macro_sender, MacroMsg::Trigger(idx, value));
-                        }
-                        Some(Mapping::Noop) => {},
-                        None => {},
-                        unx => {
-                            println!("Received: {:?}, which is unexpected", unx);
-                        }
-                    };
                 }
             },
             Bind(button, mapping) => {
@@ -210,6 +197,47 @@ pub fn run(
                 let binding = Binding::new(Mapping::Trigger(idx));
                 keymaps.insert(button, binding);
             },
+            BuildRing(x, y) => {
+                let x = x as u16 + write_layer as u16 * 256;
+                let y = y as u16 + write_layer as u16 * 256;
+
+                let idx = rings.len();
+                ring_factory.clear();
+
+                let xbinding = Binding::new(Mapping::RingX(idx));
+                let ybinding = Binding::new(Mapping::RingY(idx));
+                keymaps.insert(x, xbinding);
+                keymaps.insert(y, ybinding);
+            },
+            RingDone => {
+                if let Ok(ring) = ring_factory.build() {
+                    rings.push(ring);
+                } else {
+                    println!("Unable to build ring!");
+                }
+                ring_factory.clear();
+            },
+            BindRingX(mapping) => {
+                ring_factory.bind_x(mapping);
+            },
+            BindRingY(mapping) => {
+                ring_factory.bind_y(mapping);
+            },
+            BindRing(mapping) => {
+                ring_factory.bind_r(mapping);
+            },
+            SetRingDeadzoneOn(v) => {
+                ring_factory.with_deadzone_on(v / 100.0);
+            },
+            SetRingDeadzoneOff(v) => {
+                ring_factory.with_deadzone_off(v / 100.0);
+            },
+            SetRingOn(v) => {
+                ring_factory.with_ring_on(v / 100.0);
+            },
+            SetRingOff(v) => {
+                ring_factory.with_ring_off(v / 100.0);
+            },
             SpawnOverlay => {
                 send_to_overlay(&overlay_sender, OverlayMsg::Spawn);
             },
@@ -244,4 +272,101 @@ pub fn run(
             released_layers.clear();
         }
     }
+}
+
+fn handle_mapping(
+    mapping: Option<Mapping>,
+    value: f64,
+    layer: &mut u8,
+    released_layers: &mut Vec<u8>,
+    rings: &mut Vec<Ring>,
+    mouse_sender: &Sender<MouserMsg>,
+    macro_sender: &Sender<MacroMsg>
+) {
+    match mapping {
+        Some(Mapping::Layer(l)) => {
+            if l != *layer {
+                // Untrigger any chorded keys
+                if *layer > 0 {
+                    released_layers.push(*layer);
+                }
+                *layer = l;
+            }
+        },
+        Some(Mapping::MouseX(v)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::MouseX(v * value));
+        },
+        Some(Mapping::MouseY(v)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::MouseY(v * value));
+        },
+        Some(Mapping::FlickX(v)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::FlickX(v * value));
+        },
+        Some(Mapping::FlickY(v)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::FlickY(v * value));
+        },
+        Some(Mapping::Emit(ev)) => {
+            send(&ev);
+        },
+        Some(Mapping::Trigger(idx)) =>  {
+            send_to_macro(&macro_sender, MacroMsg::Trigger(idx, value));
+        }
+        Some(Mapping::RingX(idx)) => {
+            let xmapping = rings
+                .get_mut(idx)
+                .and_then(|r| r.nudge_x(value));
+            handle_mapping(
+                xmapping,
+                value,
+                layer,
+                released_layers,
+                rings,
+                &mouse_sender,
+                &macro_sender,
+            );
+            let rmapping = rings
+                .get_mut(idx)
+                .and_then(|r| r.check_ring());
+            handle_mapping(
+                rmapping,
+                value,
+                layer,
+                released_layers,
+                rings,
+                &mouse_sender,
+                &macro_sender,
+            );
+        },
+        Some(Mapping::RingY(idx)) => {
+            let ymapping = rings
+                .get_mut(idx)
+                .and_then(|r| r.nudge_y(value));
+            handle_mapping(
+                ymapping,
+                value,
+                layer,
+                released_layers,
+                rings,
+                &mouse_sender,
+                &macro_sender,
+            );
+            let rmapping = rings
+                .get_mut(idx)
+                .and_then(|r| r.check_ring());
+            handle_mapping(
+                rmapping,
+                value,
+                layer,
+                released_layers,
+                rings,
+                &mouse_sender,
+                &macro_sender,
+            );
+        },
+        Some(Mapping::Noop) => {},
+        None => {},
+        unx => {
+            println!("Received: {:?}, which is unexpected", unx);
+        }
+    };
 }

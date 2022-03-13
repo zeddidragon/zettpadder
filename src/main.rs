@@ -6,6 +6,7 @@ use crossbeam_channel::{bounded};
 
 mod coords;
 mod mapping;
+mod ring;
 mod controller_poller;
 mod smoothing;
 mod mouser;

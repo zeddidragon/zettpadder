@@ -42,9 +42,12 @@ pub fn parse(
 struct ZettOpts {
     deadzone_on: Option<f64>,
     deadzone_off: Option<f64>,
+    ring_on: Option<f64>,
+    ring_off: Option<f64>,
     macro_type: Option<MacroType>,
     flick_factor: Option<f64>,
     is_flick: bool,
+    is_ring: bool,
 }
  
 fn parse_outputs(
@@ -150,6 +153,25 @@ fn parse_outputs(
 
                 if let Some(Ok(dz)) = arg2 {
                     opts.deadzone_off = Some(dz);
+                    iter.next();
+                }
+                continue; // Continue manually 'cause we next-ed
+            },
+            "ring" => {
+                iter.next();
+                opts.is_ring = true;
+                let arg1 = iter.peek().map(|v| v.parse::<f64>());
+                if let Some(Ok(dz)) = arg1 {
+                    opts.ring_on = Some(dz);
+                    iter.next();
+                } else {
+                    println!("Unrecognized deadzone value: {:?}", arg1);
+                    continue;
+                }
+
+                let arg2 = iter.peek().map(|v| v.parse::<f64>());
+                if let Some(Ok(dz)) = arg2 {
+                    opts.ring_off = Some(dz);
                     iter.next();
                 }
                 continue; // Continue manually 'cause we next-ed
@@ -331,7 +353,7 @@ pub fn parse_line(
             };
             let input = input.unwrap();
             let mut mappings = Vec::new();
-            let opts = parse_outputs(&mut iter, &mut mappings);
+            let mut opts = parse_outputs(&mut iter, &mut mappings);
 
             use ZettInput::*;
             use Mapping::{Noop, Emit, NegPos};
@@ -385,6 +407,13 @@ pub fn parse_line(
                     send(sender, ZpMsg::Bind(ax, *mx));
                     send(sender, ZpMsg::Bind(ay, *my));
                 },
+                (Coords(ax, ay), [mx, my, mr], _) => {
+                    opts.is_ring = true;
+                    send(sender, ZpMsg::BuildRing(ax, ay));
+                    send(sender, ZpMsg::BindRingX(*mx));
+                    send(sender, ZpMsg::BindRingY(*my));
+                    send(sender, ZpMsg::BindRing(*mr));
+                },
                 (Coords(ax, ay), [
                         Emit(exneg), Emit(expos),
                         Emit(eyneg), Emit(eypos),
@@ -393,6 +422,19 @@ pub fn parse_line(
                     let my = NegPos(*eyneg, *eypos);
                     send(sender, ZpMsg::Bind(ax, mx));
                     send(sender, ZpMsg::Bind(ay, my));
+                },
+                (Coords(ax, ay), [
+                        Emit(exneg), Emit(expos),
+                        Emit(eyneg), Emit(eypos),
+                        mring,
+                ], _) => {
+                    opts.is_ring = true;
+                    let mx = NegPos(*exneg, *expos);
+                    let my = NegPos(*eyneg, *eypos);
+                    send(sender, ZpMsg::BuildRing(ax, ay));
+                    send(sender, ZpMsg::BindRingX(mx));
+                    send(sender, ZpMsg::BindRingY(my));
+                    send(sender, ZpMsg::BindRing(*mring));
                 },
                 (Coords(_, _), ms, _) => {
                     println!("Incorrect amount of inputs for one axis pair! Expected 0, 2, or 4, got {}", ms.len());
@@ -469,6 +511,32 @@ pub fn parse_line(
                         send(sender, ZpMsg::SetDeadzoneOff(s, *dz));
                     },
                 }
+            }
+
+            if let ZettOpts { ring_on: Some(dz), .. } = &opts {
+                match input {
+                    Coords(_, _) => {
+                        send(sender, ZpMsg::SetRingOn(*dz));
+                    },
+                    _ => {
+                        println!("Invalid option: ring");
+                    }
+                }
+            }
+
+            if let ZettOpts { ring_off: Some(dz), .. } = &opts {
+                match input {
+                    Coords(_, _) => {
+                        send(sender, ZpMsg::SetRingOff(*dz));
+                    },
+                    _ => {
+                        println!("Invalid option: ring");
+                    }
+                }
+            }
+
+            if opts.is_ring {
+                send(sender, ZpMsg::RingDone);
             }
         }
     }

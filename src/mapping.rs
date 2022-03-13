@@ -20,6 +20,9 @@ pub enum Mapping {
     Layer(u8),
     // Send value to macro with specified ID
     Trigger(usize),
+    // Send value to ring with specified ID
+    RingX(usize),
+    RingY(usize),
     // Signifies a delay in amacro
     Delay, 
 }

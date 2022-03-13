@@ -1,0 +1,19 @@
+# Splinter Cell: Blacklist, with Flydigi Apex 2 in mind.
+
+# Movement
+JoyXY WASD Shift deadzone 30 ring 60
+CamXY flick # Right Stick for turning
+mousecalibration 1200 # Mouse units for one radian
+flicktime 200
+ingamemouse 1.0
+
+# Triggers
+TriggerR M1 # Fire
+TriggerL M2 # Aim
+# BumperL M3 # Ability
+# BumperR G # Grenade
+ActionL Shift # Sprint
+ActionR E # Interact
+
+ActionB Q # Cover
+ActionA Space #  Use / Jump / Climb

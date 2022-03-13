@@ -1,6 +1,6 @@
 use std::ops;
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Default)]
 pub struct Coords {
     pub x: f64,
     pub y: f64,
