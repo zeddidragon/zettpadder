@@ -48,7 +48,7 @@ Layer 4 # Commands
 BumperL Insert # Cycle Red Team Viewport
 BumperR Home # Cycle Blue Team Viewport
 ActionL PageUp # Cycle Sniper Team Viewport
-MenuL Backspace # Control Active Viewport
+MenuL CapsLock # Control Active Viewport
 ActionR Space # Quick Command
 
 Layer 5 # Weapons

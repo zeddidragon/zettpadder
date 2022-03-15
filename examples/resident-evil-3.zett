@@ -1,0 +1,30 @@
+# REmake 3, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40
+
+# Inverse mouse acceleration and forced deadzone makes flickstick bad
+# but it makes straight mouse movement even worse
+# 90 degree turns will be on points, for 180s use the 180 button
+CamXY flick # Right Stick for turning
+mousecalibration 2435 # Mouse units for one radian
+flicktime 300
+ingamemouse 1.0 # Lowest sensitivity
+
+TriggerL M2 # Aim
+TriggerR M1 # Attack
+BumperL Shift # Run
+BumperR Space # Dodge/Charge
+ActionL Q # 180 / Prev Tab
+ActionR E # Switch Ammo / Next Tab
+
+ActionH 1 # Weapon Left
+ActionV 2 # Weapon Up
+ActionB 3 # Weapon Right
+ActionA 4 # Weapon Down
+
+ActionC R # Reload
+ActionD I # Inventory
+
+MenuL Tab # Map / Sort item box
+MenuR P # Pause
+
+PovXY T G  Z C # Switch map floor / Menu category

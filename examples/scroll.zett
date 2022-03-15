@@ -1,0 +1,2 @@
+# Test of scrollwalk
+JoyXY WASD ScrollUp ^ ScrollDown deadzone 10 rings 20 # Adjust walk speed with scroll wheel as stick is tilted, 20 discrete steps

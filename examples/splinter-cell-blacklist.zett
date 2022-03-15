@@ -1,7 +1,7 @@
 # Splinter Cell: Blacklist, with Flydigi Apex 2 in mind.
 
 # Movement
-JoyXY WASD Shift deadzone 30 ring 60
+JoyXY WASD deadzone 30 ring 60 Shift
 CamXY flick # Right Stick for turning
 mousecalibration 1200 # Mouse units for one radian
 flicktime 200
