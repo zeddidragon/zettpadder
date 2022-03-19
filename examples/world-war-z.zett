@@ -29,5 +29,7 @@ ActionH 2 # Primary
 ActionB 1 # Secondary
 ActionA 3 # Heavy Weapon
 
+MenuL V # First/Third Person Toggle
+
 ActionC Enter # OK
 ActionD Escape # Cancel

@@ -36,13 +36,13 @@ PinkyLeft Layer 5 # Weapons
 PinkyRight Ctrl # Prepare Command
 
 Layer 1 # Grenade selection
-CamXY 3 5 4 4 # Stinger Stinger Flash CS
+CamXY 3 5 4 4 Deadzone 60 # Flash CS Stinger Stinger
 
 Layer 2 # Door tools
-CamXY 8 0 7 9 # Toolkit Wedge Breach Optiwand
+CamXY 8 0 7 9 Deadzone 60 # Toolkit Wedge Breach Optiwand
 
 Layer 3 # Pacifying subjects
-CamXY 6 H 6 H # Pepper / Handcuffs
+CamXY 6 H 6 H Deadzone 40  # Pepper / Handcuffs
 
 Layer 4 # Commands
 BumperL Insert # Cycle Red Team Viewport
