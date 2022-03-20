@@ -8,11 +8,11 @@ ingamemouse 0.4
 TriggerR M1 # Fire
 TriggerL M2 # Alt-Fire
 BumperL C # Crouch
-BumperR 6 # Throwables
+BumperR G # Shout "Get Down"
 ActionL Q # Kick
 ActionR E # Use Item
 
-ActionV 1 # Melee Weapons
+ActionV Tab # Inventory
 ActionH F # Empty Hands
 ActionA Space # Jump
 ActionB R # Unzip
@@ -23,24 +23,31 @@ ActionD Z # Drop Weapon
 MenuL M # Show Map
 MenuR Escape # Pause
 
-PovUp ScrollUp # Next Weapon / Zoom In
-PovDown ScrollDown # Prev Weapon / Zoom Out
-PovRight 5 # Gas & Fire
-PovLeft Tab # Inventory Menu
+PovUp !! ScrollUp # Next Weapon / Zoom In
+PovDown !! ScrollDown # Prev Weapon / Zoom Out
 
 # Think of the face buttons as three rows:
 # X 1  Y 2
 #  A 3  B 4
 #   C 5  Z 6
 PinkyLeft layer 1 # Weapons
+PaddleLeft layer 2 # More Weapons
 layer 1 # Weapons
-ActionH 2 # Weapons 2 (Pistols)
-ActionV 3 # Weapons 3 (Shotguns)
-ActionA 4 # Weapons 4 (Small Rifles)
+ActionH 1 # Weapons 1 (Melee)
+ActionV 2 # Weapons 2 (Pistols)
+ActionA 3 # Weapons 3 (Shotguns)
+ActionB 4 # Weapons 4 (Small Rifles)
+ActionC 6 # Weapons 6 (Throwables)
+ActionD 9 # Weapons 9 (Launchers)
+
+MenuL F5 # Quick Save
+MenuR F8 # Quick Load
+PinkyRight K # Commit Suicide
+
+layer 2 # More Weapons
+ActionH 5 # Weapons 5 (Gas & Fire)
+ActionV 2 # Weapons 2 (Pistols)
+ActionA 3 # Weapons 3 (Shotguns)
 ActionB 8 # Weapons 8 (Large Rifles)
-
-PovRight 0 # Napalm / Items
-BumperR 7 # Large Throwables
-
-ActionL G # Shout "Get Down"
-MenuR K # Commit Suicide
+ActionC 7 # Weapons 7 (Large Throwables)
+ActionD 0 # Weapons 10 (Napalm Launcher)
