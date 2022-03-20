@@ -34,6 +34,8 @@ impl Mapping {
             Layer,
             MouseX,
             MouseY,
+            FlickX,
+            FlickY,
         };
         use rdev::EventType::{
             KeyPress,
@@ -60,6 +62,12 @@ impl Mapping {
             MouseY(_) => {
                 Some(MouseY(0.0))
             },
+            FlickX(_) => {
+                Some(FlickX(0.0))
+            },
+            FlickY(_) => {
+                Some(FlickY(0.0))
+            },
             Mapping::Delay => {
                 Some(Mapping::Delay)
             },
@@ -76,6 +84,10 @@ pub struct Binding {
     pub mapping: Mapping,
     pub deadzone_on: Option<f64>,
     pub deadzone_off: Option<f64>,
+}
+
+fn anti_deadzone(v: f64, dz: f64) -> f64 {
+    v.signum() * (v.abs() - dz) / (1.0 - dz)
 }
 
 impl Binding {
@@ -128,6 +140,34 @@ impl Binding {
                     contained.get_mapping(value, prev)
                 } else {
                     None
+                }
+            },
+            Mapping::MouseX(v) => {
+                if value.abs() >= on {
+                    Some(Mapping::MouseX(v * anti_deadzone(value, on)))
+                } else {
+                    self.mapping.released()
+                }
+            },
+            Mapping::MouseY(v) => {
+                if value.abs() >= on {
+                    Some(Mapping::MouseY(v * anti_deadzone(value, on)))
+                } else {
+                    self.mapping.released()
+                }
+            },
+            Mapping::FlickX(v) => {
+                if value.abs() >= on {
+                    Some(Mapping::FlickX(v * anti_deadzone(value, on)))
+                } else {
+                    self.mapping.released()
+                }
+            },
+            Mapping::FlickY(v) => {
+                if value.abs() >= on {
+                    Some(Mapping::FlickY(v * anti_deadzone(value, on)))
+                } else {
+                    self.mapping.released()
                 }
             },
             _ => {

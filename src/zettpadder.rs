@@ -294,16 +294,16 @@ fn handle_mapping(
             }
         },
         Some(Mapping::MouseX(v)) => {
-            send_to_mouse(&mouse_sender, MouserMsg::MouseX(v * value));
+            send_to_mouse(&mouse_sender, MouserMsg::MouseX(v));
         },
         Some(Mapping::MouseY(v)) => {
-            send_to_mouse(&mouse_sender, MouserMsg::MouseY(v * value));
+            send_to_mouse(&mouse_sender, MouserMsg::MouseY(v));
         },
         Some(Mapping::FlickX(v)) => {
-            send_to_mouse(&mouse_sender, MouserMsg::FlickX(v * value));
+            send_to_mouse(&mouse_sender, MouserMsg::FlickX(v));
         },
         Some(Mapping::FlickY(v)) => {
-            send_to_mouse(&mouse_sender, MouserMsg::FlickY(v * value));
+            send_to_mouse(&mouse_sender, MouserMsg::FlickY(v));
         },
         Some(Mapping::Emit(ev)) => {
             send(&ev);
