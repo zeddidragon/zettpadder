@@ -1,0 +1,36 @@
+# Haydee, with Flydigi Apex 2 in mind
+# 
+# Game will ficker the UI, but this can be circumvented:
+# 1. Adjust gamepad look sensitivity to 0
+# 2. In steam, assign an Always On Action as holding the right stick.
+CamXY mouse 10 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 290
+ingamemouse 0.1
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+# Unbind everything except left stick and the above mentioned always on action
+# Triggers
+TriggerR M1 # Fire
+TrigggerL M2 # Aim / Dive
+ActionR E # Interact
+ActionL Shift # Run / Swim (Not actually used by gamepad movement)
+BumperL X # Holster
+BumperR R # Reload
+
+# Face buttons
+ActionA Space # Jump / Up
+ActionB Ctrl # Crouch / Down
+ActionH Tab # Inventory
+
+ActionC C # Switch Shoulder
+ActionD H # Toggle HUD
+
+# Game is slow-paced enough that standard dpad item switching is fine
+PovXY 3 4 1 2 # Items
+
+# Menu Buttons
+MenuL F9 # Load Game
+MenuR Escape # Menu
