@@ -2,9 +2,12 @@
 PovXY arrows
 
 JoyXY wasd deadzone 40 # Strafe
-CamXY flick 11250 deadzone 70 # Turn
-flicktime 200
-ingamemouse 6
+CamXY Mouse 500 # Used to counter recoil
+mousecalibration 11250
+ingamemouse 6.0
+mousepriority flick # Disable normal camera motion while using wheel
+ActionWheelXY flick # Action wheel for quick turning
+flickdeadzone 40
 
 TriggerR M1 # Fire
 TriggerL M2 # Aim

@@ -7,6 +7,7 @@ mousecalibration 72000
 ingamemouse 30
 flicktime 200
 mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
 
 # Face buttons
 ActionH 1 # Primary Weapon

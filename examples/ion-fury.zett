@@ -1,0 +1,43 @@
+# Ion Fury, with Flydigi Apex 2 in mind
+CamXY mouse 1800 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 21000
+ingamemouse 12.0
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+TriggerR M1 # Fire
+BumperR M2 # Alt-Fire
+ActionR E # Use / Open
+
+TriggerL Space # Jump
+BumperL Ctrl # Crouch
+ActionL Shift # Walk
+
+PovLeft M # Medkit
+PovRight N # Radar
+PovUp Enter # Pocket Item
+PovDown Q # Quick Electrifryer
+
+MenuL Tab # Map
+MenuR Escape # Pause
+
+ActionC R # Reload
+ActionD C # Toggle Crouch
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 2 # Weapon 2: Loverboy (Revolver)
+ActionV 3 # Weapon 3: Disperser (Shotgun)
+ActionA 4 # Weapon 4: Penetrator (SMG)
+ActionB 5 # Weapon 5: Chaingun
+
+PinkyLeft layer 1 # More Weapons
+layer 1
+ActionH 6 # Weapon 6: Bowling Bombs
+ActionV 7 # Weapon 7: Disperser Grenades
+ActionA 8 # Weapon 8: Iron bow
+ActionB 9 # Weapon 9: Clusterpuck
+
+MenuL F7 # Third-Person Mode

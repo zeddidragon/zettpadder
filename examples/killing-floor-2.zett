@@ -1,8 +1,11 @@
 # Killing Floor 2, with Flydigi Apex 2 in mind
 JoyXY WASD deadzone 40 # Move
-CamXY flick # Right Stick for turning (disable stick with steam input)
+CamXY Mouse 500 # Used to counter recoil
 mousecalibration 10000
 ingamemouse 5.0
+mousepriority flick # Disable normal camera motion while using wheel
+ActionWheelXY flick # Action wheel for quick turning
+flickdeadzone 40
 
 TriggerR M1 # Fire
 TriggerL M2 # Aim (Remap in game if you want hold instead of toggle)
@@ -32,7 +35,7 @@ layer 1 # Weapons
 ActionH 1 # Primary Weapon
 ActionA 2 # Secondary
 ActionB 3 # Melee Weapon
-ActionV 4 # Syringe
+ActionV 4 # Tool
 
 ActionC Enter # OK
 ActionD Escape # Cancel
