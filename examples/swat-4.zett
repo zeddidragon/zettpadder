@@ -2,12 +2,20 @@
 # Sticks + Dpad
 JoyX A D deadzone 60
 JoyY W S deadzone 40
-PovLeft Q # Lean Left
-PovRight E # Lean Right
 
 CamXY flick # Turn with right stick
 mousecalibration 80
 ingamemouse 0.10
+
+# C # Hold to crouch
+# X # Toggle Firing Mode
+# Tab # Cycle Command Group
+
+# Dpad
+PovLeft Insert # Cycle Red Team Viewport
+PovRight Home # Cycle Blue Team Viewport
+PovDown Tab # Cycle Command Group
+PovUp # Cycle Sniper Team Viewport
 
 # Menu butons
 MenuL M # Show objectives
@@ -30,8 +38,8 @@ ActionA R  # Reload
 ActionD B # Melee
 
 # Underside
-PaddleLeft C  # Hold to Crouch
-PaddleRight Tab # Cycle command group
+PaddleLeft Q # Lean Left
+PaddleRight E # Lean Right
 PinkyLeft Layer 5 # Weapons
 PinkyRight Ctrl # Prepare Command
 

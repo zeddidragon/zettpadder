@@ -12,7 +12,7 @@ On linux you will need x11 dev libraries.
 
 Debian:
 ```
-    sudo apt install libx11-dev
+    sudo apt install libx11-dev libxi-dev libxtst-dev
 ```
 
 
@@ -76,8 +76,6 @@ If you fire up the program without arguments and hit buttons, it'll show you out
 # Not currently planned
 - Interface outside of input commands.
 - Support for mapping multiple controllers simultaneously. Just run the program twice.
-
-
 
 ## Addendum: Disabling Flydigi's mouse click on right grip button
 1. Identify ID of the device:

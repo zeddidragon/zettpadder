@@ -2,7 +2,7 @@
 PovXY arrows
 
 JoyXY wasd deadzone 40 # Strafe
-CamXY Mouse 500 # Used to counter recoil
+CamXY Mouse 50 # Used to counter recoil
 mousecalibration 11250
 ingamemouse 6.0
 mousepriority flick # Disable normal camera motion while using wheel

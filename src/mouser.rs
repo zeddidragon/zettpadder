@@ -41,7 +41,9 @@ pub enum MouserMsg {
     SetMousePriority(MousePriority), // Wether to prioritize mouse or flick input
     SetInGameMouse(f64), // In-game mouse sensitivity
 
-    MouseX(f64), // Assign mouse X axis
+    // The value in mouse movement is how faster you turn..
+    // MouseX 100 means 100% speed, which is 1 second to do a 360
+    MouseX(f64), // Assign mouse X axis.
     MouseY(f64), // Assign mouse Y axis
     FlickX(f64), // Assign flick X axis
     FlickY(f64), // Assign flick Y axis
@@ -105,7 +107,11 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
         let mut can_flick = true;
         // Old school moving
         if mover.len() > 0.0 {
-            motion = mover;
+            motion = mover
+                * tick_time.as_millis() as f64
+                * mouse_calibration
+                * TAU
+                / 100000.0;
         } else {
             motion *= 0.0;
         }

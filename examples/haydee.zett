@@ -3,7 +3,7 @@
 # Game will ficker the UI, but this can be circumvented:
 # 1. Adjust gamepad look sensitivity to 0
 # 2. In steam, assign an Always On Action as holding the right stick.
-CamXY mouse 10 # Aim normally with mouse to counter recoil etc
+CamXY mouse 50 # Aim normally with mouse to counter recoil etc
 ActionWheelXY flick # Flick with wheel
 flickdeadzone 40
 mousecalibration 290
