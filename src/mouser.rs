@@ -155,7 +155,6 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                         * angle
                         / (ticks_remaining as f64);
                 }
-                println!("tick: {}  remaining: {}", flick_tick, flick_remaining);
                 flick_smoother.clear();
                 total_flick_steering = 0.0;
 
