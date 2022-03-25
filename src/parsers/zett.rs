@@ -244,9 +244,15 @@ pub fn parse_line(
         "flicktime" => {
             let arg1 = iter.next().map(|v| v.parse::<u64>());
             if let Some(Ok(v)) = arg1 {
-                send(sender, ZpMsg::SetFlickTime(v));
+                let arg2 = iter.peek();
+                let mut is_variable = false;
+                if Some(&&"variable") == arg2 {
+                    iter.next();
+                    is_variable = true;
+                }
+                send(sender, ZpMsg::SetFlickTime(v, is_variable));
             } else {
-                println!("Usage: flicktime <n>");
+                println!("Usage: flicktime <n> [variable]");
             }
         },
         "flickdeadzone" => {

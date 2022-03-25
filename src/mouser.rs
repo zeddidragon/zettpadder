@@ -35,7 +35,7 @@ fn modulo(v: f64, k: f64) -> f64 {
 pub enum MouserMsg {
     SetFps(u64), // Cycle rate of main loop
     SetMouseCalibration(f64), // Mouse motion of one radian
-    SetFlickTime(u64), // Duration of a flick
+    SetFlickTime(u64, bool), // Duration of a flick, and if the duration scales
     SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
     GetFlickCalibration(f64), // Display data to help calibrate
     SetMousePriority(MousePriority), // Wether to prioritize mouse or flick input
@@ -64,7 +64,8 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
     let mut flick_smoother = Smoothing::new();
     let mut total_flick_steering: f64 = 0.0;
     let mut flick_time = FLICK_TIME;
-    let mut flick_remaining = 0;
+    let mut flick_is_variable = false;
+    let mut flick_remaining = 0.0;
     let mut flick_tick = 0.0;
     let mut mouse_calibration = MOUSE_CALIBRATION;
 
@@ -82,7 +83,10 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                 SetInGameMouse(v) => {
                     ingame_mouse = v;
                 },
-                SetFlickTime(v) => { flick_time = Duration::from_millis(v); },
+                SetFlickTime(v, b) => {
+                    flick_time = Duration::from_millis(v);
+                    flick_is_variable = b;
+                },
                 SetFlickDeadzone(v) => { flick_deadzone = v / 100.0; },
 
                 GetFlickCalibration(v) => {
@@ -135,10 +139,23 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
             if prev_flicker.len() < flick_deadzone {
                 // Starting a flick
                 let angle = flicker.angle();
-                flick_remaining = (
-                    flick_time.as_nanos()
-                    / tick_time.as_nanos()).max(1) as u64;
-                flick_tick = mouse_calibration * angle / (flick_remaining as f64);
+                flick_remaining = (mouse_calibration * angle).abs();
+                if flick_is_variable {
+                    flick_tick =
+                        mouse_calibration
+                        * angle.signum()
+                        * PI
+                        * (tick_time.as_millis() as f64)
+                        / (flick_time.as_millis() as f64);
+                } else {
+                    let ticks_remaining = (
+                        flick_time.as_nanos()
+                        / tick_time.as_nanos()).max(1) as u64;
+                    flick_tick = mouse_calibration
+                        * angle
+                        / (ticks_remaining as f64);
+                }
+                println!("tick: {}  remaining: {}", flick_tick, flick_remaining);
                 flick_smoother.clear();
                 total_flick_steering = 0.0;
 
@@ -153,9 +170,10 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
             }
         }
 
-        if flick_remaining > 0 {
-            flick_remaining -= 1;
-            motion.x += flick_tick;
+        if flick_remaining > 0.0 {
+            let motioned = flick_tick.abs().min(flick_remaining);
+            flick_remaining -= motioned;
+            motion.x += motioned * flick_tick.signum();
         }
 
         // Apply all motion in the tick

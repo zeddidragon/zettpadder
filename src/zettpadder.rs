@@ -57,7 +57,7 @@ pub enum ZpMsg {
     SetTapTime(u64), // Set amount of frame for a tap
     SetMouseCalibration(f64), // Mouse motion of one radian
     SetInGameMouse(f64), // In-game mouse sensitivity
-    SetFlickTime(u64), // Duration of a flick
+    SetFlickTime(u64, bool), // Duration of a flick
     SetFlickDeadzone(f64), // Deadzone before performing a flick
     Bind(u8, Mapping), // Bind output to button
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
@@ -171,8 +171,8 @@ pub fn run(
             SetInGameMouse(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetInGameMouse(v));
             },
-            SetFlickTime(v) => {
-                send_to_mouse(&mouse_sender, MouserMsg::SetFlickTime(v));
+            SetFlickTime(v, b) => {
+                send_to_mouse(&mouse_sender, MouserMsg::SetFlickTime(v, b));
             },
             SetFlickDeadzone(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetFlickDeadzone(v));
