@@ -15,22 +15,25 @@ ActionV 2 # Secondary Weapon
 ActionA Z # Call Vehicle / Reload shield
 ActionB 3 # Tertiary Weapon (Air Raider only)
 
-ActionC R # Reload
-ActionD M3 # Vehicle special action
+ActionC E # Use / Revive
+ActionD R # Reload
 
 # Rear triggers
 TriggerR M1 # Fire
 TriggerL Space # Jump / Handbrake
-ActionR E # Interact
-ActionL Q # Ping
+ActionR Q # Ping
+ActionL M3 # Vehicle Special Action
 BumperL M2 # Zoom / Activate
 BumperR Shift # Sprint / Dash
 
 # Menu buttons
-MenuR Escape
+MenuL Tab # For steam overlay
+MenuR Escape # Pause
 
 # Dpad
 PovXY arrows  # Chat navigation
 
 # Underside
 PinkyLeft Ctrl # Chat Wheel
+PaddleLeft PageUp # Scroll up in some menus
+PaddleRight PageDown # Scroll down in some menus
