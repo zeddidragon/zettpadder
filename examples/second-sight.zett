@@ -4,7 +4,7 @@
 
 # Joy for some movement
 JoyXY WASD deadzone 40 # Move with joy
-CamXY Mouse 50 # Traditional mousing / Change target
+CamXY Mouse 60 # Traditional mousing / Change target
 mousecalibration 1000
 ingamemouse 1.0
 mousepriority flick # Disable normal camera motion while using wheel
@@ -17,14 +17,27 @@ TriggerL M2 # Aim / Raise Arm
 BumperL C # Crouch / Stop Projection
 BumperR F # Melee
 ActionL Ctrl # Toggle Firstperson
-ActionR E # Get On/Off Wall
+ActionR E # Stealth / Climb
 
 # Dpad
-PovLeft N # Previous Psi
-PovRight M # Next Psi
-PovUp G # Next Gun
-PovDown G # Previous Gun
+PovXY N M G B # Psi prev/next, Weapon next/prev
 
+# Face Buttons
+ActionV Shift # Change Camera / Exit Computers
+ActionA Space # Interact / Ok
+ActionH E # Stealth / Climb
+ActionB C # Crouch / Stop Projection
+
+ActionC Enter # OK
+ActionD Escape # Leave
+
+# Menu Buttons
+MenuL Tab # Menu
+MenuR Escape # PC Menu
+
+# Under Buttons
+PinkyLeft layer 1
+layer 1
 # Face Buttons
 # Think of the face buttons as three rows:
 # X 1  Y 2
@@ -35,11 +48,4 @@ ActionV 2 # Weapons 2 (Pistols)
 ActionA 3 # Weapons 3 (Machineguns)
 ActionB 4 # Weapons 4 (Shotguns)
 ActionC 5 # Weapons 5 (Sniper Rifle)
-ActionD Q # Quick Switch
-
-# Menu Buttons
-MenuL Shift # Change Camera
-MenuR Escape # Options
-
-# Under Buttons
-PinkyLeft Space # Press Space to start in the menu
+ActionD Q # Holster
