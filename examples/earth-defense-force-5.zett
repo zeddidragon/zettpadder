@@ -1,5 +1,4 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
-# Some of these get funky with fencer and vehicles, consider rebinding in-game
 JoyXY WASD deadzone 40
 CamXY mouse 50 deadzone 33 # Too restricted for regular flickstick
 ActionWheelXY flick # Flick with wheel
@@ -9,25 +8,37 @@ flicktime 200
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
-# Face buttons
-ActionH 1 # Primary Weapon
-ActionV 2 # Secondary Weapon
-ActionA Z # Call Vehicle / Reload shield
-ActionB 3 # Tertiary Weapon (Air Raider only)
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3 (Air Raider only)
+ActionB Z # Call Vehicle / Reload shield
 
 ActionC E # Use / Revive
 ActionD R # Reload
 
 # Rear triggers
-TriggerR M1 # Fire
-TriggerL Space # Jump / Handbrake
-ActionR Q # Ping
-ActionL M3 # Vehicle Special Action
-BumperL M2 # Zoom / Activate
-BumperR Shift # Sprint / Dash
+# Left and Right flipped. This is due to the inherent problem of
+# left mouse button being the traditional fire button for mice while
+# right trigger is the traditional fire button for controlllers.
+# Only way to resolve this inconsistency is extensive rebinding.
+# You'd have to change flip M1<->M2 and Shift<->Space either
+# for Fencer + Vehicles or the other three classes in-game.
+#
+# Or just leave it mirrored. It's not that bad.
+TriggerR M1 # Fire / Attack Left
+TriggerL M2 # Alt-Fire / Attack Right / Wing Diver Boost
+BumperR Shift # Sprint / Shoulder Left / Stomp Left / Dash
+BumperL Space # Dodge / Shoulder Right / Stomp Right  / Handbrake
+
+ActionR Q # Pip
+ActionL M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
 
 # Menu buttons
-MenuL Tab # For steam overlay
+MenuL Tab # For Steam Overlay
 MenuR Escape # Pause
 
 # Dpad
@@ -35,5 +46,10 @@ PovXY arrows  # Chat navigation
 
 # Underside
 PinkyLeft Ctrl # Chat Wheel
-PaddleLeft PageUp # Scroll up in some menus
-PaddleRight PageDown # Scroll down in some menus
+PaddleLeft layer 1 # Esoteric menu actions
+layer 1
+
+ActionV Y # Toggle medals / change costume
+PovXY Home End PageUp PageDown # Scroll in some places
+ActionB Escape # Back
+ActionA Enter # OK
