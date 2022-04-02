@@ -15,14 +15,14 @@ PovRight X # Shout
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire
 TriggerL M2 # Pickaxe
-ActionR E # Interact
+ActionR R # Reload / Alt-Fire
 ActionL Shift # Sprint
 BumperR G # Grenade
 BumperL Ctrl # Laser Pointer
 
 ActionA Space # Jump
 ActionB F # Flare/Flashlight
-ActionH R # Reload
+ActionH E # Interact
 ActionV C # Call M.U.L.E.
 
 ActionC 5 # Resupply

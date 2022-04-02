@@ -14,13 +14,13 @@ TriggerL M2 # Aim
 BumperR F # Melee
 BumperL M3 # Equipment
 ActionL Shift # Sprint
-ActionR E # Interact
+ActionR T # Mark Target
 
 ActionA Space # Jump
 ActionB Ctrl # Toggle crouch
-ActionH R # Reload
+ActionH E # Interact
 ActionV 4 # Medkit
-ActionC T # Mark Target
+ActionC R # Reload
 ActionD X # Switch Shoulder
 
 MenuL Tab # Scoreboard

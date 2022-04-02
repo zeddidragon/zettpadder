@@ -14,7 +14,7 @@ mousepriority flick # Disable normal camera motion while using wheel
 # Unbind everything except left stick and the above mentioned always on action
 # Triggers
 TriggerR M1 # Fire
-TrigggerL M2 # Aim / Dive
+TriggerL M2 # Aim / Dive
 ActionR E # Interact
 ActionL Shift # Run / Swim (Not actually used by gamepad movement)
 BumperL X # Holster
@@ -23,7 +23,8 @@ BumperR R # Reload
 # Face buttons
 ActionA Space # Jump / Up
 ActionB Ctrl # Crouch / Down
-ActionH Tab # Inventory
+ActionH E # Interact
+ActionV Tab # Inventory
 
 ActionC C # Switch Shoulder
 ActionD H # Toggle HUD

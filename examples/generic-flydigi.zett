@@ -19,12 +19,12 @@ TriggerL M2 # Alt-fire / Zoom
 BumperL M3 # Ability
 BumperR G # Grenade
 ActionL Shift # Sprint
-ActionR E # Interact
+ActionR R # Reload
 
 # Face buttons for manipulating yourself
 ActionA Space # Jump
 ActionB C # Toggle Crouch
-ActionH R # Reload
+ActionH E # Use
 ActionV F # Flashlight
 ActionC X # Change firing mode
 ActionD V # Switch shoulders

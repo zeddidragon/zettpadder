@@ -9,13 +9,13 @@ flickdeadzone 40
 
 TriggerR M1 # Fire
 TriggerL M2 # Aim (Remap in game if you want hold instead of toggle)
-ActionR E # Use / Quick Weld
-ActionL Shift # Sprint
 BumperR M3 # Alt-Fire
 BumperL G # Grenade
+ActionR V # Bash
+ActionL Shift # Sprint
 
 ActionA Space # Jump
-ActionB V # Bash
+ActionB E # Use / Quick-Weld
 ActionH R # Reload
 ActionV Q # Quick Heal
 ActionC C # Crouch
@@ -29,13 +29,12 @@ PovLeft Backspace # Throw Weapon
 MenuR Escape # Pause
 MenuL Tab # Scoreboard
 
-PinkyLeft layer 1 # Weapons / Alt Actions
 PinkyLeft layer 1 # Weapons
 layer 1 # Weapons
 ActionH 1 # Primary Weapon
-ActionA 2 # Secondary
-ActionB 3 # Melee Weapon
-ActionV 4 # Tool
+ActionV 2 # Secondary
+ActionA 3 # Melee Weapon
+ActionB 4 # Tool
 
 ActionC Enter # OK
 ActionD Escape # Cancel
