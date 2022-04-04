@@ -1,0 +1,68 @@
+# Half-Life: Opoosing Force, with Flydigi Apex 2 in mind
+CamXY mouse 100 deadzone 33 # Too restricted for regular flickstick
+ActionWheelXY flick # Flick with wheel
+ingamemouse 30
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+mousecalibration 1290
+ingamemouse 1.0
+
+TriggerR M1 # Fire
+BumperR M2 # Alt-Fire
+ActionR E # Interact
+
+TriggerL Space # Jump
+BumperL Ctrl # Crouch
+ActionL Shift # Walk
+
+ActionC R # Reload
+ActionD F # Night-Vision Goggles
+
+# Menus stuff
+MenuR Escape # Pause
+MenuL Tab # Scoreboard
+
+# Others
+PovLeft F6 # Quicksave
+PovRight F7 # Quickload
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 1 # Weapons 1
+ActionV 2 # Weapons 4
+ActionA 3 # Weapons 2
+ActionB 4 # Weapons 3
+
+PinkyLeft layer 1 # More Weapons
+layer 1 # More Weapons
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 5 # Weapons 5
+ActionV 6 # Weapons 6
+ActionA 7 # Weapons 7
+ActionB 8 # Weapons 8
+
+# In ~/.local/share/Steam/steamapps/common/Half-Life/gearbox
+# add this file as joystick.cfg (strip layer of # comments)
+# // Half-Life Flyidig controller config.cfg
+# joyname "Flydigi Apex 2"
+# joyyawsensitivity 0
+# joypitchsensitivity 0
+# joyforwardsensitivity -1.0
+# joysidesensitivity 1.0
+# joyforwardthreshold 0.0
+# joysidethreshold 0.0
+# joystick 1
+# joyadvanced 1
+# joyadvaxisr 0
+# joyadvaxisu 0
+# joyadvaxisv 0
+# joyadvaxisx 3 // Strafe
+# joyadvaxisy 1 // Move forward / backwards
+# joyadvaxisz 0
+# -jlook
+# joyadvancedupdate
+# +moveright // Counteract oversensitivity horizontally
+# +back // Counteract oversensitivity backwards

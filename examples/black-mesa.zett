@@ -1,5 +1,9 @@
 # Black Mesa, with Flydigi Apex 2 in mind
-CamXY flick # Right Stick for turning (disable stick with steam input)
+CamXY mouse 100 deadzone 33
+ActionWheelXY flick # Flick with wheel
+ingamemouse 30
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
 mousecalibration 1290
 ingamemouse 1.0
 
@@ -13,26 +17,26 @@ ingamemouse 1.0
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire
 TriggerL M2 # Alt-Fire
-ActionR E # Interact
+ActionR Z # Zoom
 ActionL Shift # Sprint
 BumperR G # Frag
 BumperL Ctrl # Crouch
 
 ActionA Space # Jump
-ActionB F # Flare/Flashlight
+ActionB E # Interact
 ActionH R # Reload
 ActionV F # Flashlight
 
-ActionC Z # Zoom
+ActionC R # Reload
 ActionD CapsLock # Place Mine
 
 # Menus stuff
 MenuR Escape # Pause
-MenuL Tab # So you can shift-tab steam
+MenuL Tab # Scoreboard
 
 # Others
 PovLeft F6 # Quicksave
-PovRight F7 # Quicload
+PovRight F7 # Quickload
 PovDown M # Change teams (multiplayer)
 
 # Think of the face buttons as three rows:
@@ -42,8 +46,8 @@ PovDown M # Change teams (multiplayer)
 PinkyLeft layer 1 # Weapons
 layer 1 # Weapons
 ActionH 1 # Weapons 1
-ActionV 2 # Weapons 4
-ActionA 3 # Weapons 2
-ActionB 4 # Weapons 3
+ActionV 2 # Weapons 2
+ActionA 3 # Weapons 3
+ActionB 4 # Weapons 4
 ActionC 5 # Weapons 5
 ActionD 6 # Weapons 6

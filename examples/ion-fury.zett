@@ -1,7 +1,7 @@
 # Ion Fury, with Flydigi Apex 2 in mind
 # Unbind everything except the left stick.
 # Also go to controler setup -> controller setup -> advanced and disable "view centering"
-CamXY mouse 50 # Aim normally with mouse to counter recoil etc
+CamXY mouse 100 # Aim normally with mouse to counter recoil etc
 ActionWheelXY flick # Flick with wheel
 flickdeadzone 40
 mousecalibration 21000

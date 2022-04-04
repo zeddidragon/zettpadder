@@ -1,12 +1,12 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
+mousecalibration 74000
 JoyXY WASD deadzone 40
 CamXY mouse 50 deadzone 33 # Too restricted for regular flickstick
 ActionWheelXY flick # Flick with wheel
-mousecalibration 74000
 ingamemouse 30
-flicktime 200
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
+flicktime 200
 
 # Think of the face buttons as three rows:
 # X 1  Y 2
