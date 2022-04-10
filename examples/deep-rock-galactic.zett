@@ -3,7 +3,7 @@ mousecalibration 4200
 flicktime 200
 ingamemouse 2.5
 
-CamXY mouse 100 deadzone 33
+CamXY mouse 100
 ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40

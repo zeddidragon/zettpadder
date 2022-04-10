@@ -1,5 +1,5 @@
 # Half-Life: Opoosing Force, with Flydigi Apex 2 in mind
-CamXY mouse 100 deadzone 33 # Too restricted for regular flickstick
+CamXY mouse 100
 ActionWheelXY flick # Flick with wheel
 ingamemouse 30
 mousepriority flick # Disable normal camera motion while using wheel
