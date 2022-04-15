@@ -13,10 +13,10 @@ mousepriority flick # Disable normal camera motion while using wheel
 
 # Unbind everything except left stick and the above mentioned always on action
 # Triggers
-TriggerR M1 # Fire
-TriggerL M2 # Aim / Dive
-ActionR E # Interact
-ActionL Shift # Run / Swim (Not actually used by gamepad movement)
+TriggerR M1 # Fire / Lift (Inventory)
+TriggerL M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
+ActionR C # Switch Shoulders
+ActionL Shift # Run / Swim / Split Stacks (Inventory)
 BumperL X # Holster
 BumperR R # Reload
 
@@ -26,7 +26,7 @@ ActionB Ctrl # Crouch / Down
 ActionH E # Interact
 ActionV Tab # Inventory
 
-ActionC C # Switch Shoulder
+ActionC F1 # View Stats
 ActionD H # Toggle HUD
 
 # Game is slow-paced enough that standard dpad item switching is fine

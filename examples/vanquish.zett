@@ -24,7 +24,7 @@ ActionB F # Melee
 ActionA R # Reload / Scan Weapon
 
 ActionC !! E # Mash E
-ActionD !! A , D # Wiggle Stick
+ActionD !! A , S , D, W # Wiggle Stick
 
 # # Menus stuff
 MenuR Escape # Menu

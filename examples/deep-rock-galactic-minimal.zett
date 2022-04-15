@@ -1,0 +1,18 @@
+# Deep Rock Galactic, with Flydigi Apex 2 in mind
+mousecalibration 4200
+flicktime 200
+ingamemouse 2.5
+
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+
+# Unmap everything Rigth Stick and X Button
+
+# Seperate reload and interact buttons (disable ActionH button with steam input)
+ActionR R # Reload / Alt-Fire
+ActionH E # Interact
+
+ActionC !! A , D # Escape Freeze
+ActionD V # ROCK AND STONE

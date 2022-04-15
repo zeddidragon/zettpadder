@@ -29,7 +29,7 @@ ActionB F # Flare/Flashlight
 ActionH E # Interact
 ActionV C # Call M.U.L.E.
 
-ActionC 5 # Resupply
+ActionC !! A , D # Escape Freeze
 ActionD V # ROCK AND STONE
 
 # Menus stuff
@@ -42,7 +42,7 @@ layer 1 # Weapons
 ActionH 1 # Primary
 ActionB 2 # Secondary
 ActionV 3 # Mobilitty
-ActionA 4 # Utility
+ActionA 4 # Utility / Support
 
 ActionC Enter # OK (Menus)
 ActionD Escape # Back (Menus)
