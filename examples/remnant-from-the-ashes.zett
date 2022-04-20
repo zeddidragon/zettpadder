@@ -1,0 +1,45 @@
+# Remnant: From The Ashes, with Flydigi Apex 2 in mind
+mousecalibration 1200
+flicktime 200
+ingamemouse 1 # I have it to 0 but the number is meaningless
+
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+
+# Unmap everything in steam input
+JoyXY WASD deadzone 40
+
+# Items
+# Think of the d-pad buttons as two diagonal rows:
+#   ^ 2
+# < 1   > 4
+#     v 3
+PovXY 1 4 2 3
+
+# Seperate reload and interact buttons (disable ActionH button with steam input)
+TriggerR M1 # Fire
+TriggerL M2 # Aim
+ActionR M3 # Ping
+ActionL Shift # Sprint
+BumperR F # Alt-fire / Mod
+BumperL Z # Melee / Scope (Bind them, LMB and unbound by default)
+
+ActionA Space # Dodge / Jump
+ActionB Alt # Crouch
+ActionH E # Interact
+ActionV X # Change weapon
+
+ActionC R # Reload
+ActionD Q # Dragon Heart
+
+# Menus stuff
+MenuR Escape # Pause
+MenuL Tab # Character Menu
+
+# Under buttons
+PaddleLeft M # Map
+PaddleRight I # Inventory
+
+PinkyLeft B # Back, although you might  want to rebind Back as Alt in-game and B as "Switch Camera"
