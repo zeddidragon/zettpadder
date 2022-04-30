@@ -10,9 +10,9 @@ flicktime 200
 
 # Triggers
 TriggerR M1 # Fire
-TriggerL Shift # Ability
-BumperL M2 # Aim
-BumperR M3 # Secondary Action
+TriggerL M2 # Aim
+BumperL Shift # Ability
+BumperR M3 # Second Ability
 ActionL Space # Jump
 ActionR Z # SP Move
 

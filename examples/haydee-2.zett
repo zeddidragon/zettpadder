@@ -1,8 +1,6 @@
-# Haydee, with Flydigi Apex 2 in mind
+# Haydee 2 , with Flydigi Apex 2 in mind
 # 
-# Game will ficker the UI, but this can be circumvented:
-# 1. Adjust gamepad look sensitivity to 0
-# 2. In steam, assign an Always On Action as holding the right stick.
+JoyXY WASD deadzone 40
 CamXY mouse 100 # Aim normally with mouse to counter recoil etc
 ActionWheelXY flick # Flick with wheel
 flickdeadzone 40
@@ -16,8 +14,8 @@ mousepriority flick # Disable normal camera motion while using wheel
 TriggerR M1 # Fire / Drag (Inventory)
 TriggerL M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
 ActionR C # Switch Shoulders
-ActionL Shift # Run / Swim / Split Stacks (Inventory)
-BumperL X # Holster
+ActionL Shift # Run / Split Stacks (Inventory)
+BumperL !! ScrollDown # Scroll Document
 BumperR R # Reload
 
 # Face buttons
@@ -26,12 +24,16 @@ ActionB Ctrl # Crouch / Down
 ActionH E # Interact
 ActionV Tab # Inventory
 
-ActionC F1 # View Stats
-ActionD H # Toggle HUD
+ActionC !! ScrollUp # Scroll Document
+ActionD Escape # Menu / Back
 
-# Game is slow-paced enough that standard dpad item switching is fine
-PovXY 3 4 1 2 # Items
+# Items
+# Think of the d-pad buttons as two diagonal rows:
+#   ^ 2
+# < 1   > 4
+#     v 3
+PovXY 1 4 2 3
 
 # Menu Buttons
-MenuL F9 # Load Game
 MenuR Escape # Menu
+MenuL F1 # View Stats

@@ -1,10 +1,9 @@
 # Cruelty Squad, with Flydigi Apex 2 in mind.
 # Movement
 JoyXY WASD deadzone 40
-CamXY flick # Right Stick for turning
+CamXY mouse 50 # Aim normally with mouse to counter recoil etc
 mousecalibration 56.94 # Mouse units for one radian
 ingamemouse 0.07 # Check "%APPDATA%\Godot\app_userdata\Cruelty Squad"
-flicktime 150
 
 # Typical rear trigger actions for applying yourself to what you're aiming at
 TriggerR M1 # Fire
@@ -16,11 +15,9 @@ ActionR R # Interact
 
 # Face buttons for manipulating yourself
 ActionH 1 # Primary Weapon
-ActionV M2 # Reload
+ActionV ! M2 layer 2 # Reload
 ActionA Space # Jump
 ActionB 2 # Secondary Weapon
-
-ActionWheelXY Mouse 300 # Used to reload mostly
 
 ActionC Enter # OK
 ActionD Escape # Cancel
@@ -40,3 +37,6 @@ PinkyLeft Layer 1 # Weird Actions
 layer 1 # Weird Actions
 ActionL G # Throw Weapon
 MenuL K # Suicide
+
+layer 2 # Faster mouse for reload
+ActionWheelXY mouse 300

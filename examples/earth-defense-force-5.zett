@@ -1,4 +1,5 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
+# Also works fine in Earth Defense Force 4.1, although A will be unused.
 mousecalibration 74000
 JoyXY WASD deadzone 40
 CamXY mouse 50 # Too restricted for regular flickstick
@@ -8,17 +9,14 @@ mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 flicktime 200
 
-# Think of the face buttons as three rows:
-# X 1  Y 2
-#  A 3  B 4
-#   C 5  Z 6
+# Face buttons
 ActionH 1 # Weapon 1
 ActionV 2 # Weapon 2
-ActionA 3 # Weapon 3 (Air Raider only)
-ActionB Z # Call Vehicle / Reload shield
+ActionB 3 # Weapon 3 (Air Raider only)
+ActionA Z # Call Vehicle / Reload shield
 
-ActionC E # Use / Revive
-ActionD R # Reload
+ActionC R # Reload
+ActionD E # Use / Revive
 
 # Rear triggers
 # Left and Right flipped. This is due to the inherent problem of
