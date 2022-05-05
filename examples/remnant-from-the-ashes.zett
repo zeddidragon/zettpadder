@@ -1,9 +1,9 @@
 # Remnant: From The Ashes, with Flydigi Apex 2 in mind
-mousecalibration 1200
+mousecalibration 2400
 flicktime 200
 ingamemouse 1 # I have it to 0 but the number is meaningless
 
-CamXY mouse 100
+CamXY mouse 50
 ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
