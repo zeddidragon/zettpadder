@@ -8,7 +8,7 @@ ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
-# Unmap everything Rigth Stick and X Button
+# Unmap Right Stick and X Button
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 ActionR R # Reload / Alt-Fire
