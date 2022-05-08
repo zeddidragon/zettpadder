@@ -1,0 +1,76 @@
+# Grim Dawn, with Flydigi Apex 2 in mind
+JoyXY compass 960 540 256 ring 15 M1 deadzone 0
+CamXY mouse 100 # Move cursor around quickly
+
+TriggerR M1 # Move / Interact / Primary
+TriggerL M2 # Equip / Consume / Secondary
+BumperR M3 # Rotate Camera
+BumperL Shift # Stationary Attack (Hold and Click)
+ActionR Ctrl # Target Pet (Hold and Click)
+ActionL A # Move
+
+# Think of the face buttons as three rows:
+# X 1  Y 4
+#  A 2  B 5
+#   C 3  Z 6
+ActionH 1 # Quick Slot 1
+ActionV 2 # Quick Slot 2
+ActionA 3 # Quick Slot 3
+ActionB 4 # Quick Slot 4
+ActionC 5 # Quick Slot 5
+ActionD 6 # Quick Slot 6
+
+# Think of the d-pad buttons as two diagonal rows:
+#   ^ 8
+# < 7   > 0
+#     v 9
+PovXY R E W Y # Potion, Mana Potion, Switch Weapons, Switch Quickbar
+
+MenuL C # Character Window
+MenuR Escape # Options
+
+PinkyLeft   layer 1 # States
+PaddleLeft  layer 2 # Menus
+PaddleRight layer 3 # Pets
+
+layer 1 # States / UI
+ActionH 7 # Quick Slot 7
+ActionV 8 # Quick Slot 8
+ActionA 9 # Quick Slot 9
+ActionB 0 # Quick Slot 0
+
+ActionC U # Interact
+ActionD L # Personal Riftgate
+
+CamX Comma . deadzone 40 # Turn Camera
+CamY ScrollY # Zoom in/out
+
+PovUp Alt # Show Items (No Filter)
+PovDown X # Show Item Tooltips
+PovLeft Backspace # Toggle Pet Display
+PovRight \ # Toggle Party Display
+
+layer 2 # Menus
+ActionH S # Skill Window
+ActionV Q # Codex Window
+ActionA M # Map Window
+ActionB O # Loot Filter Window
+ActionC P # Group Window
+ActionD Enter # Chat Window 
+
+PovLeft J # Factions Window
+PovRight V # Achievements Window
+PovUp H # Help Window
+PovDown Space # Pause (Single-Player Only)
+
+layer 3 # Pets
+# Think of the face buttons as three rows:
+# X 1  Y 4
+#  A 2  B 5
+#   C 3  Z 6
+ActionH F2 # Select Pet 1
+ActionV F3 # Select Pet 2
+ActionA F4 # Select Pet 3
+ActionB F5 # Select Pet 4
+ActionC F6 # Select Pet 5
+ActionD F7 # Select All Pets

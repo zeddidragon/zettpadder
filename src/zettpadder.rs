@@ -59,6 +59,7 @@ pub enum ZpMsg {
     SetInGameMouse(f64), // In-game mouse sensitivity
     SetFlickTime(u64, bool), // Duration of a flick
     SetFlickDeadzone(f64), // Deadzone before performing a flick
+    SetCompassDeadzone(f64), // Deadzone before performing a compass
     Bind(u8, Mapping), // Bind output to button
     SetDeadzoneOn(u8, f64), // Deadzone before binding enables
     SetDeadzoneOff(u8, f64), // Deadzone before binding disables
@@ -179,6 +180,9 @@ pub fn run(
             },
             GetFlickCalibration(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::GetFlickCalibration(v));
+            },
+            SetCompassDeadzone(v) => {
+                send_to_mouse(&mouse_sender, MouserMsg::SetCompassDeadzone(v));
             },
             SetMousePriority(v) => {
                 send_to_mouse(&mouse_sender, MouserMsg::SetMousePriority(v));
@@ -362,6 +366,12 @@ fn handle_mapping(
                 &mouse_sender,
                 &macro_sender,
             );
+        },
+        Some(Mapping::CompassX(x, r)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::CompassX(x, r));
+        },
+        Some(Mapping::CompassY(y, r)) => {
+            send_to_mouse(&mouse_sender, MouserMsg::CompassY(y, r));
         },
         Some(Mapping::Noop) => {},
         None => {},

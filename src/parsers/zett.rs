@@ -129,6 +129,30 @@ fn parse_outputs(
                 mappings.push(Mapping::MouseY(factor));
                 continue; // Continue manually 'cause we next-ed
             },
+            "compass" => {
+                iter.next();
+                let arg1 = iter.next().map(|v| v.parse::<f64>());
+                let arg2 = iter.next().map(|v| v.parse::<f64>());
+                let arg3 = iter.peek().map(|v| v.parse::<f64>());
+                let r =
+                    if let Some(Ok(v)) = arg3 {
+                        iter.next();
+                        v
+                    } else {
+                        0.0
+                    };
+                if let Some(Ok(x)) = arg1 {
+                    mappings.push(Mapping::CompassX(x, r));
+                } else {
+                    println!("Urecognized moveto value: {:?}", arg1);
+                }
+                if let Some(Ok(y)) = arg2 {
+                    mappings.push(Mapping::CompassY(y, r));
+                } else {
+                    println!("Urecognized moveto value: {:?}", arg2);
+                }
+                continue; // Continue manually 'cause we next-ed
+            },
             "flick" => {
                 iter.next();
                 opts.is_flick = true;
@@ -395,6 +419,7 @@ pub fn parse_line(
                     }
                 }
                 (Axis(axis), [mapping], _) => {
+                    println!("mapping {:?}", mapping);
                     send(sender, ZpMsg::Bind(axis, *mapping));
                 },
                 (Axis(axis), [Emit(eneg), Emit(epos)], _) => {

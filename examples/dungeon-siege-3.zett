@@ -1,0 +1,36 @@
+# Dungeon Siege 3, with Flydigi Apex in mind
+JoyXY WASD deadzone 40 # Move with joy (Rebind A and D to strafe)
+CamXY mouse 100 # Move cursor around quickly
+
+# Triggers
+TriggerR M1 # Attack
+TriggerL Space # Block / Dodge
+BumperR E # Interact
+BumperL Q # Switch Stance
+ActionL M3 # Camera
+ActionR M2 # Move
+
+# Think of the face buttons as three rows:
+# X 1  Y 4
+#  A 2  B 5
+#   C 3  Z 6
+ActionH 1 # Quick Slot 1
+ActionV 2 # Quick Slot 2
+ActionA 3 # Quick Slot 3
+ActionB 4 # Defensive Quick Slot 4
+ActionC 5 # Defensive Quick Slot 5
+ActionD 6 # Defensive Quick Slot 6
+
+# Menus
+MenuL C # Character
+MenuR Escape # Options / Back
+
+PovRight F # Equipment
+PovLeft B # Abilities
+PovUp X # Quests
+PovDown R #  Guide
+
+# Paddles
+PaddleLeft ScrollUp # Zoom In
+PaddleRight ScrollDown # Zoom Out
+PinkyLeft Enter # Confirm

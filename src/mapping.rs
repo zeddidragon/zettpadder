@@ -12,6 +12,9 @@ pub enum Mapping {
     // Flick Stick. Used to turn towards your stick direction.
     FlickX(f64),
     FlickY(f64),
+    // Compass movement. Used to warp to a point on screen from center offset by radius.
+    CompassX(f64, f64),
+    CompassY(f64, f64),
     // For axes.
     // Negative values on the axis emits the first event.
     // Positive values emit the second event instead.
@@ -36,6 +39,8 @@ impl Mapping {
             MouseY,
             FlickX,
             FlickY,
+            CompassX,
+            CompassY,
         };
         use rdev::EventType::{
             KeyPress,
@@ -67,6 +72,12 @@ impl Mapping {
             },
             FlickY(_) => {
                 Some(FlickY(0.0))
+            },
+            CompassX(x, _) => {
+                Some(CompassX(x, 0.0))
+            },
+            CompassY(y, _) => {
+                Some(CompassY(y, 0.0))
             },
             Mapping::Delay => {
                 Some(Mapping::Delay)
@@ -166,6 +177,22 @@ impl Binding {
             Mapping::FlickY(v) => {
                 if value.abs() >= on {
                     Some(Mapping::FlickY(v * anti_deadzone(value, on)))
+                } else {
+                    self.mapping.released()
+                }
+            },
+            Mapping::CompassX(x, r) => {
+                if value.abs() >= on {
+                    let r = r * anti_deadzone(value, on);
+                    Some(Mapping::CompassX(x, r))
+                } else {
+                    self.mapping.released()
+                }
+            },
+            Mapping::CompassY(y, r) => {
+                if value.abs() >= on {
+                    let r = r * anti_deadzone(value, on);
+                    Some(Mapping::CompassY(y, r))
                 } else {
                     self.mapping.released()
                 }

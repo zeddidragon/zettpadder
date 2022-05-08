@@ -9,6 +9,7 @@ const FPS: u64 = 60;  // Default loop rate
 const MOUSE_CALIBRATION: f64 = 1280.0; // How much one radian moves the mouse
 const FLICK_DEADZONE: f64 = 0.9; // Deadzone to engage flick
 const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick
+const COMPASS_DEADZONE: f64 = 32.0; // Deadzone to engage compass
 
 #[derive(Debug, Copy, Clone)]
 pub enum MousePriority {
@@ -38,15 +39,18 @@ pub enum MouserMsg {
     SetFlickTime(u64, bool), // Duration of a flick, and if the duration scales
     SetFlickDeadzone(f64), // Deadzone of stick before initiating flick
     GetFlickCalibration(f64), // Display data to help calibrate
+    SetCompassDeadzone(f64), // Deadzone of stick before initiating flick
     SetMousePriority(MousePriority), // Wether to prioritize mouse or flick input
     SetInGameMouse(f64), // In-game mouse sensitivity
 
-    // The value in mouse movement is how faster you turn..
+    // The value in mouse movement is how fast you turn.
     // MouseX 100 means 100% speed, which is 1 second to do a 360
     MouseX(f64), // Assign mouse X axis.
     MouseY(f64), // Assign mouse Y axis
     FlickX(f64), // Assign flick X axis
     FlickY(f64), // Assign flick Y axis
+    CompassX(f64, f64), // Assign pivot and offset for compass X axis
+    CompassY(f64, f64), // Assign pivot and offset for compass Y axis
 }
 
 pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
@@ -58,10 +62,15 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
     let mut mouse_priority = MousePriority::Mixed;
     let mut ingame_mouse = 1.0;
 
+    let mut compass_pivot = Coords::new();
+    let mut compass_offset = Coords::new();
+    let mut compass_smoother = Smoothing::coords(8.0);
+    let mut compass_deadzone = COMPASS_DEADZONE;
+
     let mut flicker = Coords::new();
     let mut prev_flicker;
     let mut flick_deadzone = FLICK_DEADZONE;
-    let mut flick_smoother = Smoothing::new();
+    let mut flick_smoother = Smoothing::radians();
     let mut total_flick_steering: f64 = 0.0;
     let mut flick_time = FLICK_TIME;
     let mut flick_is_variable = false;
@@ -98,15 +107,36 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MouserMsg>) {
                 },
                 SetMousePriority(v) => { mouse_priority = v; },
 
+                SetCompassDeadzone(v) => { compass_deadzone = v / 100.0; },
+
                 MouseX(v) => { mover.x = v; },
                 MouseY(v) => { mover.y = v; },
                 FlickX(v) => { flicker.x = v; },
                 FlickY(v) => { flicker.y = v; },
+                CompassX(x, r) => {
+                    compass_pivot.x = x;
+                    compass_offset.x = r;
+                },
+                CompassY(y, r) => {
+                    compass_pivot.y = y;
+                    compass_offset.y = r;
+                },
             }
         }
 
 
         ticker.recv().unwrap();
+
+        // Compass motion
+        if compass_offset.len() > compass_deadzone {
+            let coords = compass_smoother.tier_smooth(compass_offset)
+                + compass_pivot;
+            let event = rdev::EventType::MouseMove {
+                x: coords.x,
+                y: coords.y,
+            };
+            send(&sender, ZpMsg::Output(event));
+        }
 
         let mut can_flick = true;
         // Old school moving

@@ -152,6 +152,20 @@ impl Ring {
                     None
                 }
             },
+            Mapping::CompassX(x, r) => {
+                if value.abs() >= on {
+                    Some(Mapping::CompassX(x, r * value))
+                } else {
+                    self.mx.released()
+                }
+            },
+            Mapping::CompassY(y, r) => {
+                if value.abs() >= on {
+                    Some(Mapping::CompassY(y, r * value))
+                } else {
+                    self.mx.released()
+                }
+            },
             _ => {
                 Some(self.mx)
             }
@@ -206,6 +220,20 @@ impl Ring {
                     Some(Mapping::Emit(neg))
                 } else {
                     None
+                }
+            },
+            Mapping::CompassX(x, r) => {
+                if value.abs() >= on {
+                    Some(Mapping::CompassX(x, r * value))
+                } else {
+                    self.my.released()
+                }
+            },
+            Mapping::CompassY(y, r) => {
+                if value.abs() >= on {
+                    Some(Mapping::CompassY(y, r * value))
+                } else {
+                    self.my.released()
                 }
             },
             _ => {
