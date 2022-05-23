@@ -5,7 +5,7 @@ mousepriority flick # Disable normal camera motion while using wheel
 ActionWheelXY flick # Action wheel for quick turning
 flickdeadzone 40
 mousecalibration 7000
-ingamemouse 10
+ingamemouse 1 # Actually 0, but meaningless
 flicktime 200
 
 # Triggers
