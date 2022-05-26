@@ -11,7 +11,10 @@ flickdeadzone 40
 
 # Unmap everything in steam input or disable steam input in particular
 JoyXY WASD deadzone 40
-Joy Shift # Sprint
+
+# Stick clicks
+Joy Shift # Sprint / Sheathe
+Cam Q # Toggle Slinger / Focus
 
 # Item quickbars
 DpadXY F4 F2 F1 F3
@@ -20,9 +23,9 @@ DpadXY F4 F2 F1 F3
 TriggerR M1 # Draw Weapon / Fire
 TriggerL M2 # Special Attack / Aim
 ActionR Q # Toggle Slinger / Focus
-ActionL E # Use Item / Sheathe Weapon
+ActionL Shift # Sprint / Sheathe
 BumperR C # Aim Slinger
-BumperL Shift # Sprint / Sheathe
+BumperL E # Use Item / Sheathe Weapon
 
 # Menus stuff
 MenuR Escape # Pause
@@ -58,6 +61,7 @@ ActionD 6
 BumperL Z
 BumperR C
 ActionR Ctrl # Item Menu / Skill Info
+Cam Ctrl # Item Menu / Skill Info
 
 DpadXY Left Right ScrollUp ScrollDown # Browse items
 
