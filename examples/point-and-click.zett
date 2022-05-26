@@ -18,9 +18,9 @@ ActionH P
 ActionC # Copy
 ActionD # Paste
 
-PovUp !! ScrollUp
-PovDown !! ScrollDown
-PovLeft Z # Undo
+Up !! ScrollUp
+Down !! ScrollDown
+Left Z # Undo
 
 MenuL Tab
 MenuR Escape

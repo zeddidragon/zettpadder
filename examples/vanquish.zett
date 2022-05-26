@@ -8,7 +8,7 @@ ingamemouse 10
 mousecalibration 13800
 
 # Map zoom
-PovXY Arrows # For menus
+DpadXY Arrows # For menus
 
 # Face buttons
 TriggerR M1 # Fire

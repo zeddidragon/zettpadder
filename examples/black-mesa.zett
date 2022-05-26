@@ -34,9 +34,9 @@ MenuR Escape # Pause
 MenuL Tab # Scoreboard
 
 # Others
-PovLeft F6 # Quicksave
-PovRight F7 # Quickload
-PovDown M # Change teams (multiplayer)
+Left F6 # Quicksave
+Right F7 # Quickload
+Down M # Change teams (multiplayer)
 
 # Think of the face buttons as three rows:
 # X 1  Y 2

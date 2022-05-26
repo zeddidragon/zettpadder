@@ -13,6 +13,6 @@ mousepriority flick # Disable normal camera motion while using wheel
 # Frag -+- Zap
 #       |
 #   Flashang
-PovXY 2 4 F 3 # Select grenades / Flashlight
+DpadXY 2 4 F 3 # Select grenades / Flashlight
 
 ActionR M3 # Melee

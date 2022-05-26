@@ -26,7 +26,7 @@ MenuL Tab # For Menus
 MenuR Escape # Pause
 
 # Dpad
-PovXY Arrows # For menus
+DpadXY Arrows # For menus
 
 # Underside
 PinkyLeft layer 1 # Switch items

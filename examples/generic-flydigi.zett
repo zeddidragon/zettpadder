@@ -34,16 +34,16 @@ MenuL Tab # Map
 MenuR Escape # Pause
 
 # Some d-pad uses
-PovXY 1 2 3 4 # Weapons / Items (Left -> Right -> Up -> Down)
-PovXY 4 2 1 3 # Weapons / Items (Clockwise)
-PovXY Q M O B # Various submenus (Quest, Missions, Objectives, Board)
-PovXY Arrows # Navigating menus
+DpadXY 1 2 3 4 # Weapons / Items (Left -> Right -> Up -> Down)
+DpadXY 4 2 1 3 # Weapons / Items (Clockwise)
+DpadXY Q M O B # Various submenus (Quest, Missions, Objectives, Board)
+DpadXY Arrows # Navigating menus
 
 # Zoom in / out, open map
-PovUp !! ScrollUp
-PovDown !! ScrollDown
-PovLeft Tab
-PovRight M
+DpadUp !! ScrollUp
+DpadDown !! ScrollDown
+DpadLeft Tab
+DpadRight M
 
 # Underside for miscellaneous actions
 PaddleLeft Ctrl # Sneak

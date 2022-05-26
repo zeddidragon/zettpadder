@@ -17,7 +17,7 @@ JoyXY WASD deadzone 40
 #   ^ 2
 # < 1   > 4
 #     v 3
-PovXY 1 4 2 3
+DpadXY 1 4 2 3
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire

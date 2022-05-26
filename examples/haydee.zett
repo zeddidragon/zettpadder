@@ -30,7 +30,7 @@ ActionC F1 # View Stats
 ActionD H # Toggle HUD
 
 # Game is slow-paced enough that standard dpad item switching is fine
-PovXY 3 4 1 2 # Items
+DpadXY 3 4 1 2 # Items
 
 # Menu Buttons
 MenuL F9 # Load Game

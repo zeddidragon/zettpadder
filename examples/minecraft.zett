@@ -8,10 +8,10 @@ ingamemouse 40
 mousecalibration 56800
 
 # Dpad
-PovLeft E # Open Inventory
-PovRight Q # Drop Item
-PovUp C # Save Hotbar Activator (Creative)
-PovDown X # Load Hotbar Activator (Creative)
+Left E # Open Inventory
+Right Q # Drop Item
+Up C # Save Hotbar Activator (Creative)
+Down X # Load Hotbar Activator (Creative)
 
 # Triggers
 TriggerR M1 # Attack / Destroy

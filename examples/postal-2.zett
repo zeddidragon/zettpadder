@@ -27,8 +27,8 @@ ActionD Z # Drop Weapon
 MenuL M # Show Map
 MenuR Escape # Pause
 
-PovUp !! ScrollUp # Next Weapon / Zoom In
-PovDown !! ScrollDown # Prev Weapon / Zoom Out
+Up !! ScrollUp # Next Weapon / Zoom In
+Down !! ScrollDown # Prev Weapon / Zoom Out
 
 # Think of the face buttons as three rows:
 # X 1  Y 2

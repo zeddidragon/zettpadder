@@ -27,7 +27,7 @@ MenuL Tab # Stock Market
 MenuR Escape # Pause
 
 # Arrow keys for various submenus
-PovXY Arrows
+DpadXY Arrows
 
 # Underside for miscellaneous actions
 PaddleLeft Q # Lean Left

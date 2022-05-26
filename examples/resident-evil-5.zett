@@ -6,7 +6,7 @@ JoyXY WASD deadzone 50
 CamXY mouse 50 # Flickstick fits really badly into this game due to capped turn rate
 ingamemouse 1
 
-PovXY Arrows # Commands / menus
+DpadXY Arrows # Commands / menus
 
 # Triggers
 TriggerL M2 # Ready Weapon
@@ -31,8 +31,8 @@ MenuR Escape # Pause
 # Paddles
 PinkyLeft layer 1
 layer 1
-PovUp !! ScrollUp
-PovDown !! ScrollDown
+Up !! ScrollUp
+Down !! ScrollDown
 
 ActionH 4 # Left Weapon
 ActionB 6 # Right Weapon

@@ -10,6 +10,8 @@ mousecalibration 1200 # Mouse units for one radian
 flicktime 200
 ingamemouse 1.0
 
+Joy Shift
+
 PaddleLeft Q # Lean Left
 PaddleRight E # Lean Right
 
@@ -34,14 +36,14 @@ MenuL Tab # Map
 MenuR Escape # Pause
 
 # D-pad
-PovRight H # Inspect Mag
-PovLeft J # Inspect Wrist
+Right H # Inspect Mag
+Left J # Inspect Wrist
 
-PovDown B # Switch Firing Mode
+Down B # Switch Firing Mode
 
 # Zoom in / out, open map
-# PovLeft Tab
-# PovRight M
+# Left Tab
+# Right M
 
 # Underside for miscellaneous actions
 PinkyLeft Layer 1 # Weapons

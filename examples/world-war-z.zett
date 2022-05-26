@@ -1,5 +1,5 @@
 # World War Z, with Flydigi Apex 2 in mind
-PovXY arrows
+DpadXY arrows
 
 JoyXY wasd deadzone 40 # Strafe
 CamXY Mouse 50 # Used to counter recoil

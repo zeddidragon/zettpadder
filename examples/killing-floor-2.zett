@@ -21,9 +21,9 @@ ActionV Q # Quick Heal
 ActionC C # Crouch
 ActionD Z # Voice Commands
 
-PovDown F # Flashlight
-PovRight B # Throw Dosh
-PovLeft Backspace # Throw Weapon
+Down F # Flashlight
+Right B # Throw Dosh
+Left Backspace # Throw Weapon
 
 # Menus stuff
 MenuR Escape # Pause
@@ -39,5 +39,5 @@ ActionB 4 # Tool
 ActionC Enter # OK
 ActionD Escape # Cancel
 
-PovUp F1 # Vote Yes
-PovDown F2 # Vote No
+Up F1 # Vote Yes
+Down F2 # Vote No

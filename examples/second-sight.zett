@@ -20,7 +20,7 @@ ActionL Ctrl # Toggle Firstperson
 ActionR E # Stealth / Climb
 
 # Dpad
-PovXY N M G B # Psi prev/next, Weapon next/prev
+DpadXY N M G B # Psi prev/next, Weapon next/prev
 
 # Face Buttons
 ActionV Shift # Change Camera / Exit Computers

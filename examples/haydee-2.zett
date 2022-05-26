@@ -32,7 +32,7 @@ ActionD Escape # Menu / Back
 #   ^ 2
 # < 1   > 4
 #     v 3
-PovXY 1 4 2 3
+DpadXY 1 4 2 3
 
 # Menu Buttons
 MenuR Escape # Menu

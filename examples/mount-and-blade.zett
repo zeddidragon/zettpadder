@@ -26,7 +26,7 @@ MenuL layer 1 # Menus
 MenuR Escape # Pause
 
 # Equip items 1-4
-PovXY Num1 Num2 Num3 Num4
+DpadXY Num1 Num2 Num3 Num4
 
 # Underside for miscellaneous actions
 PinkyLeft layer 2 # Orders

@@ -17,10 +17,10 @@ TriggerL Space # Jump
 BumperL Ctrl # Crouch
 ActionL Shift # Walk
 
-PovLeft M # Medkit
-PovRight N # Radar
-PovUp Enter # Pocket Item
-PovDown Q # Quick Electrifryer
+Left M # Medkit
+Right N # Radar
+Up Enter # Pocket Item
+Down Q # Quick Electrifryer
 
 MenuL Tab # Map
 MenuR Escape # Pause

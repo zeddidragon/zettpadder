@@ -11,10 +11,10 @@ ActionL Q # Inventory
 ActionR E # Interact
 
 # Face Buttons
-PovUp Tab # Missions
-PovDown Space # Extra Info
-PovRight Ctrl # Teleport
-PovLeft R # Stats
+Up Tab # Missions
+Down Space # Extra Info
+Right Ctrl # Teleport
+Left R # Stats
 
 # Menu Buttons
 MenuL Tab # Missions

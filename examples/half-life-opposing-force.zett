@@ -23,8 +23,8 @@ MenuR Escape # Pause
 MenuL Tab # Scoreboard
 
 # Others
-PovLeft F6 # Quicksave
-PovRight F7 # Quickload
+Left F6 # Quicksave
+Right F7 # Quickload
 
 # Think of the face buttons as two rows:
 # X 1  Y 2

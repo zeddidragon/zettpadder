@@ -11,10 +11,10 @@ flickdeadzone 40
 # Unmap everything except Left Stick
 
 # Map zoom
-PovLeft Tab # Map
-PovUp !! ScrollUp # Zoom Map In
-PovDown !! ScrollDown # Zoom Map Out
-PovRight X # Shout
+Left Tab # Map
+Up !! ScrollUp # Zoom Map In
+Down !! ScrollDown # Zoom Map Out
+Right X # Shout
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire

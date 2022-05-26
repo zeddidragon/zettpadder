@@ -435,7 +435,7 @@ checksum = "b0ac3b24afd6d59663abbd40d5b99d281d19413e70f43dc5277dfda314c1647b"
 [[package]]
 name = "stick"
 version = "0.12.4"
-source = "git+https://github.com/zeddidragon/stick.git?branch=feature-public-to-id#ae8630481bf14effcc1ac91fef4a445877fe0f53"
+source = "git+https://github.com/zeddidragon/stick.git?branch=feature-public-to-id#a71cb337e922673a43918c2930c6f3ba4f47aef3"
 dependencies = [
  "log",
  "smelling_salts",

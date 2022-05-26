@@ -24,7 +24,7 @@ ActionD 6 # Quick Slot 6
 #   ^ 8
 # < 7   > 0
 #     v 9
-PovXY R E W Y # Potion, Mana Potion, Switch Weapons, Switch Quickbar
+DpadXY R E W Y # Potion, Mana Potion, Switch Weapons, Switch Quickbar
 
 MenuL C # Character Window
 MenuR Escape # Options
@@ -45,10 +45,10 @@ ActionD L # Personal Riftgate
 CamX Comma . deadzone 40 # Turn Camera
 CamY ScrollY # Zoom in/out
 
-PovUp Alt # Show Items (No Filter)
-PovDown X # Show Item Tooltips
-PovLeft Backspace # Toggle Pet Display
-PovRight \ # Toggle Party Display
+Up Alt # Show Items (No Filter)
+Down X # Show Item Tooltips
+Left Backspace # Toggle Pet Display
+Right \ # Toggle Party Display
 
 layer 2 # Menus
 ActionH S # Skill Window
@@ -58,10 +58,10 @@ ActionB O # Loot Filter Window
 ActionC P # Group Window
 ActionD Enter # Chat Window 
 
-PovLeft J # Factions Window
-PovRight V # Achievements Window
-PovUp H # Help Window
-PovDown Space # Pause (Single-Player Only)
+Left J # Factions Window
+Right V # Achievements Window
+Up H # Help Window
+PoDown Space # Pause (Single-Player Only)
 
 layer 3 # Pets
 # Think of the face buttons as three rows:

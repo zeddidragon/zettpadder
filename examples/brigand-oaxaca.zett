@@ -24,10 +24,10 @@ ActionD Escape # Cancel
 # Think of the dpad buttons as diagonal rows:
 # < 1  ^ 2
 #  v 3  > 4
-PovLeft 7
-PovUp 8
-PovDown 9
-PovRight 0
+Left 7
+Up 8
+Down 9
+Right 0
 
 PinkyLeft Layer 1 # Items
 layer 1

@@ -10,7 +10,7 @@ flickdeadzone 40
 # Unmap everything in steam input
 JoyXY WASD deadzone 40
 
-PovXY M L G H # Map, Tactical View, Place Marker, Switch Camera
+DpadXY M L G H # Map, Tactical View, Place Marker, Switch Camera
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire

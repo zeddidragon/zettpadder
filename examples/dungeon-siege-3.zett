@@ -25,10 +25,10 @@ ActionD 6 # Defensive Quick Slot 6
 MenuL C # Character
 MenuR Escape # Options / Back
 
-PovRight F # Equipment
-PovLeft B # Abilities
-PovUp X # Quests
-PovDown R #  Guide
+Right F # Equipment
+Left B # Abilities
+Up X # Quests
+Down R #  Guide
 
 # Paddles
 PaddleLeft ScrollUp # Zoom In

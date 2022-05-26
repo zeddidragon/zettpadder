@@ -27,4 +27,4 @@ ActionD I # Inventory
 MenuL Tab # Map / Sort item box
 MenuR P # Pause
 
-PovXY T G  Z C # Switch map floor / Menu category
+DpadXY T G  Z C # Switch map floor / Menu category

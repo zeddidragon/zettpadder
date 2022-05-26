@@ -12,10 +12,10 @@ ingamemouse 0.10
 # Tab # Cycle Command Group
 
 # Dpad
-PovLeft Insert # Cycle Red Team Viewport
-PovRight Home # Cycle Blue Team Viewport
-PovDown Tab # Cycle Command Group
-PovUp # Cycle Sniper Team Viewport
+Left Insert # Cycle Red Team Viewport
+Right Home # Cycle Blue Team Viewport
+Down Tab # Cycle Command Group
+Up # Cycle Sniper Team Viewport
 
 # Menu butons
 MenuL M # Show objectives

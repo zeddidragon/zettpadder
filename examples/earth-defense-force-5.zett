@@ -40,7 +40,7 @@ MenuL Tab # For Steam Overlay
 MenuR Escape # Pause
 
 # Dpad
-PovXY arrows  # Chat navigation
+DpadXY arrows  # Chat navigation
 
 # Underside
 PinkyLeft Ctrl # Chat Wheel
@@ -48,6 +48,6 @@ PaddleLeft layer 1 # Esoteric menu actions
 layer 1
 
 ActionV Y # Toggle medals / change costume
-PovXY Home End PageUp PageDown # Scroll in some places
+DpadXY Home End PageUp PageDown # Scroll in some places
 ActionB Escape # Back
 ActionA Enter # OK
