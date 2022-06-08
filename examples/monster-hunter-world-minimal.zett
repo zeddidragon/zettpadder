@@ -1,0 +1,17 @@
+# Monster Hunter World, with Flydigi Apex 2 in  mind
+# Item quickbars
+DpadXY F4 F2 F1 F3
+
+# Quick Items
+ActionC 7 # Item 7
+ActionD layer 1 # More items
+
+PinkyLeft 1 # Item 1
+PaddleLeft 2 # Item 2
+PaddleRight 3 # Item 3
+
+layer 1 # More items
+ActionC 8 # Item 8
+PinkyLeft 4 # Item 4
+PaddleLeft 5 # Item 5
+PaddleRight 6 # Item 6

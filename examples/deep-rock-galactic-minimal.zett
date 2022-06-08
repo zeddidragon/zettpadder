@@ -8,11 +8,14 @@ ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
+# Stick buttons
+Joy Shift # Sprint
+
 # Unmap Right Stick and X Button
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 ActionR R # Reload / Alt-Fire
 ActionH E # Interact
 
-ActionC !! A , D # Escape Freeze
+ActionC R # Reload / Alt-Fire
 ActionD V # ROCK AND STONE

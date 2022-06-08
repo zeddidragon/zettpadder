@@ -24,6 +24,10 @@ ActionL Shift # Sprint
 BumperR G # Grenade
 BumperL Ctrl # Laser Pointer
 
+# Stick buttons
+Joy Shift # Sprint
+
+# Face buttons
 ActionA Space # Jump
 ActionB F # Flare/Flashlight
 ActionH E # Interact
