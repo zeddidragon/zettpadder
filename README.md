@@ -12,7 +12,7 @@ On linux you will need x11 dev libraries.
 
 Debian:
 ```
-    sudo apt install libx11-dev libxi-dev libxtst-dev
+    sudo apt install build-essential libx11-dev libxi-dev libxtst-dev
 ```
 
 
