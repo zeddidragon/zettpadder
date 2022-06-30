@@ -135,9 +135,9 @@ impl Binding {
             },
             NegPos(neg, pos) => {
                 let (mapping, value, prev) =
-                    if value < 0.0 || prev < 0.0 {
+                    if prev < 0.0 || value < 0.0 && prev == 0.0 {
                         (Some(Mapping::Emit(neg)), -value, -prev)
-                    } else if value > 0.0 || prev > 0.0 {
+                    } else if prev > 0.0 || value > 0.0 && prev > 0.0 {
                         (Some(Mapping::Emit(pos)), value, prev)
                     } else {
                         (None, 0.0, 0.0)
