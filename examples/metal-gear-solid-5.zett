@@ -19,23 +19,29 @@ ActionR H # Help (iDroid)
 # Triggers
 TriggerR M1 # Fire / Attack / Mark
 TriggerL M2 # Aim
-BumperR F # Binoculars / Iron Sights
-BumperL Q # Radio
+BumperL Ctrl # Hold to Sneak
+BumperR Space # Quick Dive
 
 # Dpad
-DpadXY 4 3 1 2 # Quick Switch
+Up V # Switch Zoom / Shoulders
+Right Q # Radio / Interrogate
+Left T # Toggle Lights (Gun)
+Down G # Toggle Suppressor (Gun)
 
 # Face buttons
-ActionA Space # Quick Dive
-ActionB E # Context Action
-ActionH R # Reload
-ActionV V # Switch Zoom
+ActionV 1 # Primary Weapon
+ActionH 4 # Items
+ActionB 3 # Support Tools
+ActionA 2 # Secondary Weapon
+
+ActionC E # Context Action
+ActionD R # Reload / Pick Up
 
 # Menu Buttons
 MenuL Tab # iDroid
 MenuR Escape # Pause
 
 # Under Buttons
-PinkyLeft Shift # Toggle Sprint
-PaddleLeft Ctrl # Toggle Walk
+PinkyLeft F # Binoculars / Iron Sights
+PaddleLeft Shift # Toggle Sprint / Roll
 PaddleRight C # Change Stance

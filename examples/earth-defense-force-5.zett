@@ -34,6 +34,8 @@ BumperL Space # Dodge / Shoulder Right / Stomp Right  / Handbrake
 
 ActionR Q # Pip
 ActionL M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
+Joy M3
+Cam Q
 
 # Menu buttons
 MenuL Tab # For Steam Overlay

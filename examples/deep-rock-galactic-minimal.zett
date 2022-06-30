@@ -2,14 +2,17 @@
 mousecalibration 4200
 flicktime 200
 ingamemouse 2.5
+fps 50
 
-CamXY mouse 100
+CamXY mouse 50
 ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
 # Stick buttons
 Joy Shift # Sprint
+PaddleLeft Shift # Sprint
+ActionL Shift # Sprint
 
 # Unmap Right Stick and X Button
 
