@@ -5,6 +5,10 @@
 #
 # Could potentially be used for general desktop usage
 
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
 TriggerR M1 # Action
 TriggerL M2 # Alt-Action
 BumperR Ctrl

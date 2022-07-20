@@ -1,0 +1,51 @@
+# Fallout: New Vegas, with Flydigi Apex 2 in mind
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100 # Too restricted for regular flickstick
+ActionWheelXY flick # Flick with wheel
+mousecalibration 2700 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+# Rear
+TriggerL M2 # Aim / Block
+BumperL E # Interact
+PaddleLeft Z # Grab
+
+TriggerR M1 # Fire
+BumperR V # V.A.T.S.
+PaddleRight X # Exit
+
+# Face
+MenuL T # Wait
+MenuR Escape # Pause
+
+Up CapsLock # Toggle Run
+Down Ctrl # Toggle Crouch
+Left F # Change View
+Right Tab # Pip-Boy
+
+ActionC Space # Jump
+ActionD R # Reload / Holster / Draw Weapon
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 1 # Slot 1
+ActionV 2 # Swap Ammo
+ActionA 3 # Slot 3
+ActionB 4 # Slot 4
+
+PinkyLeft layer 1 # More Slots
+layer 1
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 5 # Slot 5
+ActionV 6 # Slot 6
+ActionA 7 # Slot 7
+ActionB 8 # Slot 8
+
+DpadXY Arrows # Navigate some submenus
+MenuL Q # Auto-Walk, Quit in some submenus

@@ -1,0 +1,19 @@
+# Lugaru, with Flydigi Apex 2 in  mind
+mousecalibration 130
+ingamemouse 1
+
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+
+JoyXY WASD deadzone 40 # Move
+
+BumperL Shift # Crouch
+BumperR Q # Throw
+TriggerL Space # Jump
+TriggerR M1 # Attack
+
+ActionH E # Draw
+
+MenuR Escape # Pause

@@ -1,0 +1,66 @@
+# Receiver, with Flydigi Apex 2 in  mind
+mousecalibration 130
+ingamemouse 0.05
+
+# Player / Sticks, Bumperes, Dpad
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+
+JoyXY WASD deadzone 40 # Move
+
+BumperL W # Walk / Run (Tap Repeatedly)
+BumperR Space # Jump
+
+Left G # Pick Up (Hold)
+Right X # Tape Player
+
+Down BackQuote # Holster
+Up Q # Aim (Toggle)
+
+TriggerL M2 # Aim (Hold)
+
+MenuL / # Help
+MenuR Escape # Pause
+
+# Gun / Face buttons
+TriggerR M1 # Fire
+
+ActionV T # Slide Lock / Bolt Lock
+ActionH R # Pull Slide / Close Cylinder / Remove Round
+ActionB E # Eject Mag / Swing Out Cylinder
+
+ActionA F # Hammer / Toggle Stance
+ActionC V # Safety / Selector / Ectractor Rod
+ActionD Z # Insert Round / Insert Magazine
+
+PaddleLeft C # Crouch
+PaddleRight Tab # Slomo Toggle (If enabled)
+
+# Inventory
+PinkyLeft layer 1
+layer 1
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Flashlight
+ActionV 2
+ActionA 3
+ActionB 4
+ActionC 5
+ActionD 6
+
+# Items
+# Think of the d-pad buttons as two diagonal rows:
+#   ^ 8
+# < 7   > 0
+#     v 9
+Left 7
+Up 8
+Down 9
+Right 0
+
+MenuL L # Level Reset

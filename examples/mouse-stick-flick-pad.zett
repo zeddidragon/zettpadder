@@ -6,3 +6,6 @@ mousecalibration 21000
 ingamemouse 12.0
 flicktime 100
 mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1
+TriggerL M2

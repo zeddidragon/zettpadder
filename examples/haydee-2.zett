@@ -13,10 +13,14 @@ mousepriority flick # Disable normal camera motion while using wheel
 # Triggers
 TriggerR M1 # Fire / Drag (Inventory)
 TriggerL M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
-ActionR C # Switch Shoulders
-ActionL Shift # Run / Split Stacks (Inventory)
-BumperL !! ScrollDown # Scroll Document
+BumperL Shift # Run / Split Stacks (Inventory)
 BumperR R # Reload
+
+# Under buttons / Nubs
+ActionL !! ScrollDown # Scroll Document
+ActionR C # Switch Shoulders
+PaddleLeft !! ScrollDown # Scroll Document
+PaddleRight C # Switch Shoulders
 
 # Face buttons
 ActionA Space # Jump / Up

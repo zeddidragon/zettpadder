@@ -1,0 +1,11 @@
+# Fightcade, with Flydigi Apex 2 in mind
+MenuL 5 # Coins
+MenuR 1 # Player 1 start
+
+JoyXY WASD deadzone 40 # Move
+DpadXY WASD # Move
+
+ActionH H # Fire 1 / A
+ActionA J # Fire 2 / B
+ActionC K # Fire 3 / C
+ActionB K # Fire 3 / C
