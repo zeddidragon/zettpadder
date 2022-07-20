@@ -40,12 +40,6 @@ layer 0
 MenuL F # Change View
 MenuR Escape # Journal
 
-Left Q # Quick Items
-Up T # Wait
-Right Tab # Character Menu
-Down Escape # For easier access
-
-PinkyLeft layer 1 # More Slots / Action
 
 layer 1
 MenuL F5 # Quick Save
