@@ -37,16 +37,23 @@ ActionB 8 # Slot 8
 layer 0
 
 # Menus
-MenuL F # Change View
+Cam F # Change View
+MenuL I # Inventory
 MenuR Escape # Journal
 
+Left Q # Quick Items
+Up T # Wait
+Right Tab # Character Menu
+Down Enter # OK in some menus
+
+PinkyLeft layer 1 # More Slots / Action
 
 layer 1
 MenuL F5 # Quick Save
 MenuR F9 # Quick Load
 
 # Inventory
-Left Home # Item Count 1
-Right End # Item Count Max
-Up PageUp # Item Count+
-Down PageDown # Item Count-
+Up !! ScrollUp
+Down !! ScrollDown
+Left L # Local / World Map
+Right M # Open Map
