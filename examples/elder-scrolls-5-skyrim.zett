@@ -1,0 +1,59 @@
+# The Elder Scrolls V: Skyrim, with Flydigi Apex 2 in mind
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+BumperL Alt # Sprint
+ActionC Space # Jump
+PaddleLeft Ctrl # Sneak
+PaddleRight CapsLock # Toggle Run
+
+# Combat / Actions
+TriggerR M1 # Right Hand
+TriggerL M2 # Left Handd
+BumperR Z # Shout / Power
+ActionD E # Activate / Use
+layer 1
+ActionD R # Ready/Sheathe Weapon
+layer 0
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 1 # Slot 1
+ActionV 2 # Slot 2
+ActionA 3 # Slot 3
+ActionB 4 # Slot 4
+layer 1
+ActionH 5 # Slot 5
+ActionV 6 # Slot 6
+ActionA 7 # Slot 7
+ActionB 8 # Slot 8
+layer 0
+
+# Menus
+Cam F # Change View
+MenuL I # Inventory
+MenuR Escape # Journal
+
+Left Q # Quick Items
+Up T # Wait
+Right Tab # Character Menu
+Down Enter # OK in some menus
+
+PinkyLeft layer 1 # More Slots / Action
+
+layer 1
+MenuL F5 # Quick Save
+MenuR F9 # Quick Load
+
+# Inventory
+Up !! ScrollUp
+Down !! ScrollDown
+Left L # Local / World Map
+Right M # Open Map

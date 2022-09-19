@@ -5,6 +5,7 @@
 #
 # Could potentially be used for general desktop usage
 
+JoyXY mouse 100 # Move mouse
 CamXY mouse 100 # Move mouse
 mousecalibration 900
 ingamemouse 1.0

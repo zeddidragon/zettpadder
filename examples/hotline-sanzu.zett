@@ -1,0 +1,20 @@
+# Hotline Sanzu, with Flydigi Apex 2 in mind
+# Joy for some movement
+JoyXY WASD deadzone 40 # Move with joy
+CamXY mouse 50 # Move Cursor
+
+# Triggers
+BumperL Shift # Focus mode
+BumperR Space # Bomb
+TriggerL M2 # Melee
+TriggerR M1 # Shoot
+
+ActionA E # Inteact / Throw
+ActionB Q # Cancel
+
+# Menu Buttons
+MenuL R # Restart
+MenuR Escape # Options
+
+Up !! ScrollUp # Scroll Menus
+Down !! ScrollDown # Scroll Menus

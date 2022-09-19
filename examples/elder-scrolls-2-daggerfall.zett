@@ -1,0 +1,108 @@
+# The Elder Scrolls II: Daggerfall, with Flydigi Apex 2 in mind
+
+# Movement
+# Daggerfall Unity supports joy movement fine, uncomment if needed
+# JoyXY WASD deadzone 40
+
+# CamXY mouse 100
+# ActionWheelXY flick # Flick with wheel
+# mousecalibration 1200 # Mouse units for one radian
+# mousepriority flick # Disable normal camera motion while using wheel
+# ingamemouse 1.0
+# 
+# PaddleLeft Ctrl # Slide
+# PaddleRight C # Crouch
+# 
+# TriggerR M1 # Use
+# TriggerL M2 # Attack
+# BumperL Shift # Run
+# BumperR Q # Recast Spell
+# 
+# ActionB Alt # Sneak
+# ActionA Space # Jump
+# ActionV Enter # Activate Cursor
+# ActionH Backspace # Cast Spell
+# ActionC U # Use Magic Item
+# ActionD z # Ready / Sheathe Weapon
+# 
+# 
+# # Menus
+# Cam F # Change View
+# MenuL I # Inventory
+# MenuR Escape # Journal
+# 
+# Left F4 # Talk Mode
+# Up R # Rest
+# Right F6 # Inventory
+# Down F2 # Grab Mode
+# 
+# PinkyLeft layer 1 # More Slots / Action
+# 
+# layer 1
+# MenuL F5 # Quick Save
+# MenuR F9 # Quick Load
+# 
+# # Inventory
+# Up T # Transport
+# Down F1 # Steal Mode
+# Left F3 # Info Mode
+# Right F5 # Character Sheet
+
+# Movement
+# Disable controller support, it comes with a terrible auto aim
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+BumperL Shift # Sprint
+ActionC Space # Jump
+PaddleLeft C # Crouch
+PaddleRight Alt # Sneak
+
+# Combat / Actions
+TriggerR M1 # Use
+TriggerL M2 # Attack
+BumperR Q # Recast Spell
+ActionD Z # Ready/Sheathe Weapon
+layer 1
+TriggerR M3 # Middle Mouse
+BumperR Backspace # Prepare Spell
+layer 0
+
+# Think of the face buttons as two rows:
+ActionH H # Switch Hand
+ActionV E # Abort Spell
+ActionA Backspace # Prepare Spell
+ActionB Enter # Activate Cursor
+layer 1
+ActionH F1 # Steal Mode
+ActionV F2 # Grab Mode
+ActionA F3 # Info Mode
+ActionB F4 # Talk Mode
+layer 0
+
+# Menus
+MenuL F5 # Character Sheet
+MenuR Escape # Pause
+
+Up R # Rest
+Down F6 # Inventory
+Left I # Status
+Right T # Transport
+
+
+PinkyLeft layer 1 # More Slots / Action
+PaddleRight Ctrl # Slide
+
+layer 1
+MenuL F9 # Quick Save
+MenuR F12 # Quick Load
+
+# More Menus
+Left L # Logbook
+Up N # Notebook
+Right V # Travelmap
+Down M # Automap

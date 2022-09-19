@@ -9,3 +9,5 @@ mousepriority flick # Disable normal camera motion while using wheel
 
 TriggerR M1
 TriggerL M2
+
+PinkyLeft 1 # Ability 1

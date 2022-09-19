@@ -1,0 +1,69 @@
+# The Elder Scrolls III: Oblivion, with Flydigi Apex 2 in mind
+
+# Sticks
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 0.2
+
+Joy CapsLock # Toggle Run
+Cam Tab # Toggle POV
+
+# Paddles
+PaddleLeft Shift # Run
+PaddleRight Ctrl # Sneak
+PinkyLeft layer 1
+
+# Triggers
+TriggerR M1 # Use 
+TriggerL M2 # Menu
+BumperL R # Ready Magic
+BumperR F # Ready Weapon
+layer 1
+BumperL !! ScrollUp # Zoom In
+BumperR !! ScrollDown # Zoom Out
+layer 0
+
+# Face buttons
+ActionH 1 # Quick 1
+ActionV 2 # Quick 2
+ActionA 3 # Quick 3
+ActionB 4 # Quick 4
+ActionC E # Jump
+ActionD Space # Activate
+
+layer 1
+ActionH 5 # Quick 5
+ActionV 6 # Quick 6
+ActionA 7 # Quick 7
+ActionB 8 # Quick 8
+ActionC 9 # Quick 9
+ActionD 0 # Quick 10
+layer 0
+
+# Dpad
+Up T # Rest
+Down Enter # Enter
+Left M3 # Inventory
+Right J # Journal
+
+layer 1
+Up Minus # Previous Spell
+Down Equal # Next Spell
+Left LeftBracket # Previous Weapon
+Right RightBracket # Next Weapon
+layer 0
+
+# Menu Buttons
+MenuL F1 # Quick Menu
+MenuR Escape # Options
+layer 1
+MenuL F5 # Quick Save
+MenuR F9 # Quick Load
+layer 0
+
+# BackQuote # Console
+# F11 # Toggle HUD
+# F12 # Screenshot

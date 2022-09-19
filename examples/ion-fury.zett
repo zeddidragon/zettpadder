@@ -12,10 +12,12 @@ mousepriority flick # Disable normal camera motion while using wheel
 TriggerR M1 # Fire
 BumperR M2 # Alt-Fire
 ActionR E # Use / Open
+PaddleRight E # Use / Open
 
 TriggerL Space # Jump
 BumperL Ctrl # Crouch
 ActionL Shift # Walk
+PaddleLeft Shift # Walk
 
 Left M # Medkit
 Right N # Radar

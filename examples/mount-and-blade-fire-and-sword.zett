@@ -1,0 +1,86 @@
+# Mount & Blade: With Fire and Sword, with Flydigi Apex 2 in mind.
+
+JoyXY WASD deadzone 40 # Movement
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+TriggerR M1 # Attack
+TriggerL M2 # Defend
+BumperL Shift # Zoom
+BumperR E # Kick
+
+ActionH F # Action
+ActionV X # Melee mode w/ gun
+ActionA Space # Jump / Pause (On Map)
+ActionB Ctrl # Inventory Modifier
+
+ActionC Z # Crouch
+ActionD BackSlash # Sheathe Weapon
+
+MenuL Backspace # View Orders
+MenuR Escape # Pause
+
+Left layer 1 # Orders / Sub layer 1
+Up layer 2 # Orders / Sub layer 2
+Right layer 3 # Group layer 3
+Down layer 4 # Group layer 4
+PinkyLeft layer 5 # Weapons layer
+PaddleLeft layer 6 # Menu layer
+
+layer 5 # Weapon layer
+ActionH Kp1 # Weapon 1
+ActionV Kp2 # Weapon 2
+ActionA Kp3 # Weapon 3
+ActionB Kp4 # Weapon 4
+ActionC ScrollUp # Next Weapon
+ActionD ScrollDown # Next Shield
+
+layer 1 # Orders / Sub layer 1
+ActionH F1 # Select Order 1
+ActionV F2 # Select Order 2
+ActionA F3 # Select Order 3
+ActionB F4 # Select Order 4
+
+ActionC Tab # Leave / Retreat
+ActionD G # Drop Weapon
+
+layer 2 # Orders / Sub layer 2
+ActionH F5 # Select Order 5
+ActionV F6 # Select Order 6
+ActionA F7 # Select Order 7
+ActionB F8 # Select Order 8
+
+ActionC R # Toggle View
+ActionD BackQuote # View Outfit 
+
+layer 3 # Group Layer 3
+ActionH 1 # Group 1!
+ActionV 2 # Group 2!
+ActionA 3 # Group 3!
+ActionB 4 # Group 4!
+
+ActionC 0 # Everyone!
+ActionD Equal # Others!
+
+layer 4 # Group Layer 4
+ActionH 5 # Group 5!
+ActionV 6 # Group 6!
+ActionA 7 # Group 7!
+ActionB 8 # Group 8!
+
+ActionC 9 # Group 9!
+ActionD Minus # Nearby Soldiers!
+
+layer 6 # Menu Layer
+ActionH C # Character Window
+ActionV P # Party Window
+ActionA Q # Quests Window
+ActionB L # Game Log Window
+
+ActionC KpPlus # Zoom In (Map)
+ActionD KpMinus # Zoom Out (Map)
+
+MenuL F12 # Quick Save
