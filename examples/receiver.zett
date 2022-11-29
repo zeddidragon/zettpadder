@@ -11,13 +11,13 @@ flickdeadzone 40
 JoyXY WASD deadzone 40 # Move
 
 BumperL W # Walk / Run (Tap Repeatedly)
-BumperR Space # Jump
+BumperR G # Pick Up (Hold)
 
-Left G # Pick Up (Hold)
-Right X # Tape Player
-
-Down BackQuote # Holster
 Up Q # Aim (Toggle)
+Left X # Tape Player
+
+Right Tab # Slow-mo Toggle / Holster (Receiver 2)
+Down BackQuote # Holster
 
 TriggerL M2 # Aim (Hold)
 
@@ -36,7 +36,7 @@ ActionC V # Safety / Selector / Ectractor Rod
 ActionD Z # Insert Round / Insert Magazine
 
 PaddleLeft C # Crouch
-PaddleRight Tab # Slomo Toggle (If enabled)
+PaddleRight Space # Jump
 
 # Inventory
 PinkyLeft layer 1
@@ -64,3 +64,6 @@ Down 9
 Right 0
 
 MenuL L # Level Reset
+
+BumperL ScrollUp # Spin Revolver
+BumperR ScrollDown # Spin Revolver

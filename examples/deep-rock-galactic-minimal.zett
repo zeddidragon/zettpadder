@@ -1,5 +1,5 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
-mousecalibration 4200
+mousecalibration 6400
 flicktime 200
 ingamemouse 2.5
 fps 50
@@ -13,6 +13,7 @@ flickdeadzone 40
 Joy Shift # Sprint
 PaddleLeft Shift # Sprint
 ActionL Shift # Sprint
+PaddleLeft Shift # Sprint
 
 # Unmap Right Stick and X Button
 

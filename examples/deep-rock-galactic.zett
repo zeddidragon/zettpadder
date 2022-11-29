@@ -26,6 +26,8 @@ BumperL Ctrl # Laser Pointer
 
 # Stick buttons
 Joy Shift # Sprint
+PaddleLeft Shift # Sprint
+PaddleRight R # Reload / Alt-Fire
 
 # Face buttons
 ActionA Space # Jump

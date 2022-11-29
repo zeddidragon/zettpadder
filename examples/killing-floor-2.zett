@@ -14,6 +14,9 @@ BumperL G # Grenade
 ActionR V # Bash
 ActionL Shift # Sprint
 
+PaddleLeft Shift # Sprint
+PaddleRight V # bash
+
 ActionA Space # Jump
 ActionB E # Use / Quick-Weld
 ActionH R # Reload
