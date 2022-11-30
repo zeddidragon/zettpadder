@@ -1,0 +1,28 @@
+# Invisible Inc, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40 # Pan Camera
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
+# Triggers
+TriggerR M1 # Click
+TriggerL M2 # Right Click
+BumperL Space # Mainframe
+BumperR Enter # next Turn
+
+# Face Buttons
+Down T # Toggle Walls
+Left Q # Rotate Left
+Up Alt # Toggle View
+Right E # Rotate Right
+
+# Menu Buttons
+MenuL Tab # Map
+MenuR Escape # Options
+
+ActionH F # Open Door
+ActionV C # Character Sheet
+ActionA P # Peek
+ActionB R # Toggle Sprint
+ActionC O # Toggle Overwatch
+ActionD M # Toggle Ambush

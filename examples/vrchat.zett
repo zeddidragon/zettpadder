@@ -1,0 +1,33 @@
+# VR Chat, with Flydigi Apex 2 in mind
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+TriggerR M1 # Interact / Pickup
+TriggerL M2 # Shows Interaction Mouse
+BumperL ShiftLeft # Sprint / Left Hand Gesture
+BumperR ShiftRight # Sprint / Right Hand Gesture
+
+PaddleLeft V # Push to Talk / Toggle Microphone
+PaddleRight F # Throw Held Pickups
+
+ActionA Space # Makes player jump (if it is enabled in the room)
+ActionB C # Crouch
+ActionV Z # Crawl/Go Prone
+ActionH R # Opens Action Menu
+ActionC Escape # Opens Quick Menu
+ActionD V # Push to Talk / Toggle Microphone
+
+MenuL End # Toggle AFK
+MenuR Escape # Opens Quick Menu
+
+# Twist item in hand
+Left K # Twist Item
+Up I # Twist Item
+Down J # Twist Item
+Right L # Twist Item
