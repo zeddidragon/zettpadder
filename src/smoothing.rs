@@ -1,9 +1,6 @@
 use crate::coords::{Coords};
 
 const SMOOTHING_BUFFER_SIZE: usize = 16;
-const SMOOTHING_CUTOFF: f64 = 0.04;
-const SMOOTHING_TRESHOLD: f64 = SMOOTHING_CUTOFF * 0.5;
-const SMOOTHING_LEEWAY: f64 = SMOOTHING_CUTOFF - SMOOTHING_TRESHOLD;
 
 pub struct Smoothing<T> {
     buffer: [T; SMOOTHING_BUFFER_SIZE],
