@@ -32,8 +32,8 @@ TriggerL M2 # Alt-Fire / Attack Right / Wing Diver Boost
 BumperR Shift # Sprint / Shoulder Left / Stomp Left / Dash
 BumperL Space # Dodge / Shoulder Right / Stomp Right  / Handbrake
 
-ActionR Q # Pip
 ActionL M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
+ActionR Q # Pip
 Joy M3
 Cam Q
 PaddleRight M3
@@ -46,8 +46,8 @@ MenuR Escape # Pause
 DpadXY arrows  # Chat navigation
 
 # Underside
-PinkyLeft Ctrl # Chat Wheel
-PaddleLeft layer 1 # Esoteric menu actions
+PinkyLeft layer 1 # Esoteric menu actions
+PaddleLeft Ctrl # Chat Wheel
 layer 1
 
 ActionV Y # Toggle medals / change costume

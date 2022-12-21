@@ -1,66 +1,71 @@
-# Swat 4 Elite Force, with Flydigi Apex 2 in mind
-# Sticks + Dpad
-JoyX A D deadzone 60
-JoyY W S deadzone 40
+# SWAT 4, with Flydigi Apex 2 in mind
 
-CamXY flick # Turn with right stick
-mousecalibration 80
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+mousecalibration 80 # Mouse units for one radian
 ingamemouse 0.10
 
-# C # Hold to crouch
-# X # Toggle Firing Mode
-# Tab # Cycle Command Group
+PinkyLeft layer 1
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
 
-# Dpad
+# Weapons
+layer 0
+ActionH 1 # Primary
+ActionV 2 # Secondary
+ActionA R # Reload
+ActionB X # Toggle Firing Mode
+
+# Grenades
+layer 1
+ActionH 3 # Flash
+ActionV 4 # Stinger
+ActionA 5 # CS
+ActionB L # Light Stick 
+
+# Door Tools
+layer 2
+ActionH 7 # Breach
+ActionV 8 # Toolkit
+ActionA 9 # Optiwand
+ActionB 0 # Wedge
+
+# Misc Tools
+layer 3
+ActionH H # Handcuffs
+ActionV V # Flashlight
+ActionA 6 # Pepper Spray
+ActionB B # Melee
+
+layer 0
+
+TriggerR M1  # Shoot
+TriggerL M2 # Hold for commands
+BumperR M3 # Use / Shout
+BumperL Z # Zoom
+
+PinkyLeft layer 1 # Grenades
+PaddleLeft layer 2 # Door Tools
+PaddleRight layer 3 # Misc Tools
+
+ActionC Space # Quick Command
+ActionD Shift # Toggle Sprint
+
+Up Ctrl # Prepare Command
+Left Q # Lean Left
+Right E # Lean Right
+Down C # Toggle Crouch
+
+layer 1
 Left Insert # Cycle Red Team Viewport
 Right Home # Cycle Blue Team Viewport
 Down Tab # Cycle Command Group
-Up # Cycle Sniper Team Viewport
+Up PageUp # Cycle Sniper Team Viewport
+layer 0
+Cam CapsLock # Control Active Viewport
 
-# Menu butons
-MenuL M # Show objectives
+MenuL M # Show Objectives
 MenuR Escape # Pause
 
-# Rear buttons
-TriggerR M1  # Shoot
-TriggerL M2 # Hold for commands
-ActionR M3  # Use / Shout
-ActionL Shift  # Toggle Sprint
-BumperR X # Toggle firing mode
-BumperL Z  # Zoom
-
-# Face buttons
-ActionH Layer 1 # Grenade selection
-ActionV Layer 2 # Door tools
-ActionB Layer 3 # Pacifying tools
-ActionC Layer 4 # Commands
-ActionA R  # Reload
-ActionD B # Melee
-
-# Underside
-PaddleLeft Q # Lean Left
-PaddleRight E # Lean Right
-PinkyLeft Layer 5 # Weapons
-PinkyRight Ctrl # Prepare Command
-
-Layer 1 # Grenade selection
-CamXY 3 5 4 4 Deadzone 60 # Flash CS Stinger Stinger
-
-Layer 2 # Door tools
-CamXY 8 0 7 9 Deadzone 60 # Toolkit Wedge Breach Optiwand
-
-Layer 3 # Pacifying subjects
-CamXY 6 H 6 H Deadzone 40  # Pepper / Handcuffs
-
-Layer 4 # Commands
-BumperL Insert # Cycle Red Team Viewport
-BumperR Home # Cycle Blue Team Viewport
-ActionL PageUp # Cycle Sniper Team Viewport
-MenuL CapsLock # Control Active Viewport
-ActionR Space # Quick Command
-
-Layer 5 # Weapons
-ActionH 1 # Primary
-ActionB 2 # Secondary
-ActionV V # Flashlight
-ActionA L # Light Stick

@@ -1,0 +1,35 @@
+# Earth Defense Force: Insect Armageddon, with Flydigi Apex 2 in mind
+mousecalibration 1200
+JoyXY WASD deadzone 40
+CamXY mouse 100
+
+TriggerR M1 # Fire Weapon
+TriggerL M2 # Special Ability
+BumperR E # Interact / Battle Zapper
+BumperL Shift # Sprint
+
+PinkyLeft ScrollUp # Scroll Up / Switch Weapons
+PaddleLeft ScrollDown # Scroll Down / Switch Weapons
+PaddleRight M3 # Zoom
+
+Up Up # Camera Shoulder Switch
+Right T # Show Point of Interest
+Left O # Show Objective
+Down Escape # Back in menus
+
+# Layout emulates controller setup to match UI
+#
+#     2
+#     Y
+# 1 X   3 B
+#     A Jump
+ActionH 1 # Tactical Item 1
+ActionV 2 # Tactical Item 2
+ActionB 3 # Tactical Item 3
+
+ActionA Space # Dodge/ Destroy Tactical Items
+ActionC F # Jump / Battle Blast
+ActionD R # Reload
+
+MenuR Escape
+MenuL Tab

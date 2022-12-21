@@ -1,0 +1,73 @@
+# Fallout 4, with Flydigi Apex 2 in mind
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100 # Too restricted for regular flickstick
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+# Shift # Sprint
+TriggerR M1 # Attack
+TriggerL M2 # Aim / Block
+BumperL E # Activate
+BumperR Alt # Bash / Power Attack / Grenade
+PaddleLeft Shift # Sprint
+PaddleRight Ctrl # Sneak
+
+ActionC Space # Jump
+ActionD R # Ready / Reload
+
+DpadXY Arrows
+# Up X # Auto Move
+# Left F # Favourites
+# Right Tab # Pip-Boy
+# Down Q # VATS
+
+MenuL M3 # Toggle POV / Workshop
+MenuR Escape # Pause
+
+Joy CapsLock # Toggle Run
+
+#      7
+#      8
+#      9
+# 1 2 3 4 5 6
+#      0
+#      -
+#      =
+
+PinkyLeft layer 1
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  D 6
+ActionH 1 # Slot 1
+ActionV 2 # Slot 2
+ActionA 3 # Slot 3
+ActionB 4 # Slot 4
+ActionC 5 # Slot 5
+ActionD 6 # Slot 6
+layer 1
+ActionH 7 # Slot 7
+ActionV 8 # Slot 8
+ActionA 9 # Slot 9
+ActionB 0 # Slot 10
+ActionC Minus # Slot 11
+ActionD Equal # Slot 12
+layer 0
+
+MenuL F5 # Quick Save
+MenuR F9 # Quick Load
+
+Up K # Quick Stats
+Left I # Quick Inventory
+Down J # Quick Data
+Right M # Quick Map
+# O # Quick Radio
+# C # Run
+# T # Menu Button
+
+BumperL Escape # Menu Button
+BumperR Enter # Menu Button
