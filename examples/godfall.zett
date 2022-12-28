@@ -1,13 +1,7 @@
 # Godfall, with Flydigi Apex 2 in mind
-mousecalibration 2400
-flicktime 200
-ingamemouse 1 # I have it to 0 but the number is meaningless
-fps 40
-
+mousecalibration 200
+ingamemouse 0.05
 CamXY mouse 50
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 
 # Unmap everything in steam input
 JoyXY WASD deadzone 40
@@ -29,13 +23,14 @@ Cam M3 # Lock-On
 PaddleRight # Lock-On
 
 # Other Actions
+ActionC F # Takedown
 ActionD Z # Archon Fury
 
-Left G # Spirit Vision
 ActionH R # Life Stone
+
 Up V # Place Banner
-ActionC F # Takedown
 Down X # Quick Turn
+Left G # Spirit Vision
 Right H # Place Marker
 
 # Menus

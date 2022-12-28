@@ -1,0 +1,43 @@
+# Orcs Must Die 3, with Flydigi Apex 2 in mind
+mousecalibration 1200
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ingamemouse 0.5
+
+TriggerR M1 # Fire / Place
+TriggerL M2 # Alt-Fire
+BumperL Space # Jump
+BumperR F # Interact
+
+PaddleLeft Shift # Sprint / War Mode Items
+PaddleRight M3 # Toggle Targeting Mode (Zoom)
+
+Up G # Ready
+Down B # Show Inventory
+
+Left E # Sell Trap
+Right R # Rotate Trap
+
+MenuL Tab # Toggle Loadout Type
+MenuR Escape # Menu
+
+# Think of the face buttons as three rows:
+# X 1  Y 4
+#  A 2  B 5
+#   C 3  Z 6
+ActionH 1 # Item 1
+ActionV 2 # Item 4
+ActionA 3 # Item 2
+ActionB 4 # Item 3
+ActionC 5 # Item 5
+ActionD 6 # Item 6
+
+PinkyLeft layer 1 # More items
+layer 1
+ActionH 7 # Item 7
+ActionV 8 # Item 8
+ActionA 9 # Item 9
+ActionB 0 # Item 10
+
+ActionC M # Toggle Large Map
+ActionD V # Comm Rose Trigger

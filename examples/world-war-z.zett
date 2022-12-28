@@ -15,6 +15,8 @@ BumperR F # Melee
 BumperL M3 # Equipment
 ActionL Shift # Sprint
 ActionR T # Mark Target
+PaddleLeft Shift # Sprint
+PadldeRight T # Mark Target
 
 ActionA Space # Jump
 ActionB Ctrl # Toggle crouch
