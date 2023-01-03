@@ -5,7 +5,7 @@ use crate::coords::{Coords};
 use crate::smoothing::{Smoothing};
 use crate::zettpadder::{ZpMsg};
 
-const FPS: u64 = 60;  // Default loop rate
+const FPS: u64 = 120;  // Default loop rate
 const MOUSE_CALIBRATION: f64 = 1280.0; // How much one radian moves the mouse
 const FLICK_DEADZONE: f64 = 0.9; // Deadzone to engage flick
 const FLICK_TIME: Duration = Duration::from_millis(100); // Duration of a flick

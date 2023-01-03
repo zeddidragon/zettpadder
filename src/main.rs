@@ -3,6 +3,7 @@ use std::env;
 use std::path::Path;
 use std::ffi::OsStr;
 use crossbeam_channel::{bounded};
+use dirs;
 
 mod coords;
 mod mapping;
@@ -42,14 +43,19 @@ fn main() {
         println!("macros ded");
     });
 
+    let config_path = Path::new(&dirs::config_dir().unwrap())
+        .join("zettpadder.zett");
+    parsers::zett::parse(&sender, &config_path);
+
     for arg in args.iter().skip(1) {
         println!("Reading definitions from {}", arg);
-        let extension = Path::new(arg)
+        let path = Path::new(arg);
+        let extension = path
                 .extension()
                 .and_then(OsStr::to_str)
                 .unwrap();
         match extension {
-            "zett" => { parsers::zett::parse(&sender, arg); },
+            "zett" => { parsers::zett::parse(&sender, path); },
             _ => {
                 println!("Unrecognized filetype: {} ({})", arg, extension);
             },

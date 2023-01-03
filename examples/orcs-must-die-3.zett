@@ -21,6 +21,9 @@ Right R # Rotate Trap
 MenuL Tab # Toggle Loadout Type
 MenuR Escape # Menu
 
+Joy M # Toggle Large Map
+Cam V # Comm Rose Trigger
+
 # Think of the face buttons as three rows:
 # X 1  Y 4
 #  A 2  B 5
@@ -38,6 +41,3 @@ ActionH 7 # Item 7
 ActionV 8 # Item 8
 ActionA 9 # Item 9
 ActionB 0 # Item 10
-
-ActionC M # Toggle Large Map
-ActionD V # Comm Rose Trigger

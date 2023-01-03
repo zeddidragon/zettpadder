@@ -9,6 +9,7 @@ edition = "2018"
 crossbeam-channel = "0.5"
 pasts = "0.8"
 rustyline = "9.1"
+dirs = "4.0.0"
 
 [dependencies.stick]
 version = "0.12"

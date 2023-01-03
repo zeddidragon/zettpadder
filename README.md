@@ -30,8 +30,15 @@ Up to 255 layers are supported, including the main one.
 
 # Configuration
 
+Zettpadder will check your config directory for a "zettpadder.zett" file and run it before any other files.
 
-Config file is any amount of `.zett` files that contains your definitions.
+```
+  Lin: Some(/home/alice/.config/zettpadder.zett)
+  Win: Some(C:\Users\Alice\AppData\Roaming\zettpadder.zett)
+  Mac: Some(/Users/Alice/Library/Application Support/zettpadder.zett)
+```
+
+Otherwise, config file is any amount of `.zett` files that contains your definitions. You can specify these when running the program.
 
 ## Input Set Shortcuts
 ```

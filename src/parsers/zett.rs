@@ -2,6 +2,7 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::slice::Iter;
 use std::iter::Peekable;
+use std::path::Path;
 use crossbeam_channel::{Sender};
 use crate::zettpadder::{ZpMsg};
 use crate::mapping::{Mapping};
@@ -21,9 +22,13 @@ fn send(sender: &Sender<ZpMsg>, msg: ZpMsg) {
 
 pub fn parse(
     sender: &Sender<ZpMsg>,
-    filename: &String,
+    path: &Path,
 ) {
-    let file = File::open(filename).unwrap();
+    if !path.exists() {
+        println!("File not found: {:?}", path);
+        return;
+    }
+    let file = File::open(path).unwrap();
     
     for line in io::BufReader::new(file).lines() {
         if let Err(err) = line {
