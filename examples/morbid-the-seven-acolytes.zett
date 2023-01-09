@@ -1,0 +1,30 @@
+# Morbid: The Seven Acolytes, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40 # Move with joy
+CamXY mouse 100
+
+# Menu Buttons
+MenuL Tab # Inventory
+MenuR Escape # Options
+
+#  3
+# 2 4
+#  1
+ActionA 1 # Heal
+ActionH 2 # Item 2
+ActionV 3 # Item 3
+ActionB 4 # Item 4
+
+TriggerR M1 # Attack
+TriggerL M2 # Shoot
+BumperR M3 # Parry
+BumperL Space # Dodge / OK
+PinkyLeft Shift # Sprint
+PaddleLeft Ctrl # Sneak
+PaddleRight Tab # Inventory
+
+ActionC E # Interact
+ActionD Q # Change Loadout
+
+Up C # Equip
+Down X # Stash / Take
+Right F1 # Inspect
