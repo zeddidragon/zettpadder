@@ -25,9 +25,9 @@ Joy M # Toggle Large Map
 Cam V # Comm Rose Trigger
 
 # Think of the face buttons as three rows:
-# X 1  Y 4
-#  A 2  B 5
-#   C 3  Z 6
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
 ActionH 1 # Item 1
 ActionV 2 # Item 4
 ActionA 3 # Item 2
@@ -41,3 +41,5 @@ ActionH 7 # Item 7
 ActionV 8 # Item 8
 ActionA 9 # Item 9
 ActionB 0 # Item 10
+
+MenuL V # Comm Rose Trigger

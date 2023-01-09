@@ -12,11 +12,11 @@ flicktime 200
 # Face buttons
 ActionH 1 # Weapon 1
 ActionV 2 # Weapon 2
-ActionB 3 # Weapon 3 (Air Raider only)
-ActionA Z # Call Vehicle / Reload shield
+ActionA 3 # Weapon 3 (Air Raider only)
+ActionB Z # Call Vehicle / Reload shield
 
-ActionC R # Reload
-ActionD E # Use / Revive
+ActionC E # Use / Revive
+ActionD R # Reload
 
 # Rear triggers
 # Left and Right flipped. This is due to the inherent problem of

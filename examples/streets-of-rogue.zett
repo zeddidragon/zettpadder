@@ -23,9 +23,9 @@ MenuR Escape # Options
 PinkyLeft Shift # Modifier
 
 # Think of the face buttons as three rows:
-# X 1  Y 4
-#  A 2  B 5
-#   C 3  Z 6
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
 ActionH 1 # Item 1
 ActionV 2 # Item 4
 ActionA 3 # Item 2

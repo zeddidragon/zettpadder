@@ -10,9 +10,9 @@ ActionR Ctrl # Target Pet (Hold and Click)
 ActionL A # Move
 
 # Think of the face buttons as three rows:
-# X 1  Y 4
-#  A 2  B 5
-#   C 3  Z 6
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
 ActionH 1 # Quick Slot 1
 ActionV 2 # Quick Slot 2
 ActionA 3 # Quick Slot 3
@@ -65,9 +65,9 @@ PoDown Space # Pause (Single-Player Only)
 
 layer 3 # Pets
 # Think of the face buttons as three rows:
-# X 1  Y 4
-#  A 2  B 5
-#   C 3  Z 6
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
 ActionH F2 # Select Pet 1
 ActionV F3 # Select Pet 2
 ActionA F4 # Select Pet 3

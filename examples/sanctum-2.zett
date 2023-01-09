@@ -1,0 +1,33 @@
+# Orcs Must Die 3, with Flydigi Apex 2 in mind
+mousecalibration 1200
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ingamemouse 0.5
+
+TriggerR M1 # Fire / Place
+TriggerL M2 # Alt-Fire / Sell
+BumperL Ctrl # Aim
+BumperR F # Use
+
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+
+ActionB F # Use
+ActionC E # Switch Weapon
+ActionD R # Reload
+
+Left ScrollUp # Previous Tower
+Right ScrollDown # Next Tower
+Down Tab # Enlarge Map
+
+PaddleLeft Shift # Sprint
+PaddleRight Space # Jump
+PinkyLeft Alt # Ping
+
+MenuL Enter # Start Wave
+MenuR Escape # Menu
