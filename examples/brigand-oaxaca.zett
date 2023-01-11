@@ -36,8 +36,8 @@ layer 1
 #  A 3  B 4
 #   C 5  Z 6
 ActionH 1 # Item 1
-ActionV 2 # Item 4
-ActionA 3 # Item 2
-ActionB 4 # Item 3
+ActionV 2 # Item 2
+ActionA 3 # Item 3
+ActionB 4 # Item 4
 ActionC 5 # Item 5
 ActionD 6 # Item 6

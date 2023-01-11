@@ -1,5 +1,5 @@
 # Resident Evil 5, with Flydigi Apex 2 in mind
-# Use with Type B control type and D-pad item priority
+# Use with Type B control type and keypad item priority
 
 # Sticks
 JoyXY WASD deadzone 50
@@ -13,8 +13,6 @@ TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
 BumperL Q # Locate Partner
 BumperR T # Quick Knife
-ActionL 1 # Item 1 (Top Left)
-ActionR 3 # Item 2 (Top Right)
 
 # Buttons
 ActionA Shift # Sprint / Reload
@@ -34,15 +32,24 @@ layer 1
 Up !! ScrollUp
 Down !! ScrollDown
 
-ActionH 4 # Left Weapon
-ActionB 6 # Right Weapon
-ActionV 2 # Top Weapon
-ActionA 8 # Bottom Weapon
-
-ActionL 7 # Item 7 (Bottom Left)
-ActionR 9 # Item 9 (Bottom Right)
-
-ActionC Enter # For menus
-ActionD Escape # For menus
+# 1 2 | 3
+#  4 5 | 6
+#   7 8 | 9
+# ------
+# X Y | Paddle + Y
+#  A B | Paddle + B
+#   C Z | Paddle + Z
+ActionH 1 # Item 1
+ActionV 2 # Item 2
+ActionA 4 # Item 4
+ActionB 5 # Item 4
+ActionC 7 # Item 5
+ActionD 8 # Item 6
 
 MenuL X # Taunt
+
+PaddleRight layer 2
+layer 2
+ActionY 3
+ActionB 6
+ActionC 9
