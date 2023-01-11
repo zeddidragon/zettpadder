@@ -1,0 +1,39 @@
+# Resident Evil 6, with Flydigi Apex 2 in mind
+
+# Sticks
+JoyXY WASD deadzone 50
+CamXY mouse 50 # Flickstick fits really badly into this game due to capped turn rate
+ingamemouse 1
+
+Cam CapsLock  # Switch Hands
+
+# Triggers
+TriggerL M2 # Aim
+TriggerR M1 # Attack
+BumperL Q # Display Route Guide
+BumperR 1 # Use Health Tablet
+
+# Buttons
+ActionH R # Reload / Pick Up
+ActionY E # Open the Item Slot
+ActionA Space # Dash / Action
+ActionB V # Partner Action
+
+ActionC H # Auto convert herbs
+ActionD Delete # Discard Item
+
+# Paddles
+PaddleLeft Ctrl # Walk
+PaddleRight Shift # Hold to switch sub weapons
+
+# Dpad
+Up ScrollUp # Next Weapon / Sub-Weapon
+Down ScrollDown # Prev Weapon / Sub-Weapon
+
+# Menus
+MenuR Escape # Menu
+MenuL Tab
+
+PinkyLeft layer 1
+layer 1
+MenuR Escape # Pause
