@@ -1,42 +1,34 @@
-# World War Z, with Flydigi Apex 2 in mind
-DpadXY arrows
-
+# Warhammer Vermintide 2, with Flydigi Apex 2 in mind
 JoyXY wasd deadzone 40 # Strafe
-CamXY Mouse 50 # Used to counter recoil
+CamXY Mouse 100 # Used to counter recoil
 mousecalibration 20000
 ingamemouse 5
 mousepriority flick # Disable normal camera motion while using wheel
 ActionWheelXY flick # Action wheel for quick turning
 flickdeadzone 40
 
+PinkyLeft V # Weapon Special
 PaddleLeft Alt # Walk
-PaddleRight V # Weapon Special
+PaddleRight Ctrl # Toggle Crouch
 
 TriggerR M1 # Attack
 TriggerL M2 # Defend / Charge / Zoom
 BumperR T # Tag / Social Wheel
-BumperL F # Career Skill
-ActionL Shift # Sprint
-ActionR T # Mark Target
+BumperL R # Reload
 
-ActionA Space # Jump / Dodge
-ActionB Ctrl # Toggle crouch
-ActionH E # Use
-ActionV Q # Weapon Quick Swap
-ActionC R # Reload
-ActionD X # Inspect Weapon
-
-Left X # Inspect Weapon
-Right Z # Inspect Hero
+Left X # Inspect Hero
+Up Z # Inspect Weapon
+Down 3 # Health Item
+Right 4 # Potion
 
 MenuL Tab # Weapon List
 MenuR Escape # Pause
 
-PinkyLeft layer 1 # Weapons
-layer 1 # Weapons
 ActionH 1 # Melee
-ActionB 2 # Ranged
-ActionA 3 # Health Item
-ActionB 4 # Potion
+ActionV 2 # Ranged
+
+ActionA Space # Jump / Dodge
+ActionB E # Use
+
 ActionC 5 # Wield Grenade
-ActionD Z # Inspect Hero
+ActionD F # Career Skill

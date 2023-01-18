@@ -1,8 +1,7 @@
 # Deep Rock Galactic, with Flydigi Apex 2 in mind
 mousecalibration 6400
 flicktime 200
-ingamemouse 2.5
-fps 50
+ingamemouse 1
 
 CamXY mouse 50
 ActionWheelXY flick # Flick with wheel
@@ -10,10 +9,8 @@ mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
 # Stick buttons
-Joy Shift # Sprint
 PaddleLeft Shift # Sprint
-ActionL Shift # Sprint
-PaddleLeft Shift # Sprint
+PaddleRight R # Reload / Alt-Fire
 
 # Unmap Right Stick and X Button
 

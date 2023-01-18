@@ -15,4 +15,5 @@ mousepriority flick # Disable normal camera motion while using wheel
 #   Flashang
 DpadXY 2 4 F 3 # Select grenades / Flashlight
 
-ActionR M3 # Melee
+PaddleLeft Shift # Sprint
+PaddleRight M3 # Melee

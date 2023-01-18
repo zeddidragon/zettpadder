@@ -11,7 +11,7 @@ ingamemouse 1.0
 TriggerR M1 # Interact / Pickup
 TriggerL M2 # Shows Interaction Mouse
 BumperL ShiftLeft # Sprint / Left Hand Gesture
-BumperR ShiftRight # Sprint / Right Hand Gesture
+BumperR M3 # Zoom
 
 PaddleLeft V # Push to Talk / Toggle Microphone
 PaddleRight F # Throw Held Pickups
@@ -27,7 +27,7 @@ MenuL End # Toggle AFK
 MenuR Escape # Opens Quick Menu
 
 # Twist item in hand
-Left K # Twist Item
+Left J # Twist Item
 Up I # Twist Item
-Down J # Twist Item
+Down K # Twist Item
 Right L # Twist Item
