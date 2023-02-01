@@ -1,5 +1,5 @@
 # Earth Defense Force 5, with Flydigi Apex 2 in mind
-# Also works fine in Earth Defense Force 4.1, although A will be unused.
+# Also works fine in Earth Defense Force 4.1, although B will be unused.
 mousecalibration 74000
 JoyXY WASD deadzone 40
 CamXY mouse 50 # Too restricted for regular flickstick
@@ -28,9 +28,9 @@ ActionD R # Reload
 #
 # Or just leave it mirrored. It's not that bad.
 TriggerR M1 # Fire / Attack Left
-TriggerL M2 # Alt-Fire / Attack Right / Wing Diver Boost
-BumperR Shift # Sprint / Shoulder Left / Stomp Left / Dash
-BumperL Space # Dodge / Shoulder Right / Stomp Right  / Handbrake
+BumperR M2 # Alt-Fire / Attack Right / Wing Diver Boost
+TriggerL Space # Dodge / Shoulder Right / Stomp Right  / Handbrake
+BumperL Shift # Sprint / Shoulder Left / Stomp Left / Dash
 
 ActionL M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
 ActionR Q # Pip
@@ -51,6 +51,7 @@ PaddleLeft Ctrl # Chat Wheel
 layer 1
 
 ActionV Y # Toggle medals / change costume
-DpadXY Home End PageUp PageDown # Scroll in some places
+Up !! ScrollUp
+Down !! ScrollDown
 ActionB Escape # Back
 ActionA Enter # OK

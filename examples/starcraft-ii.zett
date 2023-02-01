@@ -1,0 +1,95 @@
+# StarCraft II, with Flydigi Apex 2 in mind.
+# Switch hotkeys to "Grid"
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY mouse 150 # Move mouse
+mousecalibration 1000
+
+# Starcraft buttons are too numerous and too overloaded to explain
+# the purpose of most mappings.
+# This configuurations attempts to give as much access
+# to as many relevant buttons as possible.
+TriggerR M1
+TriggerL M2
+
+BumperL Shift
+BumperR Alt
+PinkyLeft Ctrl
+
+Left layer 1  # Numbers 1-6 (Control groups)
+Up layer 2    # Numbers 7-9, 0, F1 F2 (Control groups)
+Down 3        # F3-F8 (Heroes)
+Right 4       # Numpad 1-6 (Inventory)
+PaddleLeft layer 5  # Top Grid (QWERT)
+PaddleRight layer 6 # Middle Grid (ASDFG)
+# Default           # Bottom grid (ZXCVB)
+
+MenuL layer 7 # Menu Layer
+MenuR Escape # Cancel
+
+Joy Home # Default Camera View
+Cam Backspace # Base Camera
+
+layer 5 # Top Grid
+ActionH Q # Grid 1
+ActionV W # Grid 2
+ActionA E # Grid 3
+ActionB R # Grid 4
+ActionC T # Grid 5
+ActionD Y # Warp In (Select all Warp Gates)
+
+layer 6 # Middle Grid 
+ActionH A # Grid 6
+ActionV S # Grid 7
+ActionA D # Grid 8
+ActionB F # Grid 9
+ActionC G # Grid 10
+ActionD Space # Jump to Last Alert
+
+layer 0 # Bottom Grid
+ActionH Z # Grid 11
+ActionV X # Grid 12
+ActionA C # Grid 13
+ActionB V # Grid 14
+ActionC B # Grid 15
+ActionD T # Attack-Move
+
+layer 1 # Numbers
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+
+layer 2 # More numbers
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+ActionC F1 # Idle Worker
+ActionD F2 # Army Units
+
+layer 3 # Heroes
+ActionH F3 # Hero 1
+ActionV F4 # Hero 2
+ActionA F5 # Hero 3
+ActionB F6 # Hero 4
+ActionC F7 # Hero 5
+ActionD F8 # Hero 6
+
+layer 4 # Nupad
+ActionH Num1 # Slot 1
+ActionV Num2 # Slot 2
+ActionA Num3 # Slot 3
+ActionB Num4 # Slot 4
+ActionC Num5 # Slot 5
+ActionD Num6 # Slot 6
+
+layer 7 # Menus
+ActionH F9 # Achievement Menu
+ActionV F10 # Main Menu
+ActionA F11 # Message Log Meenu
+ActionB F12 # Help Menu
+ActionC Num7 # Slot 7
+ActionD Num8 # Slot 8

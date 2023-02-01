@@ -94,3 +94,18 @@ If you fire up the program without arguments and hit buttons, it'll show you out
     xinput set-button-map <id> 0
 ```
 
+## Permanently changing right grip button to Middle Mouse
+Make this file.
+```
+  # /usr/share/X11/xorg.conf.d/50-flydigi-apex-2.conf
+  Section "InputClass"
+      Identifier "flydigi apex 2 right grip button"
+      MatchIsPointer	"on"
+      MatchDevicePath	"/dev/input/event*"
+      MatchVendor	"Flydigi"
+      Option	"ButtonMapping" "2"	# Middle Mouse
+  EndSection
+```
+Restart.
+
+Now all configs can assume M3 is already mapped to something.

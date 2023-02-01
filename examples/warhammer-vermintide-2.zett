@@ -13,8 +13,8 @@ PaddleRight Ctrl # Toggle Crouch
 
 TriggerR M1 # Attack
 TriggerL M2 # Defend / Charge / Zoom
-BumperR T # Tag / Social Wheel
 BumperL R # Reload
+BumperR F # Career Skill
 
 Left X # Inspect Hero
 Up Z # Inspect Weapon
@@ -31,4 +31,4 @@ ActionA Space # Jump / Dodge
 ActionB E # Use
 
 ActionC 5 # Wield Grenade
-ActionD F # Career Skill
+ActionD T # Tag / Social Wheel
