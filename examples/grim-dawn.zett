@@ -1,76 +1,77 @@
 # Grim Dawn, with Flydigi Apex 2 in mind
-JoyXY compass 960 540 256 ring 15 M1 deadzone 0
-CamXY mouse 100 # Move cursor around quickly
+JoyXY mouse 50 # Move cursor around quickly
+CamXY mouse 150 # Move cursor around quickly
 
 TriggerR M1 # Move / Interact / Primary
-TriggerL M2 # Equip / Consume / Secondary
-BumperR M3 # Rotate Camera
-BumperL Shift # Stationary Attack (Hold and Click)
-ActionR Ctrl # Target Pet (Hold and Click)
-ActionL A # Move
+TriggerL A # Move
+BumperR M2 # Equip / Consume / Secondary
+BumperL Shift # Stationary Attack (Hold and Cclick)
+PinkyRight M3 # Camera Rotate
+PinkyLeft Ctrl # Target Pet (Hold and Click)
+PaddleLeft Tab # Push To Talk
+PaddleRight Alt # Show Items (No Filter)
 
-# Think of the face buttons as three rows:
-# X 1  Y 2
-#  A 3  B 4
-#   C 5  Z 6
-ActionH 1 # Quick Slot 1
-ActionV 2 # Quick Slot 2
-ActionA 3 # Quick Slot 3
-ActionB 4 # Quick Slot 4
-ActionC 5 # Quick Slot 5
-ActionD 6 # Quick Slot 6
+layer 0 # Skills
+ActionH 1 # Quickslot 1
+ActionV 2 # Quickslot 2
+ActionA 3 # Quickslot 3
+ActionB 4 # Quickslot 4
+ActionC 5 # Quickslot 5
+ActionD 6 # Quickslot 6
+layer 1 # More Skills
+ActionH 7 # Quickslot 7
+ActionV 8 # Quickslot 8
+ActionA 9 # Quickslot 9
+ActionB 0 # Quickslot 10
+ActionC R # Health Potion
+ActionD E # Energy Potion
+layer 0
 
-# Think of the d-pad buttons as two diagonal rows:
-#   ^ 8
-# < 7   > 0
-#     v 9
-DpadXY R E W Y # Potion, Mana Potion, Switch Weapons, Switch Quickbar
+Left layer 1 # More Skills
+Up layer 2 # Pets
+Down layer 3 # Utilities
+Right layer 4 # Menus
+MenuL layer 5 # Options
+MenuR Escape # Main Menu
 
-MenuL C # Character Window
-MenuR Escape # Options
-
-PinkyLeft   layer 1 # States
-PaddleLeft  layer 2 # Menus
-PaddleRight layer 3 # Pets
-
-layer 1 # States / UI
-ActionH 7 # Quick Slot 7
-ActionV 8 # Quick Slot 8
-ActionA 9 # Quick Slot 9
-ActionB 0 # Quick Slot 0
-
-ActionC U # Interact
-ActionD L # Personal Riftgate
-
-CamX Comma . deadzone 40 # Turn Camera
-CamY ScrollY # Zoom in/out
-
-Up Alt # Show Items (No Filter)
-Down X # Show Item Tooltips
-Left Backspace # Toggle Pet Display
-Right \ # Toggle Party Display
-
-layer 2 # Menus
-ActionH S # Skill Window
-ActionV Q # Codex Window
-ActionA M # Map Window
-ActionB O # Loot Filter Window
-ActionC P # Group Window
-ActionD Enter # Chat Window 
-
-Left J # Factions Window
-Right V # Achievements Window
-Up H # Help Window
-PoDown Space # Pause (Single-Player Only)
-
-layer 3 # Pets
-# Think of the face buttons as three rows:
-# X 1  Y 2
-#  A 3  B 4
-#   C 5  Z 6
+layer 2 # Pets
 ActionH F2 # Select Pet 1
 ActionV F3 # Select Pet 2
 ActionA F4 # Select Pet 3
 ActionB F5 # Select Pet 4
 ActionC F6 # Select Pet 5
 ActionD F7 # Select All Pets
+layer 0
+
+layer 3 # Utilities
+ActionH W # Switch Weapons
+ActionV Y # Switch Quickbar
+ActionV X # Show Item Tooltips
+ActionA U # Interact
+ActionB Z # Show Items (Filter Common)
+ActionC L # Personal Riftgate
+ActionD D # Drop Item
+layer 0
+
+layer 4 # Menus
+ActionH S # Skill Window
+ActionV C # Codex Window
+ActionA M # Map Window
+ActionB C # Character Window
+ActionC O # Loot Filter Window
+ActionD Enter # Chat Window
+
+MenuR Space # Pause (Single Player Only)
+CamY !! ScrollY # Zoom in/out
+layer 0
+
+layer 5 # Options
+ActionH P # Group Window
+ActionV V # Achievements Window
+ActionA G # Game Menu
+ActionB F # Factions Window
+ActionC Backspace # Toggle Pet Display
+ActionD Backslash # Toggle Party Display
+
+MenuR H # Help Window
+layer 0

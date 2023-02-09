@@ -103,7 +103,7 @@ Make this file.
       MatchIsPointer	"on"
       MatchDevicePath	"/dev/input/event*"
       MatchVendor	"Flydigi"
-      Option	"ButtonMapping" "2"	# Middle Mouse
+      Option	"ButtonMapping" "2 0 0 0 0 0 0 0"	# Middle Mouse
   EndSection
 ```
 Restart.

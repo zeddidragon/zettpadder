@@ -44,7 +44,7 @@ ActionV S # Grid 7
 ActionA D # Grid 8
 ActionB F # Grid 9
 ActionC G # Grid 10
-ActionD Space # Jump to Last Alert
+ActionD Backspace
 
 layer 0 # Bottom Grid
 ActionH Z # Grid 11
@@ -52,7 +52,7 @@ ActionV X # Grid 12
 ActionA C # Grid 13
 ActionB V # Grid 14
 ActionC B # Grid 15
-ActionD T # Attack-Move
+ActionD Space # Jump to Last Alert
 
 layer 1 # Numbers
 ActionH 1 # Group 1

@@ -15,10 +15,9 @@ DpadXY M L G H # Map, Tactical View, Place Marker, Switch Camera
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire
 TriggerL M2 # Aim
-ActionR M3 # Alt-Fire / Heavy Attack
-ActionL Shift # Sprint / Dodge
 BumperR layer 1 # Ability Menu
-BumperL Ctrl # Crouch / Down
+BumperL Shift # Sprint
+PinkyLeft Ctrl # Crouch / Dodge
 
 ActionA Space # Jump / Up
 ActionB E # Melee

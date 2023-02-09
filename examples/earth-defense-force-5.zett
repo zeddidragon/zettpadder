@@ -34,9 +34,7 @@ BumperL Shift # Sprint / Shoulder Left / Stomp Left / Dash
 
 ActionL M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
 ActionR Q # Pip
-Joy M3
 Cam Q
-PaddleRight M3
 
 # Menu buttons
 MenuL Tab # For Steam Overlay
@@ -47,6 +45,7 @@ DpadXY arrows  # Chat navigation
 
 # Underside
 PinkyLeft layer 1 # Esoteric menu actions
+PinkyRight M3 # Mech Jump
 PaddleLeft Ctrl # Chat Wheel
 layer 1
 
