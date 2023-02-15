@@ -126,8 +126,12 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
         'macros : for mc in &mut macros {
             match mc.state {
                 MacroState::Inert => {
-                    if mc.value.abs() > 0.0 {
+                    let power = (mc.value.abs() * 10.0) as u64;
+                    if power > 8 {
                         mc.state = MacroState::Starting(0);
+                    } else if power > 0 {
+                        let delay = 9 - power;
+                        mc.state = MacroState::Holding(0, delay);
                     } else {
                         continue;
                     }
@@ -139,9 +143,11 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                         mc.state = MacroState::Ending(idx)
                     }
                 },
-                MacroState::Holding(_, 0) => {
+                MacroState::Holding(idx, 0) => {
                     if mc.value == 0.0 {
                         mc.state = MacroState::Ending(0);
+                    } else {
+                        mc.state = MacroState::Starting(idx);
                     }
                 },
                 MacroState::Holding(idx, n) => {
@@ -156,8 +162,6 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
 
             match mc.state {
                 MacroState::Starting(idx) => {
-                    if idx > 0 {
-                    }
                     for (i, m) in mc.mappings.iter().enumerate().skip(idx) {
                         match m {
                             Mapping::Emit(ev) => {
