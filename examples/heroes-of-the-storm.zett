@@ -1,0 +1,41 @@
+# Heroes of the Storm, with Flydigi Apex 2 in mind.
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY mouse 150 # Move mouse
+mousecalibration 1000
+
+TriggerR M1 # Select / Confirm
+TriggerL M2 # Move / Attack
+
+BumperL A # Attack
+BumperR D # Trait
+PinkyLeft Ctrl # Choose Talents
+
+PaddleLeft layer 1 # Sub-skills
+
+ActionH Q # Skill 1
+ActionV W # Skill 2
+ActionA E # Skill 3
+ActionB R # Skill 4
+ActionC D # Trait
+ActionD 1 # Sub-skill 1
+
+MenuL Tab # Scores
+MenuR Escape # Options
+
+Up B # Hearthstone
+Down Z # Summon Mount
+Right L # Lock / Unlock Camera
+Left Shift
+
+layer 1
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Sub-skill 1
+ActionV 2 # Sub-skill 2
+ActionA 3 # Sub-skill 3
+ActionB 4 # Sub-skill 4
+ActionC 5 # Sub-skill 5
+ActionD 6 # Sub-skill 6

@@ -55,7 +55,7 @@ layer 0
 
 layer 4 # Menus
 ActionH S # Skill Window
-ActionV C # Codex Window
+ActionV Q # Codex Window
 ActionA M # Map Window
 ActionB C # Character Window
 ActionC O # Loot Filter Window

@@ -87,7 +87,7 @@ fn parse_outputs(
             },
             "scrolly" => {
                 opts.macro_type = Some(MacroType::Turbo);
-                mappings.push(Emit(Wheel { delta_x: 0, delta_y: -5 }));
+                mappings.push(Emit(Wheel { delta_x: 0, delta_y: -1 }));
             },
             "layer" => {
                 iter.next();

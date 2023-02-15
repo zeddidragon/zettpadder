@@ -45,8 +45,9 @@ DpadXY arrows  # Chat navigation
 
 # Underside
 PinkyLeft layer 1 # Esoteric menu actions
-PinkyRight M3 # Mech Jump
+PinkyRight M3 # Mech Jump / Depth Crawler Dodge / Horn / Barga Pose
 PaddleLeft Ctrl # Chat Wheel
+PaddleRight Q # Pip
 layer 1
 
 ActionV Y # Toggle medals / change costume

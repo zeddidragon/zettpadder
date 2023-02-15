@@ -167,7 +167,7 @@ pub fn run(sender: Sender<ZpMsg>, receiver: Receiver<MacroMsg>) {
                                             delta_x,
                                             delta_y,
                                         } => {
-                                            let y = (*delta_y as f64) * mc.value;
+                                            let y = (*delta_y as f64) * mc.value + 1.0;
                                             rdev::EventType::Wheel {
                                                 delta_x: *delta_x,
                                                 delta_y: y as i64,
