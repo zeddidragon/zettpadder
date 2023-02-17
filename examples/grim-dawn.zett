@@ -71,7 +71,7 @@ ActionV V # Achievements Window
 ActionA G # Game Menu
 ActionB F # Factions Window
 ActionC Backspace # Toggle Pet Display
-ActionD Backslash # Toggle Party Display
+ActionD BackSlash # Toggle Party Display
 
 MenuR H # Help Window
 layer 0
