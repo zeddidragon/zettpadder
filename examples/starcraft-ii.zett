@@ -15,6 +15,7 @@ TriggerL M2
 BumperL Shift
 BumperR Alt
 PinkyLeft Ctrl
+PinkyRight M3
 
 Left layer 1  # Numbers 1-6 (Control groups)
 Up layer 2    # Numbers 7-9, 0, F1 F2 (Control groups)

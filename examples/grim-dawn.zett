@@ -46,7 +46,6 @@ layer 0
 layer 3 # Utilities
 ActionH W # Switch Weapons
 ActionV Y # Switch Quickbar
-ActionV X # Show Item Tooltips
 ActionA U # Interact
 ActionB Z # Show Items (Filter Common)
 ActionC L # Personal Riftgate
@@ -69,7 +68,7 @@ layer 5 # Options
 ActionH P # Group Window
 ActionV V # Achievements Window
 ActionA G # Game Menu
-ActionB F # Factions Window
+ActionB J # Factions Window
 ActionC Backspace # Toggle Pet Display
 ActionD BackSlash # Toggle Party Display
 
