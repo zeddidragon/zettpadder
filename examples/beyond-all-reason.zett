@@ -39,7 +39,6 @@ ActionD Y # Set Target
 # |Ctrl+R| Select Some Units
 # |Ctrl+T| Change Tracking Mode
 MenuR Tab # Switch Map Overview
-layer 0
 
 layer 0 # Main Actions / Middle Row
 ActionH A # Attack
@@ -51,7 +50,6 @@ ActionD K # Toggle Cloak
 # |Ctrl+A| Select All Units
 # |Ctrl+D| Self Destruct
 # |Alt+A| Area Attack
-layer 0
 
 layer 3 # Construction / Bottom Row
 ActionH Z # Cycle Metal
@@ -65,7 +63,6 @@ ActionD N # Previous Page (Grid mode)
 # |Ctrl+B| Select Idle Builder
 # |Alt+Z| Increase Build Spacing
 # |Alt+X| Decrease Build Spacing
-layer 0
 
 ActionC LeftBracket # Rotate Left
 ActionD RightBracket # Rotate Right
@@ -81,7 +78,6 @@ ActionD O #
 # |Ctrl+L| Toggle LOS
 # |Ctrl+O| Decrease FOV
 MenuR SemiColon # Switch LOS Mode
-layer 0
 
 layer 4 # Select Group
 ActionH 1 # Group 1
@@ -92,7 +88,6 @@ ActionC 5 # Group 5
 ActionD 6 # Group 6
 # |Ctrl+1-6| Create Group
 # |Alt+1-6| Set Auto Group
-layer 0
 
 layer 5 # More Groups
 ActionH 7 # Group 7
@@ -103,7 +98,6 @@ ActionC BackQuote # Draw + Labels
 # |Ctrl+7-0| Create Group
 # |Alt+7-0| Set Auto Group
 # |Alt+`| Remove From Auto Group
-layer 0
 
 layer 6 # Views & Options
 ActionH F1 # Map Elevation
@@ -118,4 +112,3 @@ ActionD F6 # Mute Sound
 # |Ctrl+F4| Rotate Overhead Cam
 # |Ctrl+F5| Free Cam
 MenuR Pause # Pause The Game
-layer 0
