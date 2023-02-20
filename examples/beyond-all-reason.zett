@@ -3,69 +3,77 @@
 JoyXY arrows deadzone 40 # Move camera
 CamY !! ScrollY # Zoom
 mousecalibration 1000
+# |Ctrl+ScrollY| Tilt Camera
 
 TriggerR M1 # Select
-BumperR M2 # Move |Ctrl+| Keep Formation
+BumperR M2 # Move
 BumperL Shift # Queue all the things
+# |Ctrl+M2| Keep Formation
 
 PinkyLeft Ctrl # Modifier
 PinkyRight M3 # Camera Panning
-PaddleLeft layer 1 # Non-Ctrl Actions
 PaddleRight Alt # Modifier
+PaddleLeft Space # Detailed unit tooltips / Queue in Front
+# |Shift+Space | Show Factory Build Queues
+# |Shift+Space| Distribute Construction
 
-Left layer 2 # Support Actions
-Down layer 3 # More Support Actions
+TriggerL layer 1 # Support Actions
+Left layer 2 # More Support Actions
+Down layer 3 # Construction
 Up layer 4 # Groups
 Right layer 5 # More Groups
 MenuL layer 6 # Views & Options
 MenuR Escape # Main Menu
 
 layer 0 # Main Actions
-ActionH W # Pause/Wait |Ctrl+| Select Armed Units
-ActionA A # Attack |Ctrl+| Select All Units |Alt+| Area Attack
-ActionC Z # Cycle Metal |Ctrl+| Select Similar Units |Alt+| Increase Build Spacing
-
-ActionV R # Repair |Ctrl+| Select Some Units
-ActionB D # DGun |Ctrl+| Self Destruct
-ActionD C # Cycle Defense & Intel |Ctrl+| Select Commander
-
-TriggerL B # |Ctrl+| Select Idle Builder
-layer 0
-
-layer 1 # Main actions that do nothing combined with Ctrl
-ActionH Q # Draw
-ActionA S # Stop
-ActionC X # Cycle Energy |Alt+| Decrease Build Spacing
-
-ActionV E # Reclaim
+ActionH A # Attack
+ActionV W # Pause/Wait
+ActionA D # DGun
 ActionB F # Fight
-ActionD V # Cycle Factory
-
-TriggerL M # Move
-layer 0
-
-layer 2 # Support Actions
-ActionH T # Track Unit |Ctrl+| Change Tracking Mode
-ActionA G # Guard
-ActionC I # Game Info
-
+ActionC G # Guard
 ActionV Y # Set Target
-ActionB K # Toggle Cloak
-ActionD Space # Queue in Front |Shift+| Split Build
 
-TriggerL LeftBracket # Rotate Left
+# |Ctrl+A| Select All Units
+# |Ctrl+W| Select Armed Units
+# |Ctrl+D| Self Destruct
+
+# |Alt+A| Area Attack
 layer 0
 
-layer 3 # More Support Actions
-ActionH U # Unload Units
-ActionA L # Load Units |Ctrl+| Toggle LOS
-ActionC O # |Ctrl+| Decrease FOV
+layer 1 # Support Actions
+ActionH Q # Draw
+ActionV S # Stop
+ActionA E # Reclaim
+ActionB R # Repair
+ActionC T # Track Unit
+ActionD B #
 
-ActionV I # Game Info
-ActionB SemiColon # Switch LOS Mode
-ActionD P # Patrol |Ctrl+| Increase FOV
+MenuR Tab # Switch Map Overview
 
-TriggerL Tab # Switch Map Overview
+# |Ctrl+R| Select Some Units
+# |Ctrl+T| Change Tracking Mode
+# |Ctrl+B| Select Idle Builder
+layer 0
+
+layer 2 # More Support Actions
+ActionH K # Toggle Cloak
+ActionV O # |Ctrl+| Decrease FOV
+ActionA M # Move
+ActionB P # Patrol |Ctrl+| Increase FOV
+ActionC U # Unload Units
+ActionD L # Load Units |Ctrl+| Toggle LOS
+
+MenuR SemiColon # Switch LOS Mode
+layer 0
+
+layer 3 # Construction
+ActionH Z # Cycle Metal |Ctrl+| Select Similar Units |Alt+| Increase Build Spacing
+ActionV X # Cycle Energy |Alt+| Decrease Build Spacing
+ActionA C # Cycle Defense & Intel |Ctrl+| Select Commander
+ActionB V # Cycle Factory
+ActionC LeftBracket # Rotate Left
+ActionD RightBracket # Rotate Right
+
 layer 0
 
 layer 4 # Select Group |Ctrl+| Create Group |Alt+| Set Auto Group
@@ -83,8 +91,7 @@ ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
 ActionC BackQuote # Draw + Labels |Alt+| Remove From Auto Group
- 
-TriggerL RightBracket # Rotate Right
+ActionD I # Game Info
 layer 0
 
 layer 6 # Views & Options
@@ -95,6 +102,5 @@ ActionB F4 # Metal View |Ctrl+| Rotate Overhead Cam
 ActionC F5 # Hide UI |Ctrl+| Free Cam
 ActionD F6 # Mute Sound
 
-TriggerL F10 # Options Menu
 MenuR Pause # Pause The Game
 layer 0
