@@ -7,7 +7,7 @@ mousecalibration 1000
 
 # Starcraft buttons are too numerous and too overloaded to explain
 # the purpose of most mappings.
-# This configuurations attempts to give as much access
+# This configuration attempts to give as much access
 # to as many relevant buttons as possible.
 TriggerR M1
 TriggerL M2
