@@ -1,4 +1,7 @@
 # Beyond All Reason, with Flydigi Apex 2 in mind.
+#
+# Enable "Grid" display for construction in the options.
+# Do not enable bottom display for construction.
 
 JoyXY arrows deadzone 40 # Move camera
 CamY !! ScrollY # Zoom
@@ -25,64 +28,70 @@ Right layer 5 # More Groups
 MenuL layer 6 # Views & Options
 MenuR Escape # Main Menu
 
-layer 0 # Main Actions
-ActionH A # Attack
-ActionV W # Pause/Wait
-ActionA D # DGun
-ActionB F # Fight
-ActionC G # Guard
-ActionV Y # Set Target
-
-# |Ctrl+A| Select All Units
-# |Ctrl+W| Select Armed Units
-# |Ctrl+D| Self Destruct
-
-# |Alt+A| Area Attack
-layer 0
-
-layer 1 # Support Actions
+layer 1 # Support Actions / Top Row
 ActionH Q # Draw
-ActionV S # Stop
+ActionV W # Pause/Wait
 ActionA E # Reclaim
 ActionB R # Repair
 ActionC T # Track Unit
-ActionD B #
-
-MenuR Tab # Switch Map Overview
-
+ActionD Y # Set Target
+# |Ctrl+W| Select Armed Units
 # |Ctrl+R| Select Some Units
 # |Ctrl+T| Change Tracking Mode
-# |Ctrl+B| Select Idle Builder
+MenuR Tab # Switch Map Overview
 layer 0
 
-layer 2 # More Support Actions
-ActionH K # Toggle Cloak
-ActionV O # |Ctrl+| Decrease FOV
-ActionA M # Move
-ActionB P # Patrol |Ctrl+| Increase FOV
-ActionC U # Unload Units
-ActionD L # Load Units |Ctrl+| Toggle LOS
-
-MenuR SemiColon # Switch LOS Mode
+layer 0 # Main Actions / Middle Row
+ActionH A # Attack
+ActionV S # Stop
+ActionA D # DGun
+ActionB F # Fight
+ActionC G # Guard
+ActionD K # Toggle Cloak
+# |Ctrl+A| Select All Units
+# |Ctrl+D| Self Destruct
+# |Alt+A| Area Attack
 layer 0
 
-layer 3 # Construction
-ActionH Z # Cycle Metal |Ctrl+| Select Similar Units |Alt+| Increase Build Spacing
-ActionV X # Cycle Energy |Alt+| Decrease Build Spacing
-ActionA C # Cycle Defense & Intel |Ctrl+| Select Commander
+layer 3 # Construction / Bottom Row
+ActionH Z # Cycle Metal
+ActionV X # Cycle Energy
+ActionA C # Cycle Defense & Intel
 ActionB V # Cycle Factory
+ActionC B # Next Page (Grid mode)
+ActionD N # Previous Page (Grid mode)
+# |Ctrl+Z| Select Similar Units
+# |Ctrl+C| Select Commander
+# |Ctrl+B| Select Idle Builder
+# |Alt+Z| Increase Build Spacing
+# |Alt+X| Decrease Build Spacing
+layer 0
+
 ActionC LeftBracket # Rotate Left
 ActionD RightBracket # Rotate Right
 
+layer 2 # More Support Actions
+ActionH U # Unload Units
+ActionV I # Game Info
+ActionA M # Move
+ActionB P # Patrol
+ActionC L # Load Units
+ActionD O #
+# |Ctrl+P| Increase FOV
+# |Ctrl+L| Toggle LOS
+# |Ctrl+O| Decrease FOV
+MenuR SemiColon # Switch LOS Mode
 layer 0
 
-layer 4 # Select Group |Ctrl+| Create Group |Alt+| Set Auto Group
+layer 4 # Select Group
 ActionH 1 # Group 1
 ActionV 2 # Group 2
 ActionA 3 # Group 3 
 ActionB 4 # Group 4
 ActionC 5 # Group 5
 ActionD 6 # Group 6
+# |Ctrl+1-6| Create Group
+# |Alt+1-6| Set Auto Group
 layer 0
 
 layer 5 # More Groups
@@ -90,17 +99,23 @@ ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
-ActionC BackQuote # Draw + Labels |Alt+| Remove From Auto Group
-ActionD I # Game Info
+ActionC BackQuote # Draw + Labels
+# |Ctrl+7-0| Create Group
+# |Alt+7-0| Set Auto Group
+# |Alt+`| Remove From Auto Group
 layer 0
 
 layer 6 # Views & Options
-ActionH F1 # Map Elevation |Ctrl+| FPS Cam
-ActionV F2 # Unit Pathing |Ctrl+| Overhead Cam
-ActionA F3 # Goto Ping |Ctrl+| Spring Cam
-ActionB F4 # Metal View |Ctrl+| Rotate Overhead Cam
-ActionC F5 # Hide UI |Ctrl+| Free Cam
+ActionH F1 # Map Elevation
+ActionV F2 # Unit Pathing 
+ActionA F3 # Goto Ping    
+ActionB F4 # Metal View   
+ActionC F5 # Hide UI      
 ActionD F6 # Mute Sound
-
+# |Ctrl+F1| FPS Cam
+# |Ctrl+F2| Overhead Cam
+# |Ctrl+F3| Spring Cam
+# |Ctrl+F4| Rotate Overhead Cam
+# |Ctrl+F5| Free Cam
 MenuR Pause # Pause The Game
 layer 0
