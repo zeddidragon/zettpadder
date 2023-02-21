@@ -18,7 +18,7 @@ ActionV W # Skill 2
 ActionA E # Skill 3
 ActionB R # Skill 4
 ActionC D # Trait
-ActionD 1 # Sub-skill 1
+ActionD F # Nuke
 
 MenuL Tab # Scores
 MenuR Escape # Options
