@@ -64,8 +64,8 @@ ActionD N # Previous Page (Grid mode)
 # |Alt+Z| Increase Build Spacing
 # |Alt+X| Decrease Build Spacing
 
-ActionC LeftBracket # Rotate Left
-ActionD RightBracket # Rotate Right
+BumperL LeftBracket # Rotate Left
+BumperR RightBracket # Rotate Right
 
 layer 2 # More Support Actions
 ActionH U # Unload Units
@@ -105,7 +105,7 @@ ActionV F2 # Unit Pathing
 ActionA F3 # Goto Ping    
 ActionB F4 # Metal View   
 ActionC F5 # Hide UI      
-ActionD F6 # Mute Sound
+ActionD F10 # Main Menu
 # |Ctrl+F1| FPS Cam
 # |Ctrl+F2| Overhead Cam
 # |Ctrl+F3| Spring Cam
