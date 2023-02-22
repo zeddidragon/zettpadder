@@ -1,5 +1,7 @@
 # Borderlands 3, with Flydigi Apex 2 in mind
 CamXY mouse 100
+mousecalibration 12080 # Mouse units for one radian
+ingamemouse 5
 
 # Unmap everything except Left Stick
 JoyXY WASD deadzone 40

@@ -1,75 +1,69 @@
-# StarCraft II, with Flydigi Apex 2 in mind.
+# Starcraft II, with Flydigi Apex 2 in mind.
 # Switch hotkeys to "Grid"
+# Comments largely based on Terrain.
+# Config should  be faction-agnostic.
 
 JoyXY arrows deadzone 40 # Move camera
-CamXY mouse 150 # Move mouse
+CamY !! ScrollY # Zoom
 mousecalibration 1000
 
-# Starcraft buttons are too numerous and too overloaded to explain
-# the purpose of most mappings.
-# This configuration attempts to give as much access
-# to as many relevant buttons as possible.
-TriggerR M1
-TriggerL M2
+TriggerR M1 # Select
+BumperR M2 # Move / Attack
+BumperL Shift # Queue
+# |Alt+M1| Quick Ping
 
-BumperL Shift
-BumperR Alt
-PinkyLeft Ctrl
-PinkyRight M3
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Drag Scroll
+PaddleRight Alt # Modifier
+PaddleLeft Space # Detailed unit tooltips / Queue in Front
 
-Left layer 1  # Numbers 1-6 (Control groups)
-Up layer 2    # Numbers 7-9, 0, F1 F2 (Control groups)
-Down 3        # F3-F8 (Heroes)
-Right 4       # Numpad 1-6 (Inventory)
-PaddleLeft layer 5  # Top Grid (QWERT)
-PaddleRight layer 6 # Middle Grid (ASDFG)
-# Default           # Bottom grid (ZXCVB)
+TriggerL layer 1 # Special Actions
+Left layer 2 # Support Actions
+Down layer 3 # Heroes
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape # Main Menu
 
-MenuL layer 7 # Menu Layer
-MenuR Escape # Cancel
-
-Joy Home # Default Camera View
-Cam Backspace # Base Camera
-
-layer 5 # Top Grid
-ActionH Q # Grid 1
-ActionV W # Grid 2
-ActionA E # Grid 3
-ActionB R # Grid 4
-ActionC T # Grid 5
+layer 0 # Main Actions / Top Row
+ActionH Q # Move
+ActionV W # Stop
+ActionA E # Hold Position
+ActionB R # Patrol
+ActionC T # Attack
 ActionD Y # Warp In (Select all Warp Gates)
+# |Ctrl+Q| Quick Save
+# |Alt+E| AI Expand
 
-layer 6 # Middle Grid 
-ActionH A # Grid 6
-ActionV S # Grid 7
-ActionA D # Grid 8
-ActionB F # Grid 9
-ActionC G # Grid 10
-ActionD Backspace
+layer 2 # Support Actions / Middle Row
+ActionH A # Gather
+ActionV S # Return Cargo
+ActionA D
+ActionB F # Hold Fire / Cancel
+ActionC G # Weapons Free / Set Rally Point
+ActionD Backspace # Base Camera
+# |Ctrl+F| Center on Selection
+# |Ctrl+Shift+F| Follow Selection
+# |Alt+A| AI Army
+# |Alt+S| AI Scout
+# |Alt+D| AI Detect
+# |Alt+F| Toggle Alliance Color Mode
+# |Alt+G| Ping Minimap
 
-layer 0 # Bottom Grid
-ActionH Z # Grid 11
-ActionV X # Grid 12
-ActionA C # Grid 13
-ActionB V # Grid 14
-ActionC B # Grid 15
-ActionD Space # Jump to Last Alert
-
-layer 1 # Numbers
-ActionH 1 # Group 1
-ActionV 2 # Group 2
-ActionA 3 # Group 3 
-ActionB 4 # Group 4
-ActionC 5 # Group 5
-ActionD 6 # Group 6
-
-layer 2 # More numbers
-ActionH 7 # Group 7
-ActionV 8 # Group 8
-ActionA 9 # Group 9 
-ActionB 0 # Group 10
-ActionC F1 # Idle Worker
-ActionD F2 # Army Units
+layer 1 # Special Actions / Bottom Row
+ActionH Z # Build
+ActionV X # Build Advanced
+ActionA C # Repair / Spray (Zerg) / Load
+ActionB V # Spray / Burrow / Unload
+ActionC B # Cancel / Halt / Unburrow
+ActionD Tab # Next Subgroup
+# |Shift+Tab| Previous Subgroup
+# |Ctrl+Z| Ability 1
+# |Ctrl+X| Ability 2
+# |Ctrl+C| Ability 3
+# |Ctrl+V| Ability 4
+# |Alt+C| AI Communication
+# |Alt+B| AI Build
 
 layer 3 # Heroes
 ActionH F3 # Hero 1
@@ -78,19 +72,36 @@ ActionA F5 # Hero 3
 ActionB F6 # Hero 4
 ActionC F7 # Hero 5
 ActionD F8 # Hero 6
+# |Ctrl+F5-F8| Create Location 1-4
+# |Ctrl+Shift+F5-F8| Create Location 5-8
 
-layer 4 # Nupad
-ActionH Num1 # Slot 1
-ActionV Num2 # Slot 2
-ActionA Num3 # Slot 3
-ActionB Num4 # Slot 4
-ActionC Num5 # Slot 5
-ActionD Num6 # Slot 6
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+# |Ctrl+1-6| Create Group
+# |Ctrl+Shift+1-6| Add to Group
+# |Alt+1-6| Create Group and Take Away Units
+# |Alt+Shift+1-6| Add to Group and Take Away Units
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+ActionC F1 # Idle Worker
+ActionD F2 # Army Units
 
-layer 7 # Menus
-ActionH F9 # Achievement Menu
+layer 6 # Menus
+ActionH F9 # Achivements
 ActionV F10 # Main Menu
-ActionA F11 # Message Log Meenu
+ActionA F11 # Message Log
 ActionB F12 # Help Menu
-ActionC Num7 # Slot 7
-ActionD Num8 # Slot 8
+ActionC PrintScreen # Screenshot
+ActionD Tab
+
+MenuR Pause # Pause The Game
+# |Alt+F11| Social Menu
+# |Ctrl+F12| Team Resource Menu

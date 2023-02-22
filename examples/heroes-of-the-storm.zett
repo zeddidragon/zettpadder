@@ -9,9 +9,8 @@ TriggerL M2 # Move / Attack
 
 BumperL A # Attack
 BumperR D # Trait
-PinkyLeft Ctrl # Choose Talents
-
-PaddleLeft layer 1 # Sub-skills
+PinkyLeft layer 1 # Sub-skills
+PaddleLeft Ctrl # Choose Talents
 
 ActionH Q # Skill 1
 ActionV W # Skill 2

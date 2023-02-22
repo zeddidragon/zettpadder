@@ -8,6 +8,7 @@ ActionWheelXY flick # Action wheel for quick turning
 flickdeadzone 40
 
 PinkyLeft V # Weapon Special
+PinkyRight M3
 PaddleLeft Alt # Walk
 PaddleRight Ctrl # Toggle Crouch
 
