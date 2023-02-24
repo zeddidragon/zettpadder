@@ -7,21 +7,24 @@ ingamemouse 5
 JoyXY WASD deadzone 40
 
 # Movement
-ActionA Space # Jump / E-Brake / Wheel Ability
 PaddleLeft Shift # Sprint / Boost
 PaddleRight Ctrl # Crouch / Slide / Ground Slam
 
 # Combat
 TriggerR M1 # Fire / Primary
 TriggerL M2 # ADS / Secondary
+BumperL F # Action Skill / Horn
+BumperR G # Throw Grenade
 
 PinkyLeft layer 1 # Weapons
 PinkyRight M3 
 
+ActionV Q # Secondary Use / Swap Seats
+ActionH E # Primary Use / Exit Vehicle
+ActionA Space # Jump / E-Brake / Wheel Ability
 ActionB V # Melee
+ActionC C # Weapon Mode
 ActionD R # Reload
-BumperL F # Action Skill / Horn
-BumperR G # Throw Grenade
 
 layer 1
 ActionH 1 # Weapon 1
@@ -29,10 +32,6 @@ ActionV 2 # Weapon 2
 ActionA 3 # Weapon 3
 ActionB 4 # Weapon 4
 layer 0
-
-ActionV Q # Secondary Use / Swap Seats
-ActionH E # Primary Use / Exit Vehicle
-ActionC C # Weapon Mod
 
 # Misc
 Down Tab # Character Menu / Back
