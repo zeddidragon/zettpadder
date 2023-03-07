@@ -5,19 +5,17 @@ CamXY mouse 150 # Move mouse
 mousecalibration 1000
 
 TriggerR M1 # Select / Confirm
-TriggerL M2 # Move / Attack
-
+TriggerL layer 1 # Sub-skills
+BumperR M2 # Move / Attack
 BumperL A # Attack
-BumperR D # Trait
-PinkyLeft layer 1 # Sub-skills
-PaddleLeft Ctrl # Choose Talents
+PinkyLeft Ctrl # Choose Talents
 
 ActionH Q # Skill 1
 ActionV W # Skill 2
 ActionA E # Skill 3
 ActionB R # Skill 4
 ActionC D # Trait
-ActionD F # Nuke
+ActionD F # Item
 
 MenuL Tab # Scores
 MenuR Escape # Options

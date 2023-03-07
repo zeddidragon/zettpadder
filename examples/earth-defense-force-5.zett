@@ -21,7 +21,7 @@ ActionD R # Reload
 # Rear triggers
 # Left and Right flipped. This is due to the inherent problem of
 # left mouse button being the traditional fire button for mice while
-# right trigger is the traditional fire button for controlllers.
+# right trigger is the traditional fire button for controllers.
 # Only way to resolve this inconsistency is extensive rebinding.
 # You'd have to change flip M1<->M2 and Shift<->Space either
 # for Fencer + Vehicles or the other three classes in-game.

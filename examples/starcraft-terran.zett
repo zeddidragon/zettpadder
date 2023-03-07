@@ -1,0 +1,79 @@
+# Starcraft, with Flydigi Apex 2 in mind.
+# Terran Faction
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+BumperR M2 # Move / Attack
+BumperL Shift # Queue
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Drag Scroll
+PaddleRight Alt # Modifier
+PaddleLeft Space # Go to last alert
+
+TriggerL layer 1 # Combat Actions
+Left layer 2 # Support Actions
+Down layer 3 # Construction
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape # Main Menu
+
+layer 0 # Main Actions
+ActionH M # Move
+ActionV S # Stop
+ActionA P # Patrol
+ActionB H # Hold Position
+ActionC A # Attack / Heal
+ActionD Escape # Cancel
+
+layer 1 # Combat Action
+ActionH T # Stimpack
+ActionV R # Restoration
+ActionA I # Spider Mines / Irradiate
+ActionB F # Optical Flare
+ActionC O # Siege Mode
+ActionD Y # Yamato Gun
+
+layer 2 # Support Actions
+ActionH C # Cloak
+ActionV L # Load / Lockdown
+ActionA D # Defensive Matrix
+ActionB U # Unload
+ActionC E # EMP
+ActionD N # Nuke
+
+layer 3 # Construction
+ActionH B # Build
+ActionV V # Advanced Build
+ActionA W # Build Wraith / Upgrade Weapons
+ActionB G # Train Ghost / Build Goliath
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+# |Ctrl+1-6| Create Group
+# |Ctrl+Shift+1-6| Add to Group
+# |Alt+1-6| Create Group and Take Away Units
+# |Alt+Shift+1-6| Add to Group and Take Away Units
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+
+layer 6 # Menus
+ActionH F9 # Achivements
+ActionV F10 # Main Menu
+ActionA F11 # Message Log
+ActionB F12 # Help Menu
+ActionC PrintScreen # Screenshot
+ActionD Tab
+

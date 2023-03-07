@@ -1,4 +1,4 @@
-# Beyond All Reason, with Flydigi Apex 2 in mind.
+# Zero-K, with Flydigi Apex 2 in mind.
 #
 # Enable "Grid" display for construction in the options.
 
@@ -28,41 +28,52 @@ MenuL layer 6 # Views & Options
 MenuR Escape # Main Menu
 
 layer 1 # Support Actions / Top Row
-ActionH Q # Draw
-ActionV W # Pause/Wait
+ActionH Q # Place Nanoframes
+ActionV W # Area Mex
 ActionA E # Reclaim
 ActionB R # Repair
-ActionC T # Track Unit
-ActionD Y # Set Target
-# |Ctrl+W| Select Armed Units
-# |Ctrl+T| Change Tracking Mode
+ActionC T # Set Target / Resurrect
+ActionD K # Toggle Cloak
+# |Ctrl+Q| Construction Priority
+# |Ctrl+W| Wait
+# |Ctrl+E| Deselect Above 30% Health
+# |Ctrl+T| Select Air Transports
+
 MenuR Tab # Switch Map Overview
 CamY !! ScrollY # Zoom
 Up layer 5 # More Groups
 
 layer 0 # Main Actions / Middle Row
-ActionH A # Attack
+ActionH A # Attack Move
 ActionV S # Stop
-ActionA D # DGun
-ActionB F # Fight
-ActionC G # Guard
-ActionD K # Toggle Cloak
+ActionA D # Special Weapon / Place Lamp / Select Missiles
+ActionB F # Force Fre
+ActionC G # Area Guard
+ActionD J # Jump
 # |Ctrl+A| Select All Units
+# |Ctrl+S| Select Owls
 # |Ctrl+D| Self Destruct
+# |Ctrl+G| Select Raptors
+# |Ctrl+F| Select Mobile Non-Builders
 # |Alt+A| Area Attack
+# |Alt+G| Terraform to Cursor 1
 
 layer 3 # Construction / Bottom Row
-ActionH Z # Cycle Metal
-ActionV X # Cycle Energy
-ActionA C # Cycle Defense & Intel
-ActionB V # Cycle Factory
-ActionC B # Next Page (Grid mode)
-ActionD N # Previous Page (Grid mode)
-# |Ctrl+Z| Select Similar Units
+ActionH Z # Idle Constructor / Increase Build Spacing
+ActionV X # Economy / Decrease Build Spacing
+ActionA C # Defence / Raise Structure Terraform
+ActionB V # Special / Lower Structure Terraform
+ActionC B # Factory / Toggle Structure Terraform
+ActionD N # Units / Previous Page (Grid mode)
+# |Ctrl+Z| Select All Similar Units
+# |Ctrl+X| Select Visible Similar Units
 # |Ctrl+C| Select Commander
-# |Ctrl+B| Select Idle Builder
+# |Ctrl+B| Select All Idle Constructors
 # |Alt+Z| Increase Build Spacing
 # |Alt+X| Decrease Build Spacing
+# |Alt+V| Terraform Raise 1
+# |Alt+B| Terraform Raise 2
+# |Alt+N| Terraform Raise 3
 
 BumperL LeftBracket # Rotate Left
 BumperR RightBracket # Rotate Right
@@ -88,17 +99,13 @@ ActionC 5 # Group 5
 ActionD 6 # Group 6
 TriggerL layer 5 # More Groups
 # |Ctrl+1-6| Create Group
-# |Alt+1-6| Set Auto Group
 
 layer 5 # More Groups
 ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
-ActionC BackQuote # Draw + Labels
 # |Ctrl+7-0| Create Group
-# |Alt+7-0| Set Auto Group
-# |Alt+`| Remove From Auto Group
 
 layer 6 # Views & Options
 ActionH F1 # Map Elevation

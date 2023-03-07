@@ -1,0 +1,40 @@
+# Generation Zero, with Flydigi Apex 2 in mind
+JoyXY wasd deadzone 40 # Strafe
+CamXY Mouse 100 # Used to counter recoil
+mousecalibration 20000
+ingamemouse 5
+mousepriority flick # Disable normal camera motion while using wheel
+ActionWheelXY flick # Action wheel for quick turning
+flickdeadzone 40
+
+PinkyLeft layer # Other actions
+PinkyRight M3
+PaddleLeft Shift # Sprint
+PaddleRight Ctrl # Crouch
+
+TriggerR M1 # Fire / Use
+TriggerL M2 # Aim
+BumperL Space # Jump
+BumperR 3 # Sidearm
+
+Left 4 # Item 1
+Up 5 # Item 2
+Down 6 # Item 3
+Right 7 # Item 4
+
+MenuL P # Menus
+MenuR Escape # Pause
+
+ActionH 1 # Primary Weapon 1
+ActionV 2 # Primary Weapon 2
+ActionA Space # Jump
+ActionB E # Interact
+ActionC R # Reload
+ActionD D # Flashlight
+
+layer 1
+ActionB C # Emotes
+ActionC V # Firing Mode
+ActionD X # Cycle Vision Mode
+MenuL I # Inventory
+MenuR M # Map

@@ -1,10 +1,10 @@
 # Starcraft II, with Flydigi Apex 2 in mind.
 # Switch hotkeys to "Grid"
-# Comments largely based on Terrain.
+# Comments largely based on Terrans.
 # Config should  be faction-agnostic.
 
 JoyXY arrows deadzone 40 # Move camera
-CamY !! ScrollY # Zoom
+CamXY Mouse 100 # Move Cursor
 mousecalibration 1000
 
 TriggerR M1 # Select
@@ -15,13 +15,13 @@ BumperL Shift # Queue
 PinkyLeft Ctrl # Modifier
 PinkyRight M3 # Drag Scroll
 PaddleRight Alt # Modifier
-PaddleLeft Space # Detailed unit tooltips / Queue in Front
+PaddleLeft Space # Go to last alert
 
 TriggerL layer 1 # Special Actions
 Left layer 2 # Support Actions
 Down layer 3 # Heroes
 Up layer 4 # Groups
-Right layer 5 # More Groups
+Right layer 7 # Inventory
 MenuL layer 6 # Views & Options
 MenuR Escape # Main Menu
 
@@ -57,6 +57,8 @@ ActionA C # Repair / Spray (Zerg) / Load
 ActionB V # Spray / Burrow / Unload
 ActionC B # Cancel / Halt / Unburrow
 ActionD Tab # Next Subgroup
+Up layer 5 # More Groups
+Right layer 8 # Inventory
 # |Shift+Tab| Previous Subgroup
 # |Ctrl+Z| Ability 1
 # |Ctrl+X| Ability 2
@@ -64,6 +66,7 @@ ActionD Tab # Next Subgroup
 # |Ctrl+V| Ability 4
 # |Alt+C| AI Communication
 # |Alt+B| AI Build
+CamY !! ScrollY # Zoom
 
 layer 3 # Heroes
 ActionH F3 # Hero 1
@@ -82,6 +85,7 @@ ActionA 3 # Group 3
 ActionB 4 # Group 4
 ActionC 5 # Group 5
 ActionD 6 # Group 6
+TriggerL layer 5 # More Groups
 # |Ctrl+1-6| Create Group
 # |Ctrl+Shift+1-6| Add to Group
 # |Alt+1-6| Create Group and Take Away Units
@@ -93,6 +97,19 @@ ActionA 9 # Group 9
 ActionB 0 # Group 10
 ActionC F1 # Idle Worker
 ActionD F2 # Army Units
+
+layer 7 # Inventory
+ActionH Num1 # Use Slot 1
+ActionV Num2 # Use Slot 2
+ActionA Num3 # Use Slot 3 
+ActionB Num4 # Use Slot 4
+ActionC Num5 # Use Slot 5
+ActionD Num6 # Use Slot 6
+TriggerL layer 8 # More Inventory
+layer 8 # Inventory
+ActionH Num7 # Use Slot 7
+ActionV Num8 # Use Slot 8
+# |Alt+Num1-Num8| Pickup Slot 1-8
 
 layer 6 # Menus
 ActionH F9 # Achivements

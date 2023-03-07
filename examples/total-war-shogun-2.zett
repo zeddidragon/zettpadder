@@ -1,0 +1,133 @@
+# Total War: Shogun 2, with Flydigi Apex 2 in mind.
+
+JoyXY wasd deadzone 40 # Move camera
+# |Alt+W| Fire Broadside Forward
+# |Alt+A| Fire Broadside Left
+# |Alt+D| Fire Broadside Right
+
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+# |Ctrl+ScrollY| Tilt Camera
+Q # Rotate Left
+E # Rotate Right
+Num8 # Moveforward Fast
+V # Rotate Up
+C # Rotate Down
+X # Camera Up
+Z # Camera Down
+CapsLock # Toggle Move Fast
+PageUp # Speed Up Camera
+PageDown # Slow Down Camera
+# |Shift+PageUp| Increase Camera Rotation Speed
+# |Shift+PageDown| Decrease Camera Rotation Speed
+Home # Zoom to and Select General
+End # Zoom to Unit
+N # Intelligent Zoom
+H # Toggle First-Person Mode
+O # Toggle Radar Visibility
+Delete # Toggle Tracking
+Insert # Context Camera
+
+TriggerR M1 # Select
+BumperR M2 # Move
+BumperL Shift # Modifier
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Zoom To Mouse
+PaddleRight Alt # Formations
+PaddleLeft Space # Toggle Character Movement Speed
+
+TriggerL layer 1 # Support Actions
+Left layer 2 # More Support Actions
+Down layer 3 # Construction
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape # Main Menu
+
+layer 0 # Main Actions
+Backspace # Cancel order
+F5 # Standard Ping
+F6 # Move Ping
+F7 # Attack Ping
+F8 # Defend Ping
+# |Ctrl+F11| Encyclopaedia
+# |Ctrl+F5| Withdrarw
+# |Ctrl+A| Select All
+# |Ctrl+.| Select Next
+# |Ctrl+.| Select Next
+, # Select Previous
+
+G # Group / Ungroup Units
+F # Toggle Melee Mode
+R # Toggle Run | Repair Buildings / Ships
+B # Toggle Boarding
+I
+[ # Increase Rank | Decrease Sail
+] # Increase File | Increase Sail
+BackSlash # Step Unit/Group Backwards
+BackQuote # Step Unit/Group Forwarrds | Sail Forward
+# |Ctrl+G| Lock / Unlock Group Formations
+# |Ctrl+B| Select All Siege Weapon Units
+# |Ctrl+I| Select All Melee Units
+# |Ctrl+C| Select All Cavalry Units
+# |Ctrl+M| Select All Missile Units
+
+layer 4 # Groups
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+TriggerL layer 5 # More Groups
+# |Ctrl+1-6| Create Group
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+# |Shift+1-7| Special Ability Slot 1-7
+# Formations
+# |Alt+1| Spear Point
+# |Alt+2| Crane's Wing
+# |Alt+3| Flying Geese
+# |Alt+4| Reclining Dragon
+# |Alt+5| War of the Tiger
+# |Alt+6| Bark of the Pine Tree
+# |Alt+7| Cloud Dragon
+# |Alt+8| Flying Bird
+# Cavalry Formations
+# |Alt+1| Double Line
+# |Alt+2| Grande Battery
+# |Alt+3| Cavalry Heavy Right
+# |Alt+4| Cavalry Heavy Left
+# |Alt+5| Melee Frontline
+# |Alt+6| Artillery Cross Fire
+# Naval Formations
+# |Alt+1| War of the Sword
+# |Alt+2| Three Day Old Moon
+# |Alt+3| Bird Cloud
+# |Alt+4| Extended Snake
+# |Alt+1| Line Astern
+# |Alt+2| Line Abreast
+
+K # Show Diplomatic Relations
+L # Rotate Unit / Group Left | Show Clan Management Panel
+; # Rotate Unit / Group Right
+M # Toggle Battle UI | Show Mastery of the Arts Panel
+N # Show Finance Panel
+O # Toggle Rader Visbility
+
+Enter # Deselect All | End Turn
+Space # Toggle Character Movement Speed
+# |Ctrl+P| Disband Selection
+# |Ctrl+S| Quick Save
+# |Ctrl+L| Quick Load
+# |Ctrl+M| Auto-Merge Units
+Home # Zoom to Home
+Y # Toggle Chat Entry
+U # Toggle Player List
+End # Default Camera Rotation
+P # Toggle Pause
+# |Ctrl+P| Disband Selection
