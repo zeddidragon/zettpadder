@@ -1,6 +1,6 @@
 # Earth Defense Force: Iron Rain, with Flydigi Apex 2 in mind
 JoyXY wasd deadzone 40 # Strafe
-CamXY flick # Turn
+CamXY mouse 100 # Aim
 mousecalibration 21400 # Mouse units to move 180
 ingamemouse 20
 
@@ -9,17 +9,21 @@ TriggerR M1 # Fire
 TriggerL Space # Energy Move
 BumperL M2 # Aim
 BumperR G # Use Item / Grenade
-ActionL Shift # Sprint
-ActionR E # Interact
+
+# Underside
+PinkyLeft layer 1 # Switch items
+PinkyRight M3 # Jump
+PaddleLeft Shift # Sprint
+PaddleRight Tab # Menu Tabs
 
 # Face buttons
-ActionV ScrollDown # Change Weapon
-ActionB Q # Overdrive
 ActionH R # Reload
-ActionA M3 # Jump ???
+ActionV ScrollDown # Change Weapon
+ActionA Enter # OK in menus
+ActionB E # Action
+ActionC R # Reload
+ActionD Q # Overdrive
 
-ActionC Enter # OK in menus
-ActionD Escape # Back in menus
 
 # Menu Buttons
 MenuL Tab # For Menus
@@ -28,8 +32,6 @@ MenuR Escape # Pause
 # Dpad
 DpadXY Arrows # For menus
 
-# Underside
-PinkyLeft layer 1 # Switch items
 layer 1 # Switch items
 ActionH 1 # Previous Item
 ActionB 2 # Next Item
