@@ -1,0 +1,14 @@
+# Wargroove, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+TriggerR M1 # Select
+BumperR M2 # Move
+BumperL Shift # Queue all the things
+
+MenuL Tab
+MenuR Escape # Main Menu
+
+DpadXY arrows # Move cursor?
+
+ActionB M2 # Cancel / Unit Stats
+ActionA Enter # Confirm

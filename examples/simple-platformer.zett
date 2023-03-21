@@ -1,0 +1,5 @@
+JoyX LeftArrow RightArrow deadzone 40
+ActionA UpArrow
+ActionB DownArrow
+MenuR Escape
+MenuL Tab
