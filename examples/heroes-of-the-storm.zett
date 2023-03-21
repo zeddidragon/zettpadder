@@ -9,6 +9,9 @@ TriggerL layer 1 # Sub-skills
 BumperR M2 # Move / Attack
 BumperL A # Attack
 PinkyLeft Ctrl # Choose Talents
+PaddleLeft Space
+PaddleRight G # Ping
+PinkyRight M3 # Drag Camera
 
 ActionH Q # Skill 1
 ActionV W # Skill 2
@@ -36,3 +39,5 @@ ActionA 3 # Sub-skill 3
 ActionB 4 # Sub-skill 4
 ActionC 5 # Sub-skill 5
 ActionD 6 # Sub-skill 6
+CamX None
+CamY !! ScrollY # Zoom

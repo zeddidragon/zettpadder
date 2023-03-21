@@ -7,26 +7,6 @@ JoyXY wasd deadzone 40 # Move camera
 
 CamXY Mouse 100 # Move Cursor
 mousecalibration 1000
-# |Ctrl+ScrollY| Tilt Camera
-Q # Rotate Left
-E # Rotate Right
-Num8 # Moveforward Fast
-V # Rotate Up
-C # Rotate Down
-X # Camera Up
-Z # Camera Down
-CapsLock # Toggle Move Fast
-PageUp # Speed Up Camera
-PageDown # Slow Down Camera
-# |Shift+PageUp| Increase Camera Rotation Speed
-# |Shift+PageDown| Decrease Camera Rotation Speed
-Home # Zoom to and Select General
-End # Zoom to Unit
-N # Intelligent Zoom
-H # Toggle First-Person Mode
-O # Toggle Radar Visibility
-Delete # Toggle Tracking
-Insert # Context Camera
 
 TriggerR M1 # Select
 BumperR M2 # Move
@@ -37,56 +17,44 @@ PinkyRight M3 # Zoom To Mouse
 PaddleRight Alt # Formations
 PaddleLeft Space # Toggle Character Movement Speed
 
-TriggerL layer 1 # Support Actions
-Left layer 2 # More Support Actions
-Down layer 3 # Construction
-Up layer 4 # Groups
-Right layer 5 # More Groups
-MenuL layer 6 # Views & Options
+TriggerL layer 1 # More Groups
+Left layer 2 # Selections
+Down layer 3 # Modes
+Up layer 4 # Pings
+Right layer 5 # Map Mode Menus
+MenuL Tab
 MenuR Escape # Main Menu
 
-layer 0 # Main Actions
-Backspace # Cancel order
-F5 # Standard Ping
-F6 # Move Ping
-F7 # Attack Ping
-F8 # Defend Ping
+layer 1 # Camera Controls
+MenuL O # Toggle Radar Visibility
+ActionH Home # Zoom to and Select General
+ActionV End # Zoom to Unit
+ActionA N # Intelligent Zoom
+ActionB H # Toggle First-Person Mode
+ActionC Delete # Toggle Tracking
+ActionD Insert # Context Camera
+layer 0
+
 # |Ctrl+F11| Encyclopaedia
-# |Ctrl+F5| Withdrarw
-# |Ctrl+A| Select All
-# |Ctrl+.| Select Next
-# |Ctrl+.| Select Next
-, # Select Previous
+# |Ctrl+F5| Withdraw
 
-G # Group / Ungroup Units
-F # Toggle Melee Mode
-R # Toggle Run | Repair Buildings / Ships
-B # Toggle Boarding
-I
-[ # Increase Rank | Decrease Sail
-] # Increase File | Increase Sail
-BackSlash # Step Unit/Group Backwards
-BackQuote # Step Unit/Group Forwarrds | Sail Forward
-# |Ctrl+G| Lock / Unlock Group Formations
-# |Ctrl+B| Select All Siege Weapon Units
-# |Ctrl+I| Select All Melee Units
-# |Ctrl+C| Select All Cavalry Units
-# |Ctrl+M| Select All Missile Units
-
-layer 4 # Groups
+layer 0 # Groups
 ActionH 1 # Group 1
 ActionV 2 # Group 2
 ActionA 3 # Group 3 
 ActionB 4 # Group 4
 ActionC 5 # Group 5
 ActionD 6 # Group 6
-TriggerL layer 5 # More Groups
-# |Ctrl+1-6| Create Group
-layer 5 # More Groups
+layer 1 # More Groups
 ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
+ActionC G # Group / Ungroup Units
+ActionD ! Ctrl A # Select All
+CamY !! ScrollY # Raise / Lower Camera
+# |Ctrl+G| Lock / Unlock Group Formations
+# |Ctrl+0-9| Create Group
 # |Shift+1-7| Special Ability Slot 1-7
 # Formations
 # |Alt+1| Spear Point
@@ -112,22 +80,39 @@ ActionB 0 # Group 10
 # |Alt+1| Line Astern
 # |Alt+2| Line Abreast
 
-K # Show Diplomatic Relations
-L # Rotate Unit / Group Left | Show Clan Management Panel
-; # Rotate Unit / Group Right
-M # Toggle Battle UI | Show Mastery of the Arts Panel
-N # Show Finance Panel
-O # Toggle Rader Visbility
+layer 2 # Selections
+ActionH ! Ctrl M # Select All Missile Units / Auto-Merge Units
+ActionV ! Ctrl I # Select All Melee Units
+ActionA ! Ctrl C # Select All Cavalry Units
+ActionB ! Ctrl B # Select All Siege Weapon Units
+ActionC ! Ctrl . # Select Next
+ActionD , # Select Previous
 
-Enter # Deselect All | End Turn
-Space # Toggle Character Movement Speed
-# |Ctrl+P| Disband Selection
-# |Ctrl+S| Quick Save
-# |Ctrl+L| Quick Load
-# |Ctrl+M| Auto-Merge Units
-Home # Zoom to Home
-Y # Toggle Chat Entry
-U # Toggle Player List
-End # Default Camera Rotation
-P # Toggle Pause
-# |Ctrl+P| Disband Selection
+layer 3 # Modes
+ActionH [ # Increase Rank | Decrease Sail
+ActionV ] # Increase File | Increase Sail
+ActionA R # Toggle Run | Repair Buildings / Ships
+ActionB B # Toggle Boarding
+ActionC F # Toggle Melee Mode
+ActionD ! Ctrl P # Disband Selection
+BumperL BackSlash # Step Unit/Group Backwards
+BumperR BackQuote # Step Unit/Group Forwarrds | Sail Forward
+
+layer 4 # Pings
+ActionH F5 # Standard Ping
+ActionV F6 # Move Ping
+ActionA F7 # Attack Ping
+ActionB F8 # Defend Ping
+ActionC Backspace # Cancel order
+ActionD Enter # Deselect All / End Turn
+
+layer 5 # Map Mode Menus
+ActionH K # Show Diplomatic Relations
+ActionV L # Rotate Unit / Group Left | Show Clan Management Panel
+ActionB ; # Rotate Unit / Group Right
+ActionA M # Toggle Battle UI | Show Mastery of the Arts Panel
+ActionC N # Show Finance Panel
+ActionD O # Toggle Radar Visbility
+
+BumperL ! Ctrl L # Quick Load
+BumperR ! Ctrl S # Quick Save

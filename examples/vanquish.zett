@@ -13,17 +13,14 @@ DpadXY Arrows # For menus
 # Face buttons
 TriggerR M1 # Fire
 TriggerL M2 # Aim
-ActionR M3 # Weapon Zoom
-ActionL Space # Dodge
 BumperR G # Throw Grenade
 BumperL Shift # Boost
 
 ActionV T # Detonate Bomb
 ActionH E # Enter Cover / Interact
+ActionA Space # Dodge
 ActionB F # Melee
-ActionA R # Reload / Scan Weapon
-
-ActionC !! E # Mash E
+ActionC R # Reload / Scan Weapon
 ActionD !! A , S , D, W # Wiggle Stick
 
 # # Menus stuff
@@ -31,8 +28,10 @@ MenuR Escape # Menu
 MenuL Tab # Skip Cutscenes
 
 PinkyLeft layer 1 # Weapons
+PinkyRight M3 # Weapon Zoom
 layer 1
 ActionV 1 # Weapon 1 (Top)
 ActionB 2 # Weapon 2 (Right)
 ActionA 3 # Weapon 3 (Bottom)
 ActionH 4 # Change Grenade (Left)
+ActionD !! E # Mash E

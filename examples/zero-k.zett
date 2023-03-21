@@ -47,7 +47,7 @@ layer 0 # Main Actions / Middle Row
 ActionH A # Attack Move
 ActionV S # Stop
 ActionA D # Special Weapon / Place Lamp / Select Missiles
-ActionB F # Force Fre
+ActionB F # Force Fire
 ActionC G # Area Guard
 ActionD J # Jump
 # |Ctrl+A| Select All Units

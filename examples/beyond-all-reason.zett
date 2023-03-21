@@ -46,9 +46,10 @@ ActionV S # Stop
 ActionA D # DGun
 ActionB F # Fight
 ActionC G # Guard
-ActionD K # Toggle Cloak
+ActionD P # Patrol
 # |Ctrl+A| Select All Units
 # |Ctrl+D| Self Destruct
+# |Ctrl+P| Increase FOV
 # |Alt+A| Area Attack
 
 layer 3 # Construction / Bottom Row
@@ -70,11 +71,10 @@ BumperR RightBracket # Rotate Right
 layer 2 # More Support Actions
 ActionH U # Unload Units
 ActionV I # Game Info
-ActionA M # Move
-ActionB P # Patrol
-ActionC L # Load Units
-ActionD O #
-# |Ctrl+P| Increase FOV
+ActionA O #
+ActionB M # Move
+ActionC K # Toggle Cloak
+ActionD L # Load Units
 # |Ctrl+L| Toggle LOS
 # |Ctrl+O| Decrease FOV
 MenuR SemiColon # Switch LOS Mode
