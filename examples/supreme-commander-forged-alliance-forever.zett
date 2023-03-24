@@ -1,0 +1,138 @@
+# Supreme Commander: Forged Alliance Forever, with Flydigi Apex 2 in mind.
+# Default Preset
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+# |Alt+Up| Rotate layouts up
+# |Alt+Down| Rotate layouts down
+# |Alt+Left| Rotate skins down
+# |Alt+Right| Rotate skins up
+
+TriggerR M1 # Select
+BumperR M2 # Move
+BumperL Shift # Queue all the things
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Modifier
+PaddleLeft Space # Detailed unit tooltips / Queue in Front
+
+TriggerL layer 1 # Support Actions
+Left layer 2 # More Support Actions
+Down layer 3 # Construction
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape # Deselect current selection or cancels current action
+
+layer 1 # Support Actions / Top Row
+ActionH Q # Zoom your View in
+ActionV W # Zoom your View out
+ActionA E # Reclaim
+ActionB R # Repair
+ActionC T # Track a unit in the Primary view
+ActionD O # Overcharge
+# |Ctrl+R| Toggle Economy Overlay
+# |Ctrl+W| Toggle Military Overlay
+# |Ctrl+E| Toggle Unit Color
+# |Alt+R| Toggle reclaim labels
+# |Shift+Q| Zoom your View in fast
+# |Shift+W| Zoom your View out fast
+# |Shift+T| Create build template
+# |Ctrl+Shift+T| Track a unit in the Strategic view
+# |Ctrl+Alt+T| Track a unit on the Second Monitor
+
+BumperL LeftBracket # Cycle fire states
+MenuR Tab # Go to the next saved Camera Position
+CamY !! ScrollY # Zoom
+Up layer 5 # More Groups
+MenuL layer 7 # More Views & Options
+# |Shift+Tab| Save a Camera Position
+# |Ctrl+Tab| Delete current Camera Position
+
+layer 0 # Main Actions
+ActionH A # Attack
+ActionV S # Stop and cancel all Orders
+ActionA L # Launch a Tactical Misile
+ActionB G # Spread Attack
+ActionC I # Assist
+ActionD P # Patrol
+# |Ctrl+A| Select all Air units
+# |Ctrl+Shift+A| Select nearest Air Factory
+# |Ctrl+S| Select all Naval units
+# |Ctrl+Shift+S| Select nearest Naval Factory
+# |Ctrl+L| Select all Land units
+# |Ctrl+Shift+L| Select nearest Land Factory
+# |Alt+L| Toggle life bars
+
+layer 2 # More Support Actions
+ActionH D # Dive
+ActionY U # Transport
+ActionA X #
+ActionB F # Ferry
+ActionC C # Capture
+ActionD Z # Pause
+# |Ctrl+F| Take a screen shot
+# |Ctrl+X| Select all units
+# |Ctrl+C| Select all units on the screen
+# |Ctrl+Z| Select all units similar to those selected
+
+layer 3 # Construction / Bottom Row
+ActionB V # Reset the Camera
+ActionY H # Select nearest Factory
+ActionA N # Nuke
+ActionB B # Toggles keyboard build command mode on and off
+ActionC . # Cycle through all Engineers
+ActionD Comma # Go to your ACU
+MenuR K
+# |Ctrl+V| Toggles camera free mode
+# |Ctrl+B| Select all Engineers
+# |Ctrl+.| Select all Engineers on the screen
+# |Ctrl+H| Select all Factories on the screen
+# |Ctrl+N| Rename the selected unit
+# |Shift+.| Go to nearest idle Engineer
+# |Alt+.| Select nearest idle Engineer
+# |Alt+,| Select your ACU
+# |Ctrl+K| Self-Destruct
+
+layer 2 # More Support Actions
+ActionB M # Move
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+TriggerL layer 5 # More Groups
+# |Ctrl+1-6| Create Group
+# |Shift+1-6| Append Group
+# |Ctrl+Shift+1-6| Select only factories from Group
+
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+# |Ctrl+7-0| Create Group
+# |Shift+7-0| Append Group
+
+layer 6 # Views & Options
+ActionH F3 # Quick Save
+ActionV F4 # Toggle the Diplomacy Window
+ActionA F5 # Create an alert ping at the mouse location
+ActionB F6 # Create a move ping at the mouse location
+ActionC F7 # Create an attack ping at the mouse location
+ActionD F8 # Create a marker at the mouse location
+MenuR Pause # Pause The Game
+TriggerL layer 7 # More Views & Options
+
+layer 7 # More Views & options
+ActionH Home # Enable split screen
+ActionV End # Disable split screen
+ActionA F2 # Toggles the Score Overlay
+ActionB F11 # Toggles the Connecctivity Screen
+ActionC F12 # Show Scenario Options/Objectives Window
+ActionD F10 # Toggles the Main Menu
