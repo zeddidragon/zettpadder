@@ -7,34 +7,37 @@ mousepriority flick # Disable normal camera motion while using wheel
 ActionWheelXY flick # Action wheel for quick turning
 flickdeadzone 40
 
-PinkyLeft layer # Other actions
+PinkyLeft layer 1 # Other actions
 PinkyRight M3
 PaddleLeft Shift # Sprint
 PaddleRight Ctrl # Crouch
 
 TriggerR M1 # Fire / Use
 TriggerL M2 # Aim
-BumperL Space # Jump
-BumperR 3 # Sidearm
+BumperL 3 # Item 3
+BumperR 4 # Item 4
 
-Left 4 # Item 1
-Up 5 # Item 2
-Down 6 # Item 3
-Right 7 # Item 4
+Left 5 # Item 5
+Up 6 # Item 6
+Down 7 # Item 7
+Right 8 # Item 8
 
 MenuL P # Menus
 MenuR Escape # Pause
 
-ActionH 1 # Primary Weapon 1
-ActionV 2 # Primary Weapon 2
+ActionH 1 # Item 1
+ActionV 2 # Item 2
 ActionA Space # Jump
 ActionB E # Interact
 ActionC R # Reload
-ActionD D # Flashlight
+ActionD F # Flashlight
 
 layer 1
 ActionB C # Emotes
 ActionC V # Firing Mode
 ActionD X # Cycle Vision Mode
-MenuL I # Inventory
+
 MenuR M # Map
+PaddleRight Z # Prone
+
+CamY !! ScrollY # Scroll

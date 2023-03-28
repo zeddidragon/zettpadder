@@ -1,0 +1,36 @@
+# Mecha Knights: Nightmare, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40
+CamXY mouse 100
+
+TriggerL M1 # Left hand weapon
+TriggerR M2 # Right hand weapon
+BumperL Q # Left shoulder weapon
+BumperR E # Right shoulder weapon
+
+PaddleLeft Shift # On/Off Boosters
+PaddleRight Space # Overboost / Quickboost
+PinkyLeft layer 1 # Camera Controls
+
+ActionC T # Change Quick Access
+ActionD R # Use Quick Access
+MenuL Tab # Mission Action
+MenuR Escape # Menus
+
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 1 # Module 1
+ActionV 2 # Module 2
+ActionA 3 # Module 3
+ActionB 4 # Module 4
+# Think of the dpad buttons as two rows:
+# < 1  ^ 2
+#  v 3  > 4
+Left    5 # Module 1
+Up      6 # Module 2
+Down    7 # Module 3
+Right   8 # Module 4
+
+layer 1 # Camera Controls
+ActionC F # Change Camera
+CamY !! ScrollY # Zoom

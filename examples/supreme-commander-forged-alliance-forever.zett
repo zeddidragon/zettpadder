@@ -18,21 +18,22 @@ PinkyRight M3 # Camera Panning
 PaddleRight Alt # Modifier
 PaddleLeft Space # Detailed unit tooltips / Queue in Front
 
-TriggerL layer 1 # Support Actions
-Left layer 2 # More Support Actions
-Down layer 3 # Construction
+TriggerL layer 2 # Support Actions / Right Side
+Left layer 1 # Macro Actions / Top Row
+# layer 0 # Main Actions / Middle Row
+Down layer 3 # Construction / Bottom Row
 Up layer 4 # Groups
 Right layer 5 # More Groups
 MenuL layer 6 # Views & Options
 MenuR Escape # Deselect current selection or cancels current action
 
-layer 1 # Support Actions / Top Row
+layer 1 # Macro Actions / Top Row
 ActionH Q # Zoom your View in
 ActionV W # Zoom your View out
 ActionA E # Reclaim
 ActionB R # Repair
 ActionC T # Track a unit in the Primary view
-ActionD O # Overcharge
+ActionD M # Move
 # |Ctrl+R| Toggle Economy Overlay
 # |Ctrl+W| Toggle Military Overlay
 # |Ctrl+E| Toggle Unit Color
@@ -42,62 +43,54 @@ ActionD O # Overcharge
 # |Shift+T| Create build template
 # |Ctrl+Shift+T| Track a unit in the Strategic view
 # |Ctrl+Alt+T| Track a unit on the Second Monitor
+MenuR K
+# |Ctrl+K| Self-Destruct
 
-BumperL LeftBracket # Cycle fire states
-MenuR Tab # Go to the next saved Camera Position
-CamY !! ScrollY # Zoom
-Up layer 5 # More Groups
-MenuL layer 7 # More Views & Options
-# |Shift+Tab| Save a Camera Position
-# |Ctrl+Tab| Delete current Camera Position
-
-layer 0 # Main Actions
+layer 0 # Main Actions / Middle Row
 ActionH A # Attack
 ActionV S # Stop and cancel all Orders
-ActionA L # Launch a Tactical Misile
-ActionB G # Spread Attack
-ActionC I # Assist
-ActionD P # Patrol
+ActionA D # Dive
+ActionB F # Ferry
+ActionC G # Spread Attack
+ActionD I # Assist
 # |Ctrl+A| Select all Air units
 # |Ctrl+Shift+A| Select nearest Air Factory
 # |Ctrl+S| Select all Naval units
 # |Ctrl+Shift+S| Select nearest Naval Factory
+# |Ctrl+F| Take a screen shot
+
+layer 3 # Construction / Mass Selection / Bottom Row
+ActionH Z # Pause
+ActionV X #
+ActionA C # Capture
+ActionB V # Reset the Camera
+ActionC B # Toggles keyboard build command mode on and off
+ActionD H # Select nearest Factory
+# |Ctrl+Z| Select all units similar to those selected
+# |Ctrl+X| Select all units
+# |Ctrl+C| Select all units on the screen
+# |Ctrl+V| Toggles camera free mode
+# |Ctrl+B| Select all Engineers
+# |Ctrl+H| Select all Factories on the screen
+
+layer 2 # Support Actions / Right Sidee
+ActionH L # Launch a Tactical Misile
+ActionV N # Nuke
+ActionA O # Overcharge
+ActionB U # Transport
+ActionC P # Patrol
+ActionD LeftBracket # Cycle fire states
 # |Ctrl+L| Select all Land units
 # |Ctrl+Shift+L| Select nearest Land Factory
 # |Alt+L| Toggle life bars
-
-layer 2 # More Support Actions
-ActionH D # Dive
-ActionY U # Transport
-ActionA X #
-ActionB F # Ferry
-ActionC C # Capture
-ActionD Z # Pause
-# |Ctrl+F| Take a screen shot
-# |Ctrl+X| Select all units
-# |Ctrl+C| Select all units on the screen
-# |Ctrl+Z| Select all units similar to those selected
-
-layer 3 # Construction / Bottom Row
-ActionB V # Reset the Camera
-ActionY H # Select nearest Factory
-ActionA N # Nuke
-ActionB B # Toggles keyboard build command mode on and off
-ActionC . # Cycle through all Engineers
-ActionD Comma # Go to your ACU
-MenuR K
-# |Ctrl+V| Toggles camera free mode
-# |Ctrl+B| Select all Engineers
-# |Ctrl+.| Select all Engineers on the screen
-# |Ctrl+H| Select all Factories on the screen
 # |Ctrl+N| Rename the selected unit
-# |Shift+.| Go to nearest idle Engineer
-# |Alt+.| Select nearest idle Engineer
-# |Alt+,| Select your ACU
-# |Ctrl+K| Self-Destruct
+MenuL layer 7 # More Views & Options
+MenuR Tab # Go to the next saved Camera Position
+Up layer 5 # More Groups
+CamY !! ScrollY # Zoom
+# |Shift+Tab| Save a Camera Position
+# |Ctrl+Tab| Delete current Camera Position
 
-layer 2 # More Support Actions
-ActionB M # Move
 
 layer 4 # Select Group
 ActionH 1 # Group 1
@@ -116,8 +109,14 @@ ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
+ActionC . # Cycle through all Engineers
+ActionD Comma # Go to your ACU
 # |Ctrl+7-0| Create Group
 # |Shift+7-0| Append Group
+# |Ctrl+.| Select all Engineers on the screen
+# |Shift+.| Go to nearest idle Engineer
+# |Alt+.| Select nearest idle Engineer
+# |Alt+,| Select your ACU
 
 layer 6 # Views & Options
 ActionH F3 # Quick Save
