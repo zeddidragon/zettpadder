@@ -33,6 +33,7 @@ ActionC R # Reload
 ActionD F # Flashlight
 
 layer 1
+ActionA N # Change Ammo
 ActionB C # Emotes
 ActionC V # Firing Mode
 ActionD X # Cycle Vision Mode

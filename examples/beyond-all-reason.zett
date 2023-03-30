@@ -1,6 +1,4 @@
 # Beyond All Reason, with Flydigi Apex 2 in mind.
-#
-# Enable "Grid" display for construction in the options.
 
 JoyXY arrows deadzone 40 # Move camera
 CamXY Mouse 100 # Move Cursor
