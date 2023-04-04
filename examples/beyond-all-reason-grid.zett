@@ -1,6 +1,6 @@
 # Beyond All Reason, with Flydigi Apex 2 in mind.
 # Enable "Grid" display for construction in the options.
-# Enable "Grid Optimized" layout in the options.
+# Enable "Grid Optimized 60%" layout in the options.
 
 JoyXY arrows deadzone 40 # Move camera
 CamXY Mouse 100 # Move Cursor
@@ -15,19 +15,21 @@ BumperL Shift # Queue all the things
 PinkyLeft Ctrl # Modifier
 PinkyRight M3 # Camera Panning
 PaddleRight Alt # Modifier
-PaddleLeft Space # Detailed unit tooltips / Queue in Front
-# |Shift+Space | Show Factory Build Queues
-# |Shift+Space| Distribute Construction
+PaddleLeft Space # Queue in Front
+# |Shift+Space| Show Factory Build Queues
+# |Shift+Space| Distribute Line Construction
+# |Shift+Alt+Space| Distribute Grid Construction
 
-TriggerL layer 1 # Eco Actions
+TriggerL layer 1 # Support Actions
 Left layer 2 # Unit States
 Down layer 3 # Construction
 Up layer 4 # Groups
 Right layer 5 # More Groups
-MenuL layer 6 # Views & Options
+MenuL I # Unit Info
 MenuR Escape # Main Menu
+# |Ctrl+I| Map Details
 
-layer 1 # Eco Actions / Top Row
+layer 1 # Support Actions / Top Row
 ActionH Q # Select Similar Units
 ActionV W # Resurrect / Capture
 ActionA E # Reclaim
@@ -38,8 +40,8 @@ ActionD U # Unload Units
 # |Ctrl+W| Select All Similar Units
 # |Ctrl+E| Select All Units
 CamY !! ScrollY # Zoom
-Up layer 5 # More Groups
-MenuL layer 7 # Move Views & Options
+# |Space+Q| Draw + Labels
+# |Ctrl+Space+Q| Remove Units From Grgoup
 
 layer 0 # Main Actions / Middle Row
 ActionH A # Attack
@@ -60,7 +62,6 @@ ActionB V # Build Factory
 ActionC M # Restore Ground
 ActionD T # Repeat
 # |Ctrl+Z| Area Mex
-# |Ctrl+B| Self Destruct
 # |Alt+Z| Increase Build Spacing
 # |Alt+X| Decrease Build Spacing
 
@@ -74,6 +75,9 @@ ActionA G # Stop / Clear Queue
 ActionB B # (On / Off) Toggle Trajectory
 ActionC L # Toggle Firestate
 ActionD SemiColon # Toggle Movestate
+# |Ctrl+B| Self Destruct
+BumperL O # Guard
+# |Alt+O| Flip Camera
 
 layer 4 # Select Group
 ActionH 1 # Group 1
@@ -82,40 +86,25 @@ ActionA 3 # Group 3
 ActionB 4 # Group 4
 ActionC 5 # Group 5
 ActionD 6 # Group 6
-TriggerL layer 5 # More Groups
-# |Ctrl+1-6| Create Group
-# |Alt+1-6| Set Auto Group
+# |Ctrl+1-6| Create Group <n>
+# |Alt+1-6| Set Auto Group <n>
+# |Space+1-4| Goto Camera <n>
+# |Ctrl+Space+1-4| Set Camera <n>
+# |Space+5| Goto Ping
+# |Space+6| Unit Pathing
+# |Ctrl+Space+5| Overhead Cam
+# |Ctrl+Space+6| Spring Cam
 
 layer 5 # More Groups
 ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
-ActionC BackQuote # Draw + Labels
+ActionC F11 # Widgets Menu
 ActionD Tab # Select Commander
 # |Ctrl+7-0| Create Group
 # |Alt+7-0| Set Auto Group
-# |Alt+`| Remove From Auto Group
 # |Ctrl+Tab| Select Idle Builder
-
-layer 6 # Views & Optios
-ActionH F1 # Goto Camera 1 
-ActionV F2 # Goto Camera 2 
-ActionA F3 # Goto Camera 3 
-ActionB F4 # Goto Camera 4 
-ActionC F5 # Goto Ping
-ActionD F6 # Unit Pathing 
-TriggerL layer 7 # More View & Options
-MenuR Pause # Pause The Game
-# |Ctrl+F1-F4| Set Camera 1-4
-# |Ctrl+F5| Overhead Cam
-# |Ctrl+F6| Spring Cam
-
-layer 7 # More Views & Options
-ActionH F7 # Metal View
-ActionV F8 # Map Elevation 
-ActionA F9 # Hide HP Bars
-ActionC F11 # Widgets Menu
-ActionD F12 # Screen Sshot
-MenuR Pause # Pause The Game
-# |Ctrl+F7| Toggle Cam Mode
+# |Space+7| Metal View
+# |Space+8| Map Elevation
+# |Ctrl+Space+7| Toggle Cam Mode

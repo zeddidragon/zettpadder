@@ -1,7 +1,7 @@
-joyxy arrows deadzone 40
-dpadxy arrows
-actiona S
-actionh A
-actionv W
-actionb D
-bumperl F
+JoyXY arrows deadzone 40
+DpadXY arrows
+ActionA S
+ActionH A
+ActionV W
+ActionB D
+BumperL F
