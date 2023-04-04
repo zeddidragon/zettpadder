@@ -1,0 +1,43 @@
+# Across the Obelisk, with Flydigi Apex 2 in mind.
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY mouse 150 # Move mouse
+mousecalibration 1000
+
+TriggerR M1 # Select / Confirm
+TriggerL layer 1 # Emotes
+BumperR M2 # Move / Attack
+BumperL A # Attack
+PinkyLeft Ctrl
+PaddleLeft Space
+PaddleRight Alt
+PinkyRight M3
+
+ActionH 1 # Card / Target 1
+ActionV 2 # Card / Target 2
+ActionA 3 # Card / Target 3
+ActionB 4 # Card / Target 4
+ActionC 5 # Card / Target 5
+ActionD 6 # Card / Target 6
+Left    7 # Card / Target 7
+Up      8 # Card / Target 8
+Down    9 # Card / Target 9
+Right   0 # Card / Target 0
+
+MenuL Tab
+MenuR Escape
+
+layer 1
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH Q # Emote 1
+ActionV W # Emote 2
+ActionA E # Emote 3
+ActionB R # Emote 4
+ActionC T # Emote 5
+ActionD Y # Emote 6
+
+CamX None
+CamY !! ScrollY # Scroll
