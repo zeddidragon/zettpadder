@@ -32,12 +32,11 @@ layer 1
 # X 1  Y 2
 #  A 3  B 4
 #   C 5  Z 6
-ActionH Q # Emote 1
-ActionV W # Emote 2
-ActionA E # Emote 3
-ActionB R # Emote 4
-ActionC T # Emote 5
-ActionD Y # Emote 6
+ActionH Q # Emote Anger
+ActionV W # Emote ...
+ActionA A # Emote Heal
+ActionB S # Emote Target
+ActionC E # Emote !
+ActionD R # Emote <3
 
-CamX None
-CamY !! ScrollY # Scroll
+CamY ScrollY # Scroll
