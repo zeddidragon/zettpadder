@@ -91,7 +91,6 @@ CamY !! ScrollY # Zoom
 # |Shift+Tab| Save a Camera Position
 # |Ctrl+Tab| Delete current Camera Position
 
-
 layer 4 # Select Group
 ActionH 1 # Group 1
 ActionV 2 # Group 2
@@ -126,8 +125,8 @@ ActionB F6 # Create a move ping at the mouse location
 ActionC F7 # Create an attack ping at the mouse location
 ActionD F8 # Create a marker at the mouse location
 MenuR Pause # Pause The Game
-BumperL Minus # Decrease Game Speed
-BumperL Plus # Increase Game Speed
+BumperL KpMinus # Decrease Game Speed
+BumperR KpPlus # Increase Game Speed
 TriggerL layer 7 # More Views & Options
 
 layer 7 # More Views & options

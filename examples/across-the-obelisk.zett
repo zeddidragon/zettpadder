@@ -6,23 +6,19 @@ mousecalibration 1000
 
 TriggerR M1 # Select / Confirm
 TriggerL layer 1 # Emotes
-BumperR M2 # Move / Attack
-BumperL A # Attack
-PinkyLeft Ctrl
-PaddleLeft Space
-PaddleRight Alt
+BumperR M2 # Inspect
 PinkyRight M3
 
-ActionH 1 # Card / Target 1
-ActionV 2 # Card / Target 2
-ActionA 3 # Card / Target 3
-ActionB 4 # Card / Target 4
-ActionC 5 # Card / Target 5
-ActionD 6 # Card / Target 6
-Left    7 # Card / Target 7
-Up      8 # Card / Target 8
-Down    9 # Card / Target 9
-Right   0 # Card / Target 0
+Left 1    # Card / Hero 1
+Up 2      # Card / Hero 2
+Down 3    # Card / Hero 3
+Right 4   # Card / Hero 4
+ActionH 5 # Card / Monster 5
+ActionV 6 # Card / Monster 6
+ActionA 7 # Card / Monster 7
+ActionB 8 # Card / Monster 8
+ActionC 9 # Card 9
+ActionD 0 # Card 0
 
 MenuL Tab
 MenuR Escape
