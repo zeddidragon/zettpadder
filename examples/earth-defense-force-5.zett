@@ -51,7 +51,6 @@ PaddleRight Q # Pip
 layer 1
 
 ActionV Y # Toggle medals / change costume
-Up !! ScrollUp
-Down !! ScrollDown
 ActionB Escape # Back
 ActionA Enter # OK
+CamY ScrollY

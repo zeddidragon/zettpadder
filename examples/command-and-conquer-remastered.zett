@@ -30,7 +30,7 @@ ActionA E # Infantry Tab
 ActionB R # Vehicles Tab
 ActionC T # Superweapons Tab
 ActionD Y # 
-CamY PageUp PageDown
+CamY PageUp PageDown deadzone 40
 # |Ctrl+Q|
 # |Ctrl+W|
 # |Ctrl+E|
@@ -74,12 +74,13 @@ ActionD N #
 # |Shift+X| Toggle Beacon Mode
 
 layer 2 # Support Actions / Right Sidee
-ActionH Backslash # Deploy / Unload Selected Vehicle
+ActionH BackSlash # Deploy / Unload Selected Vehicle
 ActionV I #
 ActionA O #
 ActionB P #
 ActionC K #
 ActionD L #
+CamY ScrollY
 # |Ctrl+U|
 # |Ctrl+I|
 # |Ctrl+O|
@@ -103,7 +104,7 @@ ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
 ActionB 0 # Group 10
-ActionC Period # Select Next Unit or Structure
+ActionC Dot # Select Next Unit or Structure
 ActionD Comma # Select Previous Unit or Structure
 # |Ctrl+7-0| Create Group
 # |Shift+7-0| Append Group

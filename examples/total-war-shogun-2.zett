@@ -52,7 +52,7 @@ ActionA 9 # Group 9
 ActionB 0 # Group 10
 ActionC G # Group / Ungroup Units
 ActionD ! Ctrl A # Select All
-CamY !! ScrollY # Raise / Lower Camera
+CamY ScrollY # Raise / Lower Camera
 # |Ctrl+G| Lock / Unlock Group Formations
 # |Ctrl+0-9| Create Group
 # |Shift+1-7| Special Ability Slot 1-7
