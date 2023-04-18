@@ -1,0 +1,94 @@
+# Open Red Alert, with Flydigi Apex 2 in mind
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+BumperR M2 # Move
+BumperL Shift # Queue
+# |Ctrl+M2| Force Fire
+# |Alt+M2| Force Move
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Modifier
+PaddleLeft Space # Jump to last event
+# |Shift+Space | Show Factory Build Queues
+# |Shift+Space| Distribute Construction
+
+TriggerL layer 1 # Support Actions
+Left layer 2 # Sidebar Slots
+Down layer 3 # Construction
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL Tab # Next Production Structure
+MenuR Escape # Main Menu
+
+layer 1 # Support Actions
+ActionH Q # Select highest priority units
+ActionV W # Select type
+ActionA E # Structure tab
+ActionB R # Defense tab
+ActionC T # Infantry tab
+ActionD H # Jump to next base
+Down layer 6 # More Sidebar Slots
+# |Ctrl+Q/W/E/R| Record bookmarks 1/2/3/4
+# |Alt+Q/W/E/R| Jump to bookmarks 1/2/3/4
+
+layer 0 # Main Actions / Middle Row
+ActionH A # Attack Move
+ActionV S # Stop
+ActionA D # Guard
+ActionB F # Deploy / Return to base
+ActionC V # Hold Position
+ActionD B # Place Beacon
+# |Ctrl+A| Assault Move
+# |Ctrl+A| Attack Anything stance
+# |Ctrl+S| Defend stance
+# |Ctrl+D| Return Fire stance
+# |Ctrl+F| Hold Fire stance
+
+layer 3 # Construction / Bottom Row
+ActionH Y # Vehicle tab
+ActionV U # Aircraft tab
+ActionA I # Naval tab
+ActionB C # Repair Mode
+ActionC Z # Sell mode
+ActionD X # Power mode
+# |Ctrl+X| Scatter units
+
+layer 2 # Sidebar slots
+ActionH F1 # Sidebar slot 1
+ActionV F2 # Sidebar slot 2
+ActionA F3 # Sidebar slot 3
+ActionB F4 # Sidebar slot 4
+ActionC F5 # Sidebar slot 5
+ActionD F6 # Sidebar slot 6
+
+layer 6 # More Sidebar slots
+ActionH F7 # Sidebar slot 7
+ActionV F8 # Sidebar slot 8
+ActionA F9 # Sidebar slot 9
+ActionB F10 # Sidebar slot 10
+ActionC F11 # Sidebar slot 11
+ActionD F12 # Sidebar slot 12
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+# |Ctrl+1-6| Create Group
+# |Alt+1-6| Set Auto Group
+
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+# |Ctrl+7-0| Create Group
+# |Alt+7-0| Set Auto Group
+# |Alt+`| Remove From Auto Group
