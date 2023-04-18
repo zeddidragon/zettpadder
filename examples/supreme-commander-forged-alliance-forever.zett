@@ -87,7 +87,7 @@ ActionD LeftBracket # Cycle fire states
 MenuL layer 7 # More Views & Options
 MenuR Tab # Go to the next saved Camera Position
 Up layer 5 # More Groups
-CamY !! ScrollY # Zoom
+CamY ScrollY # Zoom
 # |Shift+Tab| Save a Camera Position
 # |Ctrl+Tab| Delete current Camera Position
 

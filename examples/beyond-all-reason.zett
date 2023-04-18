@@ -35,7 +35,7 @@ ActionD Y # Set Target
 # |Ctrl+W| Select Armed Units
 # |Ctrl+T| Change Tracking Mode
 MenuR Tab # Switch Map Overview
-CamY !! ScrollY # Zoom
+CamY ScrollY # Zoom
 Up layer 5 # More Groups
 
 layer 0 # Main Actions / Middle Row

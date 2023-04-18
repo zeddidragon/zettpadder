@@ -33,4 +33,4 @@ Right   8 # Module 4
 
 layer 1 # Camera Controls
 ActionC F # Change Camera
-CamY !! ScrollY # Zoom
+CamY ScrollY # Zoom

@@ -61,7 +61,7 @@ ActionC O # Loot Filter Window
 ActionD Enter # Chat Window
 
 MenuR Space # Pause (Single Player Only)
-CamY !! ScrollY # Zoom in/out
+CamY ScrollY # Zoom in/out
 layer 0
 
 layer 5 # Options

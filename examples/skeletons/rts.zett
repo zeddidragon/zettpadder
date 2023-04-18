@@ -1,0 +1,118 @@
+# RTS skeleton, with Flydigi Apex 2 in mind.
+# Will need editing, but serves a quick baseline
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+BumperR M2 # Command
+BumperL Shift # Queue all the things
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Modifier
+PaddleLeft Space #
+
+TriggerL layer 2 # Support Actions / Right Side
+Left layer 1 # Macro Actions / Top Row
+# layer 0 # Main Actions / Middle Row
+Down layer 3 # Construction / Bottom Row
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape #
+
+layer 1 # Macro Actions / Top Row
+ActionH Q #
+ActionV W #
+ActionA E #
+ActionB R #
+ActionC T #
+ActionD Y # 
+# |Ctrl+Q|
+# |Ctrl+W|
+# |Ctrl+E|
+# |Ctrl+R|
+# |Ctrl+T|
+# |Ctrl+Y|
+
+layer 0 # Main Actions / Middle Row
+ActionH A #
+ActionV S #
+ActionA D #
+ActionB F #
+ActionC G #
+ActionD H #
+# |Ctrl+A|
+# |Ctrl+S|
+# |Ctrl+D|
+# |Ctrl+F|
+# |Ctrl+G|
+# |Ctrl+H|
+
+layer 3 # Construction / Bottom Row
+ActionH Z #
+ActionV X #
+ActionA C #
+ActionB V #
+ActionC B #
+ActionD N #
+# |Ctrl+Z|
+# |Ctrl+X|
+# |Ctrl+C|
+# |Ctrl+V|
+# |Ctrl+B|
+# |Ctrl+N|
+
+layer 2 # Support Actions / Right Sidee
+ActionH U #
+ActionV I #
+ActionA O #
+ActionB P #
+ActionC K #
+ActionD L #
+# |Ctrl+U|
+# |Ctrl+I|
+# |Ctrl+O|
+# |Ctrl+P|
+# |Ctrl+K|
+# |Ctrl+L|
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+TriggerL layer 5 # More Groups
+# |Ctrl+1-6| Create Group
+# |Shift+1-6| Append Group
+
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+ActionC Tab #
+ActionD F1 #
+# |Ctrl+7-0| Create Group
+# |Shift+7-0| Append Group
+
+layer 6 # Views & Options
+ActionH F1 #
+ActionV F2 #
+ActionA F3 #
+ActionB F4 #
+ActionC F5 #
+ActionD F6 #
+TriggerL layer 7 # More Views & Options
+
+layer 7 # More Views & options
+ActionH F7 #
+ActionV F8 #
+ActionA F9 #
+ActionB F10 #
+ActionC F11 #
+ActionD F12 #

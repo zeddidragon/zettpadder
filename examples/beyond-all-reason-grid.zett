@@ -39,7 +39,7 @@ ActionD U # Unload Units
 # |Ctrl+Q| Split Army
 # |Ctrl+W| Select All Similar Units
 # |Ctrl+E| Select All Units
-CamY !! ScrollY # Zoom
+CamY ScrollY # Zoom
 # |Space+Q| Draw + Labels
 # |Ctrl+Space+Q| Remove Units From Grgoup
 

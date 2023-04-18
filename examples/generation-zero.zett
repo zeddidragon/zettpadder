@@ -41,4 +41,4 @@ ActionD X # Cycle Vision Mode
 MenuR M # Map
 PaddleRight Z # Prone
 
-CamY !! ScrollY # Scroll
+CamY ScrollY # Scroll

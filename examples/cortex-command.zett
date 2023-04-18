@@ -1,0 +1,19 @@
+# Cortex Command, with Flydigi Apex 2 in mind
+JoyXY wasd deadzone 40 # Move
+CamXY mouse 100 # Move Cursor
+
+# Triggers
+TriggerR M1 # Fire
+TriggerL M2 # ?
+BumperL Q # Prev Body
+BumperR E # Next Body
+
+# Face buttons
+ActionV Space
+ActionH R # Reload
+ActionA W # Up / Jump
+ActionB S # Down / Crouch
+
+# Menu Buttons
+MenuL Tab
+MenuR Escape # Exit

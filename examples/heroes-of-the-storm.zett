@@ -40,4 +40,4 @@ ActionB 4 # Sub-skill 4
 ActionC 5 # Sub-skill 5
 ActionD 6 # Sub-skill 6
 CamX None
-CamY !! ScrollY # Zoom
+CamY ScrollY # Zoom

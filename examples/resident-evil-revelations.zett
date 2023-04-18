@@ -1,0 +1,43 @@
+# Resident Evil: Revelations, with Flydigi Apex 2 in mind
+
+# Sticks
+JoyXY WASD deadzone 40
+CamXY mouse 50 # Flickstick fits really badly into this game due to capped turn rate
+ingamemouse 1
+
+Cam CapsLock  # Switch Hands
+
+# Triggers
+TriggerL M2 # Aim
+TriggerR M1 # Attack
+BumperL C # Equip Genesis
+BumperR G # Use subweapon
+PinkyLeft Shift # Walk
+PinkyRight M3 # Zoom in
+
+ActionH R # Reload
+ActionV Tab # Use herb
+ActionA F # Action
+ActionB Space # Quick Turn
+ActionC layer 1 # Communicate
+ActionD layer 2 # Menus
+
+PaddleLeft Q # Toggle main weapon (Left)
+PaddleRight E # Toggle main weapon (Right)
+
+Left 1 # Hand Grenade shortcut
+Up 2 # Shock Grenade shortcut
+Down 3 # B.O.W. Decoy shortcut
+Right 4 # Pulse Grenade shortcut
+
+layer 1 # Communicate
+Left F5 # Communicate (Come)
+Up F6 # Communicate (Go)
+Down F7 # Communicate (Wait)
+Right F8 # Communicate (Thank)
+
+layer 2 # Menus
+Left F1 # Open item screen
+Up F2 # Open ammo screen
+Down F3 # Open key item screen
+Right F4 # Open map screen
