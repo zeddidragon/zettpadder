@@ -1,0 +1,105 @@
+# Forged Alliance, with Flydigi Apex 2 in mind.
+# For a better fit, a few rebinds in the game options should be made:
+# - Toggle the Structure Sell Mode Cursor: Alt+T (Default Alt+R)
+# - Set Rally Point for HQ: Alt+N (Default: Alt+Z)
+# - Set Really Point For All Selected Factories: Alt+M (Default: Comma)
+# - Select All Units On Screen: Ctrl+X (Default: Ctrl+A)
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+BumperR M2 # Command
+BumperL Shift # Queue all the things
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Modifier
+PaddleLeft Space # Go to Notification
+# |Ctrl+M2| Attack Move
+# |Alt+M2| Attack Ground
+
+Left layer 1 # Production / Top Row
+Down layer 3 # More Production / Middle Row
+# Main Actions / Bottom Row
+TriggerL layer 2 # Even More Production / Right Side
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape #
+
+layer 1 # Production / Top Row
+ActionH W # Build Infantry Unit 1 | Build Refinery
+ActionV E # Build Infantry Unit 2 | Build Power Plant
+ActionA R # Build Light Vehicle Unit 1 | Build Barracks
+ActionB T # Build Light Vehicle Unit 2 | Build Light Factory
+ActionC Y # Build Heavy Vehicle Unit 1 | Build Turret 1
+ActionD U # Build Heavy Vehicle Unit 2 | Build Turret 2
+# |Alt+R| Toggle the Structure Repair Mode Cursor
+# |Alt+T| Toggle The Structure Sell Mode Cursor (Rebind in game options)
+
+layer 0 # More Production / Middle Row
+ActionH S # Build Infantry Unit 3 | Build Comm Center
+ActionV D # Build Infantry Unit 4 | Build Heavy Factory
+ActionA F # Build Light Vehicle Unit 3 | Build Air Factory
+ActionB G # Build Light Vehicle Unit 4 | Build Superweapon Control
+ActionC H # Build Heavy Vehicle Unit 3
+ActionD J # Build Heavy Vehicle Unit 4 | Build Turret 3
+# |Alt+H| Show/Hide Health Bars
+
+layer 3 # Main Actions / Bottom Row
+ActionH X # Stop Command
+ActionV C # Guard
+ActionA V # Patrol
+ActionB B # Scatter
+ActionC N # Hold Ground
+ActionD M # Group Move At Alternate Unit Speed
+# |Alt+X| Set Rally Point for Primary Barracks
+# |Alt+C| Set Rally Point for Primary Light Factory
+# |Alt+V| Set Rally Point for Primary Heavy Factory
+# |Alt+B| Set Rally Point for Primary Aircraft Factory
+# |Alt+N| Set Rally Point for HQ (Rebind in game options)
+# |Alt+M| Set Really Point For All Selected Factories (Rebind in game options)
+# |Ctrl+X| Select All Units On Screen (Rebind in game options)
+
+layer 2 # Even More Production / Right Side
+ActionH I # Build Aircraft Unit 1
+ActionV O # Build Aircraft Unit 2
+ActionA K # Build Aircraft Unit 3
+ActionB L # Build Aircraft Unit 4
+ActionC Q # Build Harvester | Build HQ
+ActionD Tab # Toggle Production Tab Between Units & Structures
+MenuR Backspace # Cancel Construction
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+# |Ctrl+1-6| Create Group
+# |Shift+1-6| Append Group
+
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+ActionC LeftBracket # Click to place an offensive ping at the location
+ActionD RightBracket # Click to place a defensive ping at the location
+# |Ctrl+7-0| Create Grouy
+# |Shift+7-0| Append Group
+
+layer 6 # Views & Options
+ActionH F1 # Go To Camera Location 1
+ActionV F2 # Go To Camera Location 2
+ActionA F3 # Go To Camera Location 3
+ActionB F4 # Go To Camera Location 4
+ActionC F5 # Toggle All Players Display
+ActionD Home # Go to Camera Home Base
+MenuR Insert # Send Resources To Selected Ally Player
+# |Shift+F1-F4| Go To Camera Location 5-8
+# |Ctrl+F1-F4| Set Camera Location 1-4
+# |Ctrl+Shift+F1-F4| Set Location 5-8
