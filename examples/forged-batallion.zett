@@ -21,9 +21,9 @@ PaddleLeft Space # Go to Notification
 # |Alt+M2| Attack Ground
 
 Left layer 1 # Production / Top Row
-Down layer 3 # More Production / Middle Row
+Down layer 2 # More Production / Middle Row
 # Main Actions / Bottom Row
-TriggerL layer 2 # Even More Production / Right Side
+TriggerL layer 3 # Even More Production / Right Side
 Up layer 4 # Groups
 Right layer 5 # More Groups
 MenuL layer 6 # Views & Options
@@ -39,7 +39,7 @@ ActionD U # Build Heavy Vehicle Unit 2 | Build Turret 2
 # |Alt+R| Toggle the Structure Repair Mode Cursor
 # |Alt+T| Toggle The Structure Sell Mode Cursor (Rebind in game options)
 
-layer 0 # More Production / Middle Row
+layer 2 # More Production / Middle Row
 ActionH S # Build Infantry Unit 3 | Build Comm Center
 ActionV D # Build Infantry Unit 4 | Build Heavy Factory
 ActionA F # Build Light Vehicle Unit 3 | Build Air Factory
@@ -48,7 +48,7 @@ ActionC H # Build Heavy Vehicle Unit 3
 ActionD J # Build Heavy Vehicle Unit 4 | Build Turret 3
 # |Alt+H| Show/Hide Health Bars
 
-layer 3 # Main Actions / Bottom Row
+layer 0 # Main Actions / Bottom Row
 ActionH X # Stop Command
 ActionV C # Guard
 ActionA V # Patrol
@@ -63,7 +63,7 @@ ActionD M # Group Move At Alternate Unit Speed
 # |Alt+M| Set Really Point For All Selected Factories (Rebind in game options)
 # |Ctrl+X| Select All Units On Screen (Rebind in game options)
 
-layer 2 # Even More Production / Right Side
+layer 3 # Even More Production / Right Side
 ActionH I # Build Aircraft Unit 1
 ActionV O # Build Aircraft Unit 2
 ActionA K # Build Aircraft Unit 3
@@ -71,6 +71,7 @@ ActionB L # Build Aircraft Unit 4
 ActionC Q # Build Harvester | Build HQ
 ActionD Tab # Toggle Production Tab Between Units & Structures
 MenuR Backspace # Cancel Construction
+CamY ScrollY # Zoom
 
 layer 4 # Select Group
 ActionH 1 # Group 1

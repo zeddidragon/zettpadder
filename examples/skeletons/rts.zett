@@ -14,8 +14,8 @@ PinkyRight M3 # Camera Panning
 PaddleRight Alt # Modifier
 PaddleLeft Space #
 
-TriggerL layer 2 # Support Actions / Right Side
-Left layer 1 # Macro Actions / Top Row
+TriggerL layer 1 # Support Actions / Right Side
+Left layer 2 # Macro Actions / Top Row
 # layer 0 # Main Actions / Middle Row
 Down layer 3 # Construction / Bottom Row
 Up layer 4 # Groups
@@ -23,7 +23,7 @@ Right layer 5 # More Groups
 MenuL layer 6 # Views & Options
 MenuR Escape #
 
-layer 1 # Macro Actions / Top Row
+layer 2 # Macro Actions / Top Row
 ActionH Q #
 ActionV W #
 ActionA E #
@@ -65,13 +65,14 @@ ActionD N #
 # |Ctrl+B|
 # |Ctrl+N|
 
-layer 2 # Support Actions / Right Sidee
+layer 1 # Support Actions / Right Sidee
 ActionH U #
 ActionV I #
 ActionA O #
 ActionB P #
 ActionC K #
 ActionD L #
+CamY ScrollY # Zoom
 # |Ctrl+U|
 # |Ctrl+I|
 # |Ctrl+O|
