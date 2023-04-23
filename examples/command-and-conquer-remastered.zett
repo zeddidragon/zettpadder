@@ -1,5 +1,8 @@
 # Commmand & Conquer, with Flydigi Apex 2 in mind.
 # Modern Preset
+# Based on Forged Battallion
+# For a better fit, a few rebinds in the game options should be made:
+# - Toggle Sell Mode: |Shift+E| (Default: Shift+R)
 
 JoyXY arrows deadzone 40 # Move camera
 CamXY Mouse 100 # Move Cursor
@@ -14,13 +17,12 @@ PinkyRight M3 # Camera Panning
 PaddleRight Alt # Modifier
 PaddleLeft Space # Toggle Classic Graphics
 
-TriggerL layer 2 # Support Actions / Right Side
-Left layer 1 # Macro Actions / Top Row
-# layer 0 # Main Actions / Middle Row
-Down layer 3 # Construction / Bottom Row
-Up layer 4 # Groups
-Right layer 5 # More Groups
-MenuL layer 6 # Views & Options
+TriggerL layer 1 # Macro Actions / Top Row
+Left layer 4 # Views
+Down layer 5 # Chat / Save / Load
+Up layer 3 # Groups
+Right layer 4 # More Groups
+MenuL Tab #
 MenuR Escape #
 
 layer 1 # Macro Actions / Top Row
@@ -29,66 +31,24 @@ ActionV W # Structures Tab
 ActionA E # Infantry Tab
 ActionB R # Vehicles Tab
 ActionC T # Superweapons Tab
-ActionD Y # 
 CamY PageUp PageDown deadzone 40
-# |Ctrl+Q|
-# |Ctrl+W|
-# |Ctrl+E|
-# |Ctrl+R|
-# |Ctrl+T|
-# |Ctrl+Y|
-# |Shift+R| Toggle Repair Mode
 # |Ctrl+PageUp| Sidebar Scroll Up
 # |Ctrl+PageDown| Sidebar Scroll Down
+# |Shift+E| Toggle Sell Mode
+# |Shift+R| Toggle Repair Mode
 
-layer 0 # Main Actions / Middle Row
-ActionH A # Selext All Units in View
-ActionV S # Selected Units Stop Moving
-ActionA D #
-ActionB F #
-ActionC G # Selected Units Guard Mode
-ActionD H # Camera to Construction Yard
-# |Ctrl+A|
+layer 0 # Main Actions / Bottoms Rows
+ActionH S # Selected Units Stop Moving
+ActionV G # Selected Units Guard Mode
+ActionA A # Select All Units in View
+ActionB X # Scatter Units
+ActionC BackSlash # Deploy / Unload Selected Vehicle
+ActionD ! Alt F Team Movement at Slowest Unit Speed (Red Alert Only)
 # |Ctrl+S| Toggle Sidebar Visibility
-# |Ctrl+D|
-# |Ctrl+F|
-# |Ctrl+G|
-# |Ctrl+H|
 # |Shift+A| Select All Units across Map
-# |Shift+S| Toggle Sell Mode
-# |Alt+F| Team Movement at Slowest Unit Speed (Red Alert Only)
-
-layer 3 # Construction / Bottom Row
-ActionH Z #
-ActionV X #
-ActionA C #
-ActionB V #
-ActionC B #
-ActionD N #
-# |Ctrl+Z|
-# |Ctrl+X| Scatter Units
-# |Ctrl+C|
-# |Ctrl+V|
-# |Ctrl+B|
-# |Ctrl+N| Quick Save Game
 # |Shift+X| Toggle Beacon Mode
 
-layer 2 # Support Actions / Right Sidee
-ActionH BackSlash # Deploy / Unload Selected Vehicle
-ActionV I #
-ActionA O #
-ActionB P #
-ActionC K #
-ActionD L #
-CamY ScrollY
-# |Ctrl+U|
-# |Ctrl+I|
-# |Ctrl+O|
-# |Ctrl+P|
-# |Ctrl+K|
-# |Ctrl+L| Quick Load Game
-
-layer 4 # Select Group
+layer 2 # Select Group
 ActionH 1 # Group 1
 ActionV 2 # Group 2
 ActionA 3 # Group 3 
@@ -99,7 +59,7 @@ TriggerL layer 5 # More Groups
 # |Ctrl+1-6| Create Group
 # |Shift+1-6| Append Group
 
-layer 5 # More Groups
+layer 3 # More Groups
 ActionH 7 # Group 7
 ActionV 8 # Group 8
 ActionA 9 # Group 9 
@@ -109,24 +69,23 @@ ActionD Comma # Select Previous Unit or Structure
 # |Ctrl+7-0| Create Group
 # |Shift+7-0| Append Group
 
-layer 6 # Views & Options
+layer 4 # Views
 ActionH F1 # Go to Map Location Bookmark 1
 ActionV F2 # Go to Map Location Bookmark 2
 ActionA F3 # Go to Map Location Bookmark 3
 ActionB F4 # Go to Map Location Bookmark 4
-ActionC F5 # Send Team Chat: "Help me!"
-ActionD F6 # Send Team Chat: "Attack!"
-TriggerL layer 7 # More Views & Options
+ActionD H # Camera to Construction Yard
+CamY ScrollY
 # |Ctrl+F1-F4| Set Map Location Bookmark 1-4
+
+layer 5 # Chat & Saving
+ActionH F5 # Send Team Chat: "Help me!"
+ActionV F6 # Send Team Chat: "Attack!"
+ActionA F7 # Send Team Chat: "Enemy approaching!"
+ActionB F8 # Send Team Chat: "Low on Resources"
+ActionC ! Ctrl N # Quick Save Game
+ActionD ! Ctrl L # Quick Load Game
 # |Ctrl+F5| Send Team Chat: "Good Luck, Have Fun!"
 # |Ctrl+F6| Send Team Chat: "This is not looking good"
-
-layer 7 # More Views & options
-ActionH F7 # Send Team Chat: "Enemy approaching!"
-ActionV F8 # Send Team Chat: "Low on Resources"
-ActionA F9 #
-ActionB F10 #
-ActionC F11 #
-ActionD F12 #
 # |Ctrl+F7| Send Team Chat: "That was impressive!"
 # |Ctrl+F8| Send Team Chat: "Victory!"
