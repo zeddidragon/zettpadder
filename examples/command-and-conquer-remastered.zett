@@ -43,7 +43,7 @@ ActionV G # Selected Units Guard Mode
 ActionA A # Select All Units in View
 ActionB X # Scatter Units
 ActionC BackSlash # Deploy / Unload Selected Vehicle
-ActionD ! Alt F Team Movement at Slowest Unit Speed (Red Alert Only)
+ActionD ! Alt F # Team Movement at Slowest Unit Speed (Red Alert Only)
 # |Ctrl+S| Toggle Sidebar Visibility
 # |Shift+A| Select All Units across Map
 # |Shift+X| Toggle Beacon Mode
