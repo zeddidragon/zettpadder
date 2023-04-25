@@ -20,8 +20,8 @@ PaddleLeft Space # Toggle Classic Graphics
 TriggerL layer 1 # Macro Actions / Top Row
 Left layer 4 # Views
 Down layer 5 # Chat / Save / Load
-Up layer 3 # Groups
-Right layer 4 # More Groups
+Up layer 2 # Groups
+Right layer 3 # More Groups
 MenuL Tab #
 MenuR Escape #
 
