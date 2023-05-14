@@ -1,0 +1,35 @@
+# Hrot, with Flydigi Apex 2 in mind
+# Unbind everything except the left stick.
+CamXY mouse 100 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 400
+ingamemouse 0.10
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1 # Fire
+TriggerL Space # Jump / Swimp Up
+BumperR M2 # Throw Grenade
+BumperL E # Use / Open
+PinkyRight M3 # Zoom
+PinkyLeft Shift # Melee Kick
+
+MenuR Escape # Pause
+MenuL M # Toggle Automap
+
+PaddleLeft F6 # Quicksave
+PaddleRight F9 # Quickload
+
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+# Weapon 5 is grenade, can be skipped
+ActionC 6 # Weapon 6
+ActionD 7 # Weapon 7
+
+   Left 7 # Weapon 7
+     Up 8 # Weapon 8
+   Down 0 # Medikit
+  Right F # Flashlight
