@@ -5,7 +5,7 @@ ActionWheelXY flick # Flick with wheel
 ingamemouse 0.3
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
-mousecalibration 200
+mousecalibration 1200
 
 # Unmap everything except Left Stick
 # In <game>/bmd/cfg/autoexec.cfg put the following to disable right stick:

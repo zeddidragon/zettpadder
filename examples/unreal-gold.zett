@@ -1,0 +1,44 @@
+# Unreal Gold, with Flydigi Apex 2 in mind
+# Unbind everything except the left stick.
+CamXY mouse 100 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 2000
+ingamemouse 1
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1 # Fire
+BumperR M3 # Alt-Fire
+PinkyRight M3 # Alt-Fire
+
+TriggerL M2 # Jump / Up
+BumperL Shift # Crouch / Down
+PinkyLeft layer 1 # More Weapons
+
+MenuR Escape # Pause
+MenuL F2 # Read Translator
+
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+ActionC 5 # Weapon 5
+ActionD 6 # Weapon 6
+
+Up Enter # Use Item
+Left LeftBracket # Previous Item
+Right RightBracket # Next Item
+Down # Throw Weapon
+
+PaddleLeft F6 # Quick Save
+PaddleRight F7 # Quick Load
+
+layer 1 # More Weapons
+ActionH 7 # Weapon 7
+ActionV 8 # Weapon 8
+ActionA 9 # Weapon 9
+ActionB 0 # Weapon 10
+
+MenuL F1 # Show Scores
+Down F # Feign Death

@@ -22,15 +22,16 @@ Down 5 # Activate Emotes
 MenuL Tab #
 MenuR Escape # Pause
 
-ActionH F # Interact
-ActionV V # Melee
-ActionA Space # Mantle / Roll
-ActionB Ctrl # Cover
-ActionC R # Reload
-
-layer 1
 ActionH 1 # Weapon 1
 ActionV 2 # Weapon 2
-ActionA 3 # Sidearm
+ActionA Space # Mantle / Roll
+ActionB F # Interact
+ActionC R # Reload
+ActionD V # Melee
 
+layer 1
+ActionA Ctrl # Cover
+ActionD 3 # Sidearm
+
+CamX A D deadzone 40 # Rotate Abilities
 CamY ScrollY 
