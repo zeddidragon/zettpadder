@@ -1,0 +1,29 @@
+# Hard Reset, with Flydigi Apex 2 in mind
+# Unbind everything except the left stick.
+CamXY mouse 100 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 400
+ingamemouse 0.2
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1 # Primary Attack
+TriggerL M2 # Secondary Attack
+BumperL Space # Jump
+BumperR Shift # Sprint
+
+PinkyLeft O # Mission Objective
+PaddleLeft P # PDA Entries
+PaddleRight I # Acehievements
+
+MenuL Tab # Level Statistics
+MenuR Escape # Pause
+
+# Think of the face buttons as two rows:
+ActionH 1 # Weapon Mode 1
+ActionV 2 # Weapon Mode 2
+ActionA 3 # Weapon Mode 3
+ActionB 4 # Weapon Mode 4
+ActionC 5 # Weapon Mode 5
+ActionD F # Toggle Weapon

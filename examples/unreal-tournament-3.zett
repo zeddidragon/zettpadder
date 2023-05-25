@@ -1,0 +1,42 @@
+# Unreal Tournament 3, with Flydigi Apex 2 in mind
+# Unbind everything except the left stick.
+CamXY mouse 100 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+mousecalibration 2000
+ingamemouse 1
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1 # Fire
+BumperR M2 # Alt-Fire
+PinkyRight M3 # Alt-Fire
+
+TriggerL Space # Jump
+BumperL C # Crouch
+PinkyLeft layer 1 # More Weapons
+
+MenuR Escape # Pause
+MenuL F2 # Show Map
+
+ActionH 1 # Impact Hammer
+ActionV 2 # Enforcers
+ActionA 3 # Bio Rifle
+ActionB 4 # Shock Rifle
+ActionC 5 # Link Gun
+ActionD 6 # Stinger Minigun
+
+Up R # Titan Transformation
+Left V # Show Command Menu
+Right B # Transmit Voice
+Down F # Feign Death
+
+layer 1 # More Weapons
+ActionH 7 # Flak Cannon
+ActionV 8 # Rocket Launcher
+ActionA 9 # Sniper Rifle
+ActionB 0 # Longbow / Redeemer
+ActionC Q # Translocator / Hoverboard
+ActionD E # Use
+
+MenuL F1 # Show Scores

@@ -1,0 +1,115 @@
+# Impossibe Creatures, with Flydigi Apex 2 in mind.
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+BumperR M2 # Command
+BumperL Shift # Selection modifier
+
+PinkyLeft Ctrl # Selection modifier / Queue
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Rotate Camera
+PaddleLeft Space # Go to last event
+
+TriggerL layer 1 # Support Actions / Right Side
+Left layer 2 # Macro Actions / Top Row
+# layer 0 # Main Actions / Middle Row
+Down layer 3 # Stances / Construction / Bottom Row
+Up layer 4 # Groups
+Right layer 5 # More Groups
+MenuL layer 6 # Views & Options
+MenuR Escape # Cancel
+
+layer 2 # Macro Actions / Top Row
+ActionH Q # Set Rally Point / (Ability) Quill Attack
+ActionV W # Gather
+ActionA E # (Ability) Electric Burst
+ActionA R # Repair / Research / Range Attack
+ActionC T #
+ActionD Y # (Rex) Gather DNA
+# |Ctrl+Q| Select All Combatants Onscreen
+# |Ctrl+Shift+Q| Select All Combatants In The World
+# |Ctrl+W| Select Next Water Chamber
+# |Ctrl+E| Select All Units Onscreen
+# |Ctrl+T| Select All Water Combatants Onscreen
+# |Ctrl+Shift+T| Select All Water Combatants In The World
+
+layer 0 # Main Actions / Middle Row
+ActionV A # Attack Move
+ActionD S # Stop / (Ability) Sonar Pulse
+ActionA D # (Ability) Dig
+ActionB F # (Ability) Frenzy
+ActionC G # Guard / Gyrocopter
+ActionD H # (Henchman) Heal
+# |Ctrl+A| Select Next Air Chamber
+# |Ctrl+F| Select All Air Combatants Onscreen
+# |Ctrl+Shift+F| Select All Air Combatants In The World
+# |Ctrl+G| Select All Ground Combatants Onscreen
+# |Ctrl+Shift+G| Select Air Ground Combatants In The World
+# |Ctrl+H| Select All Henchmen Onscreen
+# |Ctrl+Shift+H| Select All Henchmen In The World
+BumperL LeftBracket # Select Next Idle Henchmen
+BumperR RightBracket # Select All Idle Henchmen
+
+layer 3 # Stances / Construction / Build Creatures 1-6
+ActionH Z # Aggressive Stance
+ActionV X # Territorial Stance
+ActionA C # Stand Ground Stance
+ActionB V # No stance (Won't attack)
+ActionC B # Build Menu
+ActionD N # Advanced Build Menu
+# |Ctrl+Z| Select Lab
+# |Ctrl+C| Select Next Creature Chamber
+
+layer 1 # Support Actions / Right Side
+ActionH U # Unload / (Ability) Plague
+ActionV P # Patrol / Radar Pulse
+ActionA K # (Lucy) Gather tech
+ActionB J # (Lucy) Sabotage
+ActionC L # (Ability) Stink Attack
+ActionD M # Move
+ActionD ; # (Henchman) Airlift / Release Rex
+ActionD Quote # Release Lucy / (Rex/Lucy) Garrison
+ActionD Period # Untag
+ActionD Backslash # Tag
+CamY ScrollY # Zoom
+# |Ctrl+U| Unassign All Groups
+
+layer 4 # Select Group
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+TriggerL layer 5 # More Groups
+# |Ctrl+1-6| Create Group
+# |Shift+1-6| Append Group
+
+layer 5 # More Groups
+ActionH 7 # Group 7
+ActionV 8 # Group 8
+ActionA 9 # Group 9 
+ActionB 0 # Group 10
+ActionC F1 # Select Rex
+ActionD F2 # Select Lucy
+ActionC Tab # Next subselection
+ActionD Delete # Kill
+# |Ctrl+7-0| Create Group
+# |Shift+7-0| Append Group
+
+layer 6 # Views & Options
+ActionA Backspace # (Camera) Return to default
+ActionB ScrollLock # (Camera) Focus on selected unit
+ActionC Enter # Accept
+ActionD Pause # Pause
+TriggerL layer 7 # More Views & Options
+
+layer 7 # More Views & options
+ActionH F7 # Show Recall Speech screen
+ActionV F8 # Set team objective location
+ActionA F9 # Show Diplomacy screen
+ActionB F10 # Show Game Menu
+ActionC F11 # Show Objectives screen
+ActionD F12 # Go to Army Builder
