@@ -1,0 +1,47 @@
+# Aliens vs Predator (Classic 2000), with Flydigi Apex 2 in mind
+# Unmap everything except Left Stick
+mousecalibration 100
+ingamemouse 0.3
+CamXY mouse 400 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+# Triggers
+TriggerR M1 # Fire Primary / Claw Attack
+BumperR M2 # Fire Secondary / Tail Attack
+TriggerL Space # Jump
+BumperL Ctrl # Crouch / Climb
+
+PinkyLeft layer 1 # More Weapons
+PinkyRight M3 #
+
+PaddleLeft Quote # Jetpack / Grappling Hook
+PaddleRight F # Throw Flare / Taunt / Cloak
+
+Up ScrollUp # Zoom In
+Down ScrollDown # Zoom Out
+Left Q # Cycle Vision Modes
+Right SemiColon # Taunt
+
+MenuL Tab # Show Scores
+MenuR Escape # Menu
+
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+ActionC 5 # Weapon 5
+ActionD E # Operate
+
+layer 1
+ActionH 6 # Weapon 6
+ActionV 7 # Weapon 7
+ActionA 8 # Weapon 8
+ActionB 9 # Weapon 9
+ActionC 0 # Weapon 10
+ActionD Comma # Recall Disc
+
+DpadXY Arrows # For Menus
+TriggerR Enter # OK in menus

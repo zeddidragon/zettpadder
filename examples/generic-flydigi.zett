@@ -57,9 +57,9 @@ layer 1 # Weapons
 #  A 3  B 4
 #   C 5  Z 6
 ActionH 1 # Weapon / Item 1
-ActionV 2 # Weapon / Item 4
-ActionA 3 # Weapon / Item 2
-ActionB 4 # Weapon / Item 3
+ActionV 2 # Weapon / Item 2
+ActionA 3 # Weapon / Item 3
+ActionB 4 # Weapon / Item 4
 ActionC 5 # Weapon / Item 5
 ActionD 6 # Weapon / Item 6
 
