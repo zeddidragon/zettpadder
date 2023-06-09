@@ -1,0 +1,22 @@
+# Sam and Max: The Devil's Playhouse, with Flydigi Apex 2 in mind.
+JoyXY WASD deadzone 40 # Move
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select, Use
+TriggerL M2 # Cancel, Close / Skip Dialog / Run
+BumperL Shift # Run
+BumperR Q # Max Mode
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Inventory
+PaddleRight Alt # Modifier
+PaddleLeft Space #
+
+MenuL Tab #
+MenuR Escape # Options
+
+ActionH I # Open Inventory
+ActionV N # Notebook
+ActionA Space # Pause
+ActionB Ctrl # Cancel, Close

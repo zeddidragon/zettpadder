@@ -1,0 +1,33 @@
+# In Sound Mind, with Flydigi Apex 2 in mind
+# Unmap everything except Left Stick
+mousecalibration 100
+ingamemouse 1 # Shows as 0, meaningless
+CamXY mouse 400 # Aim normally with mouse to counter recoil etc
+ActionWheelXY flick # Flick with wheel
+flickdeadzone 40
+flicktime 100
+mousepriority flick # Disable normal camera motion while using wheel
+
+TriggerR M1 # Weapon Fire
+BumperR M2 # Weapon Alt Fire
+TriggerL Space # Jump
+BumperL Ctrl # Crouch / Climb
+PaddleLeft Shift # Sprint (Enable toggle in menu)
+PinkyRight M3 #
+
+MenuL Tab # Inventory
+MenuR Escape # Menu
+
+ActionH 1 # Equipment 1
+ActionV 2 # Equipment 2
+ActionA 3 # Equipment 3
+ActionB 4 # Equipment 4
+
+ActionC E # Use
+ActionD R # Reload
+
+layer 1
+ActionH 5 # Equipment 5
+ActionV 6 # Equipment 6
+ActionA 7 # Equipment 7
+ActionB 8 # Equipment 8

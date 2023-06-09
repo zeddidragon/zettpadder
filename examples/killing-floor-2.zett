@@ -15,7 +15,7 @@ ActionR V # Bash
 ActionL Shift # Sprint
 
 PaddleLeft Shift # Sprint
-PaddleRight V # bash
+PaddleRight V # Bash
 
 ActionA Space # Jump
 ActionB E # Use / Quick-Weld

@@ -1,55 +1,53 @@
 # Resident Evil 5, with Flydigi Apex 2 in mind
-# Use with Type B control type and keypad item priority
+# Use with mouselook control type and keypad item priority
+FPS 60
 
 # Sticks
 JoyXY WASD deadzone 50
-CamXY mouse 50 # Flickstick fits really badly into this game due to capped turn rate
+CamXY mouse 100 # Flickstick fits really badly into this game due to capped turn rate
 ingamemouse 1
+mousecalibration 1000
 
 DpadXY Arrows # Commands / menus
 
 # Triggers
 TriggerL M2 # Ready Weapon
 TriggerR M1 # Fire Weapon
-BumperL Q # Locate Partner
+BumperL Shift # Sprint / Reload
 BumperR T # Quick Knife
+PaddleLeft Q # Locate Partner
+PaddleRight E # Item Menu
+PinkyLeft layer 1 # Items and macros
+PinkyRight M3 #
 
 # Buttons
-ActionA Shift # Sprint / Reload
-ActionH F # Action
+ActionH 7 # Item 7
+ActionV 8 # Item 8
+ActionA F # Action
 ActionB V # Partner Action
-ActionV E # Item Menu
-ActionC !! A , D # Wiggle Stick (cranking valves etc)
-ActionD !! F V A D # Hold to solve quicktimes
+ActionC R # Reload
+ActionD 9 # Item 9
 
 # Menus
 MenuL M # Toggle Map
 MenuR Escape # Pause
 
-# Paddles
-PinkyLeft layer 1
 layer 1
 Up !! ScrollUp
 Down !! ScrollDown
+Left !! A , D # Wiggle Stick (cranking valves etc)
+Right !! F V A D # Hold to solve quicktimes
 
-# 1 2 | 3
-#  4 5 | 6
-#   7 8 | 9
-# ------
-# X Y | Paddle + Y
-#  A B | Paddle + B
-#   C Z | Paddle + Z
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
 ActionH 1 # Item 1
 ActionV 2 # Item 2
-ActionA 4 # Item 4
-ActionB 5 # Item 4
-ActionC 7 # Item 5
-ActionD 8 # Item 6
+ActionA 3 # Item 3
+ActionB 4 # Item 4
+ActionC 5 # Item 5
+ActionD 6 # Item 6
 
 MenuL X # Taunt
-
-PaddleRight layer 2
-layer 2
-ActionY 3
-ActionB 6
-ActionC 9
+MenuR Tab #

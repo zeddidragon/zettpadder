@@ -9,27 +9,25 @@ ingamemouse 0.1
 flicktime 100
 mousepriority flick # Disable normal camera motion while using wheel
 
-# Unbind everything except left stick and the above mentioned always on action
 # Triggers
 TriggerR M1 # Fire / Drag (Inventory)
 TriggerL M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
-BumperL Shift # Run / Split Stacks (Inventory)
-BumperR R # Reload
+BumperL Shift # Run / Swim / Split Stacks (Inventory)
+BumperR E # Interact
+PinkyLeft layer 1
+PinkyRight M3 #
 
 # Under buttons / Nubs
-ActionL !! ScrollDown # Scroll Document
-ActionR C # Switch Shoulders
-PaddleLeft !! ScrollDown # Scroll Document
 PaddleRight C # Switch Shoulders
 
 # Face buttons
+ActionH 1 # Item 1
+ActionV 2 # Item 2
 ActionA Space # Jump / Up
 ActionB Ctrl # Crouch / Down
-ActionH E # Interact
-ActionV Tab # Inventory
 
-ActionC !! ScrollUp # Scroll Document
-ActionD Escape # Menu / Back
+ActionC R # Reload
+ActionD Tab # Inventory
 
 # Items
 # Think of the d-pad buttons as two diagonal rows:
@@ -41,3 +39,9 @@ DpadXY 1 4 2 3
 # Menu Buttons
 MenuR Escape # Menu
 MenuL F1 # View Stats
+
+layer 1
+ActionA 3 # Item 3
+ActionB 4 # Item 4
+
+CamY ScrollY # Scroll Document

@@ -8,44 +8,43 @@ mousecalibration 1200 # Mouse units for one radian
 mousepriority flick # Disable normal camera motion while using wheel
 ingamemouse 1.0
 
-PaddleLeft Shift # Sprint
-PaddleRight M3 # Push To Talk
-
-Left Q # Lean Left
-Right E # Lean Right
-
-Up H # Inspect Mag
-Down C # Crouch
-layer 1
-Up J # Inspect Wrist
-Down Ctrl # Prone
-layer 0
-
-layer 1
-ActionH 1 # Primary
-ActionV 2 # Secondary
-ActionA 3 # Utility 1
-ActionB 4 # Utility 2
-ActionC 5 # Use visual tool
-ActionD T # Switch Flashlight
-layer 0
-
-TriggerR M1 # Fire
 TriggerL M2 # Aim
-BumperL Z # Ping
+TriggerR M1 # Fire
+BumperL G # Use Utility
 BumperR X # Shout for compliance
-
-ActionB CapsLock # Use Inventory
-ActionA G # Use Utility
-ActionH R # Reload
-ActionV V # Melee
-ActionC F # Interact 1
-ActionD Space # Interact 2
-
+PaddleLeft Shift # Sprint
+PaddleRight Alt # Free Look & ADS Zoom
 PinkyLeft layer 1
-
-# U # Team Chat
-# Y # All Chat
+PinkyRight M3 # Push To Talk
 
 MenuR Escape
 MenuL Tab
+
+Up Q # Lean Left
+Right E # Lean Right
+
+Left H # Inspect Mag
+Down C # Crouch
+
+ActionH F # Interact 1
+ActionV CapsLock # Use Inventory
+ActionA Space # Interact 2
+ActionB V # Melee / Interact 3
+ActionC R # Reload
+ActionD B # Switch Firemode
+
+layer 1
+ActionH 1 # Switch to Primary
+ActionV 2 # Switch to Secondary
+ActionA 3 # Switch to Utility 1
+ActionB 4 # Switch to Utility 2
+ActionC 5 # Use visual tool
+ActionD 6 # Use Utility 3
+
+Left J # Inspect Wrist
+Down Ctrl # Prone
+Up Z # Ping
+Right T # Switch Flashlight
+
+CamY ScrollY
+layer 0
