@@ -4,54 +4,43 @@
 JoyXY WASD deadzone 40
 CamXY mouse 100
 mousecalibration 80 # Mouse units for one radian
-ingamemouse 0.10
+ingamemouse 0.05
 
-PinkyLeft layer 1
 # Think of the face buttons as three rows:
 # X 1  Y 2
 #  A 3  B 4
+#   C 5  D 6
 
 # Weapons
 layer 0
 ActionH 1 # Primary
 ActionV 2 # Secondary
-ActionA R # Reload
-ActionB X # Toggle Firing Mode
+ActionA H # Handcuffs
+ActionB V # Flashlight
+ActionC R # Reload
+ActionD X # Toggle Firing Mode
 
-# Grenades
+# Tools
 layer 1
 ActionH 3 # Flash
 ActionV 4 # Stinger
 ActionA 5 # CS
-ActionB L # Light Stick 
+ActionB 6 # Pepper Spray
+ActionC L # Light Stick
+ActionD 9 # Optiwand
 
-# Door Tools
-layer 2
-ActionH 7 # Breach
-ActionV 8 # Toolkit
-ActionA 9 # Optiwand
-ActionB 0 # Wedge
-
-# Misc Tools
-layer 3
-ActionH H # Handcuffs
-ActionV V # Flashlight
-ActionA 6 # Pepper Spray
-ActionB B # Melee
-
+# 7 # Breach charge is used contextually (look at lock)
+# 8 # Toolkit is used contextually (look at lock)
+# 0 # Wedge is used contextually (look under door)
 layer 0
-
-TriggerR M1  # Shoot
+TriggerR M1 # Shoot
 TriggerL M2 # Hold for commands
-BumperR M3 # Use / Shout
-BumperL Z # Zoom
-
+BumperR Z # Zoom
+BumperL Space # Quick Command
+PinkyRight M3 # Use / Shout
 PinkyLeft layer 1 # Grenades
-PaddleLeft layer 2 # Door Tools
-PaddleRight layer 3 # Misc Tools
-
-ActionC Space # Quick Command
-ActionD Shift # Toggle Sprint
+PaddleRight Shift # Toggle Sprint
+PaddleLeft layer 2 # Tools
 
 Up Ctrl # Prepare Command
 Left Q # Lean Left
@@ -63,9 +52,10 @@ Left Insert # Cycle Red Team Viewport
 Right Home # Cycle Blue Team Viewport
 Down Tab # Cycle Command Group
 Up PageUp # Cycle Sniper Team Viewport
+
+BumperR B # Melee
+PaddleRight CapsLock # Control Active Viewport
 layer 0
-Cam CapsLock # Control Active Viewport
 
 MenuL M # Show Objectives
 MenuR Escape # Pause
-
