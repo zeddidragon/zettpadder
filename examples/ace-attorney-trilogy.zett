@@ -1,0 +1,21 @@
+# Ace Attorney Trilogy, with Flydigi Apex 2 in mind.
+DpadXY arrows # Navigate
+JoyXY mouse 100 # Move mouse
+CamXY B M H N deadzone 40 # Rotate Evidence
+mousecalibration 900
+ingamemouse 1.0
+
+TriggerR M1 # Click
+TriggerL M2 #
+BumperR E # Present
+BumperL Q # Press
+
+ActionV Tab # Court Record
+ActionH E # Present
+ActionA Enter # Confirm
+ActionB Backspace # Cancel / Skip
+ActionC Q # Press
+ActioND E # Preset
+
+MenuL J # Return to Title
+MenuR Escape
