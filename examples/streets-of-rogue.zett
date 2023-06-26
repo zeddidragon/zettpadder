@@ -1,14 +1,15 @@
 # Streets of Rogue, with Flydigi Apex 2 in mind
 # Joy for some movement
 JoyXY WASD deadzone 40 # Move with joy
+CamXY mouse 100 # Move mouse
 
 # Triggers
 TriggerR M1 # Attack
 TriggerL M2 # Special Attack
-BumperL ScrollUp # Previous Weapon
-BumperR ScrollDown # Next Weapon
-ActionL Q # Inventory
-ActionR E # Interact
+PaddleLeft ScrollUp # Previous Weapon
+PaddleRight ScrollDown # Next Weapon
+BumperL Q # Inventory
+BumperR E # Interact
 
 # Face Buttons
 Up Tab # Missions

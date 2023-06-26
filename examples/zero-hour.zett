@@ -46,5 +46,6 @@ Down Ctrl # Prone
 Up Z # Ping
 Right T # Switch Flashlight
 
-CamY ScrollY
+CamY ScrollY # Adjust Walk Speed
+MenuR Enter # Skip Intro
 layer 0

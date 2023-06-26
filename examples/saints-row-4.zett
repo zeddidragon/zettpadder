@@ -1,0 +1,57 @@
+# Saints Row IV, with Flydigi Apex 2 in mind.
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1800 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+JoyXY WASD deadzone 40 # Move
+
+TriggerR M1 # Attack
+TriggerL M2 # Zoom (Hold) / Fire Weapon 2
+BumperL Shift # Sprint (Hold) / Nitrous / Accelerate
+BumperR
+PaddleLeft Alt # Bike Lean Back
+PaddleRight Ctrl # Crouch (Hold) / Bike Lean Forward / Brake / Reverse
+PinkyLeft layer 1
+PinkyRight M3 # Use Power
+
+ActionH R # Pickup / Reload / Reverse Camera
+ActionV E # Action / Enter Vehicle
+ActionA Space # Jump / Climb / Drift / Turn Override / Yaw Override
+ActionB F # Melee Attack / Horn / VTOL Mode
+ActionC C # Compliment
+ActionD X # Taunt
+ScrollUp # Scope Zoom In
+ScrollDown # Scope Zoom Out
+
+MenuL Tab # Hub Menu
+MenuR Escape # Pause Menu
+
+Left F1 # Select Blast
+Up F2 # Select Telekinesis
+Down F3 # Select Stomp
+Right F4 # Select Buff
+
+# Weapons
+# Think of the face buttons as two rows:
+# X 1  Y 2
+#  A 3  B 4
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+
+layer 1 # More Weapons
+ActionH 5 # Weapon 5
+ActionV 6 # Weapon 6
+ActionA 7 # Weapon 7
+ActionB 8 # Weapon 8
+
+Up Z # Recruit / Dismiss
+Down N # Scan Current Vehicle
+Left Period # Next Radio Station
+Right Comma # Previous Radio Station

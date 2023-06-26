@@ -1,0 +1,43 @@
+# Apex Legends, with Flydigi Apex 2 in mind.
+
+# Movement
+# JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1800 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+TriggerR M1 # Attack
+TriggerL M2 # Aim Down Sights (Hold) (Rebind from Toggle)
+BumperL Q # Tactical Ability
+BumperR Shift # Sprint / Toggle Zoom
+PinkyLeft layer 1 # Modifier
+PinkyRight M3 # Ping
+PaddleLeft C # Crouch
+PaddleRight T # Push to Talk (Hold)
+
+ActionH E # Interact / Pickup
+ActionV 1 # Equip Weapon 1
+ActionA Space # Jump
+ActionB V # Melee
+ActionC R # Reload
+ActionD B # Toggle Fire Mode
+
+MenuR Escape # Menu
+MenuL Tab # Inventory (Toggle)
+
+Up 4 # Use Selected Health / Shield Item (Hold for Health Wheel)
+Left N # Inspect Weapon
+Right G # Equip Grenade (Hold to open grenade wheel)
+Down H # Extra Character Action
+
+layer 1
+ActionH X # Alternate Interact
+ActionV 2 # Equip Weapon 2
+ActionD 3 # Holster Weapons
+
+BumperR Z # Ultimate Ability
+
+MenuR M # Map (Toggle)
+MenuL F1 # Open Quip Wheel / Thank You

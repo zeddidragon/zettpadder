@@ -1,0 +1,30 @@
+# Ace Attorney Chronicles, with Flydigi Apex 2 in mind.
+DpadXY WASD # Navigate
+JoyXY mouse 100 # Move mouse
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
+TriggerR M1 # Click
+TriggerL M2 #
+BumperR Tab
+BumperL Alt
+
+PinkyLeft layer 1
+
+ActionV T # History
+ActionH R # Present
+ActionA Space # Confirm
+ActionB Z # Cancel
+ActionC Q # Press / Review Scene
+ActionD E # Court Record / People / Evidence
+
+PaddleLeft F # Autoplay / Story Mode
+PaddleRight F12 # Screenshot those memes
+
+MenuL G # Options / Pause
+MenuR Escape
+
+layer 1
+JoyXY Arrows deadzone 40 # Rotate Evidence
+CamXY B M H N deadzone 40 # Look

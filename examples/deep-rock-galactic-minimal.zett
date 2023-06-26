@@ -8,9 +8,7 @@ ActionWheelXY flick # Flick with wheel
 mousepriority flick # Disable normal camera motion while using wheel
 flickdeadzone 40
 
-# Stick buttons
-PaddleLeft Shift # Sprint
-PaddleRight R # Reload / Alt-Fire
+PinkyLeft Shift # Sprint
 
 # Unmap Right Stick and X Button
 

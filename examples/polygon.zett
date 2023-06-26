@@ -1,0 +1,40 @@
+# Polygon, with Flydigi Apex 2 in mind.
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousecalibration 1200 # Mouse units for one radian
+mousepriority flick # Disable normal camera motion while using wheel
+ingamemouse 1.0
+
+TriggerR M1 # Shoot
+TriggerL M2 # Aim
+BumperL Space # Jump
+BumperR G # Pocket 1
+PinkyLeft layer 1 # Modifier
+PinkyRight M3 #
+PaddleLeft Shift # Sprint
+PaddleRight Ctrl # Crouch
+
+Up F5 # Vote "Yes"
+Left Q # Lean Left
+Right E # Lean Right
+Down F8 # Vote "No"
+
+ActionH F # Interact
+ActionV 1 # Select Primary
+ActionA Space # Jump
+ActionB T # Flashlight
+ActionC R # Reload
+ActionD I # Consumable 1
+
+layer 1
+ActionV 2 # Select Secondary
+BumperR H # Pocket 2
+ActionC 3 # Select Special
+ActionD O # Consumable 2
+layer 0
+
+MenuL Tab # Scoreboard
+MenuR Escape # Options
