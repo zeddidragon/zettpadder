@@ -1,0 +1,11 @@
+# RPG Maker Games
+JoyXY arrows deadzone 40
+DpadXY arrows
+TriggerL Shift # Run
+ActionH A
+ActionV S
+ActionA Z # Ok
+ActionB X # Cancel / Menu
+
+MenuL F4 # Toggle Screen Sizes
+MenuR Escape

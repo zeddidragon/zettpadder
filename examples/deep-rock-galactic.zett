@@ -35,7 +35,7 @@ ActionB F # Flare/Flashlight
 ActionH E # Interact
 ActionV C # Call M.U.L.E.
 
-ActionC !! A , D # Escape Freeze
+ActionC R # Reload / Alt-Fire
 ActionD V # ROCK AND STONE
 
 # Menus stuff

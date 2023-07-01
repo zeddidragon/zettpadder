@@ -1,0 +1,44 @@
+# Meet Your Maker, with Flydigi Apex 2 in mind
+# For a better fit, a few rebinds in the game options should be made:
+# - Select Hardware 1: R (Default: 3)
+# - Select Hardware 2: Y (Default: 4)
+# - Use Hardware: M3 (Default: C)
+mousecalibration 480
+flicktime 200
+ingamemouse 0.10
+
+# Unmap everything except Left Stick in Steam
+
+# JoyXY WASD deadzone 40
+CamXY mouse 100
+ActionWheelXY flick # Flick with wheel
+mousepriority flick # Disable normal camera motion while using wheel
+flickdeadzone 40
+
+TriggerR M1 # Add Object / Primary Attack
+BumperR M2 # Delete Object / Secondary Attack
+TriggerL Space # Jump
+BumperL Shift # Grappling Hook / Modifier
+
+PinkyRight M3 # Clone Object
+PaddleRight Ctrl # Descend
+PinkyLeft Z # Rotate Positive Roll / Use Hardware
+PaddleLeft C # Rotate Negative Roll
+
+Up ScrollUp # Rotate Postive Pitch / Increase Interact Distance
+Down ScrollDown # Rotate Negative Pitch / Decrease Interact Distance
+Left Q # Rotate Postive Yaw / Peek Left / Prior Event
+Right E # Rotate Positive Yaw / Peek Right / Next Event
+
+ActionH R # Next Shape / Toggle HUD (Rebind to this)
+ActionV Y # Toggle Range Preview / Invite Friend / Diband Party
+ActionA F # Interact / Modify / Augment / Record Patrol Path / Center on Raider
+ActionB U # Undo / Redo
+ActionC X # Abandon / Exit
+ActionD T # Toggle Skull Filter / Test
+
+Joy H # Toggle HUD
+Cam P # Toggle Preview
+
+MenuL Tab # Toggle Hardware
+MenuR Escape # Menu

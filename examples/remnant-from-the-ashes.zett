@@ -3,6 +3,7 @@
 mousecalibration 3000
 flicktime 200
 ingamemouse 1 # I have it to 0 but the number is meaningless
+fps 60
 
 CamXY mouse 100
 ActionWheelXY flick # Flick with wheel
