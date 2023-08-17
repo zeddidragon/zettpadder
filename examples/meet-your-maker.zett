@@ -20,7 +20,7 @@ BumperR M2 # Delete Object / Secondary Attack
 TriggerL Space # Jump
 BumperL Shift # Grappling Hook / Modifier
 
-PinkyRight M3 # Clone Object
+PinkyRight M3 # Clone Object / Use Hardware (Rebind to this)
 PaddleRight Ctrl # Descend
 PinkyLeft Z # Rotate Positive Roll / Use Hardware
 PaddleLeft C # Rotate Negative Roll
@@ -30,14 +30,14 @@ Down ScrollDown # Rotate Negative Pitch / Decrease Interact Distance
 Left Q # Rotate Postive Yaw / Peek Left / Prior Event
 Right E # Rotate Positive Yaw / Peek Right / Next Event
 
-ActionH R # Next Shape / Toggle HUD (Rebind to this)
-ActionV Y # Toggle Range Preview / Invite Friend / Diband Party
+ActionH R # Next Shape / Toggle HUD (Rebind to this) / Select Hardware 1 (Rebind to this)
+ActionV Y # Toggle Range Preview / Invite Friend / Disband Party / Select Hardware 2 (Rebind to this)
 ActionA F # Interact / Modify / Augment / Record Patrol Path / Center on Raider
 ActionB U # Undo / Redo
 ActionC X # Abandon / Exit
 ActionD T # Toggle Skull Filter / Test
 
-Joy H # Toggle HUD
+Joy F12 # Screenshot
 Cam P # Toggle Preview
 
 MenuL Tab # Toggle Hardware
