@@ -2,10 +2,6 @@
 mousecalibration 100
 ingamemouse 0.4
 CamXY mouse 700 # Aim normally with mouse to counter recoil etc
-ActionWheelXY flick # Flick with wheel
-flickdeadzone 40
-flicktime 100
-mousepriority flick # Disable normal camera motion while using wheel
 
 JoyXY WASD deadzone 40
 

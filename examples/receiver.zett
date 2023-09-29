@@ -4,10 +4,6 @@ ingamemouse 0.05
 
 # Player / Sticks, Bumpers, Dpad
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
-
 JoyXY WASD deadzone 40 # Move
 
 # BumperL W # Walk / Run (Tap repeatedly)

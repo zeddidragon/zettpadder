@@ -2,7 +2,6 @@
 # overlay
 
 JoyXY WASD deadzone 40 # Movement
-CamXY flick # Right Stick for turning
 mousecalibration 1470 # Mouse units for one radian
 
 # Typical rear trigger actions for applying yourself to what you're aiming at

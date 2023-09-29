@@ -1,16 +1,15 @@
-# Deep Rock Galactic, with Flydigi Apex 2 in mind
-mousecalibration 6400
-ingamemouse 3
+# Red Faction Armageddon, with Flydigi Apex 2 in mind
+mousecalibration 2400
 
 CamXY mouse 100
 
 PinkyLeft Shift # Sprint
+PaddleLeft Shift # Sprint
 
 # Unmap Right Stick and X Button
 
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 ActionR R # Reload / Alt-Fire
-ActionH E # Interact
+# ActionH E # Interact
 
-ActionC R # Reload / Alt-Fire
-ActionD V # ROCK AND STONE
+ActionC R # Reload

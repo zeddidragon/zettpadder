@@ -1,42 +1,52 @@
-# Warframe, with Flydigi Apex 2 in mind
+# Warframe, with Flydigi Vader 3 in mind
 mousecalibration 3630
 ingamemouse 1 # I have it to 0 but the number is meaningless
 
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 
 # Unmap everything in steam input
 JoyXY WASD deadzone 40
 
-DpadXY M L G H # Map, Tactical View, Place Marker, Switch Camera
-
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Fire
 TriggerL M2 # Aim
-BumperR layer 1 # Ability Menu
-BumperL Shift # Sprint
-PinkyLeft Ctrl # Crouch / Dodge
+BumperR 1 # Ability A
+BumperL Ctrl # Crouch / Dodge
+PinkyLeft Shift # Sprint
+# PinkyRight M3 # Alt-Fire
+PaddleLeft F # Switch Weapons
+PaddleRight E # Melee
 
-ActionA Space # Jump / Up
-ActionB E # Melee
-ActionH X # Interact
-ActionV F # Change weapon
-
-ActionC R # Reload
-ActionD Q # Gear Wheel
+ActionH 2 # Ability B
+ActionB 3 # Ability C
+ActionV 4 # Ability D
+ActionA Space # Jump
+ActionC X # Interact
+ActionD R # Reload
 
 # Menus stuff
 MenuR Escape # Pause
 MenuL Tab # Quick Progress View
 
-# Under buttons
-PaddleLeft T # Chat
+Left layer 1 # Gear shortcuts
+Up G # Place Marker
+Right Q # Gear Wheel
+Down 5 # Transference
 
-layer 1 # Abilities
-ActionA 1 # A
-ActionH 2 # B
-ActionB 3 # C
-ActionV 4 # D
-BumperL 5 # Transference
+Cam H # Switch Camera
+
+layer 1 # Gear shortcuts
+ActionH 6 # Item hotkey (Bind in game)
+ActionV 7 # Item hotkey (Bind in game)
+ActionA 8 # Item hotkey (Bind in game)
+ActionB 9 # Item hotkey (Bind in game)
+ActionC 0 # Item hotkey (Bind in game)
+ActionD Equal # Item hotkey (Bind in game)
+
+PaddleLeft M # Map
+PaddleRight H # Switch Camera
+
+BumperR O # Equip Omni (Bind in game)
+MenuR L # Tactical View
+
+CamY ScrollY

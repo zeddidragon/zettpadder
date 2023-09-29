@@ -3,9 +3,6 @@ mousecalibration 130
 ingamemouse 1
 
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 
 JoyXY WASD deadzone 40 # Move
 

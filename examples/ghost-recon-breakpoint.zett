@@ -1,0 +1,60 @@
+# Ghost Recon: Breakpoint, with Flydigi Apex 2 in mind
+mousecalibration 3000
+ingamemouse 1 # I have it to 0 but the number is meaningless
+fps 60
+
+CamXY mouse 100
+
+# Unmap everything in steam input
+JoyXY WASD deadzone 40
+
+TriggerR M1 # Fire
+TriggerL M2 # Aim
+BumperL Shift # Sprint
+BumperR G # Use Item
+PinkyLeft layer 1 # Weapons
+PaddleLeft layer 2 # Items
+PaddleRight Alt #
+PinkyRight M3 # Switch Shoulder
+
+ActionH E # Interact
+ActionV F # CQC / Throw / Grab
+ActionB Ctrl # Crouch / Dodge
+ActionA Space # Breath control / Prone Camo / Vault / Climb
+ActionC R # Reload
+ActionD Z # Class Technique
+
+Left T # Switch Muzzle (While aiming)
+Down Y # Switch Underbarrel (While aiming)
+Up X # Switch Trigger (While aiming), Deploy Drone
+Right B # Switch Scope (While aiming), interrogate
+
+MenuL Tab # Manual Interfact Display
+MenuR Escape
+
+layer 1 # Weapons
+ActionH 1 # Primary Weapon
+ActionV 2 # Secondary Weapon
+ActionA 3 # Sidearm
+ActionB C # Prone
+ActionC V # Cycle Vision Mode
+ActionD H # Focus
+
+BumperR Q # Ping
+PaddleRight M # Open Tacmap
+
+MenuL L # Open Loadout
+MenuR J # Open Store
+
+CamY ScrollY
+
+layer 2 # Items
+ActionH 5 # Item 1
+ActionV 6 # Item 2
+ActionA 7 # Item 3
+ActionB 8 # Item 4
+ActionC 9 # Item 5
+ActionD 0 # Item 6
+
+Left F2 # Accept
+Right F3 # Decline

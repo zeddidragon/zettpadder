@@ -2,12 +2,8 @@
 # 
 JoyXY WASD deadzone 40
 CamXY mouse 100 # Aim normally with mouse to counter recoil etc
-ActionWheelXY flick # Flick with wheel
-flickdeadzone 40
 mousecalibration 290
 ingamemouse 0.1
-flicktime 100
-mousepriority flick # Disable normal camera motion while using wheel
 
 # Triggers
 TriggerR M1 # Fire / Drag (Inventory)

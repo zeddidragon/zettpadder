@@ -5,9 +5,6 @@ JoyXY wasd deadzone 40 # Strafe
 CamXY Mouse 50 # Used to counter recoil
 mousecalibration 11250
 ingamemouse 6.0
-mousepriority flick # Disable normal camera motion while using wheel
-ActionWheelXY flick # Action wheel for quick turning
-flickdeadzone 40
 
 TriggerR M1 # Fire
 TriggerL M2 # Aim

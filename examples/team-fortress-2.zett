@@ -1,0 +1,58 @@
+# Team Fortress 2, with Flydigi Vader 3 in mind
+mousecalibration 2400
+ingamemouse 1.0
+
+CamXY mouse 100
+
+PinkyLeft Ctrl # Crouch
+TriggerL Space # Jump
+BumperL layer 1 #
+
+TriggerR M1 # Primary Attack
+BumperR M2 # Secondary Attack / Class skill
+PinkyRight M3 # Special Attack
+
+PaddleLeft G # taunts
+PaddleRight H # Use item in Action Slot
+
+Left M # Open Character Loadout
+Up N # Open Bacpack
+Right B # Spy: Last 6isguise
+
+MenuL Tab
+MenuR Escape
+
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Primary
+ActionV 2 # Secondary
+ActionA 3 # Melee
+ActionB 4 # Special Tool
+ActionC 5 # Destruction Tool (Engineer)
+ActionD R # Reload weapon
+
+layer 1 # More weapons
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+layer 1 # Weapons
+ActionH 6 # Slot 6
+ActionV 7 # Slot 7
+ActionA 8 # Slot 8
+ActionB 9 # Slot 9
+ActionC 0 # Slot 0
+
+MenuL I # Show Map Information
+TriggerR T # Spray logo
+BumperR F # Inspect Target or item
+
+Left F2 # Open Contracts Drawer
+Up F3 # Open Matchmaking
+Down Dot # Change team
+Right Comma # Change class
+
+PaddleLeft Q # Cancel / Close Disguise Kit
+PaddleRight E # Call Medic

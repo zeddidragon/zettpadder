@@ -5,9 +5,7 @@
 JoyXY WASD deadzone 40
 Joy Shift # Sprint
 
-CamXY flick # Right Stick for turning
 mousecalibration 1560 # Mouse units for one radian
-flicktime 200
 ingamemouse 1.0
 
 # Typical rear trigger actions for applying yourself to what you're aiming at

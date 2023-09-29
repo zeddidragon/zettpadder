@@ -3,10 +3,6 @@
 mousecalibration 620
 ingamemouse 1.0
 CamXY mouse 100 # Aim normally with mouse to counter recoil etc
-ActionWheelXY flick # Flick with wheel
-flickdeadzone 40
-flicktime 100
-mousepriority flick # Disable normal camera motion while using wheel
 
 # Triggers
 TriggerR M1 # Fire

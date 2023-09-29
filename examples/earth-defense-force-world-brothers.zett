@@ -1,12 +1,8 @@
 # Earth Defense Force World Brothers, with Flydigi Apex 2 in mind
 JoyXY wasd deadzone 40 # Strafe
 CamXY Mouse 50 # Sticklook
-mousepriority flick # Disable normal camera motion while using wheel
-ActionWheelXY flick # Action wheel for quick turning
-flickdeadzone 40
 mousecalibration 7000
 ingamemouse 1 # Actually 0, but meaningless
-flicktime 200
 
 # Triggers
 TriggerR M1 # Fire
