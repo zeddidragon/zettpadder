@@ -44,6 +44,10 @@ impl ControllerPoller {
     }
 
     fn relay(&mut self, event: Event) -> Poll<usize> {
+        if let Event::Disconnect = event {
+            println!("Disconnect");
+            return Ready(0);
+        }
         match self.sender.send(ZpMsg::Input(event)) {
             Err(err) => {
                 println!("Unable to relay event: {:?}\n{:?}", event, err);
@@ -54,14 +58,17 @@ impl ControllerPoller {
     }
 
     pub async fn run(&mut self) {
-        let id = Loop::new(self)
-            .when(|s| &mut s.listener, Self::connect)
-            .poll(|s| &mut s.controllers, Self::preamble)
-            .await;
+        loop {
+            let id = Loop::new(self)
+                .when(|s| &mut s.listener, Self::connect)
+                .poll(|s| &mut s.controllers, Self::preamble)
+                .await;
 
-        Loop::new(self)
-            .when(|s| &mut s.controllers[id], Self::relay)
-            .await;
+            Loop::new(self)
+                .when(|s| &mut s.controllers[id], Self::relay)
+                .await;
+            self.controllers.pop();
+        }
     }
 }
 
