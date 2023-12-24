@@ -1,0 +1,11 @@
+# Outriders, with Flydigi Apex 2 in mind
+# First set right stick sensitivity to 0.00000 in the following file:
+#
+# %LOCALAPPDATA%\Madness\Saved\Config\WindowsNoEditor\Engine.ini
+mousecalibration 1800
+ingamemouse 1
+
+CamXY mouse 100
+
+PaddleLeft Shift # Sprint
+ActionC R # Reload

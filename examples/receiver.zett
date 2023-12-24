@@ -10,11 +10,10 @@ JoyXY WASD deadzone 40 # Move
 BumperL Shift # Run (Enable in Receiver 2)
 BumperR G # Pick Up (Hold)
 
-Up Q # Aim (Toggle)
-Left X # Tape Player
-
-Right Tab # Slow-mo Toggle / Holster (Receiver 2)
-Down BackQuote # Holster
+Left Dot # Spin Cylinder
+Up Comma # Spin Cylinder
+Down X # Tape Player
+Right BackQuote # Holster
 
 TriggerL M2 # Aim (Hold)
 
@@ -62,5 +61,5 @@ Right 0
 
 MenuL L # Level Reset
 
-BumperL Dot # Spin Revolver
-BumperR Comma # Spin Revolver
+BumperL Q # Aim (Toggle)
+BumperR Tab # Slow-mo Toggle / Holster (Receiver 2)

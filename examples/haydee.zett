@@ -10,15 +10,13 @@ ingamemouse 0.1
 # Unbind everything except left stick and the above mentioned always on action
 # Triggers
 TriggerR M1 # Fire / Drag (Inventory)
-BumperR E # Interact
-PinkyRight M3 #
-PaddleRight C # Switch Shoulders
-
-TriggerL Ctrl # Crouch / Down
+TriggerL M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
 BumperL Space # Jump / Up
-PinkyLeft M2 # Aim / Dive / Take (Boxes) / Drop (Inventory)
+BumperR E # Interact
+PinkyLeft C # Switch Shoulders
+PinkyRight M3 #
 PaddleLeft Shift # Run / Swim / Split Stacks (Inventory)
-
+PaddleRight Ctrl # Crouch / Down
 
 # Face Buttons
 ActionH 3 # Left Item

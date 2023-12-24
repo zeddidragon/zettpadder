@@ -1,27 +1,26 @@
 # Earth Defense Force World Brothers, with Flydigi Apex 2 in mind
 JoyXY wasd deadzone 40 # Strafe
-CamXY Mouse 50 # Sticklook
-mousecalibration 7000
+CamXY Mouse 100 # Sticklook
+mousecalibration 1800
 ingamemouse 1 # Actually 0, but meaningless
 
 # Triggers
 TriggerR M1 # Fire
 TriggerL M2 # Aim
 BumperL Shift # Ability
-BumperR M3 # Second Ability
-ActionL Space # Jump
-ActionR Z # SP Move
-PaddleLeft M3 # Second Ability
+BumperR E # Use
+PaddleLeft Space # Jump
 PaddleRight Z # SP Move
+# PinkyRight M3 # Second Ability
 
 # Face buttons
-ActionV X # Assemble (rebind it)
-ActionB E # Use
-ActionH R # Reload
-ActionA Space # Jump
+ActionV 1 # Switch Teammate
+ActionB 2 # Switch Teammate
+ActionA 3 # Switch Teammate
+ActionH 4 # Switch Teammate
 
-ActionC Enter # OK in menus
-ActionD Escape # Back in menus
+ActionC X # Assemble (rebind it)
+ActionD R # Reload
 
 # Menu Buttons
 MenuL Tab # For Menus
@@ -29,11 +28,3 @@ MenuR Escape # Pause
 
 # Dpad
 DpadXY Arrows # For menus
-
-# Underside
-PinkyLeft layer 1 # Switch teammates
-layer 1 # Switch teammates
-ActionV 1 # Switch Teammate
-ActionB 2 # Switch Teammate
-ActionA 3 # Switch Teammate
-ActionH 4 # Switch Teammate

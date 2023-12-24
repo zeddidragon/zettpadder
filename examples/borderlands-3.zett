@@ -55,9 +55,9 @@ Left F1 # Roster
 Up F2 # Matchmaking
 Down F3 # SHiFT
 Right F4 # Mail
-F5 # LAN Browser
+# F5 # LAN Browser
 
-MenuR # Quick Menu
+MenuR Escape # Quick Menu
 layer 0
 # Y # Text Chat
 # T # Voice Chat

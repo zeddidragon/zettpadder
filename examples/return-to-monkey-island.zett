@@ -1,0 +1,24 @@
+# Return to Monkey Island, with Flydigi Apex 2 in mind.
+DpadXY arrows # Arrows / Scroll Dialog History
+JoyXY mouse 50 # Move mouse
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
+TriggerR M1 # Action
+TriggerL M2 # Walk / Secondary Action
+
+MenuL Tab # Highlight All Objects
+MenuR Space # Pause
+
+ActionH M # Open Sea Map
+ActionV O # Open Settings
+ActionA Dot # Skip Dialog
+ActionB Comma # Show Dialog History
+ActionC I # Open Inventory
+ActionD T # Open To-Do List
+
+PaddleRight Alt
+
+BumperL S # Alt + S: Save Game
+BumperR L # Alt + L: Load Game

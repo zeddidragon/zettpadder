@@ -1,0 +1,19 @@
+# Risk of Rain 2, with Flydigi Apex 2 in mind.
+
+# JoyXY arrows deadzone 40 # Move camera
+CamXY mouse 100 # Move mouse
+mousecalibration 1000
+
+TriggerR M1 # Primary
+TriggerL M2 # Secondary
+BumperL Shift # Utility
+BumperR R # Special
+PaddleLeft Ctrl # Sprint
+# PinkyRight M3 # Ping
+
+ActionH E # Interact
+ActionV Q # Equipment
+ActionA Space # Jump
+
+MenuL Tab # Info
+MenuR Escape # Pause

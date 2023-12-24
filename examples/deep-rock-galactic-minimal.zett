@@ -4,7 +4,8 @@ ingamemouse 3
 
 CamXY mouse 100
 
-PinkyLeft Shift # Sprint
+PaddleLeft Shift # Sprint
+PaddleRight !! A , , S , ,
 
 # Unmap Right Stick and X Button
 

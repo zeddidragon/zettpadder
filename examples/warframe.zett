@@ -1,4 +1,4 @@
-# Warframe, with Flydigi Vader 3 in mind
+# Warframe, with Flydigi Apex 2 in mind
 mousecalibration 3630
 ingamemouse 1 # I have it to 0 but the number is meaningless
 
@@ -15,11 +15,11 @@ BumperL Ctrl # Crouch / Dodge
 PinkyLeft Shift # Sprint
 # PinkyRight M3 # Alt-Fire
 PaddleLeft F # Switch Weapons
-PaddleRight E # Melee
+PaddleRight 3 # Ability C
 
 ActionH 2 # Ability B
-ActionB 3 # Ability C
 ActionV 4 # Ability D
+ActionB E # Melee
 ActionA Space # Jump
 ActionC X # Interact
 ActionD R # Reload

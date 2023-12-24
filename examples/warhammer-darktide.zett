@@ -1,0 +1,42 @@
+# Warhammer Vermintide 2, with Flydigi Apex 2 in mind
+JoyXY wasd deadzone 40 # Strafe
+CamXY Mouse 100 # Used to counter recoil
+mousecalibration 1200
+ingamemouse 0.3
+
+PinkyLeft M6 # Weapon Special Actions
+# PinkyRight M3 # Tag / Tagging Wheel
+PaddleLeft Shift # Sprint
+PaddleRight Ctrl # Toggle Crouch
+
+TriggerR M1 # Primary Action / Spectate Next Player
+TriggerL M2 # Secondary Action / Spectate Previous Player
+BumperL F # Ability
+BumperR G # Blitz Action
+
+Left layer 1 # Menu Stuff
+Up I # View Wargear
+Down 3 # Equip Deployable
+Right 4 # Wield Auspex
+
+MenuL Tab # Tactical Overlay
+MenuR Escape # Pause
+
+ActionH 1 # Wield Primary Weapon
+ActionV 2 # Wield Secondary Weapon
+
+ActionA Space # Jump / Dodge
+ActionB E # Interact
+
+ActionC R # Reload Weapon
+ActionD V # Push to Talk
+
+layer 1
+ActionH X # Inspect Weapon
+ActionV I # View Wargear
+ActionA Enter # Confirm
+ActionB Escape # Back
+
+MenuR F10 # Abort Mission
+
+CamY ScrollY

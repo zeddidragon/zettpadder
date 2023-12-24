@@ -1,7 +1,7 @@
 # Monster Hunter World, with Flydigi Apex 2 in  mind
 mousecalibration 740
 ingamemouse 0.2 # I have it to 0 but the number is meaningless
-fps 50
+fps 60
 
 CamXY mouse 100
 
@@ -11,6 +11,7 @@ JoyXY WASD deadzone 40
 # Stick clicks
 Joy Shift # Sprint / Sheathe
 Cam Q # Toggle Slinger / Focus
+ActionR Q # Toggle Slinger / Focus
 
 # Item quickbars
 DpadXY F4 F2 F1 F3
@@ -18,26 +19,25 @@ DpadXY F4 F2 F1 F3
 # Seperate reload and interact buttons (disable ActionH button with steam input)
 TriggerR M1 # Draw Weapon / Fire
 TriggerL M2 # Special Attack / Aim
-ActionR Q # Toggle Slinger / Focus
-ActionL Shift # Sprint / Sheathe
 BumperR C # Aim Slinger
-BumperL E # Use Item / Sheathe Weapon
+BumperL Shift # Sprint / Sheathe
 
 # Menus stuff
+MenuL M # Map
 MenuR Escape # Pause
-MenuL X # Manage Loadouts
 
 # Under buttons
-PaddleLeft M # Map
+PaddleLeft Q # Toggle Slinger / Focus
 PaddleRight Tab # Map Marker / Quest Return Selection
 
 PinkyLeft layer 1 # More items
+# PinkyRight M3 # Block / Special Attack
 
 # Quick Items
-ActionA Space # Crouch / Dodgge
+ActionA Space # Crouch / Dodge
 ActionH F # Interact
 ActionV R # Reload (Map to Simultaneous Action RT + B for Gunlance Reload)
-ActionB M3 # Block / Special Attack
+ActionB E # Use Item / Sheathe Weapon
 
 ActionC 7 # Item 7
 ActionD 8 # Item 8
@@ -55,10 +55,13 @@ ActionC 5
 ActionD 6
 
 BumperL Z
-BumperR C
+BumperR C # Aim Slinger
 ActionR Ctrl # Item Menu / Skill Info
-Cam Ctrl # Item Menu / Skill Info
 
-DpadXY Left Right ScrollUp ScrollDown # Browse items
+DpadXY Left Right Up Down # Browse items
+
+MenuL Ctrl # Item Menu / Skill Info
+MenuR X # Manage Loadouts
+CamY ScrollY # Browse Items
 
 PaddleRight N # Preview Item
