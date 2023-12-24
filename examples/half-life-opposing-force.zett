@@ -1,19 +1,18 @@
 # Half-Life: Opoosing Force, with Flydigi Apex 2 in mind
-CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-ingamemouse 30
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
-mousecalibration 1290
+mousecalibration 3600
 ingamemouse 1.0
+JoyXY wasd deadzone 40 # I give up
+CamXY mouse 100
 
 TriggerR M1 # Fire
 BumperR M2 # Alt-Fire
 ActionR E # Interact
+PaddleRight Ctrl # Crouchh
 
 TriggerL Space # Jump
-BumperL Ctrl # Crouch
+BumperL E # Interact
 ActionL Shift # Walk
+PaddleLeft Shift # Walk
 
 ActionC R # Reload
 ActionD F # Night-Vision Goggles
@@ -44,9 +43,12 @@ ActionV 6 # Weapons 6
 ActionA 7 # Weapons 7
 ActionB 8 # Weapons 8
 
+# You'll throw yourself off ladders with the below setting. Disregard.
+
 # In ~/.local/share/Steam/steamapps/common/Half-Life/gearbox
 # add this file as joystick.cfg (strip layer of # comments)
-# // Half-Life Flyidig controller config.cfg
+# //Half-Life Flyidig controller config.cfg
+# alias +joyoffset "+moveright;+back"
 # joyname "Flydigi Apex 2"
 # joyyawsensitivity 0
 # joypitchsensitivity 0
@@ -59,10 +61,9 @@ ActionB 8 # Weapons 8
 # joyadvaxisr 0
 # joyadvaxisu 0
 # joyadvaxisv 0
-# joyadvaxisx 3 // Strafe
-# joyadvaxisy 1 // Move forward / backwards
+# joyadvaxisx 3 # Strafe
+# joyadvaxisy 1 # Move forward / backwards
 # joyadvaxisz 0
 # -jlook
 # joyadvancedupdate
-# +moveright // Counteract oversensitivity horizontally
-# +back // Counteract oversensitivity backwards
+# +joyoffset

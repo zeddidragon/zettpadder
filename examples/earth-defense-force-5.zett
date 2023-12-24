@@ -3,11 +3,7 @@
 mousecalibration 74000
 JoyXY WASD deadzone 40
 CamXY mouse 50 # Too restricted for regular flickstick
-ActionWheelXY flick # Flick with wheel
 ingamemouse 30
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
-flicktime 200
 
 # Face buttons
 ActionH 1 # Weapon 1

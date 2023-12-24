@@ -3,9 +3,6 @@ mousecalibration 1600
 ingamemouse 1 # I have it to 0 but the number is meaningless
 
 CamXY mouse 50
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 
 # Unmap everything in steam input
 JoyXY WASD deadzone 40

@@ -3,9 +3,6 @@ JoyXY wasd deadzone 40 # Strafe
 CamXY Mouse 100 # Used to counter recoil
 mousecalibration 20000
 ingamemouse 5
-mousepriority flick # Disable normal camera motion while using wheel
-ActionWheelXY flick # Action wheel for quick turning
-flickdeadzone 40
 
 PinkyLeft V # Weapon Special
 PinkyRight M3

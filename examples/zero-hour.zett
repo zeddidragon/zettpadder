@@ -3,9 +3,7 @@
 # Movement
 JoyXY WASD deadzone 40
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
 mousecalibration 1200 # Mouse units for one radian
-mousepriority flick # Disable normal camera motion while using wheel
 ingamemouse 1.0
 
 TriggerL M2 # Aim

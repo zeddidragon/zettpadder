@@ -1,20 +1,19 @@
-# REmake 3, with Flydigi Apex 2 in mind
+# REmake 2 and 3, with Flydigi Apex 2 in mind
 JoyXY WASD deadzone 40
 
-CamXY mouse 50 # Right stick to adjust camera, flick stick support is poor
+CamXY mouse 100 # Right stick to adjust camera, flick stick support is poor
 mousecalibration 2435 # Mouse units for one radian
-flicktime 300
 ingamemouse 1.0 # Lowest sensitivity
-mousepriority flick # Disable normal camera motion while using wheel
-ActionWheelXY flick # Action wheel for turning
-flickdeadzone 40
 
 TriggerL M2 # Aim
 TriggerR M1 # Attack
-BumperL Shift # Run
-BumperR Space # Dodge/Charge
-ActionL Q # 180 / Prev Tab
-ActionR E # Switch Ammo / Next Tab
+Bumperl Space # Dodge/Charge/Sub-Weapon
+BumperR Shift # Run
+
+PinkyLeft Z # Switch Categories
+PaddleLeft Q # 180 / Prev Tab
+PaddleRight E # Switch Ammo / Next Tab
+PinkyRight C # Switch Categories
 
 ActionH 1 # Weapon Left
 ActionV 2 # Weapon Up
@@ -22,9 +21,9 @@ ActionB 3 # Weapon Right
 ActionA 4 # Weapon Down
 
 ActionC R # Reload
-ActionD I # Inventory
+ActionD Tab # Inventory / Sort Item Box
 
-MenuL Tab # Map / Sort item box
+MenuL M # Map
 MenuR P # Pause
 
-DpadXY T G  Z C # Switch map floor / Menu category
+DpadXY T G Z C # Switch map floor / Menu category

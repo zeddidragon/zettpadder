@@ -1,12 +1,8 @@
 # Unreal Tournament 3, with Flydigi Apex 2 in mind
 # Unbind everything except the left stick.
 CamXY mouse 100 # Aim normally with mouse to counter recoil etc
-ActionWheelXY flick # Flick with wheel
-flickdeadzone 40
 mousecalibration 2000
 ingamemouse 1
-flicktime 100
-mousepriority flick # Disable normal camera motion while using wheel
 
 TriggerR M1 # Fire
 BumperR M2 # Alt-Fire

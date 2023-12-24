@@ -4,16 +4,12 @@
 # - Select Hardware 2: Y (Default: 4)
 # - Use Hardware: M3 (Default: C)
 mousecalibration 480
-flicktime 200
 ingamemouse 0.10
 
 # Unmap everything except Left Stick in Steam
 
 # JoyXY WASD deadzone 40
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 
 TriggerR M1 # Add Object / Primary Attack
 BumperR M2 # Delete Object / Secondary Attack

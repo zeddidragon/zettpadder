@@ -1,0 +1,32 @@
+# Resident Evil 7: Biohazardd, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40
+
+CamXY mouse 100 # Right stick to adjust camera, flick stick support is poor
+mousecalibration 2435 # Mouse units for one radian
+ingamemouse 1.0 # Lowest sensitivity
+
+TriggerL M2 # Aim
+TriggerR M1 # Attack
+BumperL Space # Guard
+BumperR Shift # Run
+PaddleLeft C # Crouch / Stand / (55) Use item set
+PaddleRight Ctrl # Heal
+PinkyLeft Q # Tab Left
+PinkyRight E # Tab Right
+
+ActionH T # Map: View Icon Legend / (55) Switch screen
+ActionV Tab # Inventory
+ActionA F # Confirm / (55) Add item set
+ActionB X # Quick Turn
+
+ActionC R # Reload
+ActionD G # Change Ammo
+
+Left 1 # Weapon Left / (21) View trump cards on  table
+Up 2 # Weapon Up / (21) Use trump card
+Down 3 # Weapon Down / (21)  Keep current hand
+Right 4 # Weapon Right / (21) Draw a card
+
+MenuL V # Map / Sort Inventory
+MenuR P # Pause
+

@@ -1,9 +1,6 @@
 # Minecraft, with Flydigi Apex 2 in mind
 JoyXY WASD deadzone 40
 CamXY mouse 100
-ActionWheelXY flick # Flick with wheel
-mousepriority flick # Disable normal camera motion while using wheel
-flickdeadzone 40
 ingamemouse 40
 mousecalibration 56800
 

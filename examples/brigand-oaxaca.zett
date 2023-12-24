@@ -1,7 +1,6 @@
 # Brigand: Oaxaca, with Flydigi Apex 2 in mind
 # Should you for some reason want to inflict this game upon yourself
 JoyXY WASD deadzone 40 # Move with left stick
-CamXY flick # Right Stick for turning
 mousecalibration 1150
 ingamemouse 1 # Actually 0, but that doesn't make sense
 

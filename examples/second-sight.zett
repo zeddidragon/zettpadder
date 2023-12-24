@@ -7,9 +7,6 @@ JoyXY WASD deadzone 40 # Move with joy
 CamXY Mouse 60 # Traditional mousing / Change target
 mousecalibration 1000
 ingamemouse 1.0
-mousepriority flick # Disable normal camera motion while using wheel
-ActionWheelXY flick # Action wheel for quick turning
-flickdeadzone 40
 
 # Triggers
 TriggerR M1 # Attack

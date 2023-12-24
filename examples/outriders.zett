@@ -1,0 +1,48 @@
+# Warframe, with Flydigi Apex 2 in mind
+mousecalibration 1800
+ingamemouse 1 # I have it to 0 but the number is meaningless
+
+CamXY mouse 400
+
+# Unmap everything in steam input
+JoyXY WASD deadzone 40
+
+# Seperate reload and interact buttons (disable ActionH button with steam input)
+TriggerR M1 # Fire
+TriggerL M2 # Targeting
+BumperL 1 # Skill 1
+BumperR 2 # Skill 2
+PinkyLeft Z # Toggle Walk
+PaddleLeft Shift # Sprint
+PaddleRight 3 # Skill 3
+# PinkyRight M3 # Mirror Camera Toggle Zoom
+
+ActionH E # Melee
+ActionV Q # Swap Weapons
+ActionA Space # Use Cover / Alternate Interaction
+ActionB Ctrl # Roll / Climb / Mantle
+ActionC F # Melee
+ActionD R # Reload
+
+MenuL Tab # Track Objective
+MenuR Escape
+
+Left layer 1 # Menus
+Up J # Open Journal
+Down H # Auto Loot
+Right V # Open Emotes Menu
+
+layer 1 # Menus
+ActionH P # Open Class Screen
+ActionV I # Open Inventory
+ActionA O # Open Skills Screen
+ActionB M # Open Map
+ActionC Y # Vote Yes
+ActionD N # Vote No
+
+BumperL G # Track Quest
+BumperR X # Apply to All Equipped
+
+MenuR Delete # Sell / Dismantle All Marked
+
+CamY ScrollY

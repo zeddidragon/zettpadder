@@ -1,0 +1,45 @@
+# Resident Evil 8: Village, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40
+
+CamXY mouse 100 # Right stick to adjust camera, flick stick support is poor
+mousecalibration 2435 # Mouse units for one radian
+ingamemouse 1.0 # Lowest sensitivity
+
+TriggerL M2 # Aim / Back
+TriggerR M1 # Attack
+BumperL Space # Guard
+BumperR Shift # Run
+PinkyLeft layer 1
+PaddleLeft Ctrl # Use Healing Items
+PaddleLeft Z
+PaddleRight C # Crouch / Stand
+# PinkyRight M3
+
+ActionH E # Tab Right / ???
+ActionV Tab # Open Inventory
+ActionA F # Examine / Pick Up / [Menu] OK
+ActionB Ctrl # Use recovery items
+
+ActionC R # Reload
+ActionD G # Various powers in alternate game modes
+
+Left 1 # Weapon Left
+Up 2 # Weapon Up
+Right 3 # Weapon Right
+Down 4 # Weapon Down
+
+MenuL V # Map / Journal
+MenuR P # Pause
+
+Joy Ctrl # Use Healing / Summon Daughters (Merc, Lady D)
+Cam Alt # Zoom In/Out (Sniper Rifle Scope)
+
+layer 1
+Left Q # Tab Left / Quick Turn
+Right E # Tab Right
+Up T # Map: View Icon Legend
+Down G # 
+
+MenuL Delete # Some options
+
+CamY ScrollY
