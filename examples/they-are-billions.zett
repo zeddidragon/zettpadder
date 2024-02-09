@@ -1,0 +1,68 @@
+# They Are Billions, with Flydigi Apex 2 in mind.
+
+JoyXY arrows deadzone 40 # Move camera
+CamXY Mouse 100 # Move Cursor
+mousecalibration 1000
+
+TriggerR M1 # Select
+TriggerL layer 1 # Layer
+BumperR M2 # Command
+BumperL Shift # Queue all the things
+
+PinkyLeft Ctrl # Modifier
+PinkyRight M3 # Camera Panning
+PaddleRight Alt # Modifier
+PaddleLeft Space # Pause
+
+Left layer 2 # Advanced Commands
+Up layer 4 # Groups
+Down layer 3 # Category
+
+ActionH A # Command: Attack
+ActionV S # Command: Stop
+ActionA M # Command: Move
+ActionB P # Command: Patrol
+ActionC C # Command: Chase
+ActionD H # Command: Hold
+
+MenuL Tab # Show/Hide Interface
+MenuR Escape # Game Menu
+
+layer 2 # Advanced Commands
+ActionH G # Command: Throw Grenade
+ActionV K # Command: Use Medical Kit
+ActionA T # Command: Place Object
+ActionB Y # Command: Set Rally Point
+ActionC U # Command: Upgrade To
+ActionD P # Command: Suspend Production
+PaddleLeft R # Command: Repair
+PaddleRight Delete # Command: Demolish / Undo Building
+
+# Layer 4: Groups
+ActionH 1 # Group 1
+ActionV 2 # Group 2
+ActionA 3 # Group 3 
+ActionB 4 # Group 4
+ActionC 5 # Group 5
+ActionD 6 # Group 6
+PaddleLeft 7 # Group 7
+PaddleRight 8 # Group 8
+
+layer 1
+CamY ScrollY # Zoom
+
+ActionH F2 # Select Army
+ActionV F4 # Flat Mode
+ActionA Enter # Command Center
+ActionB X # Repair All
+ActionC E # Energy Supply
+
+layer 3 # Categories
+ActionH B # Category: Bonus
+ActionV F # Category: Defense
+ActionA C # Category: Colonists
+ActionB T # Category: Wonders
+ActionC E # Category: Energy
+Action I # Category: Industry & Trade
+PaddleLeft M # Category: Military
+PaddleRight R # Category: Resources

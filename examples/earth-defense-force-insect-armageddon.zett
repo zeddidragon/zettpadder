@@ -8,9 +8,9 @@ TriggerL M2 # Special Ability
 BumperR E # Interact / Battle Zapper
 BumperL Shift # Sprint
 
-PinkyLeft ScrollUp # Scroll Up / Switch Weapons
-PaddleLeft ScrollDown # Scroll Down / Switch Weapons
-PaddleRight M3 # Zoom
+PaddleLeft ScrollUp # Scroll Up / Switch Weapons
+PaddleRight ScrollDown # Scroll Down / Switch Weapons
+PinkyRight M3 # Zoom
 
 Up Up # Camera Shoulder Switch
 Right T # Show Point of Interest

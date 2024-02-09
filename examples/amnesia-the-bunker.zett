@@ -1,0 +1,32 @@
+# Amnesia: The Bunker, with Flydigi Apex 2 in mind
+mousecalibration 400
+ingamemouse 1.0
+CamXY mouse 200 # Aim normally with mouse to counter recoil etc
+
+JoyXY WASD deadzone 40
+
+TriggerR M1 # Interact / Shoot
+TriggerL M2 # Cancel / Aim / Throw
+BumperL Shift # Run
+BumperR Ctrl # Crouch
+PinkyLeft Ctrl # Crouch
+PinkyRight M3 # Rotate
+
+PaddleLeft Q # Lean Left
+PaddleRight E # Lean Right
+
+ActionH R # Toggle Gun
+ActionV F # Toggle Flashlight
+ActionA Space # Jump
+ActionB X # Toggle Gas Mask
+ActionC C # Holster
+ActionD Tab # Inventory
+
+Left J # Open Reminders Tab
+Right N # Open Notes Tab
+Up M # Open Memories Tab (Bind this)
+Down L # Open Alys Tab (Bind this)
+
+MenuL Tab # Inventory
+MenuR Escape # Menu
+

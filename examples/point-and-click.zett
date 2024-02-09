@@ -20,8 +20,8 @@ ActionB Space # Highlight
 ActionV Q # Quest
 ActionH P
 
-ActionC # Copy
-ActionD # Paste
+ActionC C # Copy
+ActionD V # Paste
 
 Up !! ScrollUp
 Down !! ScrollDown

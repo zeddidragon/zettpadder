@@ -1,0 +1,64 @@
+# Veloren, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ingamemouse 1.0
+
+TriggerR M1 # Basic Attack
+BumperR M2 # Secondary Attack
+TriggerL Alt # Block
+BumperL Q # Hotbar Item Q
+
+ActionH E # Interact
+ActionV C # Crafting (Also opens inventory)
+ActionA Space # Jump / Climb Up / Swim Up
+ActionB Shift # Toggle Sneak / Climb Down / Swim Down
+ActionC R # Toggle Wield
+ActionD Tab # Swap Loadout
+
+PinkyLeft layer 1 # Hotbar slots
+PaddleLeft Ctrl # Glider
+PaddleRight F # Mount
+PinkyRight M3 # Roll
+
+MenuL M # Map
+MenuR Escape # Escape
+
+Left layer 2 # More Hotbars
+Down layer 3 # More Menus
+Right layer 4 # Emotes
+Up G # Toggle Lantern
+
+Joy I # Toggle Walk
+Cam L # Freelook
+
+layer 1
+ActionH 1 # Hotbar 1
+ActionV 2 # Hotbar 2
+ActionA 3 # Hotbar 3
+ActionB 4 # Hotbar 4
+ActionC 5 # Hotbar 5
+ActionD 6 # Hotbar 6
+
+CamY ScrollY # Scroll
+
+layer 2
+ActionH 7 # Hotbar 7
+ActionV 8 # Hotbar 8
+ActionA 9 # Hotbar 9
+ActionB Q # Hotbar Q
+
+layer 3 # More Actions
+ActionH O # Social
+ActionV P # Spells
+ActionA F2 # Toggle Interface
+ActionB B # Bag
+ActionC F1 # Toggle Help Windwos
+ActionD F10 # Setting
+
+layer 4 # Emotes
+ActionV H # Greet / FLy
+ActionH T # Trade
+ActionA K # Sit
+ActionB J # Dance
+ActionC F4 # Take Screenshot
+ActionD Comma # Toggle Cursor

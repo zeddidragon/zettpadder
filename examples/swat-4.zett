@@ -40,7 +40,7 @@ BumperL Space # Quick Command
 PinkyRight M3 # Use / Shout
 PinkyLeft layer 1 # Grenades
 PaddleRight Shift # Toggle Sprint
-PaddleLeft layer 2 # Tools
+PaddleLeft B # Melee
 
 Up Ctrl # Prepare Command
 Left Q # Lean Left
@@ -53,8 +53,8 @@ Right Home # Cycle Blue Team Viewport
 Down Tab # Cycle Command Group
 Up PageUp # Cycle Sniper Team Viewport
 
-BumperR B # Melee
 PaddleRight CapsLock # Control Active Viewport
+CamY ScrollY
 layer 0
 
 MenuL M # Show Objectives
