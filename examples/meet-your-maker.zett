@@ -4,7 +4,7 @@
 # - Select Hardware 2: Y (Default: 4)
 # - Use Hardware: M3 (Default: C)
 mousecalibration 480
-ingamemouse 0.10
+ingamemouse 0.50
 
 # Unmap everything except Left Stick in Steam
 

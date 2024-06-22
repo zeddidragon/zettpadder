@@ -1,0 +1,43 @@
+# Blender, with Flydigi Apex 2 in mind.
+JoyXY mouse 100 # Move mouse
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
+TriggerL Ctrl
+BumperL Shift
+
+TriggerR M1 # Action
+BumperR M2 # Alt-Action
+PinkyRight M3 # Pan
+
+MenuL Tab # Switch Modes
+
+Left layer 1 # Modes
+Up layer 2 # Actions
+Right layer 3 # Views
+
+ActionH G # Move
+ActionV S # Scale
+ActionA A # All (Shift+ Add)
+ActionB R # Rotate
+ActionC X # Delete
+ActionD Z # (Ctrl+ Undo)
+
+layer 1 # Modes
+ActionH 1 # Vertces
+ActionV 2 # Edges
+ActionA W # Select
+ActionB 3 # Faces
+
+layer 2 # Actions
+ActionH E # Extrude
+ActionB F # Fill
+ActionA Enter # Confirm
+ActionC K # Knife Tool
+
+layer 3 # Views
+ActionH Kp0 # Camera
+ActionV Kp7 # Top/Bottom
+ActionA Kp1 # Front/Back
+ActionB Kp3 # Right/Left

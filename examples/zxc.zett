@@ -1,0 +1,15 @@
+# For sideview 2D games using arrow keys and ZXC
+
+JoyXY Arrows deadzone 40
+
+ActionA Up # Jump or interact
+ActionH Z # Interact / Shoot
+ActionB X # Cancel
+ActionV Enter
+
+TriggerL Shift
+BumperL Space
+BumperR C # Dash or something
+TriggerR M1
+
+MenuR Start # Escape

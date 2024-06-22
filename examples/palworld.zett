@@ -3,7 +3,7 @@
 # Switch Ctrl and C for Roll / Slide
 # This makes the keys nicer for menu controls, but isn't mandatory,
 # both ways work fine.
-JoyXY WASD deadzone 40
+# JoyXY WASD deadzone 40
 CamXY mouse 100
 
 # Unmap everything in steam input
@@ -42,3 +42,4 @@ CamY ScrollY # Change Weapons / Zoom Map
 
 ActionH V # Alternate Interact
 ActionD Escape # Options / Back
+ActionC Alt

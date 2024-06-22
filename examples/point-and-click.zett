@@ -10,10 +10,10 @@ CamXY mouse 100 # Move mouse
 mousecalibration 900
 ingamemouse 1.0
 
-TriggerR M1 # Action
-TriggerL M2 # Alt-Action
 BumperR Ctrl
 BumperL Shift
+TriggerL M1 # Action
+BumperL M2 # Alt-Action
 
 ActionA I # Inventory
 ActionB Space # Highlight

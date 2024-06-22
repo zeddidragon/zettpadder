@@ -14,7 +14,7 @@ BumperL Shift # Sprint
 BumperR G # Use Item
 PinkyLeft layer 1 # Weapons
 PaddleLeft layer 2 # Items
-PaddleRight Alt #
+PaddleRight Alt # Item Wheel
 PinkyRight M3 # Switch Shoulder
 
 ActionH E # Interact
@@ -27,7 +27,7 @@ ActionD Z # Class Technique
 Left T # Switch Muzzle (While aiming)
 Down Y # Switch Underbarrel (While aiming)
 Up X # Switch Trigger (While aiming), Deploy Drone
-Right B # Switch Scope (While aiming), interrogate
+Right B # Switch Scope (While aiming), Interrogate
 
 MenuL Tab # Manual Interfact Display
 MenuR Escape

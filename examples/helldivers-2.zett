@@ -1,0 +1,19 @@
+# Helldivers 2, with Flydigi Apex 2 in mind
+
+# Remap some controls in-game:
+## Gamepad
+# X: Primary Weapon
+# Y: Support Weapon
+# ## Keyboard
+# M3: Quick Grenade (Remove from aim toggle)
+
+ActionC R # Reload
+ActionD 2 # Sidearm
+
+PinkyLeft V # Stim
+PaddleLeft Shift # Sprint
+PaddleRight Tab # Map
+# PinkyRight M3 # Quick Grenade
+
+# TriggerL M2 # Aim
+# TriggerR M1 # Shoot

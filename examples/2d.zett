@@ -1,7 +1,19 @@
 JoyXY arrows deadzone 40
 DpadXY arrows
 ActionA S
-ActionH A
+ActionH X
 ActionV W
 ActionB D
 BumperL F
+
+ActionV X
+ActionH C
+ActionA Z
+ActionB Space
+MenuL T
+MenuR P
+
+PovXY 1 3 2 4
+
+BumperL A
+BumperR D

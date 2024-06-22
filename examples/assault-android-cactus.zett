@@ -1,0 +1,11 @@
+# Assault Android Cactus, with Flydigi Apex 2 in mind
+JoyXY WASD deadzone 30
+CamXY mouse 300
+
+TriggerR M1 # Fire
+TriggerL M2 # Swap / Dodge
+
+MenuL Tab
+MenuR Escape # Options
+
+ActionB Escape # Back

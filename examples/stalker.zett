@@ -1,0 +1,59 @@
+# Stalker: Shadow of Chernobyl, with Flydigi Apex 2 in mind
+#
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+mousecalibration 800 # Mouse units for one radian
+ingamemouse 1.0
+
+TriggerL M2 # Zoom
+TriggerR M1 # Fire
+BumperL Shift # Low Crouch
+BumperR X # Sprint
+
+PinkyLeft Ctrl # Crouch
+PaddleLeft Q # Lean Left
+PaddleRight E # Lean Right
+
+ActionH F # Use
+ActionV ] # Quick Bandage
+ActionA Space # Jump
+ActionB Escape # Pause / Exit
+ActionC R # Reload
+ActionD Y # Change ammo type
+
+MenuL M # PDA Map
+MenuR L # Flashlight
+
+Left layer 1 # Weapons
+Up layer 2 # Menus
+Right I # Inventory
+Down G # Drop
+
+layer 1 # Weapons
+# Think of the face buttons as three rows:
+# X 1  Y 2
+#  A 3  B 4
+#   C 5  Z 6
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+ActionC 5 # Weapon 5
+ActionD 6 # Weapon 6
+BumperR V # Grenade Launcher
+PaddleLeft 9 # Previous firing mode
+PaddleRight 0 # Next firing mode
+
+CamY ScrollY
+
+layer 2 # Menus
+PaddleLeft F6 # Save
+PaddleRight F7 # Load
+
+ActionV [ # Quick Medkit
+ActionB H # PDA Contacts
+MenuL NumLock # Pause
+MenuR N # Night Vision
+
+CamY ScrollY

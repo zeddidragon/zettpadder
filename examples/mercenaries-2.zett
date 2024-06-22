@@ -1,0 +1,32 @@
+# Mercenaries 2, with Flydigi Apex 2 in mind
+# Unmap everything except
+# - Left stick (movemen
+# - A: Jump (ok)
+# - B: Melee (back)
+# - X: Reload (reverse)
+# - Y: Use
+ingamemouse 1
+CamXY mouse 200
+
+TriggerR M1 # Fire
+BumperR M2 # Secondary Attack
+TriggerL C # Crouch / Zoom
+BumperL Shift # Sprint
+
+# ActionH R # Reload
+# ActionV E # Use
+# ActionA Space # Jump
+# ActionB F # Melee
+ActionC Tab # Switch Primary
+ActionD V # Switch Secondary
+
+MenuL F1 # PDA
+# MenuR Escape # Start
+
+Up Up # Support Up
+Left B # Binoculars
+Down Down # Support Down
+Right 4 # Switch View
+
+PaddleLeft Shift # Sprint
+PaddleRight Space # Start

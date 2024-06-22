@@ -9,10 +9,10 @@ ingamemouse 30
 ActionH 1 # Weapon 1
 ActionV 2 # Weapon 2
 ActionA 3 # Weapon 3 (Air Raider only)
-ActionB Z # Call Vehicle / Reload shield
+ActionB E # Use / Revive
 
-ActionC E # Use / Revive
-ActionD R # Reload
+ActionC R # Reload
+ActionD Z # Call Vehicle / Reload shield
 
 # Rear triggers
 # Left and Right flipped. This is due to the inherent problem of

@@ -1,0 +1,22 @@
+# Gunpoint, with Flydigi Apex 2 in mind.
+
+JoyXY wasd deadzone 40 # Movement
+CamXY mouse 100 # Move mouse
+mousecalibration 900
+ingamemouse 1.0
+
+TriggerR M1 # Click
+BumperR M2 # Right Click
+TriggerL M2 # Cancel / Draw Gun
+BumperL Alt # Crosslink
+
+ActionH 1 # Option 1
+ActionV 2 # Option 2
+ActionB 3 # Option 3
+ActionA Space # Accept
+ActionC R # Restart
+
+MenuL Tab
+MenuR Escape
+
+DpadXY arrows # Pan Camera

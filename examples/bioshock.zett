@@ -1,0 +1,55 @@
+# Bioshock, with Flydigi Apex 2 in mind
+
+# Movement
+JoyXY WASD deadzone 40
+CamXY mouse 100
+ingamemouse 1.0
+
+Cam Z # Toggle Zoom
+
+TriggerL M2 # Weapons / Plasmids
+TriggerR M1 # Fire
+
+PaddleLeft Ctrl # Walk
+PaddleRight B # Previous Ammo
+# PinkyRight M3 # Next Ammo
+
+MenuL M # Map / Goals / Messages / Help
+MenuR Escape
+
+BumperL Shift # Weapon and Plasmid Selection
+ActionH V # Hack
+ActionV Space # Jump
+ActionA E # Use
+ActionB C # Crouch
+ActionC R # Reload
+ActionD T # Play Newest Unread Diary
+
+Left layer 1 # Weapons
+Up layer 2 # More Weapons
+Down layer 3 # Plasmids
+Right F # First Aid
+
+layer 1 # Weapons
+ActionH 1 # Weapon 1
+ActionV 2 # Weapon 2
+ActionA 3 # Weapon 3
+ActionB 4 # Weapon 4
+ActionC H # Harvest / Help
+ActionD L # Rescue
+
+layer 2 # Weapons
+ActionH 5 # Weapon 5
+ActionV 6 # Weapon 6
+ActionA 7 # Weapon 7
+ActionB 8 # Weapon 8
+ActionC F8 # Quick Save
+ActionD F9 # Quick Load
+
+layer 3 # Plasmids
+ActionH F1 # Plasmid 1
+ActionV F2 # Plasmid 2
+ActionA F3 # Plasmid 3
+ActionB F4 # Plasmid 4
+ActionC F5 # Plasmid 5
+ActionD F6 # Plasmid 6
