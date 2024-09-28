@@ -1,0 +1,63 @@
+# Spiral Knights, with Flydigi Apex 2 in mind
+# Joy for some movement
+# Right stick for aiming (rebind for this effect)
+
+
+TriggerR M1 # Action (Attack)
+TriggerL M2 # Defend
+BumperR 1 # Sprite Action 1
+BumperL 2 # Sprite Action 2
+
+# Bind Joy to Dash and Cam to Bash in-game
+
+PaddleLeft Ctrl # Toggle Auto Target
+PaddleRight 3 # Sprite Action 3
+
+ActionC ScrollUp # Previous Weapon
+ActionD ScrollDown # Next Weapon
+# Space # Next Weapon
+ActionH 4 # Quickslot 1
+ActionV 5 # Quickslot 2
+ActionA 6 # Quickslot 3
+ActionB 7 # Quickslot 4
+
+MenuL Tab # Toggle Windows
+MenuR M # Toggle Mission
+
+Left layer 1 # Quick commands
+Up layer 2 # Menus
+
+
+layer 1 # Quick Commands
+ActionH Kp7 # /attack
+ActionV Kp4 # /come
+ActionA Kp8 # /fallback
+ActionB Kp1 # /follow
+ActionC Kp0 # /helpme
+ActionD Kp3 # /wait
+MenuR Kp2 # /ready
+layer 0
+
+layer 2
+ActionV B # Toggle Map
+ActionA = # Toggle Zoom
+MenuR Escape
+layer 0
+
+# Enter # Start Chat
+# / # Start Chat Commands
+# R # Respond to Chat
+# V # Talk (Voice Chat)
+# F2 # Bug Report
+
+# I # Toggle Arsenal
+# U # Toggle Forge
+# K # Toggle Supply Depot
+# P # Toggle Character
+# L # Toggle Loadouts
+# O # Toggle Progress
+# F1 # Toggle Help
+# F5 # Toggle Recipes
+# F6 # Toggle Social
+# F7 # Toggle Event Hub
+# ~ # Toggle Hud Lock
